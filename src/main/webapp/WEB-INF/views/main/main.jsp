@@ -43,11 +43,12 @@
 }
 
 /* review ---------------------------------- */
-img{
+/* img{
   height:150px;
   width:100%;
+  height:400px;
 }
-
+ */
 div [class^="col-"]{
   padding-left:5px;
   padding-right:5px;
@@ -101,6 +102,8 @@ div [class^="col-"]{
 .card:hover::before, .card:hover::after, .card:focus::before, .card:focus::after {
   transform: scale3d(1, 1, 1);
 }
+
+
 </style>
 
 </head>
@@ -115,19 +118,21 @@ div [class^="col-"]{
 			</button>
 			<div class="collapse navbar-collapse" id="mynavbar">
 				<ul class="navbar-nav me-auto">
-					<li class="nav-item"><a class="nav-link" href="#">브레멘 스토리</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">SHOP</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">LIFILL 스토리</a></li>
+					<li class="nav-item"><a class="nav-link" href="item">SHOP</a></li>
 					<div class="dropdown">
 						<button type="button" class="btn text-secondary"
 							data-bs-toggle="dropdown">게시판</button>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="#">공지사항</a></li>
-							<li><a class="dropdown-item" href="#">FAQ</a></li>
-							<li><a class="dropdown-item" href="#">1:1문의</a></li>
+							<li><a class="dropdown-item" href="board/notice">공지사항</a></li>
+							<li><a class="dropdown-item" href="board/faq">FAQ</a></li>
+							<li><a class="dropdown-item" href="board/qna">1:1문의</a></li>
 						</ul>
 					</div>
 				</ul>
 			</div>
+			<button class="btn" onclick="location.href='member/mypage'"><img src="./resources/image/icon/cart.png" width="20px" height="20px"/></button>
+			<button class="btn" onclick="location.href='member'"><img src="./resources/image/icon/user.png" width="20px" height="20px"/></button>
 		</div>
 	</nav>
 
@@ -136,13 +141,13 @@ div [class^="col-"]{
 		data-bs-ride="carousel">
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img src="/htmlcssjs/resources/image/photos/photo1.jpg" class="d-block w-100">
+				<img src="./resources/image/banner/lifill_banner1.png" class="d-block w-100"/>
 			</div>
 			<div class="carousel-item">
-				<img src="/htmlcssjs/resources/image/photos/photo2.jpg" class="d-block w-100">
+				<img src="./resources/image/banner/lifill_banner2.png" class="d-block w-100"/>
 			</div>
 			<div class="carousel-item">
-				<img src="/htmlcssjs/resources/image/photos/photo3.jpg" class="d-block w-100">
+				<img src="/htmlcssjs/resources/image/photos/photo3.jpg" class="d-block w-100"/>
 			</div>
 		</div>
 		<!-- carousel button 1 -->
@@ -168,27 +173,27 @@ div [class^="col-"]{
 				<div class="carousel-item active">
 					<div class="card-wrapper container-sm d-flex  justify-content-around">
 						<div class="card  " style="width: 18rem;">
-							<img src="/htmlcssjs/resources/image/detail/img1.png" class="card-img-top">
+							<img src="./resources/image/item_rep/intestine/intestine1.png" class="card-img-top">
 							<div class="card-body">
-								<h5 class="card-title">복숭아맛구미 비타민C&D 3000</h5>
+								<h5 class="card-title">피부면역 유산균 100억 60g(2g*30포)</h5>
 							</div>
 						</div>
 						<div class="card" style="width: 18rem;">
-							<img src="/htmlcssjs/resources/image/detail/img2.png" class="card-img-top">
+							<img src="./resources/image/item_rep/intestine/intestine2.png" class="card-img-top">
 							<div class="card-body">
-								<h5 class="card-title">트리플콜라겐 오렌지 28개입</h5>
+								<h5 class="card-title">멀티바이오틱스 100억 생유산균 (400mg*30캡슐*2병)</h5>
 							</div>
 						</div>
 						<div class="card" style="width: 18rem;">
-							<img src="/htmlcssjs/resources/image/detail/img3.png" class="card-img-top">
+							<img src="./resources/image/item_rep/intestine/intestine3.png" class="card-img-top">
 							<div class="card-body">
-								<h5 class="card-title">인생 루테인 30캡슐</h5>
+								<h5 class="card-title">락토핏 골드 2g*50포</h5>
 							</div>
 						</div>
 						<div class="card" style="width: 18rem;">
-							<img src="/htmlcssjs/resources/image/detail/img3.png" class="card-img-top">
+							<img src="./resources/image/item_rep/intestine/intestine4.png" class="card-img-top">
 							<div class="card-body">
-								<h5 class="card-title">인생 루테인 30캡슐</h5>
+								<h5 class="card-title">프로바이오틱스(2g*60포)</h5>
 							</div>
 						</div>
 					</div>
@@ -197,26 +202,27 @@ div [class^="col-"]{
 					<div
 						class="card-wrapper container-sm d-flex   justify-content-around">
 						<div class="card  " style="width: 18rem;">
-							<img src="https://source.unsplash.com/collection/190727/1600x900" class="card-img-top">
+							<img src="./resources/image/item_rep/intestine/intestine5_1.png" class="card-img-top">
 							<div class="card-body">
-								<h5 class="card-title">Card title</h5>
+								<h5 class="card-title">쾌변엔차전자피화이버(6g*30포)</h5>
 							</div>
 						</div>
 						<div class="card" style="width: 18rem;">
-							<img src="https://source.unsplash.com/collection/190727/1600x900" class="card-img-top">
+							<img src="./resources/image/item_rep/intestine/intestine6_1.png" class="card-img-top">
 							<div class="card-body">
-								<h5 class="card-title">Card title</h5>
+								<h5 class="card-title">패밀리 온가족 유산균 1box (30포/1개월분)</h5>
 							</div>
 						</div>
 						<div class="card" style="width: 18rem;">
-							<img src="https://source.unsplash.com/collection/190727/1600x900"
+							<img src="./resources/image/item_rep/eye/eye1.png"
 								class="card-img-top">
 							<div class="card-body">
-								<h5 class="card-title">Card title</h5>
+								<h5 class="card-title">eye1 상품 이름이 들어갈 곳</h5>
 							</div>
 						</div>
 					</div>
 				</div>
+			</div>
 				
 				<!-- carousel button 2 -->
 				<button class="carousel-control-prev" type="button"
@@ -258,7 +264,7 @@ div [class^="col-"]{
 						<h4 class="card-title text-right">
 							<i class="material-icons">유OO님</i>
 						</h4>
-						<img src="/htmlcssjs/resources/image/detail/img3.png">
+						<img src="./resources/image/item_rep/intestine/intestine1.png">
 						<h5 class="card-title mt-3 mb-3">굉장히 편리해요</h5>
 						<p class="card-text">review content1</p>
 					</div>
@@ -268,7 +274,7 @@ div [class^="col-"]{
 						<h4 class="card-title text-right">
 							<i class="material-icons">변OO님</i>
 						</h4>
-						<img src="/htmlcssjs/resources/image/detail/img3.png">
+						<img src="./resources/image/item_rep/intestine/intestine2.png">
 						<h5 class="card-title  mt-3 mb-3">만족</h5>
 						<p class="card-text">review content2</p>
 					</div>
@@ -278,7 +284,7 @@ div [class^="col-"]{
 						<h4 class="card-title text-right">
 							<i class="material-icons">곽OO님</i>
 						</h4>
-						<img src="/htmlcssjs/resources/image/detail/img1.png">
+						<img src="./resources/image/item_rep/intestine/intestine3.png">
 						<h5 class="card-title  mt-3 mb-3">개좋아용</h5>
 						<p class="card-text">review content3</p>
 					</div>
@@ -288,7 +294,7 @@ div [class^="col-"]{
 						<h4 class="card-title text-right">
 							<i class="material-icons">신OO님</i>
 						</h4>
-						<img src="/htmlcssjs/resources/image/detail/img2.png">
+						<img src="./resources/image/item_rep/intestine/intestine4.png">
 						<h5 class="card-title  mt-3 mb-3">나쁘지않은듯</h5>
 						<p class="card-text">review content4</p>
 					</div>
