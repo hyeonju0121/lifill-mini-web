@@ -1,5 +1,20 @@
 @charset "UTF-8";
 
+/* image size ------------------------------ */
+#userIcon, #cartIcon {
+	height: 40px;
+	width: 100%;
+}
+
+#bannerImg1, #bannerImg2, #bannerImg3 {
+	height: 500px;
+	width: 100%;
+}
+
+#storyImg1, #storyImg2 {
+	height: 400px;
+	width: 100%;
+}
 
 /* best item ------------------------------- */
 .card {
@@ -10,11 +25,14 @@
 	
 }
 
+#bestItemImg1, #bestItemImg2, #bestItemImg3,
+#bestItemImg4, #bestItemImg5, #bestItemImg6,
+#bestItemImg7 {
+	
+}
 
 /* review ---------------------------------- */
 img {
-	height: 150px;
-	width: 100%;
 }
 
 div [class^="col-"] {
@@ -104,9 +122,12 @@ div [class^="col-"] {
       transition: color .2s;
       &:hover{color:#4180CB}
     }
+    padding-right: 100px;
+    
   } 
   .location{
     i{font-size: 18px;}
+    padding-left: 100px;
   }
   .copyright p{border-top:1px solid rgba(255,255,255,.1);} 
 }

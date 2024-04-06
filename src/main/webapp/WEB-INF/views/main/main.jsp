@@ -24,14 +24,14 @@
 </script>
 
 <!-- external css -->
-<link rel="stylesheet" href="/htmlcssjs/resources/css/shop.css">
+<link rel="stylesheet" href="./resources/css/shop.css">
 
 </head>
 
 <body>
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="javascript:void(0)">LIFILL</a>
+			<a class="navbar-brand" href="main">LIFILL</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#mynavbar">
 				<span class="navbar-toggler-icon"></span>
@@ -51,8 +51,8 @@
 					</div>
 				</ul>
 			</div>
-			<button class="btn" onclick="location.href='member/mypage'"><img src="./resources/image/icon/cart.png" width="20px" height="20px"/></button>
-			<button class="btn" onclick="location.href='member'"><img src="./resources/image/icon/user.png" width="20px" height="20px"/></button>
+			<button class="btn" onclick="location.href='member/mypage'"><img id="cartIcon" src="./resources/image/icon/cart.png"/></button>
+			<button class="btn" onclick="location.href='member'"><img id="userIcon" src="./resources/image/icon/user.png"/></button>
 		</div>
 	</nav>
 
@@ -65,13 +65,13 @@
 	  </div>
 		  <div class="carousel-inner">
 		    <div class="carousel-item active">
-		      <img src="./resources/image/banner/lifill_banner1.png" class="d-block" style="width:100%; height:600px;">
+		      <img id="bannerImg1" src="./resources/image/banner/lifill_banner1.png" class="d-block">
 		    </div>
 		    <div class="carousel-item">
-		      <img src="./resources/image/banner/lifill_banner2.png" class="d-block" style="width:100%; height:600px;">
+		      <img id="bannerImg2" src="./resources/image/banner/lifill_banner2.png" class="d-block">
 		    </div>
 		    <div class="carousel-item">
-		      <img src="./resources/image/banner/lifill_banner2.png" class="d-block" style="width:100%; height:600px;"> 
+		      <img id="bannerImg3" src="./resources/image/banner/lifill_banner2.png" class="d-block"> 
 		    </div>
 		  </div>
 	</div>
@@ -86,25 +86,25 @@
 				<div class="carousel-item active">
 					<div class="card-wrapper container-sm d-flex  justify-content-around">
 						<div class="card  " style="width: 18rem;">
-							<img src="./resources/image/item_rep/intestine/intestine1.png" class="card-img-top">
+							<img id="bestItemImg1" src="./resources/image/item_rep/intestine/intestine1.png" class="card-img-top">
 							<div class="card-body">
 								<h5 class="card-title">피부면역 유산균 100억 60g(2g*30포)</h5>
 							</div>
 						</div>
 						<div class="card" style="width: 18rem;">
-							<img src="./resources/image/item_rep/intestine/intestine2.png" class="card-img-top">
+							<img id="bestItemImg2" src="./resources/image/item_rep/intestine/intestine2.png" class="card-img-top">
 							<div class="card-body">
 								<h5 class="card-title">멀티바이오틱스 100억 생유산균 (400mg*30캡슐*2병)</h5>
 							</div>
 						</div>
 						<div class="card" style="width: 18rem;">
-							<img src="./resources/image/item_rep/intestine/intestine3.png" class="card-img-top">
+							<img id="bestItemImg3" src="./resources/image/item_rep/intestine/intestine3.png" class="card-img-top">
 							<div class="card-body">
 								<h5 class="card-title">락토핏 골드 2g*50포</h5>
 							</div>
 						</div>
 						<div class="card" style="width: 18rem;">
-							<img src="./resources/image/item_rep/intestine/intestine4.png" class="card-img-top">
+							<img id="bestItemImg4" src="./resources/image/item_rep/intestine/intestine4.png" class="card-img-top">
 							<div class="card-body">
 								<h5 class="card-title">프로바이오틱스(2g*60포)</h5>
 							</div>
@@ -115,20 +115,19 @@
 					<div
 						class="card-wrapper container-sm d-flex   justify-content-around">
 						<div class="card  " style="width: 18rem;">
-							<img src="./resources/image/item_rep/intestine/intestine5_1.png" class="card-img-top">
+							<img id="bestItemImg5" src="./resources/image/item_rep/intestine/intestine5_1.png" class="card-img-top">
 							<div class="card-body">
 								<h5 class="card-title">쾌변엔차전자피화이버(6g*30포)</h5>
 							</div>
 						</div>
 						<div class="card" style="width: 18rem;">
-							<img src="./resources/image/item_rep/intestine/intestine6_1.png" class="card-img-top">
+							<img id="bestItemImg6" src="./resources/image/item_rep/intestine/intestine6_1.png" class="card-img-top">
 							<div class="card-body">
 								<h5 class="card-title">패밀리 온가족 유산균 1box (30포/1개월분)</h5>
 							</div>
 						</div>
 						<div class="card" style="width: 18rem;">
-							<img src="./resources/image/item_rep/eye/eye1.png"
-								class="card-img-top">
+							<img id="bestItemImg7" src="./resources/image/item_rep/eye/eye1.png" class="card-img-top">
 							<div class="card-body">
 								<h5 class="card-title">eye1 상품 이름이 들어갈 곳</h5>
 							</div>
@@ -153,16 +152,14 @@
 
 		<br>
 
-		<div class="container-fluid p-5 bg-primary text-white text-center">
-			<h1>스토리 1</h1>
-			<p>Resize this responsive page to see the effect!</p>
+		<div class="container-fluid text-white text-center">
+			<img id="storyImg1" src="./resources/image/story/story1.png"/>
 		</div>
 
 		<br>
 
-		<div class="container-fluid p-5 bg-primary text-white text-center">
-			<h1>스토리 2</h1>
-			<p>Resize this responsive page to see the effect!</p>
+		<div class="container-fluid text-white text-center">
+			<img id="storyImg2" src="./resources/image/story/story2.png"/>
 		</div>
 
 		<br>
