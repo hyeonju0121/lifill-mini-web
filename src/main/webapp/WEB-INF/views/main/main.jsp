@@ -57,45 +57,23 @@
 	</nav>
 
 	<!-- 슬라이드 배너 -->
-	<div class="container-fluid p-5">
-	   <div class="row">
-	     <div id="carouselHero" class="carousel slide carousel-fade" data-bs-ride="carousel">
-	      <div class="carousel-indicators">
-	        <button type="button" data-bs-target="#carouselHero" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-	        <button type="button" data-bs-target="#carouselHero" data-bs-slide-to="1" aria-label="Slide 2"></button>
-	        <button type="button" data-bs-target="#carouselHero" data-bs-slide-to="2" aria-label="Slide 3"></button>
+	<div id="demo" class="carousel slide" data-bs-ride="carousel">
+	  <div class="carousel-indicators">
+	    <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+	    <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+	    <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
 	  </div>
-	      <div class="carousel-inner">
-	        <div class="carousel-item active">
-	          <img src="https://med.nyu.edu/research/office-science-research/sites/default/files/styles/fixed_height_450_1600w_565h/public/2020-11/osr-landing-hero.jpg?h=ee874d6d&itok=M8qR1aQZ" class="d-block w-100" alt="...">
-	          <div class="carousel-caption d-flex">
-	            <div class="vstack gap-3 align-self-end">
-	              <h5>First slide label</h5>
-	              <p>Some representative placeholder content for the first slide.</p>
-	            </div>
-	          </div>
-	        </div>
-	        <div class="carousel-item">
-	          <img src="https://assets.answersingenesis.org/img/cms/content/contentnode/header_image/is-scientific-research-flawed.jpg" class="d-block w-100" alt="...">
-	          <div class="carousel-caption d-flex">
-	            <div class="vstack gap-3 align-self-end">
-	              <h5>First slide label</h5>
-	              <p>Some representative placeholder content for the first slide.</p>
-	            </div>
-	          </div>
-	        </div>
-	        <div class="carousel-item">
-	          <img src="https://www.sartorius.com/resource/image/10550/16x9/1050/590/acaab72df96332f5fe32ffeed6945536/3E22CB7B8D31ABA8AFD92036412503D8/lt-filtratio-6907.jpg" class="d-block w-100" alt="...">
-	          <div class="carousel-caption d-flex">
-	            <div class="vstack gap-3 align-self-end">
-	              <h5>Third slide label</h5>
-	              <p>Some representative placeholder content for the first slide.</p>
-	            </div>
-	          </div>
-	        </div>
-	      </div>
-	    </div>
-	  </div>
+		  <div class="carousel-inner">
+		    <div class="carousel-item active">
+		      <img src="./resources/image/banner/lifill_banner1.png" class="d-block" style="width:100%; height:600px;">
+		    </div>
+		    <div class="carousel-item">
+		      <img src="./resources/image/banner/lifill_banner2.png" class="d-block" style="width:100%; height:600px;">
+		    </div>
+		    <div class="carousel-item">
+		      <img src="./resources/image/banner/lifill_banner2.png" class="d-block" style="width:100%; height:600px;"> 
+		    </div>
+		  </div>
 	</div>
 
 	<!-- best item -->
