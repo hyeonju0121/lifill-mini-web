@@ -23,6 +23,7 @@
 		   <div class="card-header">라이필 메인 홈페이지 화면</div>
 		    <div class="card-body">
 		    	<ul>
+		    		<li><a href="main">메인 페이지</a><li>
 		    		<li><a href="admin">관리자</a><li>
 		    		<li><a href="board">게시판</a><li>
 		    		<li><a href="item">상품</a><li>
