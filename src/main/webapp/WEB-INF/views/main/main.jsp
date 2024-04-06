@@ -21,90 +21,10 @@
 
 <!--사용자 정의 스크립트 -->
 <script type="text/javascript">
-	
 </script>
 
-<style type="text/css">
-
-/* Style the footer ------------------------ */
-.footer {
-	background-color: #696969;
-	padding: 10px;
-	height: 200px;
-}
-
-/* best item ------------------------------- */
-.card {padding =0;
-	
-}
-
-.card-wrapper {
-	
-}
-
-/* review ---------------------------------- */
-/* img{
-  height:150px;
-  width:100%;
-  height:400px;
-}
- */
-div [class^="col-"]{
-  padding-left:5px;
-  padding-right:5px;
-}
-.card{
-  transition:0.5s;
-  cursor:pointer;
-}
-.card-title{  
-  font-size:15px;
-  transition:1s;
-  cursor:pointer;
-}
-.card-title i{  
-  font-size:15px;
-  transition:1s;
-  cursor:pointer;
-  color:#ffa710
-}
-.card-title i:hover{
-  transform: scale(1.25) rotate(100deg); 
-  color:#18d4ca;
-  
-}
-.card:hover{
-  transform: scale(1.05);
-  box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
-}
-.card-text{
-  height:80px;  
-}
-
-.card::before, .card::after {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  transform: scale3d(0, 0, 1);
-  transition: transform .3s ease-out 0s;
-  background: rgba(255, 255, 255, 0.1);
-  content: '';
-  pointer-events: none;
-}
-.card::before {
-  transform-origin: left top;
-}
-.card::after {
-  transform-origin: right bottom;
-}
-.card:hover::before, .card:hover::after, .card:focus::before, .card:focus::after {
-  transform: scale3d(1, 1, 1);
-}
-
-
-</style>
+<!-- external css -->
+<link rel="stylesheet" href="/htmlcssjs/resources/css/shop.css">
 
 </head>
 
@@ -137,30 +57,45 @@ div [class^="col-"]{
 	</nav>
 
 	<!-- 슬라이드 배너 -->
-	<div id="carouselExampleControls" class="carousel slide"
-		data-bs-ride="carousel">
-		<div class="carousel-inner">
-			<div class="carousel-item active">
-				<img src="./resources/image/banner/lifill_banner1.png" class="d-block w-100"/>
-			</div>
-			<div class="carousel-item">
-				<img src="./resources/image/banner/lifill_banner2.png" class="d-block w-100"/>
-			</div>
-			<div class="carousel-item">
-				<img src="/htmlcssjs/resources/image/photos/photo3.jpg" class="d-block w-100"/>
-			</div>
-		</div>
-		<!-- carousel button 1 -->
-		<button class="carousel-control-prev" type="button"
-			data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-			<span class="carousel-control-prev-icon" aria-hidden="true"></span> 
-			<span class="visually-hidden">Previous</span>
-		</button>
-		<button class="carousel-control-next" type="button"
-			data-bs-target="#carouselExampleControls" data-bs-slide="next">
-			<span class="carousel-control-next-icon" aria-hidden="true"></span>
-			<span class="visually-hidden">Next</span>
-		</button>
+	<div class="container-fluid p-5">
+	   <div class="row">
+	     <div id="carouselHero" class="carousel slide carousel-fade" data-bs-ride="carousel">
+	      <div class="carousel-indicators">
+	        <button type="button" data-bs-target="#carouselHero" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+	        <button type="button" data-bs-target="#carouselHero" data-bs-slide-to="1" aria-label="Slide 2"></button>
+	        <button type="button" data-bs-target="#carouselHero" data-bs-slide-to="2" aria-label="Slide 3"></button>
+	  </div>
+	      <div class="carousel-inner">
+	        <div class="carousel-item active">
+	          <img src="https://med.nyu.edu/research/office-science-research/sites/default/files/styles/fixed_height_450_1600w_565h/public/2020-11/osr-landing-hero.jpg?h=ee874d6d&itok=M8qR1aQZ" class="d-block w-100" alt="...">
+	          <div class="carousel-caption d-flex">
+	            <div class="vstack gap-3 align-self-end">
+	              <h5>First slide label</h5>
+	              <p>Some representative placeholder content for the first slide.</p>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="carousel-item">
+	          <img src="https://assets.answersingenesis.org/img/cms/content/contentnode/header_image/is-scientific-research-flawed.jpg" class="d-block w-100" alt="...">
+	          <div class="carousel-caption d-flex">
+	            <div class="vstack gap-3 align-self-end">
+	              <h5>First slide label</h5>
+	              <p>Some representative placeholder content for the first slide.</p>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="carousel-item">
+	          <img src="https://www.sartorius.com/resource/image/10550/16x9/1050/590/acaab72df96332f5fe32ffeed6945536/3E22CB7B8D31ABA8AFD92036412503D8/lt-filtratio-6907.jpg" class="d-block w-100" alt="...">
+	          <div class="carousel-caption d-flex">
+	            <div class="vstack gap-3 align-self-end">
+	              <h5>Third slide label</h5>
+	              <p>Some representative placeholder content for the first slide.</p>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
 	</div>
 
 	<!-- best item -->
@@ -302,8 +237,37 @@ div [class^="col-"]{
 			</div>
 		</div>
 	
-	<!-- <div class="footer">
-		<h2>Footer</h2>
-	</div> --> 
+		<!-- footer -->
+		<div class="mt-5 pt-5 pb-5 footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-5 col-xs-12 about-company">
+						<h5>내일의 나를 만드는 [건강메이트] 라이필</h5>
+						<p class="pr-5 text-white-50">Lorem ipsum dolor sit amet,
+							consectetur adipiscing elit. Nullam ac ante mollis quam tristique
+							convallis</p>
+					</div>
+		
+					<div class="col-lg-4 col-xs-12 location">
+						<h4 class="mt-lg-0 mt-sm-4">Location</h4>
+						<p>서울특별시 송파구 중대로 135 아이티벤처타워, 12층 한국소프트웨어산업협회</p>
+						<p class="mb-0">
+							<i class="fa fa-phone mr-3"></i>010-8524-9773
+						</p>
+						<p>
+							<i class="fa fa-envelope-o mr-3"></i>hyeonju__@naver.com
+						</p>
+					</div>
+				</div>
+				<div class="row mt-5">
+					<div class="col copyright">
+						<p class="">
+							<small class="text-white-50">© 2024. All Rights Reserved.</small>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>	
+	
 </body>
 </html>
