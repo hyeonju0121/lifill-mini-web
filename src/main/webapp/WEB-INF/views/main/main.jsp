@@ -181,15 +181,15 @@
 							<p class="card-text">하나씩 꺼내먹으면 돼서 편하고 피부도 깨끗해졌어요!</p>
 						</div>
 					</div>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<div class="card card-block">
-						<h4 class="card-title text-right">
-							<i class="material-icons">변OO님</i>
-						</h4>
-						<img id="reviewImg2" src="./resources/image/item_rep/intestine/intestine2.png">
-						<h5 class="card-title  mt-3 mb-3">만족하는 제품입니다</h5>
-						<p class="card-text">유산균이 100억마리나 돼서 믿고 먹고 있어요</p>
+					<div class="col-md-3 col-sm-6">
+						<div class="card card-block">
+							<h4 class="card-title text-right">
+								<i class="material-icons">변OO님</i>
+							</h4>
+							<img id="reviewImg2" src="./resources/image/item_rep/intestine/intestine2.png">
+							<h5 class="card-title  mt-3 mb-3">만족하는 제품입니다</h5>
+							<p class="card-text">유산균이 100억마리나 돼서 믿고 먹고 있어요</p>
+						</div>
 					</div>
 					<div class="col-md-3 col-sm-6">
 						<div class="card card-block">
@@ -201,15 +201,15 @@
 							<p class="card-text">제 인생템입니다 없으면 화장실을 못 가요</p>
 						</div>
 					</div>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<div class="card card-block">
-						<h4 class="card-title text-right">
-							<i class="material-icons">신OO님</i>
-						</h4>
-						<img id="reviewImg4" src="./resources/image/item_rep/intestine/intestine4.png">
-						<h5 class="card-title  mt-3 mb-3">나쁘지않은듯</h5>
-						<p class="card-text">야쿠르트 맛이 나서 좋네요</p>
+					<div class="col-md-3 col-sm-6">
+						<div class="card card-block">
+							<h4 class="card-title text-right">
+								<i class="material-icons">신OO님</i>
+							</h4>
+							<img id="reviewImg4" src="./resources/image/item_rep/intestine/intestine4.png">
+							<h5 class="card-title  mt-3 mb-3">나쁘지않은듯</h5>
+							<p class="card-text">야쿠르트 맛이 나서 좋네요</p>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -221,7 +221,7 @@
 				<div class="row">
 					<div class="col-lg-5 col-xs-12 about-company" style="flex:1;">
 						<h4>내일의 나를 만드는 [건강메이트] 라이필</h4><br/><br/>
-						<p class="pr-5 text-white-50"><h5>Contact us</h5></p>
+						<p class="pr-5 text-white-50"><h5>Contact us</h5>
 						<i class="fa fa-envelope-o mr-3" style="font-size:14px;">팀장 유현주, hyeonju__@naver.com <br/></i>
 						<i class="fa fa-envelope-o mr-3" style="font-size:14px">팀원 변성준, tjdwns3823@naver.com <br/></i>
 						<i class="fa fa-envelope-o mr-3" style="font-size:14px">팀원 곽동현, ggwag@gmail.com <br/></i>
