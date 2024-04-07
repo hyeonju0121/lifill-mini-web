@@ -71,7 +71,7 @@
 		      <img id="bannerImg2" src="./resources/image/banner/lifill_banner2.png" class="d-block">
 		    </div>
 		    <div class="carousel-item">
-		      <img id="bannerImg3" src="./resources/image/banner/lifill_banner2.png" class="d-block"> 
+		      <img id="bannerImg3" src="./resources/image/banner/lifill_banner3.png" class="d-block"> 
 		    </div>
 		  </div>
 	</div>
@@ -165,18 +165,21 @@
 		<br>
 		
 		<!-- review -->
-		<div class="container mt-2">
-			<p class="h4">고객 평점</p>
-			<p class="h6">고객님들의 후기로 입증된 라이필 지금 체험하세요. </p>
-			<div class="row">
-				<div class="col-md-3 col-sm-6">
-					<div class="card card-block">
-						<h4 class="card-title text-right">
-							<i class="material-icons">유OO님</i>
-						</h4>
-						<img id="reviewImg1" src="./resources/image/item_rep/intestine/intestine1.png">
-						<h5 class="card-title mt-3 mb-3">굉장히 편리해요</h5>
-						<p class="card-text">하나씩 꺼내먹으면 돼서 편하고 피부도 깨끗해졌어요!</p>
+		<div class="bg-image d-flex justify-content-center align-items-center"
+     		style="background-image: url('./resources/image/background/review_background_img1.png'); height: 70vh;">
+			<div class="container mt-2">
+				<p class="h4">고객 평점</p>
+				<p class="h6">고객님들의 후기로 입증된 라이필 지금 체험하세요. </p>
+				<div class="row">
+					<div class="col-md-3 col-sm-6">
+						<div class="card card-block">
+							<h4 class="card-title text-right">
+								<i class="material-icons">유OO님</i>
+							</h4>
+							<img id="reviewImg1" src="./resources/image/item_rep/intestine/intestine1.png">
+							<h5 class="card-title mt-3 mb-3">굉장히 편리해요</h5>
+							<p class="card-text">하나씩 꺼내먹으면 돼서 편하고 피부도 깨끗해졌어요!</p>
+						</div>
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-6">
@@ -188,15 +191,15 @@
 						<h5 class="card-title  mt-3 mb-3">만족하는 제품입니다</h5>
 						<p class="card-text">유산균이 100억마리나 돼서 믿고 먹고 있어요</p>
 					</div>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<div class="card card-block">
-						<h4 class="card-title text-right">
-							<i class="material-icons">곽OO님</i>
-						</h4>
-						<img id="reviewImg3" src="./resources/image/item_rep/intestine/intestine3.png">
-						<h5 class="card-title mt-3 mb-3 ">개좋아용</h5>
-						<p class="card-text">제 인생템입니다 없으면 화장실을 못 가요</p>
+					<div class="col-md-3 col-sm-6">
+						<div class="card card-block">
+							<h4 class="card-title text-right">
+								<i class="material-icons">곽OO님</i>
+							</h4>
+							<img id="reviewImg3" src="./resources/image/item_rep/intestine/intestine3.png">
+							<h5 class="card-title mt-3 mb-3 ">개좋아용</h5>
+							<p class="card-text">제 인생템입니다 없으면 화장실을 못 가요</p>
+						</div>
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-6">
