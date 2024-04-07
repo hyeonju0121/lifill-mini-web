@@ -27,4 +27,10 @@ public class MemberController {
 		log.info("signUp() 실행");
 		return "member/sign_up";
 	}
+	
+	@RequestMapping("/my_page")
+	public String myPage() {
+		log.info("myPage() 실행");
+		return "member/my_page";
+	}
 }

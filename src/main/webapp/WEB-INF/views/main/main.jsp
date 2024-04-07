@@ -51,8 +51,8 @@
 					</div>
 				</ul>
 			</div>
-			<button class="btn" onclick="location.href='member/mypage'"><img id="cartIcon" src="./resources/image/icon/cart.png"/></button>
-			<button class="btn" onclick="location.href='member'"><img id="userIcon" src="./resources/image/icon/user.png"/></button>
+			<button class="btn" onclick="location.href='member/my_page'"><img id="cartIcon" src="./resources/image/icon/cart.png" style="height: 25px;"/></button>
+			<button class="btn" onclick="location.href='member'"><img id="userIcon" src="./resources/image/icon/user.png" style="height: 25px;"/></button>
 		</div>
 	</nav>
 
@@ -85,25 +85,25 @@
 			<div class="carousel-inner">
 				<div class="carousel-item active">
 					<div class="card-wrapper container-sm d-flex  justify-content-around">
-						<div class="card  " style="width: 18rem;">
+						<div class="card  " style="width: 17rem;">
 							<img id="bestItemImg1" src="./resources/image/item_rep/intestine/intestine1.png" class="card-img-top">
 							<div class="card-body">
 								<h5 class="card-title">피부면역 유산균 100억 60g(2g*30포)</h5>
 							</div>
 						</div>
-						<div class="card" style="width: 18rem;">
+						<div class="card" style="width: 17rem;">
 							<img id="bestItemImg2" src="./resources/image/item_rep/intestine/intestine2.png" class="card-img-top">
 							<div class="card-body">
 								<h5 class="card-title">멀티바이오틱스 100억 생유산균 (400mg*30캡슐*2병)</h5>
 							</div>
 						</div>
-						<div class="card" style="width: 18rem;">
+						<div class="card" style="width: 17rem;">
 							<img id="bestItemImg3" src="./resources/image/item_rep/intestine/intestine3.png" class="card-img-top">
 							<div class="card-body">
 								<h5 class="card-title">락토핏 골드 2g*50포</h5>
 							</div>
 						</div>
-						<div class="card" style="width: 18rem;">
+						<div class="card" style="width: 17rem;">
 							<img id="bestItemImg4" src="./resources/image/item_rep/intestine/intestine4.png" class="card-img-top">
 							<div class="card-body">
 								<h5 class="card-title">프로바이오틱스(2g*60포)</h5>
@@ -174,9 +174,9 @@
 						<h4 class="card-title text-right">
 							<i class="material-icons">유OO님</i>
 						</h4>
-						<img src="./resources/image/item_rep/intestine/intestine1.png">
+						<img id="reviewImg1" src="./resources/image/item_rep/intestine/intestine1.png">
 						<h5 class="card-title mt-3 mb-3">굉장히 편리해요</h5>
-						<p class="card-text">review content1</p>
+						<p class="card-text">하나씩 꺼내먹으면 돼서 편하고 피부도 깨끗해졌어요!</p>
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-6">
@@ -184,9 +184,9 @@
 						<h4 class="card-title text-right">
 							<i class="material-icons">변OO님</i>
 						</h4>
-						<img src="./resources/image/item_rep/intestine/intestine2.png">
-						<h5 class="card-title  mt-3 mb-3">만족</h5>
-						<p class="card-text">review content2</p>
+						<img id="reviewImg2" src="./resources/image/item_rep/intestine/intestine2.png">
+						<h5 class="card-title  mt-3 mb-3">만족하는 제품입니다</h5>
+						<p class="card-text">유산균이 100억마리나 돼서 믿고 먹고 있어요</p>
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-6">
@@ -194,9 +194,9 @@
 						<h4 class="card-title text-right">
 							<i class="material-icons">곽OO님</i>
 						</h4>
-						<img src="./resources/image/item_rep/intestine/intestine3.png">
-						<h5 class="card-title  mt-3 mb-3">개좋아용</h5>
-						<p class="card-text">review content3</p>
+						<img id="reviewImg3" src="./resources/image/item_rep/intestine/intestine3.png">
+						<h5 class="card-title mt-3 mb-3 ">개좋아용</h5>
+						<p class="card-text">제 인생템입니다 없으면 화장실을 못 가요</p>
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-6">
@@ -204,9 +204,9 @@
 						<h4 class="card-title text-right">
 							<i class="material-icons">신OO님</i>
 						</h4>
-						<img src="./resources/image/item_rep/intestine/intestine4.png">
+						<img id="reviewImg4" src="./resources/image/item_rep/intestine/intestine4.png">
 						<h5 class="card-title  mt-3 mb-3">나쁘지않은듯</h5>
-						<p class="card-text">review content4</p>
+						<p class="card-text">야쿠르트 맛이 나서 좋네요</p>
 					</div>
 				</div>
 			</div>
@@ -216,21 +216,22 @@
 		<div class="mt-5 pt-5 pb-5 footer">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-5 col-xs-12 about-company">
-						<h5>내일의 나를 만드는 [건강메이트] 라이필</h5>
-						<p class="pr-5 text-white-50">Lorem ipsum dolor sit amet,
-							consectetur adipiscing elit. Nullam ac ante mollis quam tristique
-							convallis</p>
+					<div class="col-lg-5 col-xs-12 about-company" style="flex:1;">
+						<h4>내일의 나를 만드는 [건강메이트] 라이필</h4><br/><br/>
+						<p class="pr-5 text-white-50"><h5>Contact us</h5></p>
+						<i class="fa fa-envelope-o mr-3" style="font-size:14px;">팀장 유현주, hyeonju__@naver.com <br/></i>
+						<i class="fa fa-envelope-o mr-3" style="font-size:14px">팀원 변성준, tjdwns3823@naver.com <br/></i>
+						<i class="fa fa-envelope-o mr-3" style="font-size:14px">팀원 곽동현, ggwag@gmail.com <br/></i>
 					</div>
 		
-					<div class="col-lg-4 col-xs-12 location">
+					<div class="col-lg-4 col-xs-12 location" style="flex:1;">
 						<h4 class="mt-lg-0 mt-sm-4">Location</h4>
 						<p>서울특별시 송파구 중대로 135 아이티벤처타워, 12층 한국소프트웨어산업협회</p>
 						<p class="mb-0">
-							<i class="fa fa-phone mr-3"></i>010-8524-9773
+							<i class="fa fa-phone mr-3"></i> 팀 라이필 1차 미니 웹 프로젝트
 						</p>
-						<p>
-							<i class="fa fa-envelope-o mr-3"></i>hyeonju__@naver.com
+						<p class="mt-5">
+							고객센터 버튼? 공지사항 버튼? 보통 SNS 계정으로 이동하는 아이콘이나, 사업자번호 등이 나오는 부분
 						</p>
 					</div>
 				</div>

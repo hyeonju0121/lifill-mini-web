@@ -23,13 +23,9 @@
 	
 	<body>
 		<div class="card">
-		    <div class="card-header">Header</div>
+		    <div class="card-header">마이 페이지</div>
 		    <div class="card-body">
-				<ul>
-					<li><a href="member/sign_in">로그인 화면</a></li>
-					<li><a href="member/sign_up">회원가입 화면</a></li>
-					<li><a href="member/my_page">마이페이지 화면</a></li>
-				</ul>
+				content
 			</div> 
 		</div>
 	</body>
