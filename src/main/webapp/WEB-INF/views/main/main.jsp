@@ -65,7 +65,7 @@
 	  </div>
 		  <div class="carousel-inner">
 		    <div class="carousel-item active">
-		      <img src="./resources/image/banner/lifill_banner1.png" class="d-block banner-img">
+		      <img src="./resources/image/story/story3.png" class="d-block banner-img">
 		    </div>
 		    <div class="carousel-item">
 		      <img src="./resources/image/banner/lifill_banner2.png" class="d-block banner-img">
@@ -158,14 +158,10 @@
 
 		<!-- story -->
 		<br>
-		<div class="container-fluid text-white text-center">
-			<img class="story-img" src="./resources/image/story/story1.png"/>
+		<div class="container">
+			<img src="./resources/image/story/story1.png" class="img-fluid">
+			<img src="./resources/image/story/story4.png" class="img-fluid">
 		</div>
-
-		<div class="container-fluid text-white text-center">
-			<img class="story-img" src="./resources/image/story/story2.png"/>
-		</div>
-		<br>
 		
 		<!-- review -->
 		<div class="bg-image d-flex justify-content-center align-items-center embed-responsive embed-responsive-4by3"
