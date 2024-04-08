@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>라이필 - LIFILL</title>
 
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
 
 <!-- Bootstrap 5를 위한 외부 라이브러리 설정-->
 <link
@@ -29,6 +29,13 @@
 </head>
 
 <body>
+	<!-- 네비게이션 바  ------------------------------------------------------------------------>
+	<!-- 1. 네비게이션 바를 정의해서 스토리, 스토어, 게시판, 장바구니, 마이페이지로 이동할 수 있도록 함 
+		 2. <ul> 태그를 사용해서 네비게이션 바에 들어갈 아이템을 정의해줬고, 
+		 me-auto 클래스를 이용하여 왼쪽으로 아이템을 정렬시킴
+		 3. 드롭다운 기능을 사용해서 해당 버튼을 클릭했을 때, 
+		 게시판 안에 구성요소인 공지사항, FAQ, 1:1 문의에 해당하는 아이템들을 넣어줌
+	-->
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="main">LIFILL</a>
@@ -56,35 +63,45 @@
 		</div>
 	</nav>
 
-	<!-- 슬라이드 배너 -->
+	<!-- 슬라이드 배너 -------------------------------------------------------------------------->
+	<!-- 슬라이드 인디케이터와 슬라이드 내용으로 구성되며, 사용자가 슬라이드를 전환할 수 있도록 함 -->
 	<div id="demo" class="carousel slide" data-bs-ride="carousel">
-	  <div class="carousel-indicators">
-	    <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-	    <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-	    <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+	<!-- 슬라이드 인디케이터를 통해서 사용자에게 현재 보여지고 있는 슬라이드 표시 -->
+	<div class="carousel-indicators">
+	  <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+	  <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+	  <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+	</div>
+	  
+	  <!-- 슬라이드 내용 -->
+	  <!-- 각 각 슬라이드에 배너 이미지 추가하여 슬라이드 아이템 정의 -->
+	 <div class="carousel-inner">
+	  	<div class="carousel-item active">
+	  		<img src="./resources/image/story/story3.png" class="d-block banner-img">
+		</div>
+		<div class="carousel-item">
+		    <img src="./resources/image/banner/lifill_banner2.png" class="d-block banner-img">
+		</div>
+		<div class="carousel-item">
+		    <img src="./resources/image/banner/lifill_banner3.png" class="d-block banner-img"> 
+		</div>
 	  </div>
-		  <div class="carousel-inner">
-		    <div class="carousel-item active">
-		      <img src="./resources/image/story/story3.png" class="d-block banner-img">
-		    </div>
-		    <div class="carousel-item">
-		      <img src="./resources/image/banner/lifill_banner2.png" class="d-block banner-img">
-		    </div>
-		    <div class="carousel-item">
-		      <img src="./resources/image/banner/lifill_banner3.png" class="d-block banner-img"> 
-		    </div>
-		  </div>
 	</div>
 
-	<!-- best item -->
+	<!-- best item -------------------------------------------------------------------------->
 	<div class="container mt-5">
 		<p class="h4">베스트 상품</p>
 		<p class="h6">라이필의 BEST 추천상품을 만나보세요.</p>
+		
+		<!-- 슬라이드 배너 -->
 		<div id="carouselExampleControls" class="carousel carousel-dark slide"
 			data-bs-ride="carousel">
 			<div class="carousel-inner embed-responsive embed-responsive-4by3">
+				<!-- 첫 번째 슬라이드 -->
 				<div class="carousel-item active w-100">
+					<!-- 베스트 상품 카드들을 담는 컨테이너 -->
 					<div class="card-wrapper container-sm d-flex  justify-content-around m-5">
+						<!-- 베스트 상품 카드 아이템 정의 -->
 						<div class="card  " style="width: 17rem;">
 							<img id="bestItemImg1" src="./resources/image/item_rep/intestine/intestine1.png" class="card-img-top embed-responsive-item">
 							<div class="card-body">
@@ -111,10 +128,12 @@
 						</div>
 					</div>
 				</div>
+				<!-- 두 번째 슬라이드 -->
 				<div class="carousel-item">
-					<div
-						class="card-wrapper container-sm d-flex justify-content-around m-5">
-						<div class="card  " style="width: 18rem;">
+					<!-- 베스트 상품 카드들을 담는 컨테이너 -->
+					<div class="card-wrapper container-sm d-flex justify-content-around m-5">
+						<!-- 베스트 상품 카드 아이템 정의 -->
+						<div class="card" style="width: 18rem;">
 							<img id="bestItemImg5" src="./resources/image/item_rep/intestine/intestine5_1.png" class="card-img-top embed-responsive-item">
 							<div class="card-body">
 								<h5 class="card-title">쾌변엔차전자피화이버(6g*30포)</h5>
@@ -142,34 +161,41 @@
 				</div>
 			</div>
 				
-				<!-- carousel button 2 -->
-				<button class="carousel-control-prev" type="button"
-					data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Previous</span>
-				</button>
-				<button class="carousel-control-next" type="button"
-					data-bs-target="#carouselExampleControls" data-bs-slide="next">
-					<span class="carousel-control-next-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Next</span>
-				</button>
+			<!-- carousel button -->
+			<button class="carousel-control-prev" type="button" 
+				data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+				<!-- 이전 슬라이드로 이동하는 이전 버튼 -->
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<!-- 숨긴 텍스트 -->
+				<span class="visually-hidden">Previous</span>
+			</button>
+			<button class="carousel-control-next" type="button" 
+				data-bs-target="#carouselExampleControls" data-bs-slide="next">
+				<!-- 다음 슬라이드로 이동하는 다음 버튼 -->
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+			</button>
 			</div>
 		</div>
 
-		<!-- story -->
+		<!-- story --------------------------------------------------------------------->
+		<!-- 스토리 이미지를 담을 컨테이너 정의 
+			img-fluid : 이미지가 컨테이너의 너비에 맞게 조정되도록 지정-->
 		<br>
 		<div class="container">
 			<img src="./resources/image/story/story1.png" class="img-fluid">
 			<img src="./resources/image/story/story4.png" class="img-fluid">
 		</div>
 		
-		<!-- review -->
+		<!-- review ------------------------------------------------------------------->
 		<div class="bg-image d-flex justify-content-center align-items-center embed-responsive embed-responsive-4by3"
      		style="background-image: url('./resources/image/background/review_background_img1.png'); height: 70vh;">
 			<div class="container mt-2">
 				<p class="h4">고객 평점</p>
 				<p class="h6">고객님들의 후기로 입증된 라이필 지금 체험하세요. </p>
+				<!-- 리뷰 카드들을 담는 행 정의 -->
 				<div class="row mt-4">
+					<!-- 첫 번재 리뷰 카드 -->
 					<div class="col-md-3 col-sm-6">
 						<div class="card card-block">
 							<h4 class="card-title text-right">
@@ -180,6 +206,7 @@
 							<p class="card-text">하나씩 꺼내먹으면 돼서 편하고 피부도 깨끗해졌어요!</p>
 						</div>
 					</div>
+					<!-- 두 번재 리뷰 카드 -->
 					<div class="col-md-3 col-sm-6">
 						<div class="card card-block">
 							<h4 class="card-title text-right">
@@ -190,6 +217,7 @@
 							<p class="card-text">유산균이 100억마리나 돼서 믿고 먹고 있어요</p>
 						</div>
 					</div>
+					<!-- 세 번재 리뷰 카드 -->
 					<div class="col-md-3 col-sm-6">
 						<div class="card card-block">
 							<h4 class="card-title text-right">
@@ -200,6 +228,7 @@
 							<p class="card-text">제 인생템입니다 없으면 화장실을 못 가요</p>
 						</div>
 					</div>
+					<!-- 네 번재 리뷰 카드 -->
 					<div class="col-md-3 col-sm-6">
 						<div class="card card-block">
 							<h4 class="card-title text-right">
@@ -214,7 +243,7 @@
 			</div>
 		</div>
 	
-		<!-- footer -->
+		<!-- footer --------------------------------------------------------------------------->
 		<div class="pt-5 footer">
 			<div class="container">
 				<div class="row">
