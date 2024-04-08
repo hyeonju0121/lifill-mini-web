@@ -150,18 +150,15 @@
 			</div>
 		</div>
 
+		<!-- story -->
 		<br>
-
 		<div class="container-fluid text-white text-center">
 			<img id="storyImg1" src="./resources/image/story/story1.png"/>
 		</div>
 
-		<br>
-
 		<div class="container-fluid text-white text-center">
 			<img id="storyImg2" src="./resources/image/story/story2.png"/>
 		</div>
-
 		<br>
 		
 		<!-- review -->
@@ -170,7 +167,7 @@
 			<div class="container mt-2">
 				<p class="h4">고객 평점</p>
 				<p class="h6">고객님들의 후기로 입증된 라이필 지금 체험하세요. </p>
-				<div class="row">
+				<div class="row mt-4">
 					<div class="col-md-3 col-sm-6">
 						<div class="card card-block">
 							<h4 class="card-title text-right">
@@ -216,7 +213,7 @@
 		</div>
 	
 		<!-- footer -->
-		<div class="mt-5 pt-5 pb-5 footer">
+		<div class="pt-5 footer">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-5 col-xs-12 about-company" style="flex:1;">
