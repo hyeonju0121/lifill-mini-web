@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Insert title here</title>
+<title>라이필 - LIFILL</title>
 
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
@@ -65,13 +65,13 @@
 	  </div>
 		  <div class="carousel-inner">
 		    <div class="carousel-item active">
-		      <img id="bannerImg1" src="./resources/image/banner/lifill_banner1.png" class="d-block">
+		      <img src="./resources/image/banner/lifill_banner1.png" class="d-block banner-img">
 		    </div>
 		    <div class="carousel-item">
-		      <img id="bannerImg2" src="./resources/image/banner/lifill_banner2.png" class="d-block">
+		      <img src="./resources/image/banner/lifill_banner2.png" class="d-block banner-img">
 		    </div>
 		    <div class="carousel-item">
-		      <img id="bannerImg3" src="./resources/image/banner/lifill_banner3.png" class="d-block"> 
+		      <img src="./resources/image/banner/lifill_banner3.png" class="d-block banner-img"> 
 		    </div>
 		  </div>
 	</div>
@@ -82,23 +82,23 @@
 		<p class="h6">라이필의 BEST 추천상품을 만나보세요.</p>
 		<div id="carouselExampleControls" class="carousel carousel-dark slide"
 			data-bs-ride="carousel">
-			<div class="carousel-inner">
-				<div class="carousel-item active">
-					<div class="card-wrapper container-sm d-flex  justify-content-around">
+			<div class="carousel-inner embed-responsive embed-responsive-4by3">
+				<div class="carousel-item active w-100">
+					<div class="card-wrapper container-sm d-flex  justify-content-around m-5">
 						<div class="card  " style="width: 17rem;">
-							<img id="bestItemImg1" src="./resources/image/item_rep/intestine/intestine1.png" class="card-img-top">
+							<img id="bestItemImg1" src="./resources/image/item_rep/intestine/intestine1.png" class="card-img-top embed-responsive-item">
 							<div class="card-body">
 								<h5 class="card-title">피부면역 유산균 100억 60g(2g*30포)</h5>
 							</div>
 						</div>
 						<div class="card" style="width: 17rem;">
-							<img id="bestItemImg2" src="./resources/image/item_rep/intestine/intestine2.png" class="card-img-top">
+							<img id="bestItemImg2" src="./resources/image/item_rep/intestine/intestine2.png" class="card-img-top embed-responsive-item">
 							<div class="card-body">
 								<h5 class="card-title">멀티바이오틱스 100억 생유산균 (400mg*30캡슐*2병)</h5>
 							</div>
 						</div>
 						<div class="card" style="width: 17rem;">
-							<img id="bestItemImg3" src="./resources/image/item_rep/intestine/intestine3.png" class="card-img-top">
+							<img id="bestItemImg3" src="./resources/image/item_rep/intestine/intestine3.png" class="card-img-top embed-responsive-item">
 							<div class="card-body">
 								<h5 class="card-title">락토핏 골드 2g*50포</h5>
 							</div>
@@ -113,23 +113,29 @@
 				</div>
 				<div class="carousel-item">
 					<div
-						class="card-wrapper container-sm d-flex   justify-content-around">
+						class="card-wrapper container-sm d-flex justify-content-around m-5">
 						<div class="card  " style="width: 18rem;">
-							<img id="bestItemImg5" src="./resources/image/item_rep/intestine/intestine5_1.png" class="card-img-top">
+							<img id="bestItemImg5" src="./resources/image/item_rep/intestine/intestine5_1.png" class="card-img-top embed-responsive-item">
 							<div class="card-body">
 								<h5 class="card-title">쾌변엔차전자피화이버(6g*30포)</h5>
 							</div>
 						</div>
 						<div class="card" style="width: 18rem;">
-							<img id="bestItemImg6" src="./resources/image/item_rep/intestine/intestine6_1.png" class="card-img-top">
+							<img id="bestItemImg6" src="./resources/image/item_rep/intestine/intestine6_1.png" class="card-img-top embed-responsive-item">
 							<div class="card-body">
 								<h5 class="card-title">패밀리 온가족 유산균 1box (30포/1개월분)</h5>
 							</div>
 						</div>
 						<div class="card" style="width: 18rem;">
-							<img id="bestItemImg7" src="./resources/image/item_rep/eye/eye1.png" class="card-img-top">
+							<img id="bestItemImg7" src="./resources/image/item_rep/eye/eye1.png" class="card-img-top embed-responsive-item">
 							<div class="card-body">
-								<h5 class="card-title">eye1 상품 이름이 들어갈 곳</h5>
+								<h5 class="card-title">아이클리어 루테인지아잔틴 오메가3 600mg*60캡슐</h5>
+							</div>
+						</div>
+						<div class="card" style="width:18rem">
+							<img id="bestItemImg8" src="./resources/image/item_rep/eye/eye2.png" class="card-img-top embed-responsive-item">
+							<div class="card-body">
+								<h5 class="card-title">마인트리 루테인지아잔틴 6박스</h5>
 							</div>
 						</div>
 					</div>
@@ -153,16 +159,16 @@
 		<!-- story -->
 		<br>
 		<div class="container-fluid text-white text-center">
-			<img id="storyImg1" src="./resources/image/story/story1.png"/>
+			<img class="story-img" src="./resources/image/story/story1.png"/>
 		</div>
 
 		<div class="container-fluid text-white text-center">
-			<img id="storyImg2" src="./resources/image/story/story2.png"/>
+			<img class="story-img" src="./resources/image/story/story2.png"/>
 		</div>
 		<br>
 		
 		<!-- review -->
-		<div class="bg-image d-flex justify-content-center align-items-center"
+		<div class="bg-image d-flex justify-content-center align-items-center embed-responsive embed-responsive-4by3"
      		style="background-image: url('./resources/image/background/review_background_img1.png'); height: 70vh;">
 			<div class="container mt-2">
 				<p class="h4">고객 평점</p>
@@ -173,7 +179,7 @@
 							<h4 class="card-title text-right">
 								<i class="material-icons">유OO님</i>
 							</h4>
-							<img id="reviewImg1" src="./resources/image/item_rep/intestine/intestine1.png">
+							<img id="reviewImg1" class="embed-responsive-item"  src="./resources/image/item_rep/intestine/intestine1.png">
 							<h5 class="card-title mt-3 mb-3">굉장히 편리해요</h5>
 							<p class="card-text">하나씩 꺼내먹으면 돼서 편하고 피부도 깨끗해졌어요!</p>
 						</div>
@@ -183,7 +189,7 @@
 							<h4 class="card-title text-right">
 								<i class="material-icons">변OO님</i>
 							</h4>
-							<img id="reviewImg2" src="./resources/image/item_rep/intestine/intestine2.png">
+							<img id="reviewImg2" class="embed-responsive-item"  src="./resources/image/item_rep/intestine/intestine2.png">
 							<h5 class="card-title  mt-3 mb-3">만족하는 제품입니다</h5>
 							<p class="card-text">유산균이 100억마리나 돼서 믿고 먹고 있어요</p>
 						</div>
@@ -193,7 +199,7 @@
 							<h4 class="card-title text-right">
 								<i class="material-icons">곽OO님</i>
 							</h4>
-							<img id="reviewImg3" src="./resources/image/item_rep/intestine/intestine3.png">
+							<img id="reviewImg3" class="embed-responsive-item"  src="./resources/image/item_rep/intestine/intestine3.png">
 							<h5 class="card-title mt-3 mb-3 ">개좋아용</h5>
 							<p class="card-text">제 인생템입니다 없으면 화장실을 못 가요</p>
 						</div>
@@ -203,7 +209,7 @@
 							<h4 class="card-title text-right">
 								<i class="material-icons">신OO님</i>
 							</h4>
-							<img id="reviewImg4" src="./resources/image/item_rep/intestine/intestine4.png">
+							<img id="reviewImg4" class="embed-responsive-item"  src="./resources/image/item_rep/intestine/intestine4.png">
 							<h5 class="card-title  mt-3 mb-3">나쁘지않은듯</h5>
 							<p class="card-text">야쿠르트 맛이 나서 좋네요</p>
 						</div>

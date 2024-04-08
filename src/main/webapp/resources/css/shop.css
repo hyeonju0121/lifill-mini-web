@@ -1,19 +1,26 @@
 @charset "UTF-8";
 
 /* image size ------------------------------ */
-#userIcon, #cartIcon {
-	height: 20px;
-	width: 100%;
+.icon-img {
+	height: 25px;
 }
 
-#bannerImg1, #bannerImg2, #bannerImg3 {
+.banner-img {
 	height: 500px;
 	width: 100%;
 }
 
-#storyImg1, #storyImg2 {
+.story-img {
 	height: 400px;
 	width: 100%;
+}
+
+.carousel-control-prev {
+	left:-50px;
+}
+
+.carousel-control-next {
+	right:-130px;
 }
 
 /* best item ------------------------------- */
