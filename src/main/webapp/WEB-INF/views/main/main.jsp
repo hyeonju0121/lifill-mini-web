@@ -58,15 +58,15 @@
 					</div>
 				</ul>
 			</div>
-			<button class="btn" onclick="location.href='member/my_page'"><img id="cartIcon" src="./resources/image/icon/cart.png" style="height: 25px;"/></button>
+			<button class="btn" onclick="location.href='member/cart'"><img id="cartIcon" src="./resources/image/icon/cart.png" style="height: 25px;"/></button>
 			<button class="btn" onclick="location.href='member'"><img id="userIcon" src="./resources/image/icon/user.png" style="height: 25px;"/></button>
 		</div>
 	</nav>
 
 	<!-- 슬라이드 배너 -------------------------------------------------------------------------->
-	<!-- 슬라이드 인디케이터와 슬라이드 내용으로 구성되며, 사용자가 슬라이드를 전환할 수 있도록 함 -->
+	<!-- 슬라이드 인디케이터와 슬라이드 내용으로 구성되며, **사용자가 슬라이드를 전환**할 수 있도록 함 -->
 	<div id="demo" class="carousel slide" data-bs-ride="carousel">
-	<!-- 슬라이드 인디케이터를 통해서 사용자에게 현재 보여지고 있는 슬라이드 표시 -->
+	<!-- 슬라이드 인디케이터를 통해서 **사용자에게 현재 보여지고 있는 슬라이드 표시** -->
 	<div class="carousel-indicators">
 	  <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
 	  <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
@@ -74,7 +74,7 @@
 	</div>
 	  
 	  <!-- 슬라이드 내용 -->
-	  <!-- 각 각 슬라이드에 배너 이미지 추가하여 슬라이드 아이템 정의 -->
+	  <!-- **각 각 슬라이드에 배너 이미지 추가**하여 **슬라이드 아이템 정의** -->
 	 <div class="carousel-inner">
 	  	<div class="carousel-item active">
 	  		<img src="./resources/image/story/story3.png" class="d-block banner-img">

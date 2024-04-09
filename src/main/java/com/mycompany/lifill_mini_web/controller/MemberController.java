@@ -28,9 +28,9 @@ public class MemberController {
 		return "member/sign_up";
 	}
 	
-	@RequestMapping("/my_page")
-	public String myPage() {
-		log.info("myPage() 실행");
-		return "member/my_page";
+	@RequestMapping("/cart")
+	public String cart() {
+		log.info("cart() 실행");
+		return "member/cart";
 	}
 }
