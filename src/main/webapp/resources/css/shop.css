@@ -27,12 +27,9 @@
 	
 }
 
-#bestItemImg1, #bestItemImg2, #bestItemImg3,
-#bestItemImg4, #bestItemImg5, #bestItemImg6,
-#bestItemImg7 {
-	
+.best-item-card {
+	width:17rem;
 }
-
 /* review ---------------------------------- */
 img {
 }
