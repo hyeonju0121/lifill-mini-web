@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/footer.css">
+
+
 <div class="pt-5 footer">
 	<div class="container">
 		<div class="row">

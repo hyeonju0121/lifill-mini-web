@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/nav.css">
+
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
 	<div class="container-fluid">
 		<a class="navbar-brand" href="main">LIFILL</a>

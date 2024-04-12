@@ -1,10 +1,13 @@
 @charset "UTF-8";
 
-/* image size ------------------------------ */
-.icon-img {
-	height: 25px;
+/* font ------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+body, h1, h2, h3, h4, h5, h6, input, textarea, select {
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
+/* image size ------------------------------ */
 .banner-img {
 	height: 500px;
 	width: 100%;
@@ -71,35 +74,3 @@ div [class^="col-"] {
 	height: 80px;
 }
 /* ------------------------------------------ */
-/* footer ----------------------------------- */
-.footer{
-  background: #152F4F;
-  color:white;
-  
-  .links{
-    ul {list-style-type: none;}
-    li a{
-      color: white;
-      transition: color .2s;
-      &:hover{
-        text-decoration:none;
-        color:#4180CB;
-        }
-    }
-  }  
-  .about-company{
-    i{font-size: 25px;}
-    a{
-      color:white;
-      transition: color .2s;
-      &:hover{color:#4180CB}
-    }
-    padding-right: 100px;
-    
-  } 
-  .location{
-    i{font-size: 18px;}
-    padding-left: 100px;
-  }
-  .copyright p{border-top:1px solid rgba(255,255,255,.1);} 
-}
