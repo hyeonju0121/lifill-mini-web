@@ -62,6 +62,8 @@
 		<%@ include file="/WEB-INF/views/common/nav.jsp"%>			
 			<div class="login-wrapper" style = "margin-top:50px;">
 				<h2>Login</h2>
+				<h5 style="text-align: center; margin-bottom:30px;">내일의 나를 만드는 <br/> 
+				[건강메이트] 라이필</h5>
 			        <form name="login-form" id="login-form"
 			        action="/lifill_mini_web/main"
 			        onsubmit="handleCheckData()" 	          	  

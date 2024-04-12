@@ -25,7 +25,7 @@
 				var totalResult = true;
 								
 				//ID검사 아이디는 알파벳소문자,숫자혼용 7~11자
-				var uidPattern = /^(?=.*\d)(?=.*[a-z]).{7,10}$/;
+				var uidPattern = /^(?=.*\d)(?=.*[a-z]).{7,11}$/;
 				var uidResult = uidPattern.test( $("#uid").val());
 				if(uidResult) {
 					$("#uidSpan").removeClass("text-danger");
@@ -54,7 +54,7 @@
 					totalResult = false;
 				}
 							
-				 //Phone 검사 --------------------------------------------------
+				 //Phone 검사하기
  		         var phonePattern = /^(010|011)\d{3,4}\d{4}$/;
  		         var phoneResult = phonePattern.test($("#phone").val());
  		         
@@ -66,6 +66,20 @@
  		            $("#phoneSpan").addClass("text-danger");
  		            totalResult = false;
  		         }
+ 		         
+ 		         //이름 검사하기
+ 		         var namePattern = /^[가-힣]{2,5}$/;
+ 		         var nameResult = namePattern.test($("#uname").val());
+ 		         
+ 		         if(nameResult) {
+ 		        	$("#nameSpan").removeClass("text-danger");
+ 		        	$("#nameSpan").html("");
+ 		         } else {
+ 		        	$("#nameSpan").html("이름 형식에 맞게 입력해주세요.");
+ 		        	$("#nameSpan").addClass("text-danger");
+ 		        	totalResult = false;
+ 		         }
+ 		        	 
  		         
 				//전체 유효성 검사결과가 true일 경우
 				if(totalResult) {
