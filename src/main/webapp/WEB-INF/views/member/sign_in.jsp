@@ -16,17 +16,64 @@
 		
 		<!-- 사용자 정의 자바스크립트 -->
 		<script>
-			
+		
 		</script>
+		
+		<!-- external css -->
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/shop.css">
+	 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/sign_in.css">
+		
+			<script>
+	  			function handleCheckData() {
+	  				
+	  				event.preventDefault();
+	  				
+	  				//각 입력 양식의 데이터 검사
+	  				var totalResult = true;
+	  				
+	  				var uidPattern = /^(?=.*\d)(?=.*[a-z]).{7,11}$/;
+	  				var uidResult = uidPattern.test( $("#uid").val());
+	  				if(!uidResult) {
+	  					totalResult = false;
+	  					alert('아이디를 다시 한 번 확인해주세요!')
+	  				}
+	  				
+	  					
+	  				//Password검사하기
+	  				var passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{10,15}$/;
+	  				var passwordResult = passwordPattern.test($("#password").val());
+	  				if(!passwordResult) {
+	  					totalResult = false;
+	  					alert('비밀번호를 다시 한 번 확인해주세요!')
+	  				}
+	  				
+	  				//전체 유효성 검사결과가 true일 경우
+	  				if(totalResult) {
+	  					$("#login-form")[0].submit();
+	  					
+	  				}	  									
+	  			}
+	  		</script>
+			
 		
 	</head>
 	
-	<body>
-		<div class="card">
-		    <div class="card-header">로그인 화면</div>
-		    <div class="card-body">
-				content
-			</div> 
-		</div>
+	<body>			
+		<%@ include file="/WEB-INF/views/common/nav.jsp"%>			
+			<div class="login-wrapper" style = "margin-top:50px;">
+				<h2>Login</h2>
+			        <form name="login-form" id="login-form"
+			        action="/lifill_mini_web/main"
+			        onsubmit="handleCheckData()" 	          	  
+			        novalidate>
+			            <input type="text" class="form-control" id="uid" name="uid" placeholder="ID"/>
+			            <input type="password" class="form-control" id="password" name="password" placeholder="Password"/>
+			            <!-- <label for="remember-check">
+			            <input type="checkbox" id="remember-check">아이디 저장
+			            </label> -->
+			            <input type="submit" value="Login">
+			          	<input type="button" value="회원가입" onclick="location.href='/lifill_mini_web/member/sign_up'">			            
+			        </form>
+		 	</div>	 	
 	</body>
 </html>
