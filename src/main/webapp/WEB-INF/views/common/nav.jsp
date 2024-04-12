@@ -25,7 +25,7 @@
 		</div>
 		
 		<!-- 장바구니, 사용자 버튼 -->
-		<button class="btn" onclick="location.href='member/my_page'">
+		<button class="btn" onclick="location.href='member/cart'">
 			<img class="icon-img" 
 			src="${pageContext.request.contextPath}/resources/image/icon/cart.png"/>
 		</button>
