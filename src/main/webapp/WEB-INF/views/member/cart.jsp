@@ -15,6 +15,31 @@
 	
 		<!--사용자 정의 스크립트 -->
 		<script type="text/javascript">
+			// bool = this.checked : name이 all인 체크박스의 체크속성( ture, false )
+			function allselect(bool){
+				var chks = document.getElementsByName("chk");
+				for(var i = 0; i < chks.length; i++){
+					chks[i].checked = bool;
+				}
+			}
+			
+			function sel(){
+				// 1. chk라는 이름을 가진 모든 checkbox 가져온다.
+				var chks = document.getElementsByName("chk");
+				
+				for(var i = 0; i < chks.length; i++){
+					// 2. 만일 chk들 중에 체크되어있는 element가 있다면,
+					if( chks[i].checked ){
+						// 3. 체크되어있는 chk.value값을 Id로 가지는 요소의 배경색을 chk.value값으로 바꾸자.
+						// document.getElementById(???).stlye.backgroundColor=???
+						document.getElementById(chks[i].value).style.background = chks[i].value;
+					} else {
+						document.getElementById(chks[i].value).style.background = "";
+					}
+				}
+			}
+		
+			
 		</script>
 		
 		<!-- external css -->
@@ -25,7 +50,7 @@
 	<body>
 		<!-- 네비게이션 바  ------------------------------------------------------------------------>
 		<%@ include file="/WEB-INF/views/common/nav.jsp"%>
-		
+
 		<!-- cart page ------------------ -->
 		<div class="container mt-5">
 			<h2 style="text-align:center;"> 장바구니</h2>
@@ -35,7 +60,7 @@
 						<table class="table p-2">
 							<thead>
 								<tr>
-									<th><input type="checkbox" name="allCheck" id="allCheck"/></th>
+									<th><input type="checkbox" name="allCheck" id="allCheck" onclick="allselect(this.checked);"/></th>
 									<th class="product-h">Product</th>
 									<th>Price</th>
 									<th>Quantity</th>
@@ -46,7 +71,7 @@
 							<tbody>
 								<tr>
 									<!-- 체크박스 -->
-									<td><input id="check1" type="checkbox"/>
+									<td><input type="checkbox" name="chk" id="check1" onclick="checked();"/>
 									</td>
 									<!-- 상품 이미지 -->
 									<td class="procuct-col">
@@ -60,8 +85,12 @@
 										<h5>18,000원</h5>
 									</td>
 									<!-- 상품 수량 -->
-									<td>
-										<h5>1개</h5>
+									<td width="20%">
+										<div class="d-flex count ">
+											<button type="button" class="btn btn-secondary me-3">-</button>
+											<h5>1개</h5>
+											<button type="button" class="btn btn-secondary ms-3">+</button>
+										</div>
 									</td>
 									<!-- 총 가격 -->
 									<td>
@@ -74,7 +103,7 @@
 								</tr>
 								<tr>
 									<!-- 체크박스 -->
-									<td><input id="check2" type="checkbox"/>
+									<td><input type="checkbox" name="chk" id="check2" onclick="checked();"/>
 									</td>
 									<!-- 상품 이미지 -->
 									<td class="procuct-col">
@@ -88,9 +117,14 @@
 										<h5>9,000원</h5>
 									</td>
 									<!-- 상품 수량 -->
-									<td>
-										<h5>3개</h5>
+									<td width="20%">
+										<div class="d-flex count ">
+											<button type="button" class="btn btn-secondary me-3">-</button>
+											<h5>1개</h5>
+											<button type="button" class="btn btn-secondary ms-3">+</button>
+										</div>
 									</td>
+							
 									<!-- 총 가격 -->
 									<td>
 										<h5>27,000원</h5>
