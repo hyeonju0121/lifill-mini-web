@@ -5,7 +5,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" >
-		<title>Insert title here</title>
+		<title>장바구니 - 라이필</title>
 		
 		<!-- Bootstrap 5를 위한 외부 라이브러리 설정-->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -16,37 +16,15 @@
 		<!--사용자 정의 스크립트 -->
 		<script type="text/javascript">
 		</script>
+		
+		<!-- external css -->
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/cart.css">
 
 	</head>
 	
 	<body>
 		<!-- 네비게이션 바  ------------------------------------------------------------------------>
-		<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-			<div class="container-fluid">
-				<a class="navbar-brand" href="main">LIFILL</a>
-				<button class="navbar-toggler" type="button"
-					data-bs-toggle="collapse" data-bs-target="#mynavbar">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="mynavbar">
-					<ul class="navbar-nav me-auto">
-						<li class="nav-item"><a class="nav-link" href="#">LIFILL 스토리</a></li>
-						<li class="nav-item"><a class="nav-link" href="item">SHOP</a></li>
-						<div class="dropdown">
-							<button type="button" class="btn text-secondary"
-								data-bs-toggle="dropdown">게시판</button>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="board/notice">공지사항</a></li>
-								<li><a class="dropdown-item" href="board/faq">FAQ</a></li>
-								<li><a class="dropdown-item" href="board/qna">1:1문의</a></li>
-							</ul>
-						</div>
-					</ul>
-				</div>
-				<button class="btn" onclick="location.href='#'"><img id="cartIcon" src="${pageContext.request.contextPath}/resources/image/icon/cart.png" style="height: 25px;"/></button>
-				<button class="btn" onclick="location.href='#'"><img id="userIcon" src="${pageContext.request.contextPath}/resources/image/icon/user.png" style="height: 25px;"/></button>
-			</div>
-		</nav>
+		<%@ include file="/WEB-INF/views/common/nav.jsp"%>
 		
 		<!-- cart page ------------------ -->
 		<div class="container mt-5">
@@ -128,15 +106,52 @@
 				</div>
 				
 				<div class="col-sm-4 border mt-5">
-					<div class="card">
-						<div class="card-header">주문하는 부분</div>
-						<div class="card-body">
-							선택 상품 확인, 주문하기 버튼 
-						</div>
+					<div class="card w-100 mb-3" style="max-width: 18rem;">
+					  <div class="card-body">
+					  	<div class="row">
+						    <div class="col card-text">
+						      	<h5>상품 금액</h5>
+						    </div>
+						    <div class="col card-text">
+						      	<h5>19,000원</h5>
+						    </div>
+						 </div>
+						 <div class="row mt-3 mb-5">
+						    <div class="col card-text">
+						      	<h5>배송비</h5>
+						    </div>
+						    <div class="col card-text">
+						      	<h5>+3,000원</h5>
+						    </div>
+						 </div>
+						 <hr>
+						 <div class="row mt-3 mb-3">
+						    <div class="col card-text">
+						      	<h5>결제예정금액</h5>
+						    </div>
+						    <div class="col card-text">
+						      	<h4> 22,000원</h4>
+						    </div>
+						 </div>
+						 <div class="row mt-3 mb-3">
+						    <div class="col card-text">
+						      	<h6 style="font-size:15px">OO,OOO원 추가주문 시, <strong id="text-strong">무료배송</strong></h6>
+						    </div>
+						 </div>
+					  </div>
+					</div>
+					
+					<div class="d-grid gap-2 col-8">
+					  <button class="pay-btn btn btn-primary btn-lg" type="button" onclick="location.href='#'">결제하기</button>
+					</div>
+					
+					<div class="row mt-3">
+					  <h6 style="font-size:14px">[주문완료] 상태일 경우에만 주문 취소가 가능합니다.</h6>
+					  <h6 style="font-size:14px">[마이필 > 주문내역 상세페이지]에서 직접 취소하실 수 있습니다.</h6>
 					</div>
 				</div>
 			</div>
 		</div>
-
+		
 	</body>
 </html>

@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+/* font ------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+body, h1, h2, h3, h4, h5, h6, input, textarea, select {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+
+/* card ------------------------------ */
+.card-bg {
+	color: #e6e6e6;
+}
+
+#text-strong {
+	color: #37cbe9;
+}
+
+/* button ------------------------------ */
+.pay-btn {
+  	background-color: white;
+  	color: black;
+}
