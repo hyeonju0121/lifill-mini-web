@@ -7,23 +7,71 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select {
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
-
 /* table */
 th {
 	text-align: center;
 }
 
-/* card ------------------------------ */
-.card-bg {
-	color: #e6e6e6;
+
+/* product --------------------------*/
+a {
+  	text-decoration: none;
+  	color: #757575;
 }
 
+a:link {
+  text-decoration: none;
+}
+ 
+a:visited {
+  text-decoration: none;
+}
+ 
+a:hover {
+  text-decoration: underline;
+}
+ 
+a:active {
+  text-decoration: underline;
+}
+
+.p-name {
+	color: #474747
+	font-weight: bold;
+}
+
+/*product count ---------------------*/
+.p-price {
+	text-align: center;
+}
+
+.remove-img {
+	width:20px;
+	height:20px;
+}
+
+/* card ------------------------------ */
 #text-strong {
 	color: #37cbe9;
 }
 
 /* button ------------------------------ */
-.pay-btn {
-  	background-color: white;
+/* .pay-btn {
+  	background-color: #37cbe9;
   	color: black;
+} */
+
+$main-color: #37cbe9 !default;
+
+
+/* count button */
+.minus-button, .plus-button {
+	width:25px;
+	height:25px;
+	border: 1px solid grey;
+	border-radius: 50%;
+	padding: 5px;
+	font-size: 18px;
+	text-align: center;
+	line-height: 0px;
 }
