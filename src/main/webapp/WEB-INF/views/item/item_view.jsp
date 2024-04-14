@@ -16,7 +16,6 @@
 		
 		<!-- external css -->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/item-view.css">
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/shop.css">
 		
 		<!-- 사용자 정의 자바스크립트 -->
 		<script>
