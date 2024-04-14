@@ -15,33 +15,60 @@
 	
 		<!--사용자 정의 스크립트 -->
 		<script type="text/javascript">
-			// bool = this.checked : name이 all인 체크박스의 체크속성( ture, false )
+			// [전체선택/전체해제]-------------------------------
+			// bool 이 true일 경우, 모든 체크박스가 체크
+			// false일 경우, 모든 체크박스가 해제
 			function allselect(bool){
+				// chk 로 지정된 모든 체크박스 갖고옴
 				var chks = document.getElementsByName("chk");
+				// 모든 체크박스의 길이만큼 체크박스를 하나씩 반복
 				for(var i = 0; i < chks.length; i++){
 					chks[i].checked = bool;
 				}
 			}
 			
-			function sel(){
-				// 1. chk라는 이름을 가진 모든 checkbox 가져온다.
-				var chks = document.getElementsByName("chk");
-				
-				for(var i = 0; i < chks.length; i++){
-					// 2. 만일 chk들 중에 체크되어있는 element가 있다면,
-					if( chks[i].checked ){
-						// 3. 체크되어있는 chk.value값을 Id로 가지는 요소의 배경색을 chk.value값으로 바꾸자.
-						// document.getElementById(???).stlye.backgroundColor=???
-						document.getElementById(chks[i].value).style.background = chks[i].value;
+			// [수량 버튼] ------------------------------------
+			function count(type)  {
+				// 수량 결과를 표시할 element
+				const resultElement = document.getElementById('result');
+
+				// 현재 수량을 화면에 표시
+				let number = resultElement.innerText;
+				  
+				// 더하기/빼기
+				if(type === 'plus') {
+				  number = parseInt(number) + 1;
+				} else if(type === 'minus')  {
+					if(number == 1) {
+						// 기본 수량 1로 설정
+						number = 1;
 					} else {
-						document.getElementById(chks[i].value).style.background = "";
+						number = parseInt(number) - 1;
 					}
 				}
+				// 결과 출력
+				resultElement.innerText = number;
 			}
-		
 			
+			// [금액에 쉼표 표시를 위한 함수] ----------------------------
+			function numberWithCommas(n) {
+				// 숫자를 문자열로 변환하고, 정규식을 사용해 세 자리마다 쉼표를 추가하여 변환
+			    return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			}
+			
+			// 웹 페이지가 로드되면 자동으로 실행될 수 있도록  window.onload() 함수 사용
+			window.onload = function() {
+				// p-price 상품 가격 클래스를 요소로 가져오기
+			    var priceElements = document.getElementsByClassName("p-price");
+			    for (var i = 0; i < priceElements.length; i++) {
+			    	// 해당 요소의 텍스트를 숫자로 변환하기
+			        var price = parseInt(priceElements[i].innerText);
+			    	// 쉼표로 추가하여 변환된 내용을 html에 추가 
+			        priceElements[i].innerText = numberWithCommas(price); // 형식화된 숫자로 대체합니다.
+			    }
+			};
 		</script>
-		
+
 		<!-- external css -->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/cart.css">
 
@@ -50,88 +77,100 @@
 	<body>
 		<!-- 네비게이션 바  ------------------------------------------------------------------------>
 		<%@ include file="/WEB-INF/views/common/nav.jsp"%>
-
+		
 		<!-- cart page ------------------ -->
 		<div class="container mt-5">
 			<h2 style="text-align:center;"> 장바구니</h2>
 			<div class="row">
-				<div class="col-sm-8 border mt-5">
+				<div class="col-sm-8 mt-5">
 					<div class="cart-table">
 						<table class="table p-2">
 							<thead>
 								<tr>
 									<th><input type="checkbox" name="allCheck" id="allCheck" onclick="allselect(this.checked);"/></th>
 									<th class="product-h">Product</th>
-									<th>Price</th>
 									<th>Quantity</th>
-									<th>Total</th>
+									<th>Price</th>
 									<th></th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
+									<!-- item1 ------------------------------------------------- -->
 									<!-- 체크박스 -->
 									<td><input type="checkbox" name="chk" id="check1" onclick="checked();"/>
 									</td>
 									<!-- 상품 이미지 -->
 									<td class="procuct-col">
-										<img src="${pageContext.request.contextPath}/resources/image/item_rep/eye/eye4.png" style="width:180px;height:180px;"/>
-										<div class="p-title">
-											<h5><a href="#">루테인 지아잔틴 아스타잔틴 x 4박스</a></h5>
+										<div class="d-flex product-img">
+											<img src="${pageContext.request.contextPath}/resources/image/item_rep/eye/eye3_image1.png" class="rounded-3" style="width:130px;height:130px;"/>
+											<div class="p-content mt-4 ms-2">
+												<h6 class="p-name">[effekt]</h6>
+												<h6><a href="${pageContext.request.contextPath}/item/item_view">초임계 루테인아스타잔틴 코어</a></h6>
+											</div>
 										</div>
-									</td>
-									<!-- 상품 가격 -->
-									<td class="price-col">
-										<h5>18,000원</h5>
 									</td>
 									<!-- 상품 수량 -->
 									<td width="20%">
-										<div class="d-flex count ">
-											<button type="button" class="btn btn-secondary me-3">-</button>
-											<h5>1개</h5>
-											<button type="button" class="btn btn-secondary ms-3">+</button>
+										<div class="d-flex justify-content-center count-button mt-4">
+												<button type="button" class="minus-button btn me-3" onclick='count("minus")'>-</button>
+												<h6 class="mt-2" id='result'>1</h6>
+												<button type="button" class="plus-button btn ms-3" onclick='count("plus")'>+</button>
 										</div>
 									</td>
-									<!-- 총 가격 -->
-									<td>
-										<h5>19,000원</h5>
+									<!-- 상품 가격 -->
+									<td class="product-price">
+										<div class="product-count d-flex justify-content-center">
+											<h4 class="p-price mt-4" id='total-price'>29800</h4>
+											<h4 class="ms-1 mt-4">원</h4>
+										</div>
 									</td>
+									
 									<!-- 상품 삭제 버튼 -->
 									<td class="product-close">
-										<button type="button" class="btn btn-outline-primary">x</button>
+										<button class="btn ms-3 mt-2" onclick="productRemove()">
+											<img class="remove-img"
+												src="${pageContext.request.contextPath}/resources/image/icon/x.png"/>
+										</button>
 									</td>
 								</tr>
+								
+								<!-- item2 ------------------------------------------------- -->
 								<tr>
 									<!-- 체크박스 -->
 									<td><input type="checkbox" name="chk" id="check2" onclick="checked();"/>
 									</td>
 									<!-- 상품 이미지 -->
 									<td class="procuct-col">
-										<img src="${pageContext.request.contextPath}/resources/image/item_rep/eye/eye5_image1.png" style="width:180px;height:180px;"/>
-										<div class="p-title">
-											<h5><a href="#">눈에는눈 루테인 눈에좋은 눈건강 영양제</a></h5>
+										<div class="d-flex product-img">
+											<img src="${pageContext.request.contextPath}/resources/image/item_rep/intestine/intestine3.png" class="rounded-3" style="width:130px;height:130px;"/>
+											<div class="p-content mt-4 ms-2">
+												<h6 class="p-name">[종근당건강]</h6>
+												<h6><a href="${pageContext.request.contextPath}/item/item_view">락토핏 골드 2g*50포</a></h6>
+											</div>
 										</div>
-									</td>
-									<!-- 상품 가격 -->
-									<td class="price-col">
-										<h5>9,000원</h5>
 									</td>
 									<!-- 상품 수량 -->
 									<td width="20%">
-										<div class="d-flex count ">
-											<button type="button" class="btn btn-secondary me-3">-</button>
-											<h5>1개</h5>
-											<button type="button" class="btn btn-secondary ms-3">+</button>
+										<div class="d-flex justify-content-center count-button mt-4">
+												<button type="button" class="minus-button btn me-3" onclick='count("minus")'>-</button>
+												<h6 class="mt-2" id='result'>1</h6>
+												<button type="button" class="plus-button btn ms-3" onclick='count("plus")'>+</button>
 										</div>
 									</td>
-							
-									<!-- 총 가격 -->
-									<td>
-										<h5>27,000원</h5>
+									<!-- 상품 가격 -->
+									<td class="product-price">
+										<div class="product-count d-flex justify-content-center">
+											<h4 class="p-price mt-4" id='total-price'>15900</h4>
+											<h4 class="ms-1 mt-4">원</h4>
+										</div>
 									</td>
 									<!-- 상품 삭제 버튼 -->
 									<td class="product-close">
-										<button type="button" class="btn btn-outline-primary">x</button>
+										<button class="btn ms-3 mt-2" onclick="productRemove()">
+											<img class="remove-img"
+												src="${pageContext.request.contextPath}/resources/image/icon/x.png"/>
+										</button>
 									</td>
 								</tr>
 							</tbody>
@@ -139,15 +178,15 @@
 					</div>
 				</div>
 				
-				<div class="col-sm-4 border mt-5">
-					<div class="card w-100 mb-3" style="max-width: 18rem;">
+				<div class="col-sm-4 mt-5">
+					<div class="card bg-light w-100 ms-2 mb-3" style="max-width: 18rem;">
 					  <div class="card-body">
-					  	<div class="row">
+					  	<div class="row mt-2">
 						    <div class="col card-text">
 						      	<h5>상품 금액</h5>
 						    </div>
 						    <div class="col card-text">
-						      	<h5>19,000원</h5>
+						      	<h5>45,700원</h5>
 						    </div>
 						 </div>
 						 <div class="row mt-3 mb-5">
@@ -164,7 +203,7 @@
 						      	<h5>결제예정금액</h5>
 						    </div>
 						    <div class="col card-text">
-						      	<h4> 22,000원</h4>
+						      	<h4> 46,000원</h4>
 						    </div>
 						 </div>
 						 <div class="row mt-3 mb-3">
@@ -175,8 +214,8 @@
 					  </div>
 					</div>
 					
-					<div class="d-grid gap-2 col-8">
-					  <button class="pay-btn btn btn-primary btn-lg" type="button" onclick="location.href='#'">결제하기</button>
+					<div class="d-grid gap-2 col-8 ms-2">
+					  <button class="pay-btn btn btn-outline-primary btn-lg" type="button" onclick="location.href='#'">결제하기</button>
 					</div>
 					
 					<div class="row mt-3">
