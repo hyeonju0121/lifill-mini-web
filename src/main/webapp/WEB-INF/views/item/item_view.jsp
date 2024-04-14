@@ -19,20 +19,6 @@
 		
 		<!-- 사용자 정의 자바스크립트 -->
 		<script>
-			/* var acc = document.getElementsByClassName("accordion");
-			var i;
-	
-			for (i = 0; i < acc.length; i++) {
-			  acc[i].addEventListener("click", function() {
-			    this.classList.toggle("active");
-			    var panel = this.nextElementSibling;
-			    if (panel.style.display === "block") {
-			      panel.style.display = "none";
-			    } else {
-			      panel.style.display = "block";
-			    }
-			  });
-			} */
 			
 			// nav에 있는 li가 클릭됐을 때 하단에 border를 적용하기 위한 함수 선언
 			document.addEventListener("DOMContentLoaded", function() {
@@ -41,20 +27,16 @@
 
 			    items.forEach(item => {
 			        item.addEventListener('click', function() {
-			            // Remove border from previously clicked item
 			            if (previousItem !== null) {
 			                previousItem.style.borderBottom = 'none';
 			            }
 
-			            // Add border to clicked item
-			            this.style.borderBottom = '5px solid #37cbe9';
+			            this.style.borderBottom = '4px solid #37cbe9';
 
-			            // Set the current item as the previous item
 			            previousItem = this;
 			        });
 			    });
 			});
-
 
 		</script>
 		
@@ -64,18 +46,21 @@
 	
 		<%@ include file="/WEB-INF/views/common/nav.jsp"%>
 		
-		<div class="container" style="padding:0 30px">
+		<div class="container" style="padding:0 30px; margin-bottom: 30px; ">
+			<div class="item-section mt-2 mb-2" style="font-size: 12px">
+				라이필 > 기능별 > 눈 건강
+			</div>
 			<!-- 상품 사진과 설명, 가격 영역 -->
-			<div class="border border-warning d-flex">
-				<div class="border border-dark w-50 d-flex flex-column">
+			<div class="d-flex">
+				<div class="w-50 d-flex flex-column">
 					<!-- 1. 상품 사진 영역 -->
-					<div class="border border-dark mt-3 rep_img_box">
+					<div class="rep_img_box" style="width:620px; height:550px">
 						<img 
 						src="${pageContext.request.contextPath}/resources/image/item_rep/eye/eye3_image1.png"
-						style="width:550px; height:550px"/>
+						style="width:620px; height:550px"/>
 					</div>
 					
-					<div class="border border-danger sub-rep-img" style="height:200px">
+					<div class="sub-rep-img mt-3" style="height:200px">
 						<div class="d-flex">
 							<div>
 								<img 
@@ -90,10 +75,10 @@
 				</div>
 				
 				<!-- 2. 가격, 영양 성분 안내, 구매하기/장바구니 버튼 위치 영역 -->
-				<div class="item-overview">
+				<div class="item-overview container" style="position: relative;">
 					<div class="item-info">
 						<div class="company text-start">
-							<h2 style="margin:5px;"><b>effekt</b></h2>
+							<h2 style="margin:5px;"><b>effekt.</b></h2>
 							
 						</div>
 						<hr/>
@@ -102,23 +87,92 @@
 						</div>
 						
 						<div class="item-price mt-3 mb-3">
-							<h1>29800원</h1>
-							
+							<h1>29,800원</h1>
+							<hr/>
 						</div>
-						1일1회1캡슐
-						루테인 20mg 아스타잔틴 12mg
-						<button class="accordion">Section 1</button>
-						<div class="panel">
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+						
+						
+						<div class="d-flex" style="height: 200px;">
+							<div class="d-flex flex-column info-name">
+								<div>
+									섭취 대상
+								</div>
+								<div>
+									효능
+								</div>
+								<div>
+									제품 형태
+								</div>
+								<div>
+									섭취 횟수
+								</div>
+								<div>
+									섭취 유형
+								</div>
+								<div>
+									대표 구성 성분
+								</div>
+							</div>
+							<div class="d-flex flex-column info-value">
+								<div>
+									성인남녀
+								</div>
+								<div>
+									눈 건강 개선
+								</div>
+								<div>
+									알약, 캡슐
+								</div>
+								<div>
+									1일 1회
+								</div>
+								<div>
+									물과 함께
+								</div>
+								<div>
+									마리골드 꽃 추출물, 헤마토코쿠스 추출물 <br/> 
+									루테인 20mg, 아스타잔틴 12mg
+								</div>
+							</div>
 						</div>
+						
+						<hr/>
+						
+						<div class="d-flex" style="height: 100px;">
+							<div class="delivery-name">
+								<div>
+									배송비
+								</div>
+								<div>
+									정기배송
+								</div>							
+							</div>
+							<div class="delivery-value">							
+								<div>
+									무료
+								</div>
+								<div>
+									신청가능
+								</div>
+							</div>
+						</div>
+						<div class="button-area1 d-flex">
+							<span>
+								<button id="cart-button1" type="button" class="btn" onclick="location.href='${pageContext.request.contextPath}/member/cart'">장바구니</button>
+							</span>
+							<span>
+								<button id="buy-button1" type="button" class="btn">구매하기</button>
+							</span>
+						</div>
+						
 					</div>
 				</div>
 			</div>
 			
-			<div class="border border-primary">
-				<div class="border border-info">
+			<div>
+				<div>
 					<!-- best item -------------------------------------------------------------------------->
-					<div class="container mt-5">
+					<div class="container mt-5" style="height: 500px;">
 						<p class="h3">이런 상품은 어떠세요?</p>
 						
 						<!-- 슬라이드 배너 -->
@@ -127,7 +181,7 @@
 							<div class="carousel-inner embed-responsive embed-responsive-4by3">
 								<!-- 첫 번째 슬라이드 -->
 								<div class="carousel-item active w-100">
-									<div class="card-wrapper container-sm d-flex justify-content-around m-5">
+									<div class="card-wrapper container-sm d-flex justify-content-around m-3">
 										<div class="card best-item-card">
 											<img src="${pageContext.request.contextPath}/resources/image/item_rep/eye/eye1.png"
 											class="card-img-top embed-responsive-item best-item-img">
@@ -211,7 +265,7 @@
 			</div>
 			
 			<!-- 상품 상세 이미지, 구매하기 박스 영역 -->
-			<div class="detail_sec_box border border-info d-flex">
+			<div class="detail_sec_box d-flex">
 				<div class="d-flex flex-column tab" style="width: 850px;">
 
 					<!-- 1. 선택 바 영역 -->
@@ -243,17 +297,19 @@
 					</div>
 					
 					<!-- 2. 상품 상세 이미지 영역 -->
-					<!-- 상세이미지로 바꾸기 -->
-					<div id="item_detail_img_sec" class="border border-dark" style="width:850px;">
+					<div id="item_detail_img_sec" style="margin-bottom: 3px;">
+						<h2><b>상품 상세정보</b></h2>
+					</div>
+					<div style="width:850px;">
 						<img 
 						src="${pageContext.request.contextPath}/resources/image/item_detail/eye/eye3_detail.png"
 						style="width:850px"/>
 					</div>
 					
 					<!-- 고객 리뷰 영역 -->
-					<div id="review-sec d-flex">
+					<div id="review-sec">
 						<h2 class="mt-3 mb-3"><b>리뷰</b></h2>
-						<div class="d-flex container">
+						<div class="d-flex">
 							<div class="riview-card card card-block">
 							   <div class="card-header">유OO님</div>
 							    <div class="card-body">
@@ -344,15 +400,15 @@
 				</div>
 				
 				<!-- 2. 구매하기 박스 영역 -->
-				<div class="buy_box border border-success">
+				<div class="buy_box">
 					<div class="buy-box-area">
 						<div class="buy-info-area">
 							<span class="item-name">초임계 루테인아스타잔틴 코어</span>
 							<div class="count-button">						
-								<button type="button" class="minus-button btn btn-info btn-outline-secondary" onclick="minus()"> - </button>
+								<button type="button" class="minus-button btn" onclick="minus()">-</button>
 								수량
-								<button type="button" class="plus-button btn btn-info btn-outline-secondary" onclick="plus()"> + </button>
-								<h6>29800원</h6>
+								<button type="button" class="plus-button btn" onclick="plus()">+</button>
+								<h6 style="margin-top: 4px; margin-bottom: 4px;">29800원</h6>
 							</div>
 							<hr/>
 						</div>
@@ -360,15 +416,15 @@
 							<hr/>
 						<div class="total-price">
 							<div class="price-sum">
-								<h3 id="price-sum">합계 : 29800원</h3>
+								<h3 id="price-sum">합계 : 29,800원</h3>
 							</div>
 						</div>
-						<div class="button-area d-flex">
+						<div class="button-area2 d-flex">
 							<span>
-								<button id="cart-button" type="button">장바구니</button>
+								<button id="cart-button2" type="button" class="btn" onclick="location.href='${pageContext.request.contextPath}/member/cart'">장바구니</button>
 							</span>
 							<span>
-								<button id="buy-button" type="button">구매하기</button>
+								<button id="buy-button2" type="button" class="btn">구매하기</button>
 							</span>
 						</div>
 					</div>
