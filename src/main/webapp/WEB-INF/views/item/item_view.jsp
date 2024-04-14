@@ -37,6 +37,29 @@
 			        });
 			    });
 			});
+			
+			// 수량 버튼 함수
+			function count(type)  {
+	              // 결과를 표시할 element
+	              const resultElement = document.getElementById('result');
+	              
+	              // 현재 화면에 표시된 값
+	              let number = resultElement.innerText;
+	              
+	              // 더하기/빼기
+	              if(type === 'plus') {
+	                number = parseInt(number) + 1;
+	              }else if(type === 'minus')  {
+	            	  if (number == 1) {
+	            		  number = 1;
+	            	  } else {
+		                number = parseInt(number) - 1;	            		  
+	            	  }
+	              }
+	              
+	              // 결과 출력
+	              resultElement.innerText = number;
+	         }
 
 		</script>
 		
@@ -405,9 +428,9 @@
 						<div class="buy-info-area">
 							<span class="item-name">초임계 루테인아스타잔틴 코어</span>
 							<div class="count-button">						
-								<button type="button" class="minus-button btn" onclick="minus()">-</button>
-								수량
-								<button type="button" class="plus-button btn" onclick="plus()">+</button>
+								<button type="button" class="minus-button btn" onclick="count('minus')">-</button>
+								<span id="result">1</span>
+								<button type="button" class="plus-button btn" onclick="count('plus')">+</button>
 								<h6 style="margin-top: 4px; margin-bottom: 4px;">29800원</h6>
 							</div>
 							<hr/>
