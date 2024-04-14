@@ -40,7 +40,7 @@
 	  				
 	  					
 	  				//Password검사하기
-	  				var passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{10,15}$/;
+	  				var passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&*?_])(?=.*[A-Z]).{10,15}$/;
 	  				var passwordResult = passwordPattern.test($("#password").val());
 	  				if(!passwordResult) {
 	  					totalResult = false;

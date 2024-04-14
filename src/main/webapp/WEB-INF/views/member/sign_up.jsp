@@ -45,7 +45,7 @@
 				}
 				
 				//Password 검사하기
-				var passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{10,15}$/;
+				var passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&*?_])(?=.*[A-Z]).{10,15}$/;
 				var passwordResult = passwordPattern.test($("#password").val());
 				if(passwordResult) {
 					$("#passwordSpan").removeClass("text-danger");
@@ -109,24 +109,18 @@
 			            	  novalidate>
 	            	  	            	  
 						        <div class="user-info">
-						          <div class="user-info-email">
-							          <div class="user-info-name">
 							            <div>* 아이디</div>
 							            <input type="text" class="form-control" id="uid" name="uid"/>
 							            <span id="uidSpan" class="form-text">알파벳 소문자, 숫자를 혼용해서 7자 이상 11자 이하</span>
-							          </div>
-							          <div class="user-info-password">
 							            <div>* 비밀번호</div>
 							            <input type="password" class="form-control" id="password" name="password"/>
-							            <span id="passwordSpan" class="form-text">알파벳 대소문자, 숫자를 혼용해서 10자 이상 15자 이하</span>
-							          </div>
+							            <span id="passwordSpan" class="form-text">알파벳 대소문자, 숫자, 특수문자를 혼용해서 10자 이상 15자 이하</span>
 							            <div>* 이름</div>
 							            <input type="text" class="form-control" id="uname" name="uname"/>
 							            <span id="nameSpan" class="form-text" >성함을 입력해주세요.</span>
 							          <div>* 이메일</div>
 							            <input type="email" class="form-control" id="email" name="email"/>
 							            <span id="emailSpan" class="form-text">이메일 형식에 맞춰서 작성해주세요.</span>
-							          </div>
 							          <div>* 휴대폰</div>
 							            <input type="tel" class="form-control" id="phone" name="phone"/>
 							            <span id="phoneSpan" class="form-text">숫자만 입력해주세요.</span>
@@ -139,6 +133,7 @@
 		   	 </div>
 	</body>
 </html>
+			          
 			          <!-- <div class="user-info-pw-check">
 			            <div>* 비밀번호 확인</div>
 			            <input type="password" />
