@@ -28,9 +28,9 @@
 			}
 			
 			// [수량 버튼] ------------------------------------
-			function count(type)  {
+			function count1(type)  {
 				// 수량 결과를 표시할 element
-				const resultElement = document.getElementById('result');
+				const resultElement = document.getElementById('result1');
 
 				// 현재 수량을 화면에 표시
 				let number = resultElement.innerText;
@@ -49,6 +49,29 @@
 				// 결과 출력
 				resultElement.innerText = number;
 			}
+			
+			function count2(type)  {
+				// 수량 결과를 표시할 element
+				const resultElement = document.getElementById('result2');
+
+				// 현재 수량을 화면에 표시
+				let number = resultElement.innerText;
+				  
+				// 더하기/빼기
+				if(type === 'plus') {
+				  number = parseInt(number) + 1;
+				} else if(type === 'minus')  {
+					if(number == 1) {
+						// 기본 수량 1로 설정
+						number = 1;
+					} else {
+						number = parseInt(number) - 1;
+					}
+				}
+				// 결과 출력
+				resultElement.innerText = number;
+			}
+
 			
 			// [금액에 쉼표 표시를 위한 함수] ----------------------------
 			function numberWithCommas(n) {
@@ -113,9 +136,9 @@
 									<!-- 상품 수량 -->
 									<td width="20%">
 										<div class="d-flex justify-content-center count-button mt-4">
-												<button type="button" class="minus-button btn me-3" onclick='count("minus")'>-</button>
-												<h6 class="mt-2" id='result'>1</h6>
-												<button type="button" class="plus-button btn ms-3" onclick='count("plus")'>+</button>
+												<button type="button" class="minus-button btn me-3" onclick='count1("minus")'>-</button>
+												<h6 class="mt-2" id='result1'>1</h6>
+												<button type="button" class="plus-button btn ms-3" onclick='count1("plus")'>+</button>
 										</div>
 									</td>
 									<!-- 상품 가격 -->
@@ -153,9 +176,9 @@
 									<!-- 상품 수량 -->
 									<td width="20%">
 										<div class="d-flex justify-content-center count-button mt-4">
-												<button type="button" class="minus-button btn me-3" onclick='count("minus")'>-</button>
-												<h6 class="mt-2" id='result'>1</h6>
-												<button type="button" class="plus-button btn ms-3" onclick='count("plus")'>+</button>
+												<button type="button" class="minus-button btn me-3" onclick='count2("minus")'>-</button>
+												<h6 class="mt-2" id='result2'>1</h6>
+												<button type="button" class="plus-button btn ms-3" onclick='count2("plus")'>+</button>
 										</div>
 									</td>
 									<!-- 상품 가격 -->
@@ -203,7 +226,7 @@
 						      	<h5>결제예정금액</h5>
 						    </div>
 						    <div class="col card-text">
-						      	<h4> 46,000원</h4>
+						      	<h4> 48,700원</h4>
 						    </div>
 						 </div>
 						 <div class="row mt-3 mb-3">
