@@ -15,6 +15,12 @@ public class AdminController {
 		log.info("index() 실행");
 		return "admin/index";
 	}
+	
+	@RequestMapping("/admin_login")
+	public String login() {
+		log.info("login() 실행");
+		return "admin/admin_login";
+	}
 
 	@RequestMapping("/read_order")
 	public String readOrder() {

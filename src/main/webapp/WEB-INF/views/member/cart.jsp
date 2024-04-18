@@ -16,12 +16,11 @@
 		<!--사용자 정의 스크립트 -->
 		<script type="text/javascript">
 			// [전체선택/전체해제]-------------------------------
-			// bool 이 true일 경우, 모든 체크박스가 체크
-			// false일 경우, 모든 체크박스가 해제
+			// true일 경우, 전체전택 / false일 경우, 전체해제
 			function allselect(bool){
 				// chk 로 지정된 모든 체크박스 갖고옴
 				var chks = document.getElementsByName("chk");
-				// 모든 체크박스의 길이만큼 체크박스를 하나씩 반복
+				
 				for(var i = 0; i < chks.length; i++){
 					chks[i].checked = bool;
 				}
@@ -35,18 +34,15 @@
 				// 현재 수량을 화면에 표시
 				let number = resultElement.innerText;
 				  
-				// 더하기/빼기
 				if(type === 'plus') {
 				  number = parseInt(number) + 1;
 				} else if(type === 'minus')  {
 					if(number == 1) {
-						// 기본 수량 1로 설정
 						number = 1;
 					} else {
 						number = parseInt(number) - 1;
 					}
 				}
-				// 결과 출력
 				resultElement.innerText = number;
 			}
 			
@@ -57,25 +53,21 @@
 				// 현재 수량을 화면에 표시
 				let number = resultElement.innerText;
 				  
-				// 더하기/빼기
 				if(type === 'plus') {
 				  number = parseInt(number) + 1;
 				} else if(type === 'minus')  {
 					if(number == 1) {
-						// 기본 수량 1로 설정
 						number = 1;
 					} else {
 						number = parseInt(number) - 1;
 					}
 				}
-				// 결과 출력
 				resultElement.innerText = number;
 			}
 
 			
 			// [금액에 쉼표 표시를 위한 함수] ----------------------------
 			function numberWithCommas(n) {
-				// 숫자를 문자열로 변환하고, 정규식을 사용해 세 자리마다 쉼표를 추가하여 변환
 			    return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 			}
 			
@@ -87,7 +79,7 @@
 			    	// 해당 요소의 텍스트를 숫자로 변환하기
 			        var price = parseInt(priceElements[i].innerText);
 			    	// 쉼표로 추가하여 변환된 내용을 html에 추가 
-			        priceElements[i].innerText = numberWithCommas(price); // 형식화된 숫자로 대체합니다.
+			        priceElements[i].innerText = numberWithCommas(price); 
 			    }
 			};
 		</script>
