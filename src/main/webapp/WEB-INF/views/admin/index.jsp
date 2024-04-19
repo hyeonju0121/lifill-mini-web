@@ -27,6 +27,7 @@
 		    <div class="card-body">
 				<ul>
 					<li><a href="admin/admin_login">관리자 - 로그인</a></li>
+					<li><a href="admin/admin_main">관리자 - 메인페이지</a></li>
 					<li><a href="admin/create_item">관리자 - 상품 등록</a></li>
 		    		<li><a href="admin/read_item">관리자 - 상품 조회</a></li>
 					<li><a href="admin/update_item">관리자 - 상품 수정</a></li>
