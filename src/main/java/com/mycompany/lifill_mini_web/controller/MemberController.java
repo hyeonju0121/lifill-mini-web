@@ -33,4 +33,10 @@ public class MemberController {
 		log.info("cart() 실행");
 		return "member/cart";
 	}
+	
+	@RequestMapping("/my_page")
+	public String myPage() {
+		log.info("my_page() 실행");
+		return "member/my_page";
+	}
 }
