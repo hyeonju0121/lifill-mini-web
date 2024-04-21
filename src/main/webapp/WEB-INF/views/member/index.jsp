@@ -28,7 +28,14 @@
 				<ul>
 					<li><a href="member/sign_in">로그인 화면</a></li>
 					<li><a href="member/sign_up">회원가입 화면</a></li>
-					<li><a href="member/my_page">마이페이지 화면</a></li>
+					<li><a href="member/mypage">마이페이지 화면</a></li>
+					<li><a href="member/orderList">주문 목록 화면</a></li>
+					<li><a href="member/orderListClaim">교환/반품/취소 목록 화면</a></li>
+					<li><a href="member/myInquiryList">1:1 문의 목록 화면</a></li>
+					<li><a href="member/csInquiry">1:1 문의 폼 화면</a></li>
+					<li><a href="member/myGoodsReviewList">상품 리뷰 화면</a></li>
+					<li><a href="member/updateMember">회원 정보 수정 화면</a></li>
+					
 				</ul>
 			</div> 
 		</div>

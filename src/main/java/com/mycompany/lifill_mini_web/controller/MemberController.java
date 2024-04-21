@@ -34,9 +34,45 @@ public class MemberController {
 		return "member/cart";
 	}
 	
-	@RequestMapping("/my_page")
+	@RequestMapping("/mypage")
 	public String myPage() {
-		log.info("my_page() 실행");
-		return "member/my_page";
+		log.info("mypage() 실행");
+		return "member/mypage/myPage";
+	}
+	
+	@RequestMapping("/orderList")
+	public String orderList() {
+		log.info("orderList() 실행");
+		return "member/mypage/orderList";
+	}
+	
+	@RequestMapping("/orderListClaim")
+	public String orderListClaim() {
+		log.info("orderListClaim() 실행");
+		return "member/mypage/orderList_claim";
+	}
+
+	@RequestMapping("/myInquiryList")
+	public String myInquiryList() {
+		log.info("myInquiryList() 실행");
+		return "member/mypage/myInquiryList";
+	}
+	
+	@RequestMapping("/csInquiry")
+	public String csInquiry() {
+		log.info("csInquiry() 실행");
+		return "member/mypage/csInquiry";
+	}
+	
+	@RequestMapping("/myGoodsReviewList")
+	public String myGoodsReviewList() {
+		log.info("myGoodsReviewList() 실행");
+		return "member/mypage/myGoodsReviewList";
+	}
+	
+	@RequestMapping("/updateMember")
+	public String updateMember() {
+		log.info("updateMember() 실행");
+		return "member/mypage/updateMember";
 	}
 }
