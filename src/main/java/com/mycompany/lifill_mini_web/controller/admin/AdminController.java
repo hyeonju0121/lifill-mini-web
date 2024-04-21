@@ -1,4 +1,4 @@
-package com.mycompany.lifill_mini_web.controller;
+package com.mycompany.lifill_mini_web.controller.admin;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

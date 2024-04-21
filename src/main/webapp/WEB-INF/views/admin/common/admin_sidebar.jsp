@@ -48,7 +48,7 @@
 			</a>
 			<ul id="product" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
 				<li class="sidebar-item">
-					<a href="#" class="sidebar-link">대시보드</a>
+					<a href="${pageContext.request.contextPath}/admin/item/dashboard" class="sidebar-link">대시보드</a>
 				</li>
 				<li class="sidebar-item">
 					<a href="#" class="sidebar-link">상품 등록</a>
@@ -58,7 +58,7 @@
 				</li>
 			</ul>
 		</li>
-
+		
 		<!-- 주문 관리 (주문 조회, 수정 및 삭제) -->
 		<li class="sidebar-item">
 			<a href="#" class="sidebar-link has-dropdown collapsed" data-bs-toggle="collapse"
