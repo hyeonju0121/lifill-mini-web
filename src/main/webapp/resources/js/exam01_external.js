@@ -1,1 +1,0 @@
-console.log("exam01_external.js 실행");
