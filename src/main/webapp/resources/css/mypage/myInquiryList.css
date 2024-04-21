@@ -1,0 +1,332 @@
+@charset "UTF-8";
+
+/* font ------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+body, h1, h2, h3, h4, h5, h6, input, textarea, select {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.element {
+	box-sizing: border-box;
+}
+
+.my_menu {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.menu_depth01 {
+	display: inline-block;
+	height: 50px;
+	text-decoration-line: none;
+	color:black;
+	width:13rem;
+	box-sizing: border-box;
+	line-height: 50px;
+}
+
+.menu_depth02 {
+	padding: 30px 20px; 
+	list-style:none; 
+	width:13rem;
+	background-color: #FAFAFA;
+}
+
+ul.menu_depth02 a {
+	width:100%;
+	text-decoration-line: none; 
+	color: #999999; 
+	font-size: 14px;
+}
+
+#claim, #review {
+	margin-top: 20px;
+}
+
+.cs_area {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    margin-top: 60px;
+    width: 240px;
+}
+
+.ico_list {
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.ico_cs02 {
+    line-height: normal;
+    font-size: 14px;
+    box-sizing: border-box;
+    font-weight: 500;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    float: left;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    background-image: url("${pageContext.request.contextPath}/resources/image/icon/mail.png");
+}
+
+
+.ico_cs02 span {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    color: inherit;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: block;
+    overflow: hidden;
+    text-indent: -1000px;
+}
+
+.ico_cs03 {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    float: left;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    background: url(../../images/uiux/icon/ico_kakao.png) no-repeat 0 0/ contain;
+    background-image: url(../../images/uiux/icon/ico_1de1.png);
+}
+
+.ico_cs03 span {
+    color: inherit;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: block;
+    overflow: hidden;
+    text-indent: -1000px;
+}
+
+.content {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 60px 30px 0 30px;
+    padding-top: 0;
+    flex: 1;
+    min-width: 980px;
+}
+
+.tit_area {
+    box-sizing: border-box;
+    font-weight: bold;
+    display: flex;
+    padding: 0;
+    align-items: flex-end;
+    font-size: 22px;
+    margin: 0;
+    justify-content: flex-start;
+}
+
+.cs_number {
+    line-height: normal;
+    font-size: 22px;
+    box-sizing: border-box;
+    font-weight: 500;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    margin: auto 0;
+}
+
+.txt_l {
+    font-weight: bold;
+    box-sizing: border-box;
+    margin: auto 0;
+    margin-left: 5px;
+    font-size: 18px;
+    color: #999;
+}
+
+.txt_time {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+.txt_break {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    margin-top: 4px;
+    font-size: 13px;
+    color: #999;
+    font-weight: 400;
+}
+
+.tit_lv2 {
+    box-sizing: border-box;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 1.29;
+    overflow: hidden;
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+	
+}
+
+.content .tit_area {
+    box-sizing: border-box;
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    align-items: flex-end;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 3px solid black;
+}
+
+.has_border {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    padding: 0;
+    border: none;
+}
+
+.has_border .step {
+    box-sizing: border-box;
+    margin: 0;
+    list-style: none;
+    position: relative;
+    flex: 1;
+    text-align: center;
+    padding: 30px;
+    border: 1px solid black;
+    z-index: 1;
+    border-radius: 3px;
+}
+
+.has_border .step .count {
+    line-height: normal;
+    list-style: none;
+    text-align: center;
+    box-sizing: border-box;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom: 1px solid #333333;
+    color: #333333;
+    border-color: #b1b1b1;
+}
+
+.has_border .step .status {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    list-style: none;
+    text-align: center;
+    box-sizing: border-box;
+    display: block;
+    margin-top: 15px;
+}
+
+.info_between {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.list_type1 {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.list_type1 li {
+    line-height: normal;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    list-style: none;
+    position: relative;
+    padding: 0 0 10px 8px;
+    font-size: 13px;
+    color: #999999;
+    word-break: keep-all;
+}
+
+.info_between button {
+    box-sizing: border-box;
+    margin: 0;
+    border: none;
+    font-weight: 500;
+    vertical-align: middle;
+    background: transparent;
+    cursor: pointer;
+    padding: 0 30px;
+    font-size: 14px;
+    background-color: black;
+    color: white;
+    height: 48px;
+    line-height: 48px;
+    border-radius: 3px;
+    flex-shrink: 0;
+}
+
+.data_detail {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    margin-top: 60px;
+}
+
+.no_data {
+    line-height: normal;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    color: #999999;
+    text-align: center;
+    padding: 60px 0;
+    font-size: 16px;
+}

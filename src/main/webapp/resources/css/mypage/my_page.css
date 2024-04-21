@@ -1,0 +1,352 @@
+@charset "UTF-8";
+
+/* font ------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+body, h1, h2, h3, h4, h5, h6, input, textarea, select {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.element {
+	box-sizing: border-box;
+}
+
+.my_menu {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.menu_depth01 {
+	display: inline-block;
+	height: 50px;
+	text-decoration-line: none;
+	color:black;
+	width:13rem;
+	box-sizing: border-box;
+	line-height: 50px;
+}
+
+.menu_depth02 {
+	padding: 30px 20px; 
+	list-style:none; 
+	width:13rem;
+	background-color: #FAFAFA;
+}
+
+ul.menu_depth02 a {
+	width:100%;
+	text-decoration-line: none; 
+	color: #999999; 
+	font-size: 14px;
+}
+
+#claim, #review {
+	margin-top: 20px;
+}
+
+.cs_area {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    margin-top: 60px;
+}
+
+.ico_list {
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.ico_cs02 {
+    line-height: normal;
+    font-size: 14px;
+    box-sizing: border-box;
+    font-weight: 500;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    float: left;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    background-image: url("${pageContext.request.contextPath}/resources/image/icon/mail.png");
+}
+
+
+.ico_cs02 span {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    color: inherit;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: block;
+    overflow: hidden;
+    text-indent: -1000px;
+}
+
+.ico_cs03 {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    float: left;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    background: url(../../images/uiux/icon/ico_kakao.png) no-repeat 0 0/ contain;
+    background-image: url(../../images/uiux/icon/ico_1de1.png);
+}
+
+.ico_cs03 span {
+    color: inherit;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: block;
+    overflow: hidden;
+    text-indent: -1000px;
+}
+
+.img_box {
+	line-height: normal;
+    box-sizing: border-box;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    padding-bottom: 0;
+    background-color: white;
+    border-radius: 50%;
+    font-size: 32px;
+    font-weight: 700;
+    cursor: default;
+    text-decoration-line: none; 
+	color: #B1B1B1; 
+}
+
+#spanNknm {
+    line-height: normal;
+    font-weight: 500;
+    font-size: 28px;
+    box-sizing: border-box;
+    color: white;
+}
+
+.profile {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.profile_wrap {
+	background-color: black;
+	padding: 30px 40px;
+}
+
+.user_info {
+	padding-left: 20px;
+}
+
+.date {
+	color: white;
+}
+
+.tit_area {
+    box-sizing: border-box;
+    font-weight: bold;
+    display: flex;
+    padding: 0;
+    align-items: flex-end;
+    font-size: 22px;
+    margin: 0;
+    justify-content: flex-start;
+}
+
+.s_tit {
+    box-sizing: border-box;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999999;
+    margin-left: 5px;
+}
+
+.cs_number {
+    line-height: normal;
+    font-size: 22px;
+    box-sizing: border-box;
+    font-weight: 500;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    margin: auto 0;
+}
+
+.txt_l {
+    font-weight: bold;
+    box-sizing: border-box;
+    margin: auto 0;
+    margin-left: 5px;
+    font-size: 18px;
+    color: #999;
+}
+
+.txt_time {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.txt_break {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    margin-top: 4px;
+    font-size: 13px;
+    color: #999;
+    font-weight: 400;
+}
+
+.grayline_box {	
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    border: 1px solid #b1b1b1;
+}
+
+.my_order {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    list-style: none;
+    display: inline-flex;
+    width: calc(100% - 220px);
+    border: none;
+    padding: 30px 0;
+}
+
+.my_order .step {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: relative;
+    flex: 1;
+    text-align: center;
+}
+
+.my_order .step .count {
+    line-height: normal;
+    list-style: none;
+    text-align: center;
+    box-sizing: border-box;
+    text-decoration: none;
+    cursor: pointer;
+    color: #b1b1b1;
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom: 1px solid #b1b1b1;
+}
+
+.my_order .step .status {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    list-style: none;
+    text-align: center;
+    box-sizing: border-box;
+    display: block;
+    margin-top: 15px;
+}
+
+.my_order_box {
+	
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    list-style: none;
+    padding: 20px 0;
+    background: #fafafa;
+    border-left: 1px solid black;
+    display: inline-flex;
+    flex-direction: column;
+    width: 220px;
+    gap: 10px;
+}
+
+.my_order_box .step {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.my_order_box .step .status {
+    line-height: normal;
+    font-size: 14px;
+    list-style: none;
+    font-weight: 500;
+    color: inherit;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: inline-block;
+}
+
+.my_order_box .step .count {
+    line-height: normal;
+    list-style: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    border-bottom: 1px solid #b1b1b1;
+    color: #b1b1b1;
+    font-size: 16px;
+    font-weight: 700;
+}
+    
+.no_data {
+    line-height: normal;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    color: #b1b1b1;
+    text-align: center;
+    padding: 60px 0;
+    font-size: 16px;
+}   

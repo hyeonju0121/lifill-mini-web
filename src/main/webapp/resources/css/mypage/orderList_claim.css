@@ -1,0 +1,578 @@
+@charset "UTF-8";
+
+/* font ------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+body, h1, h2, h3, h4, h5, h6, input, textarea, select {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.element {
+	line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.my_menu {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.menu_depth01 {
+	display: inline-block;
+	height: 50px;
+	text-decoration-line: none;
+	color:black;
+	width:13rem;
+	box-sizing: border-box;
+	line-height: 50px;
+}
+
+.menu_depth02 {
+	padding: 30px 20px; 
+	list-style:none; 
+	width:13rem;
+	background-color: #FAFAFA;
+}
+
+ul.menu_depth02 a {
+	width:100%;
+	text-decoration-line: none; 
+	color: #999999; 
+	font-size: 14px;
+}
+
+#claim, #review {
+	margin-top: 20px;
+}
+
+.cs_area {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    margin-top: 60px;
+    width: 240px;
+}
+
+.ico_list {
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.ico_cs02 {
+    line-height: normal;
+    font-size: 14px;
+    box-sizing: border-box;
+    font-weight: 500;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    float: left;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    background-image: url("${pageContext.request.contextPath}/resources/image/icon/mail.png");
+}
+
+
+.ico_cs02 span {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    color: inherit;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: block;
+    overflow: hidden;
+    text-indent: -1000px;
+}
+
+.ico_cs03 {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    float: left;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    background: url(../../images/uiux/icon/ico_kakao.png) no-repeat 0 0/ contain;
+    background-image: url(../../images/uiux/icon/ico_1de1.png);
+}
+
+.ico_cs03 span {
+    color: inherit;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: block;
+    overflow: hidden;
+    text-indent: -1000px;
+}
+
+.content {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 60px 30px 0 30px;
+    padding-top: 0;
+    flex: 1;
+    min-width: 980px;
+}
+
+.tit_area {
+    box-sizing: border-box;
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    align-items: flex-end;
+    padding-bottom: 30px;
+    border-bottom: 3px solid black;
+    margin-bottom: 0px;
+}
+
+.cs_number {
+    line-height: normal;
+    font-size: 22px;
+    box-sizing: border-box;
+    font-weight: 500;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    margin: auto 0;
+}
+
+.txt_l {
+    font-weight: bold;
+    box-sizing: border-box;
+    margin: auto 0;
+    margin-left: 5px;
+    font-size: 18px;
+    color: #999;
+}
+
+.txt_time {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+.txt_break {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    margin-top: 4px;
+    font-size: 13px;
+    color: #999;
+    font-weight: 400;
+}
+
+.tit_lv2 {
+    box-sizing: border-box;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 1.29;
+    overflow: hidden;
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+	
+}
+
+.form_period_group {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.form_period {
+    line-height: normal;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.form_period .option {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    list-style: none;
+    position: relative;
+    display: inline-flex;
+    width: 84px;
+    padding: 0;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"]:checked + label {
+	border: 1px solid black;
+}
+
+
+.option label {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    list-style: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    height: 48px;
+    border: 1px solid #b1b1b1;
+    background-color: white;
+    border-radius: 3px 0 0 3px;
+}
+
+.form_set {
+    line-height: normal;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.date {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    height: fit-content;
+    position: relative;
+    width: 200px;
+}
+
+#dateStart, #dateEnd {
+    box-sizing: border-box;
+    margin: 0;
+    font-weight: 500;
+    width: 100%;
+    height: 48px;
+    padding: 0 15px;
+    border: 1px solid black;
+    border-radius: 3px;
+    transition: all 0.5s;
+    vertical-align: middle;
+    border-color: #ccc;
+    appearance: none;
+    font-size: 14px;
+    background: white;
+    color: #000;
+    -webkit-text-fill-color: #000;
+}
+
+.ui-datepicker-trigger {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    vertical-align: middle;
+    background: transparent;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    margin-top: -9px;
+    right: 15px;
+    width: 18px;
+    height: 18px;
+}
+
+.ui-datepicker-trigger img {
+    cursor: pointer;
+    box-sizing: border-box;
+    border: 0;
+    vertical-align: middle;
+    display: block;
+    width: 100%;
+}
+
+#checkDate {
+    box-sizing: border-box;
+    margin: 0;
+    border: none;
+    font-weight: 500;
+    vertical-align: middle;
+    background: transparent;
+    cursor: pointer;
+    padding: 0 30px;
+    color: white;
+    font-size: 14px;
+    background-color: black;
+    height: 48px;
+    line-height: 48px;
+    border-radius: 3px;
+    flex-shrink: 0;
+    margin-left: 20px;
+    width: 116px;
+}
+
+.my_order {
+    line-height: normal;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    list-style: none;
+    flex-wrap: wrap;
+    display: flex;
+    border: 1px solid black;
+    position: relative;
+    padding: 40px 0;
+}
+
+.my_order .step {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: relative;
+    flex: 1;
+    text-align: center;
+}
+
+.my_order .step .value {
+    line-height: normal;
+    list-style: none;
+    text-align: center;
+    box-sizing: border-box;
+    text-decoration: none;
+    cursor: pointer;
+    color: #b1b1b1;
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom: 1px solid #b1b1b1;
+}
+
+.my_order .step .status {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    list-style: none;
+    text-align: center;
+    box-sizing: border-box;
+    display: block;
+    margin-top: 15px;
+}
+
+.my_order .step a {
+    line-height: normal;
+    list-style: none;
+    text-align: center;
+    box-sizing: border-box;
+    text-decoration: none;
+    cursor: pointer;
+    color: #b1b1b1;
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom: 1px solid #b1b1b1;
+    display: none;
+}
+
+#order_list_div {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    margin-top: 60px;
+}
+
+.no_data {
+    box-sizing: border-box;
+    margin: 0;
+    color: #999999;
+    text-align: center;
+    padding: 60px 0;
+    font-size: 16px;
+}
+
+.order_ship_info {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    margin-top: 120px;
+}
+
+.grayline_box {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 1px solid lightgray;
+}
+
+.title_area {
+    box-sizing: border-box;
+    margin: 0;
+    font-size: 16px;
+    background: #fafafa;
+    border-bottom: 1px solid gray;
+    padding: 20px 30px;
+    font-weight: 700;
+}
+
+.step_guide_box {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.step_guide_box .box {
+    box-sizing: border-box;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    padding: 30px;
+    align-items: center;
+    border-top: 1px solid lightgray;
+}
+
+.box .tit {
+    list-style: none;
+    box-sizing: border-box;
+    width: 270px;
+    font-weight: 500;
+}
+
+.tit em {
+    list-style: none;
+    box-sizing: border-box;
+    font-style: normal;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.box .type2 {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.type2_1st_li {
+    box-sizing: border-box;
+    margin: 0;
+    list-style: none;
+    position: relative;
+    padding: 0 0 10px 8px;
+    font-size: 13px;
+    color: #b1b1b1;
+    word-break: keep-all;
+}
+
+.type2_other_li {
+    box-sizing: border-box;
+    margin: 0;
+    color: #b1b1b1;
+    list-style: none;
+    position: relative;
+    padding: 0 0 10px 8px;
+    font-size: 13px;
+    word-break: keep-all;
+    padding-bottom: 0;
+}
+
+.tab_style3 {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    justify-content: space-around;
+    height: 57px;
+    flex: 0 0 57px;
+}
+
+.tab_btn {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+    vertical-align: middle;
+    background: transparent;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-bottom: 1px solid #999999;
+    outline: none;
+    background-color: inherit;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.txt_s {
+    cursor: pointer;
+    font-weight: bold;
+    box-sizing: border-box;
+    font-size: 14px;
+}
