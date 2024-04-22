@@ -21,4 +21,10 @@ public class AdminItemController {
 		return "admin/item/create";
 	}
 	
+	@RequestMapping("/itemList")
+	public String itemList() {
+		log.info("itemList() 실행");
+		return "admin/item/itemList";
+	}
+	
 }

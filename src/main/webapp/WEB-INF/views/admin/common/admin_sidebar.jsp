@@ -54,7 +54,7 @@
 					<a href="${pageContext.request.contextPath}/admin/item/create" class="sidebar-link">상품 등록</a>
 				</li>
 				<li class="sidebar-item">
-					<a href="#" class="sidebar-link">상품 목록</a>
+					<a href="${pageContext.request.contextPath}/admin/item/itemList" class="sidebar-link">상품 목록</a>
 				</li>
 			</ul>
 		</li>
