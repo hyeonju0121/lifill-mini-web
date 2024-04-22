@@ -34,6 +34,7 @@
 					<li><a href="member/myInquiryList">1:1 문의 목록 화면</a></li>
 					<li><a href="member/csInquiry">1:1 문의 폼 화면</a></li>
 					<li><a href="member/myGoodsReviewList">상품 리뷰 화면</a></li>
+					<li><a href="member/pwdConfirm">비밀번호 확인 화면</a></li>
 					<li><a href="member/updateMember">회원 정보 수정 화면</a></li>
 					
 				</ul>
