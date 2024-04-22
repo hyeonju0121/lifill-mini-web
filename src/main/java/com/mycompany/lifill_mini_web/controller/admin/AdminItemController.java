@@ -15,4 +15,10 @@ public class AdminItemController {
 		return "admin/item/dashboard";
 	}
 	
+	@RequestMapping("/create")
+	public String create() {
+		log.info("create() 실행");
+		return "admin/item/create";
+	}
+	
 }
