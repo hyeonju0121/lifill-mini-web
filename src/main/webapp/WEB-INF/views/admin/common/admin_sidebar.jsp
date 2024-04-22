@@ -68,7 +68,7 @@
 			</a>
 			<ul id="order" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
 				<li class="sidebar-item">
-					<a href="#" class="sidebar-link">대시보드</a>
+					<a href="${pageContext.request.contextPath}/admin/order/dashboard" class="sidebar-link">대시보드</a>
 				</li>
 				<li class="sidebar-item">
 					<a href="#" class="sidebar-link">전체주문 조회</a>

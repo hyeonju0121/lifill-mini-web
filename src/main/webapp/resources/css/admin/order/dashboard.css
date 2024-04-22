@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+.headingArea {
+    position: relative;
+    padding: 22px 0 0;
+    margin: 0 0 20px;
+}
+
+.headingArea .title {
+    border-bottom: 2px solid #2a3954;
+}
+
+#itemTitle {
+	font-weight: 700;
+    font-size: 1.6rem;
+}
+
+
+.contents {
+    padding: 15px 14px;
+    border: 1px solid #d9dadc;
+}
+
+.sub1 {
+	width: 150px;
+	float: left;
+	display: inline-block;
+}
+
+.sub2 {
+	width: 300px;
+	float: right;
+	display: inline-block;
+}
+
+.subheading {
+	font-weight: 700;
+	color: white;
+}
+
+.subheading2 {
+	font-weight: 500;
+	color: white;
+	font-size: 0.9rem;
+	text-align:right;
+}
+
+.sub-update-date {
+	color: white;
+	text-align:right
+}
+
+.sub {
+	display: flex;
+	background-color: dark;
+	min-height: 5vh;
+}
+
+.title_block .info {
+	padding: 5px;
+	border: 1px solid #8d8d8d;
+	text-align: center;
+	background-color: #d8dce3;
+}
+
+/* item1 block ------------------------------ */
+.item1_block .item_tit {
+	padding: 20px;
+	border: 1px solid #8d8d8d;
+	background-color: #f5f5f5;
+	text-align: center;
+}
+
+.item1_block .info {
+	padding: 10px;
+	border: 1px solid #8d8d8d;
+	text-align: center;
+}
+
+.item1_block1 .sub_tit {
+	margin-top: 13px;
+	display: block;
+	color: black;
+	font-weight: 400;
+}
+
+.item1_block .order_todayTotal {
+	border-bottom: 1px solid #db4416;
+	line-height: 2;
+	color: #db4416;
+	font-weight: 600;
+	font-size: 1.7rem;
+}
+
+.item1_block .order_monthTotal {
+	border-bottom: 1px solid #0660cf;
+	line-height: 2;
+	color: #0660cf;
+	font-weight: 600;
+	font-size: 1.7rem;
+}
+
+.item1_block .order_totalSub {
+	color: #8d8d8d;
+	font-size: 0.9rem;
+}
+
+/* item2 block ------------------------------ */
+.item2_block .item_tit {
+	padding: 20px;
+	border: 1px solid #8d8d8d;
+	background-color: #f5f5f5;
+	text-align: center;
+}
+
+.item2_block .info {
+	padding: 10px;
+	border: 1px solid #8d8d8d;
+	text-align: center;
+}
+
+.item2_block .sub_tit {
+	margin-top: 13px;
+	display: block;
+	color: black;
+	font-weight: 400;
+}
+
+.item2_block .order_todayPayTotal {
+	border-bottom: 1px solid #db4416;
+	line-height: 2;
+	color: #db4416;
+	font-weight: 600;
+	font-size: 1.7rem;
+}
+
+.item2_block .order_monthPayTotal {
+	border-bottom: 1px solid #0660cf;
+	line-height: 2;
+	color: #0660cf;
+	font-weight: 600;
+	font-size: 1.7rem;
+}
+
+.item2_block .order_totalSub {
+	color: #8d8d8d;
+	font-size: 0.9rem;
+}
+
+/* item3 block ------------------------------ */
+.item3_block .item_tit {
+	padding: 20px;
+	border: 1px solid #8d8d8d;
+	background-color: #f5f5f5;
+	text-align: center;
+}
+
+.item3_block .info {
+	padding: 10px;
+	border: 1px solid #8d8d8d;
+	text-align: center;
+}
+
+.item3_block .sub_tit {
+	margin-top: 13px;
+	display: block;
+	color: black;
+	font-weight: 400;
+}
+
+.item3_block .order_todayCancelTotal {
+	border-bottom: 1px solid #db4416;
+	line-height: 2;
+	color: #db4416;
+	font-weight: 600;
+	font-size: 1.7rem;
+}
+
+.item3_block .order_monthCancelTotal {
+	border-bottom: 1px solid #0660cf;
+	line-height: 2;
+	color: #0660cf;
+	font-weight: 600;
+	font-size: 1.7rem;
+}
+
+.item3_block .order_totalSub {
+	color: #8d8d8d;
+	font-size: 0.9rem;
+}
+
+/* button -----------------------------*/
+.btn {
+	margin-top: 13px;
+}
+
+/* desc -----------------------------*/
+.desc_block .desc_title {
+	font-weight: 700;
+	font-size: 1.1rem;
+}
+
+.desc_block .desc {
+	font-weight: 400;
+	font-size: 0.9rem;
+}
