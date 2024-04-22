@@ -1,0 +1,295 @@
+@charset "UTF-8";
+
+/* font ------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+body, h1, h2, h3, h4, h5, h6, input, textarea, select {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.element {
+	box-sizing: border-box;
+}
+
+.container {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    padding-top: 100px;
+    padding-bottom: 300px;
+}
+
+.center_type3 {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 60px auto 0;
+    display: flex;
+    width: 1280px;
+}
+
+.my_menu {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.menu_depth01 {
+	display: inline-block;
+	height: 50px;
+	text-decoration-line: none;
+	color:black;
+	width:13rem;
+	box-sizing: border-box;
+	line-height: 50px;
+}
+
+.menu_depth02 {
+	padding: 30px 20px; 
+	list-style:none; 
+	width:13rem;
+	background-color: #FAFAFA;
+}
+
+ul.menu_depth02 a {
+	width:100%;
+	text-decoration-line: none; 
+	color: #999999; 
+	font-size: 14px;
+}
+
+#claim, #review {
+	margin-top: 20px;
+}
+
+.cs_area {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    margin-top: 60px;
+}
+
+.ico_list {
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.ico_cs02 {
+    line-height: normal;
+    font-size: 14px;
+    box-sizing: border-box;
+    font-weight: 500;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    float: left;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    background-image: url("${pageContext.request.contextPath}/resources/image/icon/mail.png");
+}
+
+
+.ico_cs02 span {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    color: inherit;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: block;
+    overflow: hidden;
+    text-indent: -1000px;
+}
+
+.ico_cs03 {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    float: left;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    background: url(../../images/uiux/icon/ico_kakao.png) no-repeat 0 0/ contain;
+    background-image: url(../../images/uiux/icon/ico_1de1.png);
+}
+
+.ico_cs03 span {
+    color: inherit;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: block;
+    overflow: hidden;
+    text-indent: -1000px;
+}
+
+.content {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 60px 30px 0 30px;
+    padding-top: 0;
+    flex: 1;
+    min-width: 980px;
+}
+
+#checkPwdForm {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.tit_area {
+    box-sizing: border-box;
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    align-items: flex-end;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 3px solid black;
+}
+
+.done_wrap {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 60px auto 0;
+    text-align: center;
+    width: 580px;
+    margin-top: 90px;
+}
+
+.icon_cont {
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.ico_password {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    display: block;
+    text-align: center;
+    font-size: 22px;
+    padding-top: 68px;
+    font-weight: 700;
+    background-size: 48px;
+}
+
+.ico_password strong {
+    text-align: center;
+    font-size: 22px;
+    box-sizing: border-box;
+}
+
+.ico_info {
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+    margin-top: 15px;
+    color: #999999;
+}
+
+.password_confirm {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    margin-top: 60px;
+}
+
+.com_bg_box {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 15px;
+    border: 1px solid #F2F2F2;
+    background-color: #FAFAFA;
+    text-align: center;
+}
+
+.input_clear {
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+}
+
+#mbrPw {
+    width: 100%;
+    height: 48px;
+    font-size: 14px;
+    border: 1px solid black;
+    background: white;
+    border-radius: 3px;
+    transition: all 0.5s;
+    vertical-align: middle;
+    padding: 0 40px 0 15px;
+}
+
+.clear_btn {
+    vertical-align: middle;
+    cursor: pointer;
+    display: none;
+    position: absolute;
+    right: 1px;
+    width: 40px;
+    background: white;
+    border-radius: 2px;
+    height: 45px;
+    top: 2px;
+}
+
+.btn_big_wrap {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0;
+    display: flex;
+    width: 100%;
+    padding: 0;
+    margin-top: 40px;
+}
+
+.btn_big_wrap a {
+    box-sizing: border-box;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    flex: 1 1 100%;
+    color: white;
+    font-size: 16px;
+    background-color: black;
+    height: 52px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 3px;
+}

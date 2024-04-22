@@ -1,0 +1,316 @@
+@charset "UTF-8";
+
+/* font ------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+body, h1, h2, h3, h4, h5, h6, input, textarea, select {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.element {
+	box-sizing: border-box;
+}
+
+.my_menu {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.my_menu li {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.menu_depth01 {
+    list-style: none;
+    box-sizing: border-box;
+    font-weight: 500;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    font-size: 16px;
+    box-shadow: 0px -1px 0px 0px #F2F2F2 inset;
+}
+
+.cs_area {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    margin-top: 60px;
+}
+
+.ico_list {
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.ico_cs02 {
+    line-height: normal;
+    font-size: 14px;
+    box-sizing: border-box;
+    font-weight: 500;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    float: left;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+
+.ico_cs02 span {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    color: inherit;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: block;
+    overflow: hidden;
+    text-indent: -1000px;
+}
+
+.ico_cs03 {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    float: left;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.ico_cs03 span {
+    color: inherit;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: block;
+    overflow: hidden;
+    text-indent: -1000px;
+}
+
+.content {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    margin-left: 60px;
+    padding: 0;
+    min-width: 920px;
+}
+
+.tit_area {
+    line-height: normal;
+    box-sizing: border-box;
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    align-items: flex-end;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 3px solid black;
+}
+
+.tit_lv2 {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 28px;
+    line-height: 1.29;
+    overflow: hidden;
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+    font-weight: 700;
+}
+
+.done_wrap {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    padding: 0;
+    text-align: center;
+    width: 920px;
+    margin: 30px 0 0 0;
+}
+
+.cs_notice_board {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 0;
+}
+
+#notice_List {
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    border-bottom: 1px solid #F2F2F2;
+    border-top: 0;
+}
+
+.acc_header {
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0;
+    position: relative;
+    display: flex;
+    background-repeat: no-repeat;
+    background-position: 100% center;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 20px 0 20px 0;
+    background-image: none;
+}
+
+.prd_num {
+    line-height: normal;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    width: 40px;
+    margin-right: 20px;
+}
+
+.badge_auto_list {
+    line-height: normal;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 1px;
+    margin: 0;
+    width: 80px;
+    flex-shrink: 0;
+}
+
+.badge_auto_list li {
+    box-sizing: border-box;
+    list-style: none;
+    margin: 0 -1px -1px 0;
+    border: 1px solid #B1B1B1;
+    text-transform: uppercase;
+    font-size: 12px;
+    padding: 0px;
+    letter-spacing: 0;
+    width: 60px;
+    height: 22px;
+    line-height: 20px;
+    font-weight: 500;
+    border-color: #CCCCCC;
+    color: #999999;
+}
+
+.prd_subtit {
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    text-align: left;
+    width: calc(100% - 290px);
+}
+
+.prd_date {
+    box-sizing: border-box;
+    flex-shrink: 0;
+    color: #999999;
+    font-size: 14px;
+    letter-spacing: 0;
+    position: relative;
+    padding-left: 30px;
+    height: 16px;
+    text-align: right;
+    padding-right: 30px;
+    width: 140px;
+}
+
+.acc_cont {
+    box-sizing: border-box;
+    margin: 0;
+    position: relative;
+    padding: 20px;
+    border: 1px solid #F2F2F2;
+    background: #FAFAFA;
+    margin-bottom: 20px;
+    font-size: 14px;
+    text-align: left;
+}
+
+.acc_header.active .acc_cont {
+  display: block;
+}
+
+.acc_cont p {
+	background-repeat: no-repeat; 
+	box-sizing: inherit; 
+	padding: 0px; 
+	overflow-wrap: break-word; 
+	word-break: keep-all; 
+	font-size: 16px; 
+}
+
+.acc_cont span {
+	background-repeat: no-repeat; 
+	box-sizing: inherit; 
+	padding: 0px; 
+	margin: 0px; 
+	font-size: 14px;
+}
+
+.acc_cont br {
+	background-repeat: no-repeat; 
+	box-sizing: inherit; 
+	padding: 0px; 
+	margin: 0px;
+}
