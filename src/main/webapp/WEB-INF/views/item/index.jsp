@@ -33,6 +33,7 @@
 					<li><a href="item/category5">카테고리5 이동</a></li>
 					<li><a href="item/category6">카테고리6 이동</a></li>
 					<li><a href="item/item_view">상품 상세 페이지 이동</a></li>
+					<li><a href="item/order">주문 페이지 이동</a></li>
 				</ul>
 			</div> 
 		</div>
