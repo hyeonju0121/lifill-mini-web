@@ -15,7 +15,7 @@
 		<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 		
 		<!-- external css -->
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mypage/updateMember_auth.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mypage/pwdConfirm.css">
 		
 		<!-- 사용자 정의 자바스크립트 -->
 		<script>
@@ -51,13 +51,13 @@
 						<li id="menu3" style="height: 20%;">
 							<a class="menu_depth01" href="#">나의 정보 관리</a>
 							<ul class="menu_depth02">
-								<li id="update"><a href="updateMember">회원 정보 수정</a></li>
+								<li id="update"><a href="pwdConfirm">회원 정보 수정</a></li>
 							</ul>
 						</li>
 					</ul>
 					<div class="cs_area">
 						<div class="tit_area">
-							<a href="tel:1661-8858" class="cs_number">1661-8858</a>
+							<a href="tel:010-2232-3823" class="cs_number">010-2232-3823</a>
 							<span class="txt_l">(유료)</span>
 						</div>
 						<p class="txt_time">평일 09:00 ~ 18:00 (토/일/공휴일 휴무)</p>
@@ -77,6 +77,40 @@
 							</a>
 						</div>
 					</div>
+				</div>
+				
+				<div class="content">
+					<form method="post" action="updateMember" id="checkPwdForm">
+						<div class="tit_area line_thick">
+							<h2 class="tit_lv2">
+								회원정보 수정
+							</h2>
+						</div>
+						<div class="done_wrap type2">
+							<div class="icon_cont"> 
+								<div class="ico_tit ico_password">
+									<img src="${pageContext.request.contextPath}/resources/image/icon/password.png" 
+									style="width: 80px; height: 80px; margin-bottom: 20px;"/><br/>
+									<strong>비밀번호 확인</strong>
+									<p class="ico_info">개인정보 보호를 위해 비밀번호를 다시 한번 입력해주시기 바랍니다.</p>
+								</div>
+								<div class="password_confirm">
+									<div class="com_bg_box">
+										<strong class="txt_l">tjd******</strong>
+									</div>
+									 <div class="input_clear">
+												<input type="password" placeholder="비밀번호 입력 (대/소문자 구분)" name="mbr.mbrPw" id="mbrPw" validate="required;" autocomplete="off">
+												<button type="button" class="clear_btn"><span class="blind">삭제</span></button>
+												<p class="err_txt" id="descMbrPw"></p>
+											</div>
+										<!-- [D] 에러상태의 경우 .input_error 추가  -->
+								</div>
+								<div class="btn_big_wrap">
+									<a href="javascript:void(0);" onclick="location.href='updateMember'">확인</a>
+								</div>
+							</div>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>

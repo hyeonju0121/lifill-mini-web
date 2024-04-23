@@ -51,13 +51,13 @@
 						<li id="menu3" style="height: 20%;">
 							<a class="menu_depth01" href="#">나의 정보 관리</a>
 							<ul class="menu_depth02">
-								<li id="update"><a href="updateMember">회원 정보 수정</a></li>
+								<li id="update"><a href="pwdConfirm">회원 정보 수정</a></li>
 							</ul>
 						</li>
 					</ul>
 					<div class="cs_area">
 						<div class="tit_area">
-							<a href="tel:1661-8858" class="cs_number">1661-8858</a>
+							<a href="tel:010-2232-3823" class="cs_number">010-2232-3823</a>
 							<span class="txt_l">(유료)</span>
 						</div>
 						<p class="txt_time">평일 09:00 ~ 18:00 (토/일/공휴일 휴무)</p>
@@ -69,7 +69,7 @@
 								style="width: 40px; height: 40px; margin-right: 10px;"/>
 								<span>tjdwns3823@naver.com 메일</span>
 							</a>
-							<a onclick="goOneOnOneInquiry()" class="ico_cs03">
+							<a onclick="" class="ico_cs03">
 								<img src="${pageContext.request.contextPath}/resources/image/icon/1on1.png" 
 								alt="Clickable Image"
 								style="width: 40px; height: 40px; margin-right: 10px;"/>
@@ -86,17 +86,17 @@
 					<div class="section_block">
 						<ul class="my_order has_border">
 							<!-- 해당 탭 선택 시 ,is_active 추가 -->
-							<li class="step is_active" onclick="goInquiryAnStatList(this,'')">
+							<li class="step is_active" onclick="">
 								<!-- 갯수가 1개 이상일 경우 ,is_active 추가 -->
-								<a href="javascript:void(0)" class="count ">0</a>
+								<a href="#" class="count ">0</a>
 								<span class="status">전체문의</span>
 							</li>
-							<li class="step" onclick="goInquiryAnStatList(this,'ANS_COMPT')">
-									<a href="javascript:void(0)" class="count ">0</a>
+							<li class="step" onclick="">
+									<a href="#" class="count ">0</a>
 									<span class="status">답변 완료</span>
 								</li>
-							<li class="step" onclick="goInquiryAnStatList(this,'ANS_WAIT')">
-									<a href="javascript:void(0)" class="count ">0</a>
+							<li class="step" onclick="">
+									<a href="#" class="count ">0</a>
 									<span class="status">답변대기</span>
 								</li>
 							</ul>

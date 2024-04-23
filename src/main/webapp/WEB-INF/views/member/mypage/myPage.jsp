@@ -51,13 +51,13 @@
 						<li id="menu3" style="height: 20%;">
 							<a class="menu_depth01" href="#">나의 정보 관리</a>
 							<ul class="menu_depth02">
-								<li id="update"><a href="updateMember">회원 정보 수정</a></li>
+								<li id="update"><a href="pwdConfirm">회원 정보 수정</a></li>
 							</ul>
 						</li>
 					</ul>
 					<div class="cs_area">
 						<div class="tit_area">
-							<a href="tel:1661-8858" class="cs_number">1661-8858</a>
+							<a href="tel:010-2232-3823" class="cs_number">010-2232-3823</a>
 							<span class="txt_l">(유료)</span>
 						</div>
 						<p class="txt_time">평일 09:00 ~ 18:00 (토/일/공휴일 휴무)</p>
@@ -69,7 +69,7 @@
 								style="width: 40px; height: 40px; margin-right: 10px;"/>
 								<span>tjdwns3823@naver.com 메일</span>
 							</a>
-							<a onclick="goOneOnOneInquiry()" class="ico_cs03">
+							<a onclick="" class="ico_cs03">
 								<img src="${pageContext.request.contextPath}/resources/image/icon/1on1.png" 
 								alt="Clickable Image"
 								style="width: 40px; height: 40px; margin-right: 10px;"/>
@@ -84,17 +84,12 @@
 					<div class="section_block" style="height: 20%;">
 						<div class="profile_wrap">
 							<div class="profile">
-								<a href="javascript:void(0);" style="cursor:default; width:100px; height: 100px;" class="img_box">
-									<!-- 이미지 없을 경우 -->
+								<a href="#" style="cursor:default; width:100px; height: 100px;" class="img_box">
 									<div id="myPageDefaultImg" style="">T</div>
-									<!-- 프로필 이미지 등록 -->
-									<div class="image" id="myPageDivProfImg" style="display: none">
-										<img onerror="imgErr(this)" id="myPageProfImg" src="" style="display: none;">
-									</div>
 								</a>
 								<div class="user_info">
 									<span class="name" id="spanNknm">tjd******</span>
-									<a href="/secured/mypage/updateMember" class="btn_edit">
+									<a href="updateMember" class="btn_edit">
 										<span class="blind">프로필 편집하기</span>
 									</a>
 									<p class="date">가입일 : <sapn>2024.04.18</sapn></p>
@@ -110,41 +105,41 @@
 								<strong class="s_sub">주문 내역</strong>
 								<span class="s_tit">(최근 1개월)</span>
 							</div>
-							<a href="/secured/mypage/listOrder" class="btn_detail">전체보기</a>
+							<a href="orderList" class="btn_detail">전체보기</a>
 						</div>
 						<div class="grayline_box flexbox">
 							<ol class="my_order">
 								<li class="step">
-									<a href="/secured/mypage/listOrder?srchType=A&amp;statCd=1" class="count">0</a>
+									<a href="#" class="count">0</a>
 									<span class="status">입금대기</span>
 								</li>
 					            <li class="step">
-									<a href="/secured/mypage/listOrder?srchType=A&amp;statCd=2" class="count">0</a>
+									<a href="#" class="count">0</a>
 									<span class="status">결제완료</span>
 								</li>
 					            <li class="step">
-									<a href="/secured/mypage/listOrder?srchType=A&amp;statCd=3" class="count">1</a>
+									<a href="#" class="count">1</a>
 									<span class="status">상품준비중</span>
 								</li>
 					            <li class="step">
-									<a href="/secured/mypage/listOrder?srchType=A&amp;statCd=4" class="count">0</a>
+									<a href="#" class="count">0</a>
 									<span class="status">배송중</span>
 								</li>
 					            <li class="step">
-									<a href="/secured/mypage/listOrder?srchType=A&amp;statCd=5" class="count">0</a>
+									<a href="#" class="count">0</a>
 									<span class="status">배송완료</span>
 								</li>
 							</ol>
 							<ul class="my_order_box">
-								<li class="step" onclick="location.href='/secured/mypage/listOrder?claimYn=Y&amp;srchType=D'">
+								<li class="step" onclick="">
 									<a><span class="status">취소</span></a>
 									<a><span class="count">0</span></a>
 								</li>
-								<li class="step" onclick="location.href='/secured/mypage/listOrder?claimYn=Y&amp;srchType=B'">
+								<li class="step" onclick="">
 									<a><span class="status">교환</span></a>
 									<a><span class="count">0</span></a>
 								</li>
-								<li class="step" onclick="location.href='/secured/mypage/listOrder?claimYn=Y&amp;srchType=C'">
+								<li class="step" onclick="">
 									<a><span class="status">반품</span></a>
 									<a><span class="count">0</span></a>
 								</li>

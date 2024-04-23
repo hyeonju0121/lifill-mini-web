@@ -51,13 +51,13 @@
 						<li id="menu3" style="height: 20%;">
 							<a class="menu_depth01" href="#">나의 정보 관리</a>
 							<ul class="menu_depth02">
-								<li id="update"><a href="updateMember">회원 정보 수정</a></li>
+								<li id="update"><a href="pwdConfirm">회원 정보 수정</a></li>
 							</ul>
 						</li>
 					</ul>
 					<div class="cs_area">
 						<div class="tit_area">
-							<a href="tel:1661-8858" class="cs_number">1661-8858</a>
+							<a href="tel:010-2232-3823" class="cs_number">010-2232-3823</a>
 							<span class="txt_l">(유료)</span>
 						</div>
 						<p class="txt_time">평일 09:00 ~ 18:00 (토/일/공휴일 휴무)</p>
@@ -69,7 +69,7 @@
 								style="width: 40px; height: 40px; margin-right: 10px;"/>
 								<span>tjdwns3823@naver.com 메일</span>
 							</a>
-							<a onclick="goOneOnOneInquiry()" class="ico_cs03">
+							<a href="csInquiry" class="ico_cs03">
 								<img src="${pageContext.request.contextPath}/resources/image/icon/1on1.png" 
 								alt="Clickable Image"
 								style="width: 40px; height: 40px; margin-right: 10px;"/>
@@ -85,9 +85,9 @@
 					</div>
 					
 					<div class="tab_style3">
-						<button type="button" class="tab_btn is_active" onclick="setSearchValue('B','','1','');" data-tab="tab-01"><span class="txt_s">교환</span></button>
-						<button type="button" class="tab_btn " onclick="setSearchValue('C','','1','');" data-tab="tab-02"><span class="txt_s">반품</span></button>
-						<button type="button" class="tab_btn " onclick="setSearchValue('D','','1','');" data-tab="tab-03"><span class="txt_s">취소</span></button>
+						<button type="button" class="tab_btn is_active" onclick="" data-tab="tab-01"><span class="txt_s">교환</span></button>
+						<button type="button" class="tab_btn " onclick="" data-tab="tab-02"><span class="txt_s">반품</span></button>
+						<button type="button" class="tab_btn " onclick="" data-tab="tab-03"><span class="txt_s">취소</span></button>
 					</div>
 					<div class="section_block">
 						<div class="form_period_group">
@@ -95,22 +95,22 @@
 							<ul class="form_period">
 								<li class="option">
 									<input type="radio" id="chkSize1" name="chkSize1" 
-									onclick="goSearch('','oMouth', '0');" data-date="0" checked="checked">
+									onclick="" data-date="0" checked="checked">
 									<label for="chkSize1">1개월</label>
 								</li>
 								<li class="option">
 									<input type="radio" id="chkSize2" name="chkSize2" 
-									onclick="goSearch('','tMouth', '1');" data-date="1">
+									onclick="" data-date="1">
 									<label for="chkSize2">3개월</label>
 								</li>
 								<li class="option">
 									<input type="radio" id="chkSize3" name="chkSize3" 
-									onclick="goSearch('','sMouth', '2');" data-date="2">
+									onclick="" data-date="2">
 									<label for="chkSize3">6개월</label>
 								</li>
 								<li class="option">
 									<input type="radio" id="chkSize4" name="chkSize4" 
-									onclick="goSearch('','oYear', '3');" data-date="3">
+									onclick="" data-date="3">
 									<label for="chkSize4">1년</label>
 								</li>
 							</ul>
@@ -141,33 +141,33 @@
 									</button>
 								</div>
 							</div>
-							<button id="checkDate" type="button" class="btn" onclick="goSearch('', '');">조회</button>
+							<button id="checkDate" type="button" class="btn" onclick="">조회</button>
 						</div>
 				
 						<!-- 주문상태 카운트 -->
 						<ol class="my_order my_benefit">
 							<li class="step ">
-								<a href="javascript:goSearch('1');" class="count" style="display: none">0</a>
+								<a href="#" class="count" style="display: none">0</a>
 								<span class="value disabled count" style="display: ">0</span>
 								<span class="status">입금대기</span>
 							</li>
 							<li class="step ">
-								<a href="javascript:goSearch('2');" class="count" style="display: none">0</a>
+								<a href="#" class="count" style="display: none">0</a>
 								<span class="value disabled count" style="display: ">0</span>
 								<span class="status">결제완료</span>
 							</li>
 							<li class="step ">
-								<a href="javascript:goSearch('3');" class="count" style="display: none">0</a>
+								<a href="#" class="count" style="display: none">0</a>
 								<span class="value disabled count" style="display: ">1</span>
 								<span class="status">상품준비중</span>
 							</li>
 							<li class="step ">
-								<a href="javascript:goSearch('4');" class="count" style="display: none">0</a>
+								<a href="#" class="count" style="display: none">0</a>
 								<span class="value disabled count" style="display: ">0</span>
 								<span class="status">배송중</span>
 							</li>
 							<li class="step ">
-								<a href="javascript:goSearch('5');" class="count" style="display: none">0</a>
+								<a href="#" class="count" style="display: none">0</a>
 								<span class="value disabled count" style="display: ">0</span>
 								<span class="status">배송완료</span>
 							</li>
@@ -219,5 +219,6 @@
 		
 		<!-- footer  ------------------------------------------------------------------------>
 		<!-- 현재 footer.css와 충돌하는 게 있는건지 css가 깨짐 -->
+		
 	</body>
 </html>

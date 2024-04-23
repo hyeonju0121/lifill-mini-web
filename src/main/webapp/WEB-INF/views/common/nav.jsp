@@ -26,20 +26,20 @@
 					<button type="button" class="btn text-secondary"
 						data-bs-toggle="dropdown">게시판</button>
 					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="board/notice">공지사항</a></li>
-						<li><a class="dropdown-item" href="board/faq">FAQ</a></li>
-						<li><a class="dropdown-item" href="board/qna">1:1문의</a></li>
+						<li><a class="dropdown-item" href="${pageContext.request.contextPath}/board/notice">공지사항</a></li>
+						<li><a class="dropdown-item" href="${pageContext.request.contextPath}/board/faq">FAQ</a></li>
+						<li><a class="dropdown-item" href="${pageContext.request.contextPath}/member/myInquiryList">1:1문의</a></li>
 					</ul>
 				</div>
 			</ul>
 		</div>
 		
 		<!-- 장바구니, 사용자 버튼 -->
-		<button class="btn" onclick="location.href='member/cart'">
+		<button class="btn" onclick="location.href='${pageContext.request.contextPath}/member/cart'">
 			<img class="icon-img" 
 			src="${pageContext.request.contextPath}/resources/image/icon/cart.png"/>
 		</button>
-		<button class="btn" onclick="location.href='member'">
+		<button class="btn" onclick="location.href='${pageContext.request.contextPath}/member/mypage'">
 			<img class="icon-img" 
 			src="${pageContext.request.contextPath}/resources/image/icon/user.png"/>
 		</button>

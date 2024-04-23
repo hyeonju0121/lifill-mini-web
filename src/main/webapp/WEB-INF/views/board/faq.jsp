@@ -46,7 +46,7 @@
 					</ul>
 					<div class="cs_area">
 						<div class="tit_area">
-							<a href="tel:1661-8858" class="cs_number">1661-8858</a>
+							<a href="tel:010-2232-3823" class="cs_number">010-2232-3823</a>
 							<span class="txt_l">(유료)</span>
 						</div>
 						<p class="txt_time">평일 09:00 ~ 18:00 (토/일/공휴일 휴무)</p>
@@ -58,7 +58,7 @@
 								style="width: 40px; height: 40px; margin-right: 10px;"/>
 								<span>tjdwns3823@naver.com 메일</span>
 							</a>
-							<a onclick="goOneOnOneInquiry()" class="ico_cs03">
+							<a onclick="" class="ico_cs03">
 								<img src="${pageContext.request.contextPath}/resources/image/icon/1on1.png" 
 								alt="Clickable Image"
 								style="width: 40px; height: 40px; margin-right: 10px;"/>
@@ -144,10 +144,8 @@
 						</div>
 					</div>
 				</div>
-				
 			</div>
 		</div>
-		
-
+		</div>
 	</body>
 </html>

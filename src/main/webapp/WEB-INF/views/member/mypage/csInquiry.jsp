@@ -51,13 +51,13 @@
 						<li id="menu3" style="height: 20%;">
 							<a class="menu_depth01" href="#">나의 정보 관리</a>
 							<ul class="menu_depth02">
-								<li id="update"><a href="updateMember">회원 정보 수정</a></li>
+								<li id="update"><a href="pwdConfirm">회원 정보 수정</a></li>
 							</ul>
 						</li>
 					</ul>
 					<div class="cs_area">
 						<div class="tit_area">
-							<a href="tel:1661-8858" class="cs_number">1661-8858</a>
+							<a href="tel:010-2232-3823" class="cs_number">010-2232-3823</a>
 							<span class="txt_l">(유료)</span>
 						</div>
 						<p class="txt_time">평일 09:00 ~ 18:00 (토/일/공휴일 휴무)</p>
@@ -69,7 +69,7 @@
 								style="width: 40px; height: 40px; margin-right: 10px;"/>
 								<span>tjdwns3823@naver.com 메일</span>
 							</a>
-							<a onclick="goOneOnOneInquiry()" class="ico_cs03">
+							<a onclick="" class="ico_cs03">
 								<img src="${pageContext.request.contextPath}/resources/image/icon/1on1.png" 
 								alt="Clickable Image"
 								style="width: 40px; height: 40px; margin-right: 10px;"/>
@@ -87,62 +87,28 @@
 					<div class="section_block">
 						<div class="form_table no_line">
 						<form name="gForm" id="gForm" method="post" enctype="multipart/form-data">
-							<input type="hidden" name="type" value="insert">
-							<input type="hidden" name="srchMtmInqSn" value="">
-							<input type="hidden" name="mbrId" value="tjdwns556">
-							<input type="hidden" name="mbrNm" value="변성준">
-							<input type="hidden" id="statusCd" value="">
-							<input type="hidden" id="fileCnt" value="">
-							<input type="hidden" id="selOrdGodYn" value="">
-							<input type="hidden" id="inqTp" name="csoMtmInq.inqTpCd" value="">
-							<input type="hidden" id="inqTpSel" name="sel_name" data-value="select" value="">
 							<div class="tr">
 								<div class="th">
 									<p class="form_label required">문의 유형 </p>
 								</div>
 								<div class="td">
 									<div class="custom_select_wrap lg">
-										
-										<button type="button" class="option_selected" data-value="" onclick="changeInqTpCd(this);">문의 유형을 선택하세요. (필수)</button><!-- [D] : 활성상태 .is_active 추가 -->
-											<ul class="option_list"><!-- [D] : 활성상태 .is_active 추가 -->
-												<li><button type="button" class="option" data-value="" onclick="changeInqTpCd(this);">문의 유형을 선택하세요. (필수)</button></li>
-											<li><button type="button" class="option" data-value="CSO_RTGOD" onclick="changeInqTpCd(this);">반품</button></li>
-											<li><button type="button" class="option" data-value="CSO_EXCHG" onclick="changeInqTpCd(this);">교환</button></li>
-											<li><button type="button" class="option" data-value="CSO_UDT_CNCL" onclick="changeInqTpCd(this);">수정/취소</button></li>
-											<li><button type="button" class="option" data-value="CSO_DLV" onclick="changeInqTpCd(this);">배송</button></li>
-											<li><button type="button" class="option" data-value="CSO_GOD_INQ" onclick="changeInqTpCd(this);">상품문의</button></li>
-											<li><button type="button" class="option" data-value="CSO_MBR_BNEF" onclick="changeInqTpCd(this);">회원혜택(이벤트/포인트)</button></li>
-											<li><button type="button" class="option" data-value="CSO_MBR_INFO" onclick="changeInqTpCd(this);">회원정보</button></li>
-											<li><button type="button" class="option" data-value="CSO_ORD_PAY" onclick="changeInqTpCd(this);">주문/결제</button></li>
-											<li><button type="button" class="option" data-value="CSO_AS" onclick="changeInqTpCd(this);">A/S</button></li>
-											<li><button type="button" class="option" data-value="CSO_PNT_CPN" onclick="changeInqTpCd(this);">포인트/쿠폰</button></li>
-											<li><button type="button" class="option" data-value="CSO_MOBILE_APP" onclick="changeInqTpCd(this);">모바일/App</button></li>
-											<li><button type="button" class="option" data-value="CSO_RFD" onclick="changeInqTpCd(this);">환불</button></li>
-											<li><button type="button" class="option" data-value="CSO_ETC" onclick="changeInqTpCd(this);">기타</button></li>
-											</ul>
+										<button type="button" class="option_selected" data-value="" onclick="">문의 유형을 선택하세요. (필수)</button><!-- [D] : 활성상태 .is_active 추가 -->
+										<ul class="option_list"><!-- [D] : 활성상태 .is_active 추가 -->
+											<li><button type="button" class="option" data-value="" onclick="">문의 유형을 선택하세요. (필수)</button></li>
+											<li><button type="button" class="option" onclick="">반품</button></li>
+											<li><button type="button" class="option" onclick="">교환</button></li>
+											<li><button type="button" class="option" onclick="">수정/취소</button></li>
+											<li><button type="button" class="option" onclick="">배송</button></li>
+											<li><button type="button" class="option" onclick="">상품문의</button></li>
+											<li><button type="button" class="option" onclick="">회원정보</button></li>
+											<li><button type="button" class="option" onclick="">주문/결제</button></li>
+											<li><button type="button" class="option" onclick="">A/S</button></li>
+											<li><button type="button" class="option" onclick="">환불</button></li>
+											<li><button type="button" class="option" onclick="">기타</button></li>
+										</ul>
 									</div>
 								</div>
-							</div>
-							<div class="tr" id="tr_ordGod" style="display: none;">
-								<div class="th">
-									<p class="form_label required">문의 상품</p>
-								</div>
-								<div class="td">
-									<button type="button" class="btn white" onclick="ordInfoSrch(this);">주문정보 조회</button>
-								</div>
-							</div>
-							<div class="tr" id="noSelOrdDiv" style="display: none;">
-								<div class="th">
-									<p class="form_label required">문의 상품</p>
-								</div>
-								<div class="td">
-									<div class="form_set">
-										<p class="form_result_box">주문상품 선택 안함</p>
-										<button type="button" class="btn white" onclick="ordInfoSrch(this);">주문정보 조회</button>
-									</div>
-								</div>
-							</div>
-							<div class="tr" id="td_ordGod" style="display: none;">
 							</div>
 							
 							<div class="tr">
@@ -190,8 +156,8 @@
 					</div>
 					
 					<div class="btn_big_wrap btn_size_fix">
-						<button type="button" class="white" onclick="cancelCsInquiry();">취소</button>
-						<button type="button" class="btnInsert" onclick="insertCsInquiry();" disabled="">등록</button>
+						<button type="button" class="white" onclick="location.href='myInquiryList'">취소</button>
+						<button type="button" class="btnInsert" onclick="location.href='#'">등록</button>
 					</div>
 				</div>
 			</div>
