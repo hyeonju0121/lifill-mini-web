@@ -57,4 +57,10 @@ public class ItemController {
 		log.info("itemView() 실행");
 		return "item/item_view";
 	}
+	
+	@RequestMapping("/order")
+	public String order() {
+		log.info("order() 실행");
+		return "item/order";
+	}
 }
