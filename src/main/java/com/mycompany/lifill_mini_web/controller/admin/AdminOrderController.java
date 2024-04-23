@@ -14,5 +14,17 @@ public class AdminOrderController {
 		log.info("dashboard() 실행");
 		return "admin/order/dashboard";
 	}
+	
+	@RequestMapping("/orderList")
+	public String orderList() {
+		log.info("orderList() 실행");
+		return "admin/order/orderList";
+	}
+	
+	@RequestMapping("/orderUpdate")
+	public String orderUpdate() {
+		log.info("orderUpdate() 실행");
+		return "admin/order/orderUpdate";
+	}
 
 }
