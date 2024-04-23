@@ -28,7 +28,7 @@
 			<!-- contents -->
 			<div class="main p-3">
 				<div class="item-section mt-2 mb-2" style="font-size: 12px">
-				상품 관리 > 상품 목록
+				상품 관리 > 전체 상품 목록
 				</div>
 			
 				<div class="headingArea">
@@ -85,7 +85,7 @@
 					        <td>2024-04-22 09:15</td>
 					        <td>
 					        	<div class="btn_big_wrap">
-									<button type="button" onclick="location.href='#'" class="btn btn-outline-dark">수정</button>
+									<button type="button" onclick="location.href='${pageContext.request.contextPath}/admin/item/itemUpdate'" class="btn btn-outline-dark">수정</button>
 									<button type="button" onclick="location.href='#'" class="btn btn-outline-dark">삭제</button>
 								</div>
 					        </td>

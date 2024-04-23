@@ -27,4 +27,10 @@ public class AdminItemController {
 		return "admin/item/itemList";
 	}
 	
+	@RequestMapping("/itemUpdate")
+	public String itemUpdate() {
+		log.info("itemUpdate() 실행");
+		return "admin/item/itemUpdate";
+	}
+	
 }
