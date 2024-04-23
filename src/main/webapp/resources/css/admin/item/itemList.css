@@ -47,3 +47,12 @@
 	float: right;
 	display: inline-block;
 }
+
+
+/* button ---------------------------*/
+.btn_big_wrap {
+    line-height: normal;
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+}

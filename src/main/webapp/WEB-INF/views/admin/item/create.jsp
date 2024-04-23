@@ -318,9 +318,9 @@
 										</div>
 									</div>
 								</form>
-									<div class="btn_big_wrap btn_size_fix mt60">
-									<button type="button" onclick="goMypage();" class="white btn_cancle">취소</button>
-									<button type="button" onclick="formSubmit();" class="btn_submit">완료</button>
+									<div class="btn_big_wrap">
+									<button type="button" onclick="location.href='#'" class="btn btn-outline-secondary">취소</button>
+									<button type="button" onclick="location.href='#'" class="btn btn-outline-secondary">완료</button>
 									</div>
 								</div>
 							</div>
