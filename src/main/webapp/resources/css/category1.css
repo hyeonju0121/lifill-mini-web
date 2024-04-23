@@ -1,0 +1,276 @@
+@charset "UTF-8";
+
+/* font ------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+body, h1, h2, h3, h4, h5, h6, input, textarea, select {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+
+#id {
+	word-break: keep-all;
+    line-height: 1.2;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    position: relative;
+    height: 100%;
+}
+
+
+#gnbbox {
+	word-break: keep-all;
+    line-height: 1.2;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 99991;
+    top: 0;
+    background-color: #fff!important;
+    border-bottom: 1px solid #eaeaea;
+}
+
+
+.depth3 {
+	word-break: keep-all;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+    background-color: #fafafa;
+    border-top: 1px solid #eaeaea;
+    height: 40px;
+    line-height: 40px;
+}
+
+.depth3 wrapper scroll dragscroll {
+	word-break: keep-all;
+    color: #333;
+    line-height: 40px;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    position: relative;
+    margin: 0 auto;
+    padding: 0 15px;
+    width: 100%;
+    height: 100%;
+    overflow-x: auto;
+    box-sizing: content-box;
+    white-space: nowrap;
+    scrollbar-width: none;
+}
+.depth3 wrapper scroll dragscroll default {
+	word-break: keep-all;
+    line-height: 40px;
+    white-space: nowrap;
+    color: inherit;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    max-width: 100%;
+    margin: 0 20px 0 4px;
+    vertical-align: middle;
+    width: 68px;
+    height: 20px;
+}
+
+
+
+#items {
+	word-break: keep-all;
+    line-height: 1.2;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    list-style: none;
+    margin-top: 41px;
+    box-sizing: border-box;
+    justify-content: space-around;
+    display: grid;
+    column-gap: 19px;
+    row-gap: 32px;
+    grid-template-columns: 1fr 1fr;
+}
+
+.category {
+	word-break: keep-all;
+    line-height: 1.2;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    display: block;
+}
+.wrapper{
+	word-break: keep-all;
+    line-height: 1.2;
+    color: #333;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    position: relative;
+    box-sizing: border-box;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 15px;
+}
+
+.category2 {
+	word-break: keep-all;
+    line-height: 1.2;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    list-style: none;
+    margin-top: 32px;
+    display: flex;
+}
+
+.category2 li {
+	word-break: keep-all;
+    line-height: 1.2;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    list-style: none;
+    -webkit-box-flex: 1;
+    flex: 1 1 auto;
+    box-sizing: border-box;
+    padding-bottom: 18px;
+    font-weight: 700;
+    text-align: center;
+    font-size: 16px;
+    color: #ff5c35;
+    border-bottom: 3px solid #37cbe9;
+}
+
+.category3 {
+	word-break: keep-all;
+    line-height: 1.2;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    margin-top: 24px;
+}
+
+.category3 ul {
+	word-break: keep-all;
+    line-height: 1.2;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    list-style: none;
+    grid-template-columns: repeat(auto-fit,50%);
+    display: grid;
+}
+
+.category3 ul li {
+	word-break: keep-all;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    list-style: none;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    text-align: center;
+    border: 1px solid #eaeaea;
+}
+
+.goCategory3 {
+	word-break: keep-all;
+    list-style: none;
+    line-height: 40px;
+    text-align: center;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+store-product-wrapper {
+	word-break: keep-all;
+    line-height: 1.2;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    list-style: none;
+}
+
+.wrapper h2 {
+	margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    font-weight: 700;
+    position: relative;
+    font-size: 22px;
+    display: inline-block;
+}
+
+.store-product-wrapper {
+	margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    list-style: none;
+}
+
+#items {
+	width: 200px;
+	height: 200px;
+	margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    list-style: none;
+    margin-top: 40px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    justify-content: space-around;
+    column-gap: 29px;
+    row-gap: 56px;
+}

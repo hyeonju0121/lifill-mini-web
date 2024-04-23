@@ -13,7 +13,15 @@
 		<div class="collapse navbar-collapse" id="mynavbar">
 			<ul class="navbar-nav me-auto">
 				<li class="nav-item"><a class="nav-link" href="#">LIFILL 스토리</a></li>
-				<li class="nav-item"><a class="nav-link" href="item">SHOP</a></li>
+				<li class="nav-item dropdown">
+			          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">SHOP</a>
+			          <ul class="dropdown-menu">
+			            <li><a class="dropdown-item" href="/lifill_mini_web/item/category1#">전체상품</a></li>
+			            <li><a class="dropdown-item" href="/lifill_mini_web/item/category2#">기능별</a></li>
+			            <li><a class="dropdown-item" href="/lifill_mini_web/item/category3#">성분별</a></li>
+			            
+			          </ul>
+				</li>
 				<div class="dropdown">
 					<button type="button" class="btn text-secondary"
 						data-bs-toggle="dropdown">게시판</button>
