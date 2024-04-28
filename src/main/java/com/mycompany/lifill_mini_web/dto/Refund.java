@@ -3,9 +3,9 @@ package com.mycompany.lifill_mini_web.dto;
 import lombok.Data;
 
 @Data
-public class Adrress {
-
+public class Refund {
+	private int rfdNo;
+	private String ordNum;
 	private String mId;
-	private int mZipCode;
-	private String mAdrress;
+	private String rfdReason;
 }
