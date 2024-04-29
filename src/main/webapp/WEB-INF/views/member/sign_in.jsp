@@ -32,20 +32,28 @@
 	  				var totalResult = true;
 	  				
 	  				var uidPattern = /^(?=.*\d)(?=.*[a-z]).{7,11}$/;
-	  				var uidResult = uidPattern.test( $("#uid").val());
-	  				if(!uidResult) {
-	  					totalResult = false;
-	  					alert('아이디를 다시 한 번 확인해주세요!')
-	  				}
+	  				var uidResult = uidPattern.test( $("#uid").val());	  				
+	  				if(uidResult) {
+						$("#uidSpan").removeClass("text-danger");
+						$("#uidSpan").html("");
+					} else{
+						$("#uidSpan").html("아이디를 입력해주세요.");
+						$("#uidSpan").addClass("text-danger");
+						totalResult = false;
+					}
 	  				
 	  					
 	  				//Password검사하기
 	  				var passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&*?_])(?=.*[A-Z]).{10,15}$/;
 	  				var passwordResult = passwordPattern.test($("#password").val());
-	  				if(!passwordResult) {
+	  				if(passwordResult) {
+	  					$("#passwordSpan").removeClass("text-danger");
+	  				} else{
 	  					totalResult = false;
-	  					alert('비밀번호를 다시 한 번 확인해주세요!')
+	  					$("#passwordSpan").html("아이디또는 비밀번호를 잘못 입력했습니다. 입력하신 내용을 다시 확인해주세요.");
+	  					$("#passwordSpan").addClass("text-danger");
 	  				}
+	  					
 	  				
 	  				//전체 유효성 검사결과가 true일 경우
 	  				if(totalResult) {
@@ -69,7 +77,9 @@
 			        onsubmit="handleCheckData()" 	          	  
 			        novalidate>
 			            <input type="text" class="form-control" id="uid" name="uid" placeholder="ID"/>
+			            <span id="uidSpan" class="form-text"></span>
 			            <input type="password" class="form-control" id="password" name="password" placeholder="Password"/>
+			            <span id="passwordSpan" class="form-text"></span>
 			            <!-- <label for="remember-check">
 			            <input type="checkbox" id="remember-check">아이디 저장
 			            </label> -->
