@@ -16,7 +16,7 @@
 		<link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
 		
 		<!-- external css -->
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin/order/orderList.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin/board/noticeList.css">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin/sidebar.css">
 	</head>
 	
@@ -28,7 +28,7 @@
 			<!-- contents -->
 			<div class="main p-3">
 				<div class="item-section mt-2 mb-2" style="font-size: 12px">
-				 게시판 관리 > 전체 공지사항 관리
+				 게시판 관리 > 공지사항 관리
 				</div>
 			
 				<div class="headingArea">
@@ -38,27 +38,33 @@
 				</div>
 				
 				<div class="section_block">
+					<div class="sub bg-light">
+						<button type="button" class="btn btn-outline-dark createNotice-btn mt-3 me-2" onclick="location.href='${pageContext.request.contextPath}/admin/board/writeNotice'">공지사항 등록</button>
+					</div>
+				
 					<div class="container mt-3">
 					  <!-- <h2>전체 상품 목록</h2> -->
 					  <table class="table">
 					    <thead class="table-dark">
 					      <tr>
 					        <th>No</th>
-					        <th>제목</th>
-					        <th>이름</th>
-					        <th>이메일</th>
-					        <th>전체 주문내역</th>
-					        <th>가입일시</th>
-					        <th>수정/삭제</th>
+					        <th>분류</th>
+					        <th>게시판 제목</th>
+					        <th>작성자</th>
+					        <th>작성일</th>
+					        <th>게시물관리</th>
 					      </tr>
 					    </thead>
 					    <tbody>
 					      <tr>
 					        <td>1</td>
-					        <td>hyeonju0121</td>
-					        <td>유현주</td>
-					        <td>hyeonju__@naver.com</td>
-					        <td>2건</td>
+					        <td>일반</td>
+					        <td>
+					        	<a href="${pageContext.request.contextPath}/admin/board/noticeList/1">
+					        		라이필 정기구독 서비스 안내
+					        	</a>
+					        </td>
+					        <td>(관리자) hyeonju0121</td>
 					        <td>2024-04-22 09:28</td>
 					        <td>
 					        	<div class="btn_big_wrap">
@@ -69,11 +75,14 @@
 					      </tr>
 					      <tr>
 					        <td>2</td>
-					        <td>testuser1</td>
-					        <td>사용자1</td>
-					        <td>user1@gmail.com</td>
-					        <td>1건</td>
-					        <td>2024-04-22 11:28</td>
+					        <td>일반</td>
+					        <td>
+					        	<a href="${pageContext.request.contextPath}/admin/board/noticeList/1">
+					        		라이필 서비스 시작 안내
+					        	</a>
+					        </td>
+					        <td>(관리자) hyeonju0121</td>
+					        <td>2024-04-22 13:15</td>
 					        <td>
 					        	<div class="btn_big_wrap">
 									<button type="button" onclick="location.href='${pageContext.request.contextPath}/admin/member/memberUpdate'" class="btn btn-outline-dark">수정</button>
@@ -81,13 +90,17 @@
 								</div>
 					        </td>
 					      </tr>
+					      
 					      <tr>
 					        <td>3</td>
-					        <td>testuser2</td>
-					        <td>사용자2</td>
-					        <td>user2@gmail.com</td>
-					        <td>0건</td>
-					        <td>2024-04-22 14:12</td>
+					        <td>배송</td>
+					        <td>
+					        	<a href="${pageContext.request.contextPath}/admin/board/noticeList/1">
+					        		CJ 대한통운 파업으로 인한 배송지연 안내
+					        	</a>
+					        </td>
+					        <td>(관리자) hyeonju0121</td>
+					        <td>2024-04-22 13:18</td>
 					        <td>
 					        	<div class="btn_big_wrap">
 									<button type="button" onclick="location.href='${pageContext.request.contextPath}/admin/member/memberUpdate'" class="btn btn-outline-dark">수정</button>
@@ -95,13 +108,17 @@
 								</div>
 					        </td>
 					      </tr>
+					      
 					      <tr>
 					        <td>4</td>
-					        <td>testuser3</td>
-					        <td>사용자3</td>
-					        <td>user3@gmail.com</td>
-					        <td>1건</td>
-					        <td>2024-04-23 06:07</td>
+					        <td>일반</td>
+					        <td>
+					        	<a href="${pageContext.request.contextPath}/admin/board/noticeList/1">
+					        		라이필 이용약관 및 개인정보처리방침 변경 안내
+					        	</a>
+					        </td>
+					        <td>(관리자) hyeonju0121</td>
+					        <td>2024-04-30 15:06</td>
 					        <td>
 					        	<div class="btn_big_wrap">
 									<button type="button" onclick="location.href='${pageContext.request.contextPath}/admin/member/memberUpdate'" class="btn btn-outline-dark">수정</button>
@@ -109,6 +126,8 @@
 								</div>
 					        </td>
 					      </tr>
+					      
+					      
 					    </tbody>
 					  </table>
 					</div>
