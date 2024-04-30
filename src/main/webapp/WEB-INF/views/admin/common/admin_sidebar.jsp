@@ -81,14 +81,14 @@
 			<a href="#" class="sidebar-link has-dropdown collapsed" data-bs-toggle="collapse"
 				data-bs-target="#board" aria-expanded="false" aria-controls="board">
 				<i class="lni lni-clipboard"></i>
-				<span>운영 게시판 관리</span>
+				<span>고객센터 관리</span>
 			</a>
 			<ul id="board" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
 				<li class="sidebar-item">
 					<a href="${pageContext.request.contextPath}/admin/board/noticeList" class="sidebar-link">공지사항</a>
 				</li>
 				<li class="sidebar-item">
-					<a href="#" class="sidebar-link">Q&A</a>
+					<a href="${pageContext.request.contextPath}/admin/board/faqList" class="sidebar-link">자주묻는질문</a>
 				</li>
 				<li class="sidebar-item">
 					<a href="#" class="sidebar-link">1:1문의</a>

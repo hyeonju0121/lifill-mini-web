@@ -21,5 +21,11 @@ public class AdminBoardController {
 		log.info("writeNotice() 실행");
 		return "admin/board/writeNotice";
 	}
+	
+	@RequestMapping("/board/faqList")
+	public String faqList() {
+		log.info("faqList() 실행");
+		return "admin/board/faqList";
+	}
 
 }
