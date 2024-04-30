@@ -7,7 +7,5 @@ public class Cart {
 	
 	private int cId;
 	private String mId;
-	private int cTotalAmount;
-	private int cTotalPrice;
 
 }
