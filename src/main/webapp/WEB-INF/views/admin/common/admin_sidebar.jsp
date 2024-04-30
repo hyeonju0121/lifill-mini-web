@@ -31,11 +31,11 @@
 			
 			<ul id="member" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
 				<li class="sidebar-item">
-					<a href="#" class="sidebar-link">회원조회</a>
+					<a href="${pageContext.request.contextPath}/admin/member/memberList" class="sidebar-link">전체 회원 조회</a>
 				</li>
-				<li class="sidebar-item">
+				<!-- <li class="sidebar-item">
 					<a href="#" class="sidebar-link">회원정보 수정 및 탈퇴</a>
-				</li>
+				</li> -->
 			</ul>
 		</li>
 

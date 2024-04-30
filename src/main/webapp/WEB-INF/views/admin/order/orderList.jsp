@@ -41,10 +41,11 @@
 					<div class="sub bg-light">
 						<div class="sub2 col-sm-8 mt-2">
 							<ul>
-								<li class="sub-li">전체 <span class="itemTotalCount">21</span>건 |</li>
-								<li class="sub-li">미배송 <span class="itemTotalCount">0</span>건 |</li>
+								<li class="sub-li">전체 <span class="itemTotalCount">22</span>건 |</li>
+								<li class="sub-li">입금대기 <span class="itemTotalCount">2</span>건 |</li>
+								<li class="sub-li">상품준비중 <span class="itemTotalCount">4</span>건 |</li>
 								<li class="sub-li">배송중 <span class="itemTotalCount">15</span>건 |</li>
-								<li class="sub-li">배송완료 <span class="itemTotalCount">6</span>건</li>
+								<li class="sub-li">환불신청 <span class="itemTotalCount">1</span>건</li>
 							</ul>
 						</div>
 					</div>
@@ -58,9 +59,6 @@
 					        <th>주문번호</th>
 					        <th>주문자</th>
 					        <th>총 실결제금액</th>
-					        <th>결제수단</th>
-					        <th>결제상태</th>
-					        <th>배송상태</th>
 					        <th>주문상태</th>
 					        <th>주문일시</th>
 					        <th>수정/삭제</th>
@@ -72,10 +70,7 @@
 					        <td>20240422-0000001</td>
 					        <td>유현주</td>
 					        <td>KRW 29,800</td>
-					        <td>무통장입금</td>
-					        <td>결제완료</td>
-					        <td>배송준비중</td>
-					        <td>-</td>
+					        <td>배송완료</td>
 					        <td>2024-04-22 09:28</td>
 					        <td>
 					        	<div class="btn_big_wrap">
@@ -89,10 +84,7 @@
 					        <td>20240422-0000002</td>
 					        <td>변성준</td>
 					        <td>KRW 76,200</td>
-					        <td>신용카드</td>
-					        <td>결제완료</td>
-					        <td>배송중</td>
-					        <td>-</td>
+					        <td>배송준비중</td>
 					        <td>2024-04-22 15:15</td>
 					        <td>
 					        	<div class="btn_big_wrap">
@@ -106,10 +98,7 @@
 					        <td>20240422-0000003</td>
 					        <td>곽동현</td>
 					        <td>KRW 45,800</td>
-					        <td>무통장입금</td>
-					        <td>결제완료</td>
-					        <td>배송준비중</td>
-					        <td>-</td>
+					        <td>상품준비중</td>
 					        <td>2024-04-22 17:00</td>
 					        <td>
 					        	<div class="btn_big_wrap">
@@ -123,10 +112,7 @@
 					        <td>20240422-0000004</td>
 					        <td>홍길동</td>
 					        <td>KRW 24,500</td>
-					        <td>무통장입금</td>
-					        <td>결제완료</td>
-					        <td>-</td>
-					        <td>취소(환불대기중)</td>
+					        <td>환불신청</td>
 					        <td>2024-04-22 19:07</td>
 					        <td>
 					        	<div class="btn_big_wrap">
