@@ -85,7 +85,7 @@
 			</a>
 			<ul id="board" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
 				<li class="sidebar-item">
-					<a href="#" class="sidebar-link">공지사항</a>
+					<a href="${pageContext.request.contextPath}/admin/board/noticeList" class="sidebar-link">공지사항</a>
 				</li>
 				<li class="sidebar-item">
 					<a href="#" class="sidebar-link">Q&A</a>
