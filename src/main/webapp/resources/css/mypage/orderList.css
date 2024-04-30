@@ -50,6 +50,14 @@ ul.menu_depth02 a {
 	font-size: 14px;
 }
 
+#order {
+	border-right: 4px solid #37cbe9;
+}
+
+#order a {
+	color: #37cbe9;
+}
+
 #claim, #review {
 	margin-top: 20px;
 }
@@ -343,7 +351,7 @@ input[type="radio"]:checked + label {
     padding: 0 30px;
     color: white;
     font-size: 14px;
-    background-color: black;
+    background-color: #37cbe9;
     height: 48px;
     line-height: 48px;
     border-radius: 3px;
@@ -388,7 +396,7 @@ input[type="radio"]:checked + label {
     color: #b1b1b1;
     font-size: 20px;
     font-weight: bold;
-    border-bottom: 1px solid #b1b1b1;
+    border-bottom: 1px solid #37cbe9;
 }
 
 .my_order .step .status {

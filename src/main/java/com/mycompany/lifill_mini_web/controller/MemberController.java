@@ -75,4 +75,10 @@ public class MemberController {
 		log.info("updateMember() 실행");
 		return "member/mypage/updateMember";
 	}
+	
+	@RequestMapping("/pwdConfirm")
+	public String pwdConfirm() {
+		log.info("pwdConfirm() 실행");
+		return "member/mypage/pwdConfirm";
+	}
 }

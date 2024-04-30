@@ -8,23 +8,12 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select {
 }
 
 .element {
-	box-sizing: border-box;
-}
-
-.container {
+	line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    padding-top: 100px;
-    padding-bottom: 300px;
-}
-
-.center_type3 {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 60px auto 0;
-    display: flex;
-    width: 1280px;
 }
 
 .my_menu {
@@ -59,6 +48,14 @@ ul.menu_depth02 a {
 	text-decoration-line: none; 
 	color: #999999; 
 	font-size: 14px;
+}
+
+#update {
+	border-right: 4px solid #37cbe9;
+}
+
+#update a {
+	color: #37cbe9;
 }
 
 #claim, #review {

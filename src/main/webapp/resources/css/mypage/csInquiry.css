@@ -45,6 +45,14 @@ ul.menu_depth02 a {
 	font-size: 14px;
 }
 
+#inquiry {
+	border-right: 4px solid #37cbe9;
+}
+
+#inquiry a {
+	color: #37cbe9;
+}
+
 #claim, #review {
 	margin-top: 20px;
 }

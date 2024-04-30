@@ -50,6 +50,14 @@ ul.menu_depth02 a {
 	font-size: 14px;
 }
 
+#claim {
+	border-right: 4px solid #37cbe9;
+}
+
+#claim a {
+	color: #37cbe9;
+}
+
 #claim, #review {
 	margin-top: 20px;
 }

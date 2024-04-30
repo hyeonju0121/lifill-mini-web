@@ -108,7 +108,7 @@
 									<label for="chkSize4">1년</label>
 								</li>
 							</ul>
-				
+							
 							<!-- 시작일, 종료일 -->
 							<div class="form_set period">
 								<div class="date">
@@ -152,7 +152,7 @@
 							</li>
 							<li class="step ">
 								<a href="#" class="count" style="display: none">0</a>
-								<span class="value disabled count" style="display: ">1</span>
+								<span class="value disabled count" style="color: #37cbe9;">1</span>
 								<span class="status">상품준비중</span>
 							</li>
 							<li class="step ">

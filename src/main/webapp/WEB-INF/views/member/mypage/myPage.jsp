@@ -118,11 +118,11 @@
 									<span class="status">결제완료</span>
 								</li>
 					            <li class="step">
-									<a href="#" class="count">1</a>
+									<a href="#" class="count" style="color: #37cbe9;">1</a>
 									<span class="status">상품준비중</span>
 								</li>
 					            <li class="step">
-									<a href="#" class="count">0</a>
+									<a href="#" class="count" >0</a>
 									<span class="status">배송중</span>
 								</li>
 					            <li class="step">
