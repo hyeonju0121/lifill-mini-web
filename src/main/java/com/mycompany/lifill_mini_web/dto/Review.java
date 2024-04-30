@@ -4,8 +4,8 @@ import java.sql.Blob;
 import java.util.Date;
 
 import lombok.Data;
-@Data
 
+@Data
 public class Review {
 	private int revNo;
 	private String mId;

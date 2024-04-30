@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.mycompany.lifill_mini_web.dto.Address" alias="Address"/>
+		<typeAlias type="com.mycompany.lifill_mini_web.dto.Board" alias="Board"/>
+		<typeAlias type="com.mycompany.lifill_mini_web.dto.Cart" alias="Cart"/>
+		<typeAlias type="com.mycompany.lifill_mini_web.dto.CartDetail" alias="CartDetail"/>
+		<typeAlias type="com.mycompany.lifill_mini_web.dto.Function" alias="Function"/>
+		<typeAlias type="com.mycompany.lifill_mini_web.dto.Ingredient" alias="Ingredient"/>
+		<typeAlias type="com.mycompany.lifill_mini_web.dto.Inquiry" alias="Inquiry"/>
+		<typeAlias type="com.mycompany.lifill_mini_web.dto.Member" alias="Member"/>
+		<typeAlias type="com.mycompany.lifill_mini_web.dto.Order" alias="Order"/>
+		<typeAlias type="com.mycompany.lifill_mini_web.dto.OrderDetail" alias="OrderDetail"/>
+		<typeAlias type="com.mycompany.lifill_mini_web.dto.Payment" alias="Payment"/>
+		<typeAlias type="com.mycompany.lifill_mini_web.dto.PrdContents" alias="PrdContents"/>
+		<typeAlias type="com.mycompany.lifill_mini_web.dto.PrdDetail" alias="PrdDetail"/>
+		<typeAlias type="com.mycompany.lifill_mini_web.dto.Product" alias="Product"/>
+		<typeAlias type="com.mycompany.lifill_mini_web.dto.Refund" alias="Refund"/>
+		<typeAlias type="com.mycompany.lifill_mini_web.dto.Review" alias="Review"/>
+	</typeAliases>
+	
+</configuration>
