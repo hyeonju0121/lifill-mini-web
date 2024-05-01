@@ -5,4 +5,14 @@
 
 <mapper namespace="com.mycompany.lifill_mini_web.dao.BoardDao"> 
 
+	<insert id="insert" parameterType="Board">
+		<selectKey keyProperty="bNo" order="BEFORE" resultType="int">
+			select seq_bno.nextval from dual
+		</selectKey>
+		insert into board(
+			bno, btitle, bcontent, btype,bcreatedat, mid, bhitcount)
+		values(
+			#{bNo}, #{bTitle}, #{bContent}, #{bType}, sysdate, #{mId}, 0)
+	</insert>
+
 </mapper>

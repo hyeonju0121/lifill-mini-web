@@ -28,14 +28,14 @@
     border-top: none;
 }
 
-.gForm {
+.writeNoticeForm {
     border-collapse: collapse;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-.gForm input {
+.writeNoticeForm input {
     border-collapse: collapse;
     box-sizing: border-box;
     margin: 0;
@@ -45,7 +45,7 @@
     vertical-align: middle;
 }
 
-.gForm .tr {
+.writeNoticeForm .tr {
     line-height: normal;
     font-weight: 500;
     border-collapse: collapse;

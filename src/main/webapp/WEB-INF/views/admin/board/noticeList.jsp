@@ -39,7 +39,7 @@
 				
 				<div class="section_block">
 					<div class="sub bg-light">
-						<button type="button" class="btn btn-outline-dark createNotice-btn mt-3 me-2" onclick="location.href='${pageContext.request.contextPath}/admin/board/writeNotice'">공지사항 등록</button>
+						<button type="button" class="btn btn-outline-dark createNotice-btn mt-3 me-2" onclick="location.href='${pageContext.request.contextPath}/admin/board/writeNoticeForm'">공지사항 등록</button>
 					</div>
 				
 					<div class="container mt-3">
