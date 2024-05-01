@@ -16,7 +16,7 @@
 		<link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
 		
 		<!-- external css -->
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin/board/faqList.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin/board/inquiryList.css">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin/sidebar.css">
 	</head>
 	
@@ -28,20 +28,26 @@
 			<!-- contents -->
 			<div class="main p-3">
 				<div class="item-section mt-2 mb-2" style="font-size: 12px">
-				 게시판 관리 > 자주묻는질문 관리
+				고객센터 관리 > 1:1 문의
 				</div>
 			
 				<div class="headingArea">
 					<div class="title">
-						<h1 id="itemTitle">전체 자주묻는질문 목록</h1>
+						<h1 id="itemTitle">전체 1:1 문의 목록</h1>
 					</div>
 				</div>
 				
 				<div class="section_block">
 					<div class="sub bg-light">
-						<button type="button" class="btn btn-outline-dark createNotice-btn mt-3 me-2" onclick="location.href='${pageContext.request.contextPath}/admin/board/writeFaq'">자주묻는질문 등록</button>
+						<div class="sub2 col-sm-8 mt-2">
+							<ul>
+								<li class="sub-li">전체 <span class="itemTotalCount">6</span>건 |</li>
+								<li class="sub-li">답변 대기 <span class="itemTotalCount">2</span>건 |</li>
+								<li class="sub-li">답변 완료<span class="itemTotalCount">4</span>건 |</li>
+							</ul>
+						</div>
 					</div>
-				
+					
 					<div class="container mt-3">
 					  <!-- <h2>전체 상품 목록</h2> -->
 					  <table class="table">
@@ -49,85 +55,75 @@
 					      <tr>
 					        <th>No</th>
 					        <th>분류</th>
-					        <th>게시판 제목</th>
+					        <th>상품코드</th>
+					        <th>문의 제목</th>
 					        <th>작성자</th>
 					        <th>작성일</th>
-					        <th>게시물관리</th>
+					        <th>문의상태</th>
+					        <th>문의관리</th>
 					      </tr>
 					    </thead>
 					    <tbody>
 					      <tr>
 					        <td>1</td>
-					        <td>배송</td>
+					        <td>섭취방법</td>
+					        <td>
+					        	<div class="img_box d-flex">
+									<div id="itemImg">
+										<img src="${pageContext.request.contextPath}/resources/image/item_rep/eye/eye3_image1.png" 
+											class="rounded-3" style="width:60px;height:60px;"/>
+									</div>
+									<div>
+										<h6 class="ms-2">P00001</h6>
+										<h6 class="ms-2">[effekt] 초임계 루테인아스타잔틴 코어</h6>
+									</div>
+								</div>
+					        </td>
 					        <td>
 					        	<a href="${pageContext.request.contextPath}/admin/board/noticeList/1">
-					        		배송 조회는 어떻게 하나요?
+					        		루테인을 다른 영양제를 함께 먹어도 될까요?
 					        	</a>
 					        </td>
-					        <td>(관리자) hyeonju0121</td>
+					        <td>hyeonju0121</td>
 					        <td>2024-04-22 09:28</td>
+					        <td>답변완료</td>
 					        <td>
 					        	<div class="btn_big_wrap">
-									<button type="button" onclick="location.href='${pageContext.request.contextPath}/admin/member/memberUpdate'" class="btn btn-outline-dark">수정</button>
+									<button type="button" onclick="location.href='${pageContext.request.contextPath}/admin/member/memberUpdate'" class="btn btn-outline-dark">답변등록</button>
 									<button type="button" onclick="location.href='#'" class="btn btn-outline-dark">삭제</button>
 								</div>
 					        </td>
 					      </tr>
 					      <tr>
 					        <td>2</td>
-					        <td>회원정보</td>
-					        <td>
-					        	<a href="${pageContext.request.contextPath}/admin/board/noticeList/1">
-					        		회원정보 변경은 어떻게 하나요?
-					        	</a>
-					        </td>
-					        <td>(관리자) hyeonju0121</td>
-					        <td>2024-04-22 13:15</td>
-					        <td>
-					        	<div class="btn_big_wrap">
-									<button type="button" onclick="location.href='${pageContext.request.contextPath}/admin/member/memberUpdate'" class="btn btn-outline-dark">수정</button>
-									<button type="button" onclick="location.href='#'" class="btn btn-outline-dark">삭제</button>
-								</div>
-					        </td>
-					      </tr>
-					      
-					      <tr>
-					        <td>3</td>
 					        <td>교환/반품</td>
 					        <td>
+					        	<div class="img_box d-flex">
+									<div id="itemImg">
+										<img src="${pageContext.request.contextPath}/resources/image/item_rep/eye/eye3_image1.png" 
+											class="rounded-3" style="width:60px;height:60px;"/>
+									</div>
+									<div>
+										<h6 class="ms-2">P00001</h6>
+										<h6 class="ms-2">[effekt] 초임계 루테인아스타잔틴 코어</h6>
+									</div>
+								</div>
+					        </td>
+					        <td>
 					        	<a href="${pageContext.request.contextPath}/admin/board/noticeList/1">
-					        		결제 취소는 어떻게 하나요?
+					        		제품을 교환/반품하고 싶어요.
 					        	</a>
 					        </td>
-					        <td>(관리자) hyeonju0121</td>
-					        <td>2024-04-22 13:18</td>
+					        <td>testuser1</td>
+					        <td>2024-04-22 09:28</td>
+					        <td>답변대기중</td>
 					        <td>
 					        	<div class="btn_big_wrap">
-									<button type="button" onclick="location.href='${pageContext.request.contextPath}/admin/member/memberUpdate'" class="btn btn-outline-dark">수정</button>
+									<button type="button" onclick="location.href='${pageContext.request.contextPath}/admin/member/memberUpdate'" class="btn btn-outline-dark">답변등록</button>
 									<button type="button" onclick="location.href='#'" class="btn btn-outline-dark">삭제</button>
 								</div>
 					        </td>
 					      </tr>
-					      
-					      <tr>
-					        <td>4</td>
-					        <td>회원정보</td>
-					        <td>
-					        	<a href="${pageContext.request.contextPath}/admin/board/noticeList/1">
-					        		비밀번호가 생각나지 않아요?
-					        	</a>
-					        </td>
-					        <td>(관리자) hyeonju0121</td>
-					        <td>2024-04-30 15:06</td>
-					        <td>
-					        	<div class="btn_big_wrap">
-									<button type="button" onclick="location.href='${pageContext.request.contextPath}/admin/member/memberUpdate'" class="btn btn-outline-dark">수정</button>
-									<button type="button" onclick="location.href='#'" class="btn btn-outline-dark">삭제</button>
-								</div>
-					        </td>
-					      </tr>
-					      
-					      
 					    </tbody>
 					  </table>
 					</div>

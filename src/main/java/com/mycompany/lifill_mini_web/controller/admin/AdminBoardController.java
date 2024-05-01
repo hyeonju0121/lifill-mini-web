@@ -27,5 +27,17 @@ public class AdminBoardController {
 		log.info("faqList() 실행");
 		return "admin/board/faqList";
 	}
+	
+	@RequestMapping("/board/writeFaq")
+	public String writeFaq() {
+		log.info("writeFaq() 실행");
+		return "admin/board/writeFaq";
+	}
+	
+	@RequestMapping("/board/inquiryList")
+	public String inquiryList() {
+		log.info("inquiryList() 실행");
+		return "admin/board/inquiryList";
+	}
 
 }

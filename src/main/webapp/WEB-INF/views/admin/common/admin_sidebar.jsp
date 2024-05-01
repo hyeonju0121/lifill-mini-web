@@ -91,7 +91,7 @@
 					<a href="${pageContext.request.contextPath}/admin/board/faqList" class="sidebar-link">자주묻는질문</a>
 				</li>
 				<li class="sidebar-item">
-					<a href="#" class="sidebar-link">1:1문의</a>
+					<a href="${pageContext.request.contextPath}/admin/board/inquiryList" class="sidebar-link">1:1문의</a>
 				</li>
 			</ul>
 		</li>
