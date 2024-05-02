@@ -35,6 +35,10 @@
 		</div>
 		
 		<!-- 장바구니, 사용자 버튼 -->
+		<button class="btn btn-success btn-sm" onclick="location.href='${pageContext.request.contextPath}/member/sign_in'">
+			로그인
+		</button>
+		
 		<button class="btn" onclick="location.href='${pageContext.request.contextPath}/member/cart'">
 			<img class="icon-img" 
 			src="${pageContext.request.contextPath}/resources/image/icon/cart.png"/>

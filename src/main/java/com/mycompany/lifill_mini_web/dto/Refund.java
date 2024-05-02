@@ -4,8 +4,7 @@ import lombok.Data;
 
 @Data
 public class Refund {
-	private int rfdNo;
-	private String ordNum;
-	private String mId;
-	private String rfdReason;
+	private int rfdid;
+	private String ordid;
+	private String rfdreason;
 }

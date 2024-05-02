@@ -5,8 +5,8 @@ import lombok.Data;
 @Data
 public class Ingredient {
 
-	private int igdNo;
-	private String prdCode;
-	private String igdVal;
+	private int igdno;
+	private String prdcode;
+	private String igdval;
 	
 }

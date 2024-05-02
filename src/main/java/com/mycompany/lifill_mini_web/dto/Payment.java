@@ -6,7 +6,6 @@ import lombok.Data;
 
 @Data
 public class Payment {
-	private String ordNum;
-	private Date pmtDate;
-	private int ordTotalPrice;
+	private String ordid;
+	private Date pmtdate;
 }

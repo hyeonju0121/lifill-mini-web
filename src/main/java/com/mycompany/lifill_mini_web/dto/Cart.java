@@ -5,7 +5,9 @@ import lombok.Data;
 @Data
 public class Cart {
 	
-	private int cId;
-	private String mId;
+	private int cid;
+	private String mid;
+	private int ctotalamount;
+	private int ctotalprice;
 
 }

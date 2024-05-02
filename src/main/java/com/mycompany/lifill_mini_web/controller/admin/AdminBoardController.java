@@ -35,12 +35,12 @@ public class AdminBoardController {
 	@PostMapping("/board/writeNotice")
 	public String writeNotice(Board board) {
 		
-		board.setBTitle("ZZZZZ");
-		board.setBContent("dd");
-		board.setBType("상품");
+		board.setBtitle("ZZZZZ");
+		board.setBcontent("dd");
+		board.setBtype("상품");
 		
 		// 로그인된 사용자 아이디 설정
-		board.setMId("1");
+		board.setMid("1");
 		
 		// 비즈니스 로직 처리를 서비스로 위임
 		adminBoardService.writeNotice(board);

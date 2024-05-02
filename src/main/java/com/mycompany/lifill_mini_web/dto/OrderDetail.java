@@ -4,7 +4,8 @@ import lombok.Data;
 
 @Data
 public class OrderDetail {
-	private String ordNum;
-	private String prdCode;
-	private int odtAmount;
+	private String ordid;
+	private String prdcode;
+	private int prdprice;
+	private int odtamount;
 }

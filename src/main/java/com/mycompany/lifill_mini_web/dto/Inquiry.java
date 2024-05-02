@@ -1,6 +1,5 @@
 package com.mycompany.lifill_mini_web.dto;
 
-import java.sql.Blob;
 import java.util.Date;
 
 import lombok.Data;
@@ -8,16 +7,20 @@ import lombok.Data;
 @Data
 public class Inquiry {
 	
-	private int inqNo;
-	private String mId;
-	private String prdCode;
-	private String inqTitle;
-	private String inqContent;
-	private String inqType;
-	private Blob inqAttach;
-	private Date inqCreatedAt;
-	private Date inqUpdatedAt;
-	private String inqReply;
-	private String inqStatus;
+	private int inqno;
+	private String mid;
+	private String prdcode;
+	private String inqtitle;
+	private String inqcontent;
+	private String inqtype;
+	
+	private byte[] inqattach;
+	private String inqattachoname;
+	private String inqattachtype;
+	
+	private Date inqcreatedat;
+	private Date inqupdatedat;
+	private String inqreply;
+	private String inqstatus;
 
 }

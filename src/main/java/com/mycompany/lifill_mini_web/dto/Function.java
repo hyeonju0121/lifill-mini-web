@@ -5,8 +5,8 @@ import lombok.Data;
 @Data
 public class Function {
 	
-	private int fnNo;
-	private String prdCode;
-	private String fnVal;
+	private int fnno;
+	private String prdcode;
+	private String fnval;
 
 }

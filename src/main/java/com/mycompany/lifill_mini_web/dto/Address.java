@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class Address {
 
-	private String mId;
-	private String mZipCode;
-	private String mAdrress;
+	private String mid;
+	private String mzipcode;
+	private String madrress;
 }

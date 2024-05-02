@@ -7,12 +7,12 @@ import lombok.Data;
 @Data
 public class Member {
 
-	private String mId;
-	private String mPassword;
-	private String mName;
-	private String mPhone;
-	private String mEmail;
-	private String mRole;
-	private Date mCreatedAt;
-	private Date mUpdatedAt;
+	private String mid;
+	private String mpassword;
+	private String mname;
+	private String mphone;
+	private String memail;
+	private String mrole;
+	private Date mcreatedat;
+	private Date mupdatedat;
 }

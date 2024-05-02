@@ -72,13 +72,12 @@
 				<h2>Login</h2>
 				<h5 style="text-align: center; margin-bottom:30px;">내일의 나를 만드는 <br/> 
 				[건강메이트] 라이필</h5>
-			        <form name="login-form" id="login-form"
-			        action="/lifill_mini_web/main"
-			        onsubmit="handleCheckData()" 	          	  
-			        novalidate>
-			            <input type="text" class="form-control" id="uid" name="uid" placeholder="ID"/>
+			        <form name="login-form" id="login-form" 
+			        	  action="/lifill_mini_web/main"
+			              onsubmit="handleCheckData()" novalidate>
+			            <input type="text" class="form-control" id="mid" name="mid" placeholder="ID"/>
 			            <span id="uidSpan" class="form-text"></span>
-			            <input type="password" class="form-control" id="password" name="password" placeholder="Password"/>
+			            <input type="password" class="form-control" id="mpassword" name="mpassword" placeholder="Password"/>
 			            <span id="passwordSpan" class="form-text"></span>
 			            <!-- <label for="remember-check">
 			            <input type="checkbox" id="remember-check">아이디 저장

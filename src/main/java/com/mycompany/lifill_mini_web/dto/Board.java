@@ -7,20 +7,20 @@ import lombok.Data;
 
 @Data
 public class Board {
-	private int bNo;
-	private String mId;
+	private int bno;
+	private String mid;
 	
-	private String bTitle;
-	private String bContent;
+	private String btitle;
+	private String bcontent;
 	
 	private String battachoname; // 파일 원래 이름
 	private String battachtype; // 파일 종류
-	private byte[] bAttach;
+	private byte[] battach;
 	
-	private String bType;
-	private int bHitCount;
+	private String btype; // 게시물 유형 - 공지사항, 자주묻는질문
+	private int bhitcount;
 	
-	private Date bCreatedAt;
-	private Date bUpdatedAt;
+	private Date bcreatedat;
+	private Date bupdatedat;
 
 }

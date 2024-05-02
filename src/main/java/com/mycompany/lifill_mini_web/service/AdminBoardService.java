@@ -20,7 +20,7 @@ public class AdminBoardService {
 		
 		log.info("board: " + board);
 		int rowNum = boardDao.insert(board);
-		log.info("rowNum: " + rowNum + ", bno: " + board.getBNo());
+		log.info("rowNum: " + rowNum + ", bno: " + board.getBno());
 	}
 	
 
