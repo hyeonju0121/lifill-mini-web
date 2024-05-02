@@ -4,5 +4,13 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 	
 <mapper namespace="com.mycompany.lifill_mini_web.dao.InquiryDao"> 
-
+	<insert id="insert" parameterType="Inquiry">
+		<selectKey keyProperty="inqno" order="BEFORE" resultType="int">
+			select seq_inqno.nextval from dual
+		</selectKey>
+		insert into inquiry(inqno, mid, prdcode, inqtitle, inqcontent, inqtype, inqcreatedat, inqstatus
+		) values (
+		#{inqno}, #{mid}, #{prdcode} ,#{inqtitle}, #{inqcontent}, #{inqtype}, sysdate, #{inqstatus}
+		)
+	</insert>
 </mapper>

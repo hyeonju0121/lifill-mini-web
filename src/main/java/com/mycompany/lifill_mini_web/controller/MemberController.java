@@ -1,7 +1,12 @@
 package com.mycompany.lifill_mini_web.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.mycompany.lifill_mini_web.dto.Inquiry;
+import com.mycompany.lifill_mini_web.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -9,6 +14,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 public class MemberController {
+	
+	@Autowired
+	private MemberService service;
 	
 	@RequestMapping("")
 	public String index() {
@@ -80,5 +88,35 @@ public class MemberController {
 	public String pwdConfirm() {
 		log.info("pwdConfirm() 실행");
 		return "member/mypage/pwdConfirm";
+	}
+	
+	@PostMapping("/writeBoard")
+	public String writeBoard(Inquiry inquiry) {
+		/*
+		// 요청 데이터의 유효성 검사
+		log.info("original filename : " + inquiry.getInqAttach().getOriginalFilename());
+		log.info("file type : " + inquiry.getInqAttach().getContentType());
+		
+		// 첨부 파일이 있는지 조사
+		if (inquiry.getInqAttach() != null && !inquiry.getInqAttach().isEmpty()) {
+			// DTO에 추가 설정
+			inquiry.setInqAttachOName(inquiry.getInqAttach().getOriginalFilename());
+			inquiry.setInqAttachType(inquiry.getInqAttach().getContentType());
+			try {
+				inquiry.setInqAttachData(inquiry.getInqAttach().getBytes());
+			} catch (Exception e) {}
+		}
+		*/
+		inquiry.setPrdcode("EYE001");
+		inquiry.setInqtype("PRODUCT");
+		inquiry.setInqstatus("답변대기중");
+		
+		// 로그인된 사용자 아이디 설정
+		inquiry.setMid("tjdwns3823");
+
+		// 비즈니스 로직 처리를 서비스로 위임
+		service.applyInquiry(inquiry);
+		
+		return "redirect:/member/myInquiryList";	
 	}
 }
