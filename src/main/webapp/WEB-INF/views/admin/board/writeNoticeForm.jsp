@@ -42,20 +42,19 @@
 				</div>
 			</div>
 			<div class="form_table no_line">
-				<!-- <form name="writeNoticeForm" id="writeNoticeForm" method="post" action="writeNotice" enctype="multipart/form-data"> -->
-				<form name="writeNoticeForm" id="writeNoticeForm" method="post" action="writeNotice">
-					<!-- <div class="tr">
+				<form name="writeNoticeForm" id="writeNoticeForm" method="post" action="writeNotice" enctype="multipart/form-data">
+					<div class="tr">
 						<div class="th">
 							<p class="form_label required">분류 </p>
 						</div>
 						<div class="td">	
 							<select name="btype" id="btype">
-								<option value="general">일반</option>
+								<option value="general" selected>일반</option>
 								<option value="product">상품</option>
 								<option value="delivery">배송</option>
 							</select>			
 						</div>
-					</div> -->
+					</div>
 							
 					<div class="tr">
 						<div class="th">
@@ -77,25 +76,24 @@
 								<textarea id="bcontent" name="bcontent" placeholder="게시글 내용을 입력해주세요." title="게시글 내용 입력" maxlength="1000"></textarea>
 								<p class="form_bytes"><span class="byte">0</span>/1,000</p>
 							</div>
-							<!-- <div class="attach_wrap">
+							 <div class="attach_wrap">
 								<div class="attach_top">
 									<input type="hidden" name="uploadType" value="notice">
 									<label class="attach_img" for="battach">사진 첨부</label>
 									<p class="guide_txt">파일 1개당 10MB까지 첨부 가능합니다. (JPG, JPEG, PNG, GIF만 첨부 가능)</p>
 									<input class="input_file" id="battach" name="battach" type="file">
 								</div>
-								[D] 파일 첨부 버튼 아이디와 data-file attribute 이름 맞춰줌
 								<div class="attached" data-file="battach" id="inputUploadFile"></div>
-							</div> -->
+							</div> 
+							
 						</div>
 					</div>
 					
 					<div class="btn_big_wrap btn_size_fix">
 						<button type="button" class="white" onclick="location.href='noticeList'">취소</button>
 						<button type="submit" class="btnInsert">등록</button>
-						<button type="submit" class="btnInsert" onclick="location.href='noticeList'">등록</button>
 					</div>
-				</form>			
+				</form>	
 			</div>
 		</div>
 	</div>

@@ -10,9 +10,11 @@
 			select seq_bno.nextval from dual
 		</selectKey>
 		insert into board(
-			bno, btitle, bcontent, btype, bcreatedat, mid, bhitcount)
+			bno, btitle, bcontent, btype, bcreatedat, mid, bhitcount,
+			battachoname, battachtype, battachdata)
 		values(
-			#{bno}, #{btitle}, #{bcontent}, #{btype}, sysdate, #{mid}, 0)
+			#{bno}, #{btitle}, #{bcontent}, #{btype}, sysdate, #{mid}, 0,
+			#{battachoname}, #{battachtype}, #{battachdata})
 	</insert>
 
 </mapper>
