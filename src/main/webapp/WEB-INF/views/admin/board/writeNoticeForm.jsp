@@ -61,7 +61,7 @@
 							<p class="form_label required">게시글 제목</p>
 						</div>
 						<div class="td">
-							<div class="textarea_group sm">
+							<div class="textarea_group_title sm">
 								<textarea id="btitle" name="btitle" title="게시글 제목 입력" placeholder="게시글 제목을 입력해주세요." maxlength="100" ></textarea>
 								<p class="form_bytes"><span class="byte">0</span>/100</p>
 							</div>
@@ -72,7 +72,7 @@
 							<p class="form_label required">게시글 내용</p>
 						</div>
 						<div class="td">
-							<div class="textarea_group lg">
+							<div class="textarea_group_content lg">
 								<textarea id="bcontent" name="bcontent" placeholder="게시글 내용을 입력해주세요." title="게시글 내용 입력" maxlength="1000"></textarea>
 								<p class="form_bytes"><span class="byte">0</span>/1,000</p>
 							</div>
