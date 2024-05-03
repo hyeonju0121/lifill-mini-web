@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -58,94 +61,63 @@
 					      </tr>
 					    </thead>
 					    <tbody>
-					      <tr>
-					        <td>1</td>
-					        <td>일반</td>
-					        <td>
-					        	<a href="${pageContext.request.contextPath}/admin/board/noticeList/1">
-					        		라이필 정기구독 서비스 안내
-					        	</a>
-					        </td>
-					        <td>(관리자) hyeonju0121</td>
-					        <td>2024-04-22 09:28</td>
-					        <td>
-					        	<div class="btn_big_wrap">
+					     <c:forEach var="board" items="${noticeList}">
+					     	<tr>
+						      <td>${board.bno}</td>
+						      <td>${board.btype}</td>
+						      <td><a href="${pageContext.request.contextPath}/admin/board/noticeList?bno=${board.bno}">${board.btitle}</a></td>
+						      <td>${board.mid}</td>
+						      <td><fmt:formatDate value="${board.bcreatedat}" pattern="yyyy-MM-dd"/></td>
+						      <td>
+						      	<div class="btn_big_wrap">
 									<button type="button" onclick="location.href='${pageContext.request.contextPath}/admin/member/memberUpdate'" class="btn btn-outline-dark">수정</button>
 									<button type="button" onclick="location.href='#'" class="btn btn-outline-dark">삭제</button>
 								</div>
-					        </td>
-					      </tr>
-					      <tr>
-					        <td>2</td>
-					        <td>일반</td>
-					        <td>
-					        	<a href="${pageContext.request.contextPath}/admin/board/noticeList/1">
-					        		라이필 서비스 시작 안내
-					        	</a>
-					        </td>
-					        <td>(관리자) hyeonju0121</td>
-					        <td>2024-04-22 13:15</td>
-					        <td>
-					        	<div class="btn_big_wrap">
-									<button type="button" onclick="location.href='${pageContext.request.contextPath}/admin/member/memberUpdate'" class="btn btn-outline-dark">수정</button>
-									<button type="button" onclick="location.href='#'" class="btn btn-outline-dark">삭제</button>
-								</div>
-					        </td>
-					      </tr>
-					      
-					      <tr>
-					        <td>3</td>
-					        <td>배송</td>
-					        <td>
-					        	<a href="${pageContext.request.contextPath}/admin/board/noticeList/1">
-					        		CJ 대한통운 파업으로 인한 배송지연 안내
-					        	</a>
-					        </td>
-					        <td>(관리자) hyeonju0121</td>
-					        <td>2024-04-22 13:18</td>
-					        <td>
-					        	<div class="btn_big_wrap">
-									<button type="button" onclick="location.href='${pageContext.request.contextPath}/admin/member/memberUpdate'" class="btn btn-outline-dark">수정</button>
-									<button type="button" onclick="location.href='#'" class="btn btn-outline-dark">삭제</button>
-								</div>
-					        </td>
-					      </tr>
-					      
-					      <tr>
-					        <td>4</td>
-					        <td>일반</td>
-					        <td>
-					        	<a href="${pageContext.request.contextPath}/admin/board/noticeList/1">
-					        		라이필 이용약관 및 개인정보처리방침 변경 안내
-					        	</a>
-					        </td>
-					        <td>(관리자) hyeonju0121</td>
-					        <td>2024-04-30 15:06</td>
-					        <td>
-					        	<div class="btn_big_wrap">
-									<button type="button" onclick="location.href='${pageContext.request.contextPath}/admin/member/memberUpdate'" class="btn btn-outline-dark">수정</button>
-									<button type="button" onclick="location.href='#'" class="btn btn-outline-dark">삭제</button>
-								</div>
-					        </td>
-					      </tr>
-					      
-					      
+						      </td>
+						    </tr>
+					     </c:forEach>
 					    </tbody>
+					    
+					  <tr>
+					  	<td colspan="9" class="text-center">
+					  		<ul class="pagination justify-content-center">
+								<li class="page-item"><a class="page-link" href="noticeList?pageNo=1">처음</a></li>
+								<c:if test="${pager.groupNo>1}">
+				                     <li class="page-item"><a class="page-link" href="noticeList?pageNo=${pager.startPageNo-1}">이전</a></li>
+				                </c:if>
+				                
+				                <c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
+				                     <c:if test="${pager.pageNo != i}">
+				                        <li class="page-item"><a class="page-link" href="noticeList?pageNo=${i}">${i}</a></li>
+				                     </c:if>
+				                     <!-- 현재 페이지가 i 쪽이면, 강조된 모양 (danger)으로 다르게 표시  -->
+				                     <c:if test="${pager.pageNo == i}">
+				                        <li class="page-item"><a class="page-link" href="noticeList?pageNo=${i}">${i}</a></li>
+				                     </c:if>
+				                </c:forEach>
+				                
+				                <c:if test="${pager.groupNo<pager.totalGroupNo}">
+				                     <li class="page-item"><a class="page-link" href="noticeList?pageNo=${pager.endPageNo+1}">다음</a></li>
+				                  </c:if>
+				                 <li class="page-item"><a class="page-link" href="noticeList?pageNo=${pager.totalPageNo}">맨끝</a></li>
+						    </ul>
+					  	  </td>
+				       </tr>  
 					  </table>
 					</div>
 				</div>
-				
+				<!-- 
 				<ul class="pagination justify-content-center">
-				    <li class="page-item"><a class="page-link" href="javascript:void(0);">Previous</a></li>
+					<li class="page-item"><a class="page-link" href="javascript:void(0);">처음</a></li>
+				    <li class="page-item"><a class="page-link" href="javascript:void(0);">이전</a></li>
 				    <li class="page-item"><a class="page-link" href="javascript:void(0);">1</a></li>
 				    <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
 				    <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
 				    <li class="page-item"><a class="page-link" href="javascript:void(0);">4</a></li>
-				    <li class="page-item"><a class="page-link" href="javascript:void(0);">Next</a></li>
-				  </ul>
-
+				    <li class="page-item"><a class="page-link" href="javascript:void(0);">다음</a></li>
+				  	<li class="page-item"><a class="page-link" href="javascript:void(0);">맨끝</a></li>
+				  </ul> -->
 			</div>
-			
 		</div>
 		
 		<script src="${pageContext.request.contextPath}/resources/js/admin_sidebar.js"></script>

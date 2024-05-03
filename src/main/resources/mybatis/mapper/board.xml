@@ -16,5 +16,25 @@
 			#{bno}, #{btitle}, #{bcontent}, #{btype}, sysdate, #{mid}, 0,
 			#{battachoname}, #{battachtype}, #{battachdata})
 	</insert>
+	
+	<select id="count" resultType="int">
+		select count(*) from board
+	</select>
+	
+	<select id="selectByPage" parameterType="Pager" resultType="Board">
+	 	<![CDATA[
+	 	select rnum, bno, btitle, mid, bcreatedat, bhitcount
+		from (
+		    select rownum as rnum, bno, btitle, mid, bcreatedat, bhitcount
+		    from (
+		        select bno, btitle, bcontent, mid, bcreatedat, bhitcount
+		        from board
+		        order by bno desc
+		    )
+		    where rownum <= #{endRowNo}
+		)
+		where rnum >= #{startRowNo}
+		]]>
+	 </select>
 
 </mapper>

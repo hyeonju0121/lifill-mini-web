@@ -1,12 +1,18 @@
 package com.mycompany.lifill_mini_web.controller.admin;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mycompany.lifill_mini_web.dto.Board;
+import com.mycompany.lifill_mini_web.dto.Pager;
 import com.mycompany.lifill_mini_web.service.AdminBoardService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -21,8 +27,37 @@ public class AdminBoardController {
 
 	// 공지사항 -------------------------------------------
 	@RequestMapping("/board/noticeList")
-	public String noticeList() {
+	public String noticeList(String pageNo, Model model, HttpSession session) {
 		log.info("noticeList() 실행");
+		
+		/*
+		 * 게시글 상세보기에서 목록을 누르면 첫번째 페이지로 이동 -> session에서 페이지 넘버 가져오기
+		 * pageNo를 받지 못했을 경우, 저장되어있는지 확인
+		 */
+		if (pageNo == null) {
+			pageNo = (String) session.getAttribute("pageNo");
+			if (pageNo == null) {
+				// 세션에 저장되어 있지 않을 경우 "1"로 강제 세팅
+				pageNo = "1";
+			}
+		}
+		// 세션에 pageNo 저장
+		session.setAttribute("pageNo", pageNo);
+		// 문자열을 정수로 변환
+		int intPageNo = Integer.parseInt(pageNo);
+		
+		// 페이징 대상이 되는 전체 행의 수 구하기
+		// 만약에, 검색어를 이용해서 전체 행의 수를 구한다면 searchRows 라는 서비스 메소드를 만들어서 진행하기
+		int rows = adminBoardService.getTotalRows();
+		
+		// adminBoardService 에서 게시물 목록 요청
+		Pager pager = new Pager(10, 10, rows, intPageNo);
+		List<Board> noticeList = adminBoardService.getBoardList(pager);
+
+		// jsp 에서 사용할 수 있도록 설정
+		model.addAttribute("pager", pager);
+		model.addAttribute("noticeList", noticeList);
+		
 		return "admin/board/noticeList";
 	}
 
