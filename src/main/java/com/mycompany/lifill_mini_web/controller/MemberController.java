@@ -1,11 +1,19 @@
 package com.mycompany.lifill_mini_web.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mycompany.lifill_mini_web.dto.Inquiry;
+import com.mycompany.lifill_mini_web.dto.Member;
+import com.mycompany.lifill_mini_web.security.LifillUserDetails;
 import com.mycompany.lifill_mini_web.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -118,5 +126,31 @@ public class MemberController {
 		service.applyInquiry(inquiry);
 		
 		return "redirect:/member/myInquiryList";	
+	}
+	
+	@GetMapping("/userInfo")
+	public String userInfo(Authentication authentication) {
+		log.info("실행");
+		//사용자 아이디 얻기
+		String mid = authentication.getName();
+		
+		//사용자 아이디 및 이메일 얻기
+		LifillUserDetails UserDetails = (LifillUserDetails) authentication.getPrincipal();
+		Member member = UserDetails.getMember();
+		String mname = member.getMname();
+		String memail = member.getMemail();
+		  
+		//사용자 권한(롤) 이름 얻기
+		List<String> authorityList = new ArrayList<>();
+		for(GrantedAuthority authority : authentication.getAuthorities()) {
+			authorityList.add(authority.getAuthority());
+		}
+		  
+		log.info("mid : " + mid);
+		log.info("mname : " + mname);
+		log.info("memail : " + memail);
+		log.info("mrole : " + authorityList);
+		      
+		return "redirect:/";
 	}
 }
