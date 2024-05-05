@@ -1,0 +1,526 @@
+@charset "UTF-8";
+
+/* font ------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+body, h1, h2, h3, h4, h5, h6, input, textarea, select {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+
+
+a {
+  text-decoration-line: none;
+  color: black;
+  
+}
+
+
+.category {
+    word-break: keep-all;
+    line-height: 1.2;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    display: block;
+}
+
+.list{
+    word-break: keep-all;
+    line-height: 1.2;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    display: block;
+    position: relative;
+    border-top: 12px solid #f2f2f2;
+    margin-top: 40px;
+    padding-top: 36px;
+    margin-bottom: 120px;
+}
+
+.wrapper{
+	word-break: keep-all;
+    line-height: 1.2;
+    color: #333;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    position: relative;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+
+.items-total{
+    word-break: keep-all;
+    line-height: 1.2;
+    color: #333;
+    font-weight: 700;
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+
+.category2 {
+	word-break: keep-all;
+    line-height: 1.2;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    list-style: none;
+    margin-top: 32px;
+    display: flex;
+}
+
+.category2 li {
+	word-break: keep-all;
+    line-height: 1.2;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    list-style: none;
+    -webkit-box-flex: 1;
+    flex: 1 1 auto;
+    box-sizing: border-box;
+    padding-bottom: 18px;
+    font-weight: 700;
+    text-align: center;
+    font-size: 16px;
+    color: #ff5c35;
+    border-bottom: 3px solid #37cbe9;
+}
+
+.category3 {
+	word-break: keep-all;
+    line-height: 1.2;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    margin-top: 24px;
+}
+
+.category3 ul {
+	word-break: keep-all;
+    line-height: 1.2;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    list-style: none;
+    grid-template-columns: repeat(auto-fit,50%);
+    display: grid;
+}
+
+.category3 ul li {
+	word-break: keep-all;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    list-style: none;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    text-align: center;
+    border: 0.3px solid #d4faff;
+}
+
+.category3 ul li.on{
+    color: #37cbe9;
+    font-weight: 700;
+    background-color: #e5fffc;
+}
+
+.list{
+    word-break: keep-all;
+    line-height: 1.2;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    display: block;
+    position: relative;
+    border-top: 12px solid #f2f2f2;
+    margin-top: 40px;
+    padding-top: 36px;
+    margin-bottom: 120px;
+}
+
+.wrapper {
+    word-break: keep-all;
+    line-height: 1.2;
+    color: #333;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    position: relative;
+    box-sizing: border-box;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 15px;
+}
+
+.wrapper h2 {
+    word-break: keep-all;
+    line-height: 1.2;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    font-weight: 700;
+    position: relative;
+    font-size: 20px;
+    display: inline-block;
+}
+
+#items-total {
+	word-break: keep-all;
+    line-height: 1.2;
+    color: #333;
+    font-weight: 700;
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+.sort-nav{
+    word-break: keep-all;
+    line-height: 1.2;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    float: right;
+}
+
+.product-sort{
+    word-break: keep-all;
+    line-height: 1.2;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    list-style: none;
+    column-gap: 19px;
+    row-gap: 32px;
+    grid-template-columns: 1fr 1fr;
+    -webkit-box-align: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+    display: none;
+}
+
+.product-sort li {
+    word-break: keep-all;
+    line-height: 1.2;
+    color: #333;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    list-style: none;
+    margin-left: 20px;
+}
+
+.on {
+    word-break: keep-all;
+    line-height: 1.2;
+    color: #333;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    list-style: none;
+    margin-left: 20px;
+    font-weight: 700;
+}
+
+#sort {
+    word-break: keep-all;
+    appearance: none;
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    border: none;
+    background: url(/images/store/common/icon-arrow-down-gray-circled@3x.png) no-repeat 62px -2px;
+    background-size: 20px 20px;
+    padding-right: 20px;
+}
+
+
+#items{
+    word-break: keep-all;
+    line-height: 1.2;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    list-style: none;
+    margin-top: 41px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    justify-content: space-around;
+    column-gap: 29px;
+    row-gap: 56px;
+}
+
+.store-product-wrapper {
+    word-break: keep-all;
+    line-height: 1.2;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    list-style: none;
+}
+
+.store-product-wrapper  a {
+    word-break: keep-all;
+    line-height: 1.2;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    text-decoration: none;
+    color: inherit;
+}
+
+.store-product-wrapper  a  figure {
+    word-break: keep-all;
+    line-height: 1.2;
+    list-style: none;
+    color: inherit;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    display: block;
+    position: relative;
+    width: 100%;
+    /* background-color: #f2f2f2; */
+    border-radius: 8px;
+}
+
+figure {
+    word-break: keep-all;
+    line-height: 1.2;
+    list-style: none;
+    color: inherit;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    display: block;
+    position: relative;
+    width: 100%;
+    /* background-color: #f2f2f2; */
+    border-radius: 8px;
+}
+
+.store-product-wrapper  a  figure  img {
+    word-break: keep-all;
+    line-height: 1.2;
+    list-style: none;
+    /* color: inherit; */
+    
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    max-width: 100%;
+    /* height: auto; */
+    width: 253px;
+    height: 253px;
+}
+
+.cart {
+    word-break: keep-all;
+    list-style: none;
+    cursor: pointer;
+    position: absolute;
+    border: none;
+    border-radius: 6px;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,.1);
+    right: 6px;
+    bottom: 6px;
+    padding: 4px;
+}
+
+.store-product-content{
+    word-break: keep-all;
+    line-height: 1.2;
+    list-style: none;
+    color: inherit;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    margin-top: 16px;
+}
+
+.health_functional_food{
+    word-break: keep-all;
+    line-height: 1.2;
+    list-style: none;
+    margin: 0;
+    vertical-align: baseline;
+    box-sizing: border-box;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 700;
+    border: 1px solid #37cbe9;
+    color: #37cbe9;
+   	margin-bottom: 5;
+}
+
+.health_functional_food h3 {
+    word-break: keep-all;
+    line-height: 1.2;
+    list-style: none;
+    color: inherit;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 400;
+    white-space: break-spaces;
+}
+
+.health_functional_food h3 em {
+    word-break: keep-all;
+    line-height: 1.2;
+    list-style: none;
+    color: inherit;
+    white-space: break-spaces;
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    margin-right: 8px;
+    font-weight: 700;
+}
+
+.health_functional_food p {
+    word-break: keep-all;
+    line-height: 1.2;
+    list-style: none;
+    color: inherit;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.health_functional_food p em {
+    word-break: keep-all;
+    line-height: 1.2;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    margin-right: 6px;
+    font-weight: 700;
+    color: #ff5c35;
+}
+
+.health_functional_food p strike {
+    word-break: keep-all;
+    line-height: 1.2;
+    list-style: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: #bbbbbe;
+    display: block;
+    margin-left: 0;
+}
+
+.icon rating{
+    word-break: keep-all;
+    line-height: 1.2;
+    list-style: none;
+    color: inherit;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    vertical-align: top;
+    width: 16px;
+    height: 16px;
+    background-size: 16px 16px;
+    background-image: url(/images/store/list/icon-star-16-yellow.svg);
+}
+
+.hashtag{
+    word-break: keep-all;
+    line-height: 1.2;
+    list-style: none;
+    color: inherit;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 8px;
+    font-size: 12px;
+}

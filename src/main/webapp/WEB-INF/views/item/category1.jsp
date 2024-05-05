@@ -69,7 +69,7 @@ li {
 </style>
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/category1.css">
+	href="${pageContext.request.contextPath}/resources/css/item/category1.css">
 </head>
 
 <body>
