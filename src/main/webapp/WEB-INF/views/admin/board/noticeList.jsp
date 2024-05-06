@@ -70,8 +70,8 @@
 						      <td><fmt:formatDate value="${board.bcreatedat}" pattern="yyyy-MM-dd"/></td>
 						      <td>
 						      	<div class="btn_big_wrap">
-									<button type="button" onclick="location.href='${pageContext.request.contextPath}/admin/member/memberUpdate'" class="btn btn-outline-dark">수정</button>
-									<button type="button" onclick="location.href='#'" class="btn btn-outline-dark">삭제</button>
+									<button type="button" onclick="location.href='${pageContext.request.contextPath}/admin/board/updateNoticeForm?bno=${board.bno}'" class="btn btn-outline-dark">수정</button>
+									<button type="button" onclick="location.href='${pageContext.request.contextPath}/admin/board/deleteNotice?bno=${board.bno}'" class="btn btn-outline-dark">삭제</button>
 								</div>
 						      </td>
 						    </tr>

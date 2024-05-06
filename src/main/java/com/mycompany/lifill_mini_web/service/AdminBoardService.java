@@ -69,4 +69,12 @@ public class AdminBoardService {
 		return board.getBattachdata();
 	}
 
+	public void updateBoard(Board board) {
+		boardDao.update(board);
+	}
+
+	public void removeBoard(int bno) {
+		boardDao.deleteByBno(bno);
+	}
+
 }

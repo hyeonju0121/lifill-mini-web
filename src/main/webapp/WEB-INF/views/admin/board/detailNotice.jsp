@@ -93,10 +93,10 @@
 						</table>
 					    <!-- btn  -->
 					    <div class="btn_big_wrap btn_size_fix mt60">
-							<button type="button" onclick="location.href='#'"
-								 class="white btn_list">수정</button>
 							<button type="button" onclick="location.href='${pageContext.request.contextPath}/admin/board/noticeList'"
-								 class="btn_update">목록</button>
+								 class="white btn_list">목록</button>
+							<button type="button" onclick="location.href='${pageContext.request.contextPath}/admin/board/updateNoticeForm?bno=${board.bno}'"
+								 class="btn_update">수정</button>
 						</div>
 					</div>
 				</div>

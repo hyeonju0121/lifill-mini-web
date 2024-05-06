@@ -46,5 +46,25 @@
    	<select id="selectAttachData" parameterType="int" resultType="Board">
    		 select battachdata from board where bno = #{bno}
    	</select>
+   	
+   	<update id="update" parameterType="Board">
+   		update board set
+   			<!-- 첨부파일이 지정 안된 경우 -->
+   		 	btitle=#{btitle},
+   		 	bcontent=#{bcontent},
+   		 	bupdatedat=sysdate
+   		 <!-- 첨부파일이 지정된 경우 -->
+   		<if test="battachoname != null">
+   			,
+   		 	battachoname=#{battachoname},
+   		 	battachtype=#{battachtype},
+   		 	battachdata=#{battachdata}
+   		</if>
+   		where bno=#{bno}
+   	</update>
+   	
+   	<delete id="deleteByBno" parameterType="int">
+   		delete from board where bno=#{bno}
+   	</delete>
 
 </mapper>

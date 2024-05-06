@@ -1,6 +1,7 @@
 package com.mycompany.lifill_mini_web.controller.admin;
 
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -55,7 +56,7 @@ public class AdminBoardController {
 		// adminBoardService 에서 게시물 목록 요청
 		Pager pager = new Pager(10, 10, rows, intPageNo);
 		List<Board> noticeList = adminBoardService.getBoardList(pager);
-		
+
 		// jsp 에서 사용할 수 있도록 설정
 		model.addAttribute("pager", pager);
 		model.addAttribute("noticeList", noticeList);
@@ -68,10 +69,10 @@ public class AdminBoardController {
 		Board board = adminBoardService.getBoard(bno);
 		
 		model.addAttribute("board", board);
-		
+
 		return "admin/board/detailNotice";
 	}
-	
+
 	@GetMapping("/board/attachDownload")
 	public void attachDownload(int bno, HttpServletResponse response) throws Exception {
 		// 다운로드할 데이터를 준비
@@ -131,6 +132,44 @@ public class AdminBoardController {
 
 		return "redirect:/admin/board/noticeList";
 	}
+
+	@GetMapping("/board/updateNoticeForm")
+	public String updateNoticeForm(int bno, Model model) {
+		Board board = adminBoardService.getBoard(bno);
+
+		model.addAttribute("board", board);
+
+		return "admin/board/updateNoticeForm";
+	}
+
+	@PostMapping("/board/updateNotice")
+	public String updateNotice(Board board) {
+		log.info("실행");
+		// (첨부 파일이 있는지 여부 조사)첨부파일이 넘어오지 않을 경우 상황도 생각해줘야 함
+		// 첨부파일이 존재하는 경우
+		if (board.getBattach() != null && !board.getBattach().isEmpty()) {
+			// DTO 추가 설정
+			board.setBattachoname(board.getBattach().getOriginalFilename());
+			board.setBattachtype(board.getBattach().getContentType());
+			try {
+				// 비즈니스 로직 측에서 발생하는 예외는 없기 때문에, try-catch로 예외처리 함
+				board.setBattachdata(board.getBattach().getBytes());
+			} catch (Exception e) {
+			}
+		}
+
+		// 비즈니스 로직 처리를 서비스로 위임
+		adminBoardService.updateBoard(board);
+
+		return "redirect:/admin/board/detailNotice?bno=" + board.getBno();
+	}
+	
+	@GetMapping("/board/deleteNotice")
+	public String deleteBoard(int bno) {
+		adminBoardService.removeBoard(bno);
+		return "redirect:/admin/board/noticeList";
+	}
+	
 
 	// 자주묻는질문 -------------------------------------------
 	@RequestMapping("/board/faqList")
