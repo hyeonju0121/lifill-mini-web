@@ -53,7 +53,7 @@ public class AdminBoardController {
 		// adminBoardService 에서 게시물 목록 요청
 		Pager pager = new Pager(10, 10, rows, intPageNo);
 		List<Board> noticeList = adminBoardService.getBoardList(pager);
-
+		
 		// jsp 에서 사용할 수 있도록 설정
 		model.addAttribute("pager", pager);
 		model.addAttribute("noticeList", noticeList);

@@ -35,7 +35,7 @@
 				<div class="item-section mt-2 mb-2" style="font-size: 12px">
 				 게시판 관리 > 공지사항 관리
 				</div>
-			
+				
 				<div class="headingArea">
 					<div class="title">
 						<h1 id="itemTitle">공지사항 조회</h1>

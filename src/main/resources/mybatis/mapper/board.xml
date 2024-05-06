@@ -23,11 +23,11 @@
 	
 	<select id="selectByPage" parameterType="Pager" resultType="Board">
 	 	<![CDATA[
-	 	select rnum, bno, btitle, mid, bcreatedat, bhitcount
+	 	select rnum, bno, btitle, btype, mid, bcreatedat, bhitcount
 		from (
-		    select rownum as rnum, bno, btitle, mid, bcreatedat, bhitcount
+		    select rownum as rnum, bno, btitle, btype, mid, bcreatedat, bhitcount
 		    from (
-		        select bno, btitle, bcontent, mid, bcreatedat, bhitcount
+		        select bno, btitle, btype, bcontent, mid, bcreatedat, bhitcount
 		        from board
 		        order by bno desc
 		    )

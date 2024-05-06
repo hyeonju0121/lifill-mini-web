@@ -27,7 +27,23 @@ public class AdminBoardService {
 	}
 
 	public List<Board> getBoardList(Pager pager) {
-		return boardDao.selectByPage(pager);
+		
+		List<Board> board = boardDao.selectByPage(pager);
+		
+		for (Board temp: board) {
+			String typeTemp = temp.getBtype();
+			System.out.println("typeTemp: " + typeTemp);
+			
+			switch(typeTemp) {
+				case "general" : temp.setBtype("일반"); break;
+				case "product" : temp.setBtype("상품"); break;
+				case "delivery": temp.setBtype("배송"); break;
+				default: 
+					throw new RuntimeException("공지사항 타입 설정이 잘못 되었습니다.");
+			}
+		}
+		
+		return board;
 	}
 
 	public int getTotalRows() {
