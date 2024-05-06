@@ -12,5 +12,7 @@ public interface BoardDao {
 	public int insert(Board board);
 	public int count();
 	public List<Board> selectByPage(Pager pager);
+	public Board selectByBno(int bno);
+	public Board selectAttachData(int bno);
 
 }

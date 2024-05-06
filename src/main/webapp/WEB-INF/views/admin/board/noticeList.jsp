@@ -65,7 +65,7 @@
 					     	<tr>
 						      <td>${board.bno}</td>
 						      <td>${board.btype}</td>
-						      <td><a href="${pageContext.request.contextPath}/admin/board/noticeList?bno=${board.bno}">${board.btitle}</a></td>
+						      <td><a href="${pageContext.request.contextPath}/admin/board/detailNotice?bno=${board.bno}">${board.btitle}</a></td>
 						      <td>${board.mid}</td>
 						      <td><fmt:formatDate value="${board.bcreatedat}" pattern="yyyy-MM-dd"/></td>
 						      <td>

@@ -1,7 +1,9 @@
 package com.mycompany.lifill_mini_web.controller.admin;
 
+import java.io.OutputStream;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,12 +64,31 @@ public class AdminBoardController {
 	}
 
 	@GetMapping("/board/detailNotice")
-	public String detailNotice() {
-		/*Board board = adminBoardService.getBoard(bno);
+	public String detailNotice(int bno, Model model) {
+		Board board = adminBoardService.getBoard(bno);
 		
-		model.addAttribute("board", "board");*/
+		model.addAttribute("board", board);
 		
 		return "admin/board/detailNotice";
+	}
+	
+	@GetMapping("/board/attachDownload")
+	public void attachDownload(int bno, HttpServletResponse response) throws Exception {
+		// 다운로드할 데이터를 준비
+		Board board = adminBoardService.getBoard(bno);
+		byte[] data = adminBoardService.getAttachData(bno);
+
+		// 응답 헤더 구성
+		response.setContentType(board.getBattachtype());
+		// 한글 파일의 이름 -> 인코딩 변경
+		String fileName = new String(board.getBattachoname().getBytes("UTF-8"), "ISO-8859-1");
+		response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
+		// 응답 본문에 파일 데이터 출력
+		OutputStream os = response.getOutputStream();
+		os.write(data);
+		os.write(data);
+		os.flush();
+		os.close();
 	}
 
 	@GetMapping("/board/writeNoticeForm")

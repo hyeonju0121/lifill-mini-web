@@ -51,13 +51,13 @@
 						    </colgroup>
 						    <thead>
 						      <tr>
-						         <th><span>[안내]</span> 라이필 사이트 점검으로 인한 서비스 일시중지 (3/23 토)</th>
-						         <th>2024-03-21</th>
+						         <th><span>[${board.btype}]</span> ${board.btitle}</th>
+						         <th>${board.bcreatedat}</th>
 						      </tr>
 						      <tr>
 						         <th>
 						         	<div class="th-sub">
-						         		<span>작성자:</span>hyeonju0121 (ADMIN)
+						         		<span>작성자:</span>${board.mid} (ADMIN)
 						         	</div>
 						         </th>
 						         <th></th>
@@ -66,7 +66,16 @@
 						    <tbody>
 						      <tr>
 						         <td colspan="2">
-						            <p><span>안녕하세요.&nbsp;</span></p>
+						         	<p>내용: ${board.bcontent}</p>
+						         	
+						         	<c:if test="${board.battachoname != null}">
+							      		<div class="mb-2">
+								      		<p>첨부파일: <a href="attachDownload?bno=${board.bno}">${board.battachoname}</a></p>
+								      		<img src="attachDownload?bno=${board.bno}" width="300"/>
+							      		</div>
+						      		</c:if>
+						         
+						            <!-- <p><span>안녕하세요.&nbsp;</span></p>
 						            <p><span>라이필을 이용해주시는 고객님께 깊이 감사드립니다.&nbsp;&nbsp;</span></p>
 						            <p><span>&nbsp;</span></p>
 						            <p><span>라이필의 안정적인 서비스를 제공하기 위하여 시스템 점검을 진행합니다.</span></p>
@@ -77,7 +86,7 @@
 						            <p><span>&nbsp;</span></p>
 						            <p><span>점검 시간에는 사이트 접속이 중단되오니, W컨셉을 이용하는 고객님의 많은 양해를 부탁 드립니다.</span></p>
 						            <p><span>&nbsp;</span></p>
-						            <p><span>감사합니다.</span></p>
+						            <p><span>감사합니다.</span></p> -->
 						         </td>
 						      </tr>
 						    </tbody>
