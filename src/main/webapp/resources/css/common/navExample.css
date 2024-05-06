@@ -1,0 +1,110 @@
+@charset "UTF-8";
+
+
+.icon-img {
+	height: 25px;
+}
+
+
+
+/* reset */
+
+html, body {
+	height: 100%;
+}
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+ul{
+	list-style: none;
+}
+
+body{
+	font-size: 1rem;
+	line-height: 1.6;
+	color: #666;
+	font-family: 'Roboto Condensed', sans-serif;
+}
+
+/* Nav Styles */
+
+header{
+	background-color: #2c3e50;
+	padding: 0.25rem 0;
+}
+
+nav{
+	max-width: 1000px;
+	margin: 13px;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+.logo{
+	font-size: 1.5rem;
+	color: #fff;
+	font-weight: 700;
+}
+
+.menu > li, .menu > a {
+	display: inline-block;
+}
+
+.menu li {
+	position: relative;
+}
+
+.menu a {
+	text-decoration: none;
+	color: #fff;
+	display: block;
+	padding: 10px 1.5rem;
+}
+
+.menu a:hover {
+	background-color: #f34949;
+	color: #fff;
+}
+
+/* Submenu level1 style */
+
+
+.submenu {
+	position: absolute;
+	background-color: #2c3e50;
+	width: 140px;
+	left: 0;
+	display: none;
+	margin:0;
+	padding:0;
+}
+
+/* Submenu lavel2 style */
+
+.submenu2 {
+	position: absolute;
+	left: 100%;
+	width: 140px;
+	top: 0;
+	background-color: #2c3e50;
+	display: none;
+	margin:0;
+	padding:0;
+	
+}
+
+/* Show menu on hover */
+
+.menu li:hover > .submenu {
+	display: block;
+}
+
+.submenu li:hover > .submenu2 {
+	display: block;
+}
+
