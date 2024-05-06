@@ -29,10 +29,10 @@ public class AdminBoardController {
 	@RequestMapping("/board/noticeList")
 	public String noticeList(String pageNo, Model model, HttpSession session) {
 		log.info("noticeList() 실행");
-		
+
 		/*
-		 * 게시글 상세보기에서 목록을 누르면 첫번째 페이지로 이동 -> session에서 페이지 넘버 가져오기
-		 * pageNo를 받지 못했을 경우, 저장되어있는지 확인
+		 * 게시글 상세보기에서 목록을 누르면 첫번째 페이지로 이동 -> session에서 페이지 넘버 가져오기 pageNo를 받지 못했을 경우,
+		 * 저장되어있는지 확인
 		 */
 		if (pageNo == null) {
 			pageNo = (String) session.getAttribute("pageNo");
@@ -45,11 +45,11 @@ public class AdminBoardController {
 		session.setAttribute("pageNo", pageNo);
 		// 문자열을 정수로 변환
 		int intPageNo = Integer.parseInt(pageNo);
-		
+
 		// 페이징 대상이 되는 전체 행의 수 구하기
 		// 만약에, 검색어를 이용해서 전체 행의 수를 구한다면 searchRows 라는 서비스 메소드를 만들어서 진행하기
 		int rows = adminBoardService.getTotalRows();
-		
+
 		// adminBoardService 에서 게시물 목록 요청
 		Pager pager = new Pager(10, 10, rows, intPageNo);
 		List<Board> noticeList = adminBoardService.getBoardList(pager);
@@ -57,8 +57,17 @@ public class AdminBoardController {
 		// jsp 에서 사용할 수 있도록 설정
 		model.addAttribute("pager", pager);
 		model.addAttribute("noticeList", noticeList);
-		
+
 		return "admin/board/noticeList";
+	}
+
+	@GetMapping("/board/detailNotice")
+	public String detailNotice() {
+		/*Board board = adminBoardService.getBoard(bno);
+		
+		model.addAttribute("board", "board");*/
+		
+		return "admin/board/detailNotice";
 	}
 
 	@GetMapping("/board/writeNoticeForm")
@@ -73,8 +82,10 @@ public class AdminBoardController {
 
 		// 요청 데이터의 유효성 검사
 		// 파일 원래 이름과 type 로그 출력 --------------------------
-		/*log.info("original filename: " + board.getBattach().getOriginalFilename());
-		log.info("filetype: " + board.getBattach().getContentType());*/
+		/*
+		 * log.info("original filename: " + board.getBattach().getOriginalFilename());
+		 * log.info("filetype: " + board.getBattach().getContentType());
+		 */
 
 		// (첨부 파일이 있는지 여부 조사)첨부파일이 넘어오지 않을 경우 상황도 생각해줘야 함
 		// 첨부파일이 존재하는 경우
@@ -82,7 +93,7 @@ public class AdminBoardController {
 			// DTO 추가 설정
 			board.setBattachoname(board.getBattach().getOriginalFilename());
 			board.setBattachtype(board.getBattach().getContentType());
-			
+
 			try {
 				// 비즈니스 로직 측에서 발생하는 예외는 없기 때문에, try-catch로 예외처리 함
 				log.info("board.attachdata: ", board.getBattach().getBytes());
