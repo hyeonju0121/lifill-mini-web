@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -19,7 +21,26 @@
 		
 		<!-- 사용자 정의 자바스크립트 -->
 		<script>
+			function adjustPagerPosition() {
+			    // 열린 아코디언의 높이를 계산
+			    var accordionHeight = $('.accordion.show').outerHeight();
+			    // 현재 pager의 위치
+			    var currentPagerTop = $('.pager').offset().top;
+			    // 아코디언이 열렸을 때 pager가 원래 위치해 있던 곳보다 height 값만큼 아래로 내려가게 함
+			    $('.pager').css('top', currentPagerTop + accordionHeight);
+			}
 			
+	        $(document).ready(function() {
+	            // 아코디언이 열렸을 때 발생하는 이벤트
+	            $('.accordion-button').on('click', function() {
+	                // 아코디언이 완전히 확장된 후에 발생하는 이벤트
+	                $(this).closest('.accordion').one('shown.bs.collapse', function() {
+	                    // pager 위치 조정 함수 호출
+	                    adjustPagerPosition();
+	                });
+	            });
+	        });
+
 		</script>
 		
 	</head>
@@ -71,81 +92,78 @@
 					<div class="tit_area line_thick">
 						<h2 class="tit_lv2">공지사항</h2>
 					</div>
-					
-					<div class="done_wrap type4">
-						<div class="notice">
-							<div class="tab_cont_box">
-								<div class="tab_cont" data-id="tab-01">
-									<div class="tab_cont_inner faq_accordion">
-										<div class="divi_line cs_notice_board">
-											<div class="accordion accordion-flush" id="notice_List">
-												<div class="acc_header active" name="notice">
-													<button class="accordion-button collapsed" 
-															type="button" 
-															data-bs-toggle="collapse" 
-															data-bs-target="#flush-collapse2" 
-															aria-expanded="false" 
-															aria-controls="flush-collapse2">
-														<span class="prd_num">2</span>
-														<ul class="badge_auto_list">
-															<li>NEWS</li>
-														</ul>
-														<div class="prd_subtit">[공지] 라이필 정기구독 서비스 안내</div>              
-														<span class="prd_date">2024.04.20</span>
-													</button>
+					<table>
+						<div class="done_wrap type4">
+								<div class="notice">
+									<div class="tab_cont_box">
+										<div class="tab_cont" data-id="tab-01">
+											<div class="tab_cont_inner faq_accordion">
+												<div class="divi_line cs_notice_board">
+													<div class="accordion accordion-flush" id="notice_List">
+														<c:forEach var="board" items="${noticeList}">
+															<div class="acc_header" name="notice">
+																<button class="accordion-button collapsed" 
+																			type="button" 
+																			data-bs-toggle="collapse" 
+																			data-bs-target="#flush-collapse${board.bno}" 
+																			aria-expanded="false" 
+																			aria-controls="flush-collapse${board.bno}">
+																	<span class="prd_num">${board.bno}</span>
+																	<ul class="badge_auto_list">
+																		<li>${board.bsubcategory}</li>
+																	</ul>
+																	<div class="prd_subtit">${board.btitle}</div>              
+																	<span class="prd_date"><fmt:formatDate value="${board.bcreatedat}" pattern="yyyy-MM-dd"/></span>
+																</button>
+															</div>
+															
+															<div id="flush-collapse${board.bno}" class="accordion-collapse collapse" data-bs-parent="#notice_List">
+														      <div class="accordion-body">
+																<div class="acc_cont cart_list order">
+																	${board.bcontent}
+																</div>
+														      </div>
+														    </div>
+														</c:forEach>
+														<!-- 더보기 버튼 -->
+														<!-- <div class="more_wrap" style="">
+															<div class="btn_sub_l white">
+																<button type="button" onclick="morePage()">더 보기</button>
+															</div>
+														</div> -->
 												</div>
-												
-												<div id="flush-collapse2" class="accordion-collapse collapse" data-bs-parent="#notice_List">
-											      <div class="accordion-body">
-													<div class="acc_cont cart_list order">
-														<p><span>안녕하세요. 라이필입니다.<br></span></p>
-														<p><span>4월 24일부터 라이필의 영양제 정기구독 서비스를 이용하실 수 있습니다.</span></p>
-														<p><span>정기 구독 여부는 상품의 해시태그로 확인 가능합니다.</span></p>
-														<p><span>많은 관심 부탁드립니다.</span></p>
-														<p><span>감사합니다.</span></p>
-													</div>
-											      </div>
-											    </div>
-												
-												<div class="acc_header" name="notice">
-													<button class="accordion-button collapsed" 
-																type="button" 
-																data-bs-toggle="collapse" 
-																data-bs-target="#flush-collapse1" 
-																aria-expanded="false" 
-																aria-controls="flush-collapse1">
-														<span class="prd_num">1</span>
-														<ul class="badge_auto_list">
-															<li>NEWS</li>
-														</ul>
-														<div class="prd_subtit">[공지] 라이필 서비스 시작 안내</div>              
-														<span class="prd_date">2024.04.19</span>
-													</button>
-												</div>
-												
-												<div id="flush-collapse1" class="accordion-collapse collapse" data-bs-parent="#notice_List">
-											      <div class="accordion-body">
-													<div class="acc_cont cart_list order">
-														<p><span>안녕하세요. 라이필입니다.<br></span></p>
-														<p><span>4월 22일 라이필의 영양제 판매 서비스가 시작됩니다.</span></p>
-														<p><span>많은 관심 부탁드립니다.</span></p>
-														<p><span>감사합니다.</span></p>
-													</div>
-											      </div>
-											    </div>
-												<!-- 더보기 버튼 -->
-												<!-- <div class="more_wrap" style="">
-													<div class="btn_sub_l white">
-														<button type="button" onclick="morePage()">더 보기</button>
-													</div>
-												</div> -->
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
+					    
+					    <tr>
+				            <td colspan="4" class="text-center">
+				               <div class="pager">
+				                  <a class="btn btn-sm first-page" href="notice?pageNo=1">처음</a>
+				                  <c:if test="${pager.groupNo>1}">
+				                     <a class="btn btn-sm prev-group" href="notice?pageNo=${pager.startPageNo-1}">이전</a>
+				                  </c:if>
+				                  
+				                  <c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
+				                     <c:if test="${pager.pageNo != i}">
+				                        <a class="btn btn-sm current-group-pages" href="notice?pageNo=${i}">${i}</a>
+				                     </c:if>
+				                     <c:if test="${pager.pageNo == i}">
+				                        <a class="btn btn-sm current-page" href="notice?pageNo=${i}">${i}</a>
+				                     </c:if>
+				                  </c:forEach>
+				                  
+				                  <c:if test="${pager.groupNo<pager.totalGroupNo}">
+				                     <a class="btn btn-sm next-group" href="notice?pageNo=${pager.endPageNo+1}">다음</a>
+				                  </c:if>
+				                  <a class="btn btn-sm last-page" href="notice?pageNo=${pager.totalPageNo}">맨끝</a>
+				               </div>
+				            </td>
+					     </tr>
+					</table>
 			</div>
 		</div>
 		</div>

@@ -23,12 +23,12 @@ public class AdminBoardService {
 		board.setBtype("notice");
 
 		log.info("board: " + board);
-		int rowNum = boardDao.insert(board);
+		int rowNum = boardDao.binsert(board);
 		log.info("rowNum: " + rowNum + ", bno: " + board.getBno());
 	}
 
 	public List<Board> getBoardList(Pager pager) {
-		List<Board> board = boardDao.selectByPage(pager);
+		List<Board> board = boardDao.bselectByPage(pager);
 		
 		for (Board temp: board) {
 			temp = boardBtypeValidation(temp);
@@ -37,12 +37,12 @@ public class AdminBoardService {
 	}
 
 	public int getTotalRows() {
-		return boardDao.count();
+		return boardDao.bcount();
 	}
 
 	// 게시물 상세조회 
 	public Board getBoard(int bno) {
-		Board board = boardDao.selectByBno(bno);
+		Board board = boardDao.bselectByBno(bno);
 		
 		 board = boardBtypeValidation(board);
 		
@@ -65,16 +65,16 @@ public class AdminBoardService {
 	}
 
 	public byte[] getAttachData(int bno) {
-		Board board = boardDao.selectAttachData(bno);
+		Board board = boardDao.bselectByAttachData(bno);
 		return board.getBattachdata();
 	}
 
 	public void updateBoard(Board board) {
-		boardDao.update(board);
+		boardDao.bupdate(board);
 	}
 
 	public void removeBoard(int bno) {
-		boardDao.deleteByBno(bno);
+		boardDao.bdeleteByBno(bno);
 	}
 
 }

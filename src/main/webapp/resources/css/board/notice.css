@@ -119,6 +119,7 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select {
     margin-left: 60px;
     padding: 0;
     min-width: 920px;
+    position: relative;
 }
 
 .tit_area {
@@ -229,13 +230,30 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select {
     flex-shrink: 0;
 }
 
-.badge_auto_list li {
+.badge_auto_list span {
     box-sizing: border-box;
     list-style: none;
     margin: 0 -1px -1px 0;
     border: 1px solid #B1B1B1;
     text-transform: uppercase;
     font-size: 12px;
+    padding: 0px;
+    letter-spacing: 0;
+    width: 60px;
+    height: 22px;
+    line-height: 20px;
+    font-weight: 500;
+    border-color: #CCCCCC;
+    color: #999999;
+}
+
+.badge_auto_list li {
+    box-sizing: border-box;
+    list-style: none;
+    margin: 0 -1px -1px 0;
+    border: 1px solid #B1B1B1;
+    text-transform: uppercase;
+    font-size: 10px;
     padding: 0px;
     letter-spacing: 0;
     width: 60px;
@@ -285,6 +303,7 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select {
     margin-bottom: 20px;
     font-size: 14px;
     text-align: left;
+    white-space: pre-line;
 }
 
 .acc_header.active .acc_cont {
@@ -313,4 +332,20 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select {
 	box-sizing: inherit; 
 	padding: 0px; 
 	margin: 0px;
+}
+
+.pager {
+	position: absolute; /* 절대 위치 지정 */
+	left: 50%; /* 부모 요소의 가로 중앙으로 이동 */
+	transform: translateX(-50%); /* 가로 중앙으로 정렬 */
+	margin-top: 20px;
+}
+
+.pager a {
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.current-page {
+	color: #37cbe9;
 }
