@@ -5,29 +5,27 @@
 
 <mapper namespace="com.mycompany.lifill_mini_web.dao.BoardDao"> 
 
-	<insert id="insert" parameterType="Board">
+	<insert id="binsert" parameterType="Board">
 		<selectKey keyProperty="bno" order="BEFORE" resultType="int">
 			select seq_bno.nextval from dual
 		</selectKey>
 		insert into board(
-			bno, btitle, bcontent, btype, bsubcategory, bcreatedat, mid, bhitcount,
-			battachoname, battachtype, battachdata)
+			bno, btitle, bcontent, btype, bcreatedat, mid, bhitcount)
 		values(
-			#{bno}, #{btitle}, #{bcontent}, #{btype}, #{bsubcategory}, sysdate, #{mid}, 0,
-			#{battachoname}, #{battachtype}, #{battachdata})
+			#{bno}, #{btitle}, #{bcontent}, #{btype}, sysdate, #{mid}, 0)
 	</insert>
 	
-	<select id="count" resultType="int">
+	<select id="bcount" resultType="int">
 		select count(*) from board
 	</select>
 	
-	<select id="selectByPage" parameterType="Pager" resultType="Board">
-	 	<![CDATA[
-	 	select rnum, bno, btitle, bsubcategory, mid, bcreatedat, bhitcount
+	<select id="bselectByPage" parameterType="Pager" resultType="Board"> <!-- ![CDATA]~~] : 문자 그대로 받아들여라 (해석하지 마라)  C:문자(char)-->
+		<![CDATA[
+		select rnum, bno, btitle, bcontent, bcreatedat, bhitcount, bsubcategory
 		from (
-		    select rownum as rnum, bno, btitle, btype, bsubcategory, mid, bcreatedat, bhitcount
+		    select rownum as rnum, bno, btitle, bcontent, mid, bcreatedat, bhitcount, bsubcategory
 		    from (
-		        select bno, btitle, btype, bsubcategory, bcontent, mid, bcreatedat, bhitcount
+		        select bno, btitle, bcontent, mid, bcreatedat, bhitcount, bsubcategory
 		        from board
 		        order by bno desc
 		    )
@@ -35,36 +33,17 @@
 		)
 		where rnum >= #{startRowNo}
 		]]>
-	 </select>
-	 
-	 <select id="selectByBno" parameterType="int" resultType="Board">
-	     select bno, btitle, bcontent, bsubcategory, mid, bcreatedat, bhitcount, battachoname, battachtype
-	     from board
-	     where bno = #{bno}
-   	</select>
-   	
-   	<select id="selectAttachData" parameterType="int" resultType="Board">
-   		 select battachdata from board where bno = #{bno}
-   	</select>
-   	
-   	<update id="update" parameterType="Board">
-   		update board set
-   			<!-- 첨부파일이 지정 안된 경우 -->
-   		 	btitle=#{btitle},
-   		 	bcontent=#{bcontent},
-   		 	bupdatedat=sysdate
-   		 <!-- 첨부파일이 지정된 경우 -->
-   		<if test="battachoname != null">
-   			,
-   		 	battachoname=#{battachoname},
-   		 	battachtype=#{battachtype},
-   		 	battachdata=#{battachdata}
-   		</if>
-   		where bno=#{bno}
-   	</update>
-   	
-   	<delete id="deleteByBno" parameterType="int">
-   		delete from board where bno=#{bno}
-   	</delete>
-
+	</select>
+	
+	<select id="bselectByBno" parameterType="int" resultType="Board">
+		select bno, btitle, bcontent, mid, bcreatedat, bhitcount, battachoname, battachtype
+		from board
+		where bno = #{bno}
+	</select>
+	
+	<select id="bselectByAttachData" parameterType="int" resultType="Board">
+		select battachdata
+		from board
+		where bno=#{bno}
+	</select>
 </mapper>
