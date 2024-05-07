@@ -8,4 +8,5 @@ import com.mycompany.lifill_mini_web.dto.Member;
 public interface MemberDao {
 
 	public Member selectByMid(String mid);
+	public int insert(Member member);
 }

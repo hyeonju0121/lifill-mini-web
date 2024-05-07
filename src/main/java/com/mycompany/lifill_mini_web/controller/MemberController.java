@@ -44,6 +44,12 @@ public class MemberController {
 		return "member/sign_up";
 	}
 	
+	@RequestMapping("/join")
+	public String join(Member member) {
+		service.join(member);
+		return "redirect:/member/sign_in";
+	}
+	
 	@RequestMapping("/cart")
 	public String cart() {
 		log.info("cart() 실행");
