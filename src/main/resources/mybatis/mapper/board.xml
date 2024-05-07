@@ -10,10 +10,10 @@
 			select seq_bno.nextval from dual
 		</selectKey>
 		insert into board(
-			bno, btitle, bcontent, btype, bcreatedat, mid, bhitcount,
+			bno, btitle, bcontent, btype, bsubcategory, bcreatedat, mid, bhitcount,
 			battachoname, battachtype, battachdata)
 		values(
-			#{bno}, #{btitle}, #{bcontent}, #{btype}, sysdate, #{mid}, 0,
+			#{bno}, #{btitle}, #{bcontent}, #{btype}, #{bsubcategory}, sysdate, #{mid}, 0,
 			#{battachoname}, #{battachtype}, #{battachdata})
 	</insert>
 	
@@ -23,11 +23,11 @@
 	
 	<select id="selectByPage" parameterType="Pager" resultType="Board">
 	 	<![CDATA[
-	 	select rnum, bno, btitle, btype, mid, bcreatedat, bhitcount
+	 	select rnum, bno, btitle, bsubcategory, mid, bcreatedat, bhitcount
 		from (
-		    select rownum as rnum, bno, btitle, btype, mid, bcreatedat, bhitcount
+		    select rownum as rnum, bno, btitle, btype, bsubcategory, mid, bcreatedat, bhitcount
 		    from (
-		        select bno, btitle, btype, bcontent, mid, bcreatedat, bhitcount
+		        select bno, btitle, btype, bsubcategory, bcontent, mid, bcreatedat, bhitcount
 		        from board
 		        order by bno desc
 		    )
@@ -38,7 +38,7 @@
 	 </select>
 	 
 	 <select id="selectByBno" parameterType="int" resultType="Board">
-	     select bno, btitle, bcontent, btype, mid, bcreatedat, bhitcount, battachoname, battachtype
+	     select bno, btitle, bcontent, bsubcategory, mid, bcreatedat, bhitcount, battachoname, battachtype
 	     from board
 	     where bno = #{bno}
    	</select>

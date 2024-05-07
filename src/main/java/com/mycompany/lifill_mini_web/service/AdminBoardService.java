@@ -20,6 +20,7 @@ public class AdminBoardService {
 
 	// 공지사항 작성
 	public void writeNotice(Board board) {
+		board.setBtype("notice");
 
 		log.info("board: " + board);
 		int rowNum = boardDao.insert(board);
@@ -30,7 +31,6 @@ public class AdminBoardService {
 		List<Board> board = boardDao.selectByPage(pager);
 		
 		for (Board temp: board) {
-			String typeTemp = temp.getBtype();
 			temp = boardBtypeValidation(temp);
 		}
 		return board;
@@ -53,12 +53,12 @@ public class AdminBoardService {
 	 * board btype 타입 변환 메소드 
 	 */
 	public Board boardBtypeValidation(Board board) {
-		String btypeTemp = board.getBtype();
+		String bSubCategoryTemp = board.getBsubcategory();
 		
-		switch(btypeTemp) {
-			case "general": board.setBtype("일반"); return board;
-			case "product": board.setBtype("상품"); return board;
-			case "delivery": board.setBtype("배송"); return board;
+		switch(bSubCategoryTemp) {
+			case "general": board.setBsubcategory("일반"); return board;
+			case "product": board.setBsubcategory("상품"); return board;
+			case "delivery": board.setBsubcategory("배송"); return board;
 			default: 
 				throw new RuntimeException("공지사항 타입 설정이 잘못 되었습니다.");
 		}

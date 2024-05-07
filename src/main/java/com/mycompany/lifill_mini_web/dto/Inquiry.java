@@ -14,9 +14,9 @@ public class Inquiry {
 	private String inqcontent;
 	private String inqtype;
 	
-	private byte[] inqattach;
-	private String inqattachoname;
-	private String inqattachtype;
+	private String inqattachoname; // 파일 원래 이름
+	private String inqattachtype;  // 파일 종류
+	private byte[] inqattachdata;
 	
 	private Date inqcreatedat;
 	private Date inqupdatedat;

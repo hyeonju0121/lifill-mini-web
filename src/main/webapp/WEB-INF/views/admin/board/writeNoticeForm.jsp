@@ -48,7 +48,7 @@
 							<p class="form_label required">분류 </p>
 						</div>
 						<div class="td">	
-							<select name="btype" id="btype">
+							<select name="bsubcategory" id="bsubcategory">
 								<option value="general" selected>일반</option>
 								<option value="product">상품</option>
 								<option value="delivery">배송</option>

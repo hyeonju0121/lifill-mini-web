@@ -49,14 +49,15 @@
 					action="updateNotice" enctype="multipart/form-data">
 					<div class="tr">
 						<input type="hidden" id="bno" name="bno" value="${board.bno}">
+						<input type="hidden" id="btype" name="btype" value="${board.btype}">
 						<div class="th">
 							<p class="form_label required">분류 </p>
 						</div>
 						<div class="td">	
-							<select name="btype" id="btype">
-								<option value="general" <c:if test="${board.btype eq '일반'}">selected</c:if>>일반</option>
-								<option value="product" <c:if test="${board.btype eq '상품'}">selected</c:if>>상품</option>
-								<option value="delivery" <c:if test="${board.btype eq '배송'}">selected</c:if>>배송</option>
+							<select name="bsubcategory" id="bsubcategory">
+								<option value="general" <c:if test="${board.bsubcategory eq '일반'}">selected</c:if>>일반</option>
+								<option value="product" <c:if test="${board.bsubcategory eq '상품'}">selected</c:if>>상품</option>
+								<option value="delivery" <c:if test="${board.bsubcategory eq '배송'}">selected</c:if>>배송</option>
 							</select>	
 						</div>
 					</div>

@@ -51,7 +51,7 @@
 						    </colgroup>
 						    <thead>
 						      <tr>
-						         <th><span>[${board.btype}]</span> ${board.btitle}</th>
+						         <th><span>[${board.bsubcategory}]</span> ${board.btitle}</th>
 						         <th>${board.bcreatedat}</th>
 						      </tr>
 						      <tr>

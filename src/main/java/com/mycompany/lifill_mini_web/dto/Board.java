@@ -22,6 +22,7 @@ public class Board {
 	private MultipartFile battach;
 	
 	private String btype; // 게시물 유형 - 공지사항, 자주묻는질문
+	private String bsubcategory; // 게시글 서브 카테고리 - 공지사항, 자주묻는질문
 	private int bhitcount;
 	
 	private Date bcreatedat;
