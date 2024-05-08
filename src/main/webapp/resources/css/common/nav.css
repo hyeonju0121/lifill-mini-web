@@ -1,6 +1,136 @@
 @charset "UTF-8";
 
-/* image size ------------------------------ */
+
 .icon-img {
 	height: 25px;
 }
+
+.navbar{
+	padding: 0;
+}
+
+.navbar-collapse {
+    flex-basis: 100%;
+    flex-grow: 1;
+    align-items: center;
+}
+
+.navbar-expand-sm .navbar-collapse {
+    display: flex !important;
+    flex-basis: auto;
+}
+
+.navbar>.container, .navbar>.container-fluid {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: inherit;
+}
+
+/* reset */
+
+html, body {
+	height: 100%;
+}
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+ul{
+	margin: 0;
+  	padding: 0;
+	list-style: none;
+	z-index: 999;
+}
+
+
+/* Nav Styles */
+
+header{
+	background-color: #fff;
+}
+
+nav{
+	margin: 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+.logo{
+	font-size: 1.5rem;
+	color: #000;
+	font-weight: 700;
+}
+
+.menu > li, .menu > a {
+	display: inline-block;
+}
+
+.menu li {
+	position: relative;
+}
+
+.menu a {
+	text-decoration: none;
+	color: #000;
+	display: block;
+	padding: 10px 1.5rem;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 500;
+}
+
+.menu a:hover {
+	background-color: #f4f4f4;
+}
+
+/* Submenu level1 style */
+
+
+.submenu {
+	position: absolute;
+	background-color: #fff;
+	width: 140px;
+	left: 0;
+	display: none;
+	margin:0;
+	padding:0;
+}
+
+/* Submenu lavel2 style */
+
+.submenu2 {
+	position: absolute;
+	left: 100%;
+	width: 140px;
+	top: 0;
+	background-color: #fff;
+	display: none;
+	margin:0;
+	padding:0;
+	
+}
+
+/* Show menu on hover */
+
+.menu li:hover > .submenu {
+	display: block;
+}
+
+.submenu li:hover > .submenu2 {
+	display: block;
+}
+
+.submenu2 > li > a {
+	font-size: 14px;
+}
+
+.btn {
+	border: none;
+	
+	
+}
+
