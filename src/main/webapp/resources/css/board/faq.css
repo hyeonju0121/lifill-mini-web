@@ -21,32 +21,28 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select {
     list-style: none;
 }
 
+.my_menu li {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
 .menu_depth01 {
-	display: inline-block;
-	height: 50px;
-	text-decoration-line: none;
-	color:black;
-	width:13rem;
-	box-sizing: border-box;
-	line-height: 50px;
-}
-
-.menu_depth02 {
-	padding: 30px 20px; 
-	list-style:none; 
-	width:13rem;
-	background-color: #FAFAFA;
-}
-
-ul.menu_depth02 a {
-	width:100%;
-	text-decoration-line: none; 
-	color: #999999; 
-	font-size: 14px;
-}
-
-#claim, #review {
-	margin-top: 20px;
+    list-style: none;
+    box-sizing: border-box;
+    font-weight: 500;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    font-size: 16px;
+    box-shadow: 0px -1px 0px 0px #F2F2F2 inset;
 }
 
 .cs_area {
@@ -114,7 +110,6 @@ ul.menu_depth02 a {
     text-indent: -1000px;
 }
 
-
 .content {
     line-height: normal;
     font-size: 14px;
@@ -124,6 +119,7 @@ ul.menu_depth02 a {
     margin-left: 60px;
     padding: 0;
     min-width: 920px;
+    position: relative;
 }
 
 .tit_area {
@@ -182,7 +178,7 @@ ul.menu_depth02 a {
     margin-top: 0;
 }
 
-#notice_List {
+#faq_List {
     text-align: center;
     box-sizing: border-box;
     margin: 0;
@@ -234,13 +230,30 @@ ul.menu_depth02 a {
     flex-shrink: 0;
 }
 
-.badge_auto_list li {
+.badge_auto_list span {
     box-sizing: border-box;
     list-style: none;
     margin: 0 -1px -1px 0;
     border: 1px solid #B1B1B1;
     text-transform: uppercase;
     font-size: 12px;
+    padding: 0px;
+    letter-spacing: 0;
+    width: 60px;
+    height: 22px;
+    line-height: 20px;
+    font-weight: 500;
+    border-color: #CCCCCC;
+    color: #999999;
+}
+
+.badge_auto_list li {
+    box-sizing: border-box;
+    list-style: none;
+    margin: 0 -1px -1px 0;
+    border: 1px solid #B1B1B1;
+    text-transform: uppercase;
+    font-size: 10px;
     padding: 0px;
     letter-spacing: 0;
     width: 60px;
@@ -290,6 +303,7 @@ ul.menu_depth02 a {
     margin-bottom: 20px;
     font-size: 14px;
     text-align: left;
+    white-space: pre-line;
 }
 
 .acc_header.active .acc_cont {
@@ -318,4 +332,20 @@ ul.menu_depth02 a {
 	box-sizing: inherit; 
 	padding: 0px; 
 	margin: 0px;
+}
+
+.pager {
+	position: absolute; /* 절대 위치 지정 */
+	left: 50%; /* 부모 요소의 가로 중앙으로 이동 */
+	transform: translateX(-50%); /* 가로 중앙으로 정렬 */
+	margin-top: 20px;
+}
+
+.pager a {
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.current-page {
+	color: #37cbe9;
 }

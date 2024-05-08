@@ -27,5 +27,5 @@ public class Board {
 	
 	private Date bcreatedat;
 	private Date bupdatedat;
-
+	private int rnum;
 }

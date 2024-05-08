@@ -9,12 +9,14 @@ import com.mycompany.lifill_mini_web.dto.Pager;
 
 @Mapper
 public interface BoardDao {
-	public int binsert(Board board);
-	public int bcount();
-	public List<Board> bselectByPage(Pager pager);
-	public Board bselectByBno(int bno);
-	public Board bselectByAttachData(int bno);
-	public int bupdate(Board board);
-	public int bdeleteByBno(int bno);
-
+	public int bInsert(Board board);
+	public int bCount();
+	public int bCountNoticeType();
+	public int bCountFaqType();
+	public List<Board> bSelectByPageForFaq(Pager pager);
+	public List<Board> bSelectByPageForNotice(Pager pager);
+	public Board bSelectByBno(int bno);
+	public Board bSelectByAttachData(int bno);
+	public int bUpdate(Board board);
+	public int bDeleteByBno(int bno);
 }

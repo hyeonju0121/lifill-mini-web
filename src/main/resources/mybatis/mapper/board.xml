@@ -5,7 +5,7 @@
 
 <mapper namespace="com.mycompany.lifill_mini_web.dao.BoardDao"> 
 
-	<insert id="binsert" parameterType="Board">
+	<insert id="bInsert" parameterType="Board">
 		<selectKey keyProperty="bno" order="BEFORE" resultType="int">
 			select seq_bno.nextval from dual
 		</selectKey>
@@ -15,19 +15,31 @@
 			#{bno}, #{btitle}, #{bcontent}, #{btype}, sysdate, #{mid}, 0)
 	</insert>
 	
-	<select id="bcount" resultType="int">
-		select count(*) from board
+	<select id="bCountNoticeType" resultType="int">
+		select count(*) from board where btype = 'notice'
 	</select>
 	
-	<select id="bselectByPage" parameterType="Pager" resultType="Board"> <!-- ![CDATA]~~] : 문자 그대로 받아들여라 (해석하지 마라)  C:문자(char)-->
+	<select id="bCountFaqType" resultType="int">
+		select count(*) from board where btype = 'faq'
+	</select>
+	
+	<select id="bSelectByPageForNotice" parameterType="Pager" resultType="Board"> <!-- ![CDATA]~~] : 문자 그대로 받아들여라 (해석하지 마라)  C:문자(char)-->
 		<![CDATA[
-		select rnum, bno, btitle, bcontent, bcreatedat, bhitcount, bsubcategory
+		select rnum, seq, bno, btitle, bcontent, bcreatedat, bhitcount, btype, bsubcategory
 		from (
-		    select rownum as rnum, bno, btitle, bcontent, mid, bcreatedat, bhitcount, bsubcategory
+		    select rownum as rnum, seq, bno, btitle, bcontent, mid, bcreatedat, bhitcount, btype, bsubcategory
 		    from (
-		        select bno, btitle, bcontent, mid, bcreatedat, bhitcount, bsubcategory
-		        from board
-		        order by bno desc
+		    	select seq, bno, btitle, bcontent, mid, bcreatedat, bhitcount, btype, bsubcategory
+		    	from (
+			    	select rownum as seq, bno, btitle, bcontent, mid, bcreatedat, bhitcount, btype, bsubcategory
+			    	from (
+				        select bno, btitle, bcontent, mid, bcreatedat, bhitcount, btype, bsubcategory
+				        from board
+				        where btype = 'notice'
+				        order by bcreatedat
+				    )
+				) 
+				order by seq desc
 		    )
 		    where rownum <= #{endRowNo}
 		)
@@ -35,13 +47,37 @@
 		]]>
 	</select>
 	
-	<select id="bselectByBno" parameterType="int" resultType="Board">
+	<select id="bSelectByPageForFaq" parameterType="Pager" resultType="Board"> <!-- ![CDATA]~~] : 문자 그대로 받아들여라 (해석하지 마라)  C:문자(char)-->
+		<![CDATA[
+		select rnum, seq, bno, btitle, bcontent, bcreatedat, bhitcount, btype, bsubcategory
+		from (
+		    select rownum as rnum, seq, bno, btitle, bcontent, mid, bcreatedat, bhitcount, btype, bsubcategory
+		    from (
+		    	select seq, bno, btitle, bcontent, mid, bcreatedat, bhitcount, btype, bsubcategory
+		    	from (
+			    	select rownum as seq, bno, btitle, bcontent, mid, bcreatedat, bhitcount, btype, bsubcategory
+			    	from (
+				        select bno, btitle, bcontent, mid, bcreatedat, bhitcount, btype, bsubcategory
+				        from board
+				        where btype = 'faq'
+				        order by bcreatedat
+				    )
+				) 
+				order by seq desc
+		    )
+		    where rownum <= #{endRowNo}
+		)
+		where rnum >= #{startRowNo}
+		]]>
+	</select>
+	
+	<select id="bSelectByBno" parameterType="int" resultType="Board">
 		select bno, btitle, bcontent, mid, bcreatedat, bhitcount, battachoname, battachtype
 		from board
 		where bno = #{bno}
 	</select>
 	
-	<select id="bselectByAttachData" parameterType="int" resultType="Board">
+	<select id="bSelectByAttachData" parameterType="int" resultType="Board">
 		select battachdata
 		from board
 		where bno=#{bno}
