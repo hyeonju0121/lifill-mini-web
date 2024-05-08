@@ -55,10 +55,10 @@
 					
 					<ul class="my_menu">
 						<li>
-							<a href="notice" class="menu_depth01">공지사항</a>
+							<a href="notice?pageNo=1" class="menu_depth01">공지사항</a>
 						</li>
 						<li>
-							<a href="faq" class="menu_depth01">FAQ</a>
+							<a href="faq?pageNo=1" class="menu_depth01">FAQ</a>
 						</li>
 						<li>
 							<a href="${pageContext.request.contextPath}/member/myInquiryList" class="menu_depth01">1:1 문의</a>
@@ -108,7 +108,7 @@
 																			data-bs-target="#flush-collapse${board.bno}" 
 																			aria-expanded="false" 
 																			aria-controls="flush-collapse${board.bno}">
-																	<span class="prd_num">${board.bno}</span>
+																	<span class="prd_num">${board.seq}</span>
 																	<ul class="badge_auto_list">
 																		<li>${board.bsubcategory}</li>
 																	</ul>
