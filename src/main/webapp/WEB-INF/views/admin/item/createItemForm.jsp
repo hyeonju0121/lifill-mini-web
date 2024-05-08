@@ -23,6 +23,48 @@
 			href="${pageContext.request.contextPath}/resources/css/admin/item/createItemForm.css">
 		<link rel="stylesheet"
 			href="${pageContext.request.contextPath}/resources/css/admin/sidebar.css">
+			
+			
+		<script type="text/javascript">
+		$(function(){
+		    
+		    // 기능별 선택
+		    chnFnvalType('fneye' , 'lutein');
+		});
+
+		function chnFnvalType(type , select) {
+		    
+		    $('#igdval').empty();
+		    
+		    if(type == 'fneye') { // 눈 건강
+		        $('#igdval').append("<option value='lutein' >루테인</option>'");
+		    } else if (type == 'fnintestine') {  // 장 건강
+		        $('#igdval').append("<option value='probiotics' >프로바이오틱스</option>'");
+		    } else if ( type == 'fnliver') {  // 간 건강
+		        $('#igdval').append("<option value='milkthistle' >밀크씨슬</option>'");
+		    } else if ( type == 'fnjoint') {  // 뼈/관절 건강
+		        $('#igdval').append("<option value='magnesium' >마그네슘</option>'");
+		        $('#igdval').append("<option value='glucosamine' >글루코사민</option>'");
+		        $('#igdval').append("<option value='calcium' >칼슘</option>'");
+		    } else if ( type == 'fnimmunity') {  // 면역력
+		        $('#igdval').append("<option value='propolis' >프로폴리스</option>'");
+		        $('#igdval').append("<option value='Zinc' >아연</option>'");
+		    } else if ( type == 'fnfatigue') {  // 만성피로
+		        $('#igdval').append("<option value='vitamin' >비타민</option>'");
+		        $('#igdval').append("<option value='theanine' >테아닌</option>'");
+		    } else if ( type == 'fnblood') {  // 혈액순환
+		        $('#igdval').append("<option value='omega' >오메가3</option>'");
+		    } 
+		    
+		    document.getElementById("igdval").style.display = "";
+		    
+		    if ($.trim(select) != "") {
+		        $('#fnval').val(type);
+		        $('#igdval').val(select);
+		    }
+		} 
+		
+		</script>
 </head>
 
 <body>
@@ -63,16 +105,18 @@
 													<div class="th">
 														<p class="form_label">기능별</p>
 													</div>
-													<!-- 면역력, 눈건강, 장건강, 간건강, 관절건강, 혈행개선, 항산화 -->
+													<!-- 눈건강, 장건강, 간건강, 뼈,관절건강, 만성피로, 혈행개선 -->
 													<div class="td">	
-														<select name="fnval" id="fnval">
-															<option value="fneye" selected>눈</option>
-															<option value="fnintestine">장</option>
-															<option value="fnliver">간</option>
-															<option value="fnjoint">관절</option>
-															<option value="fnimmunity">면역/항산화</option>
-															<option value="fnblood">혈행개선</option>
-														</select>			
+														<select id="fnval" name="fnval" onChange="chnFnvalType(this.value)" >
+														    <option value="fneye">눈건강</option>
+														    <option value="fnintestine">장건강</option>
+														    <option value="fnliver">간건강</option>
+														    <option value="fnjoint">뼈/관절 건강</option>
+														    <option value="fnimmunity">면역력</option>
+														    <option value="fnfatigue">만성피로</option>
+														    <option value="fnblood">혈액순환</option>
+														</select>
+														
 													</div>
 												</div>
 												<div class="tr">
@@ -80,9 +124,8 @@
 														<p class="form_label">성분별</p>
 													</div>
 													<div class="td">	
-														<select name="igdval" id="igdval">
-															<option value="igdlutein" selected>루테인</option>
-														</select>			
+														<select id="igdval" name="igdval" style="width:120px; display:none;" >
+														</select>
 													</div>
 												</div>
 												<div class="tr">

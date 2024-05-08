@@ -3,6 +3,7 @@ package com.mycompany.lifill_mini_web.service;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.management.RuntimeErrorException;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -40,20 +41,9 @@ public class AdminItemService {
 
 	// 상품 등록
 	public void createItem(Product.createProductRequest request) {
-		/*
-		 * 1. 넘어온 request 객체에서 
-		 * product, prdDetail, prdContents, prdHashtag,
-		 * function, ingredient 각 객체 셋팅 
-		 * 
-		 * 1.1 prdContent 에서 MultipartFile 대표이미지, 상세이미지 분리
-		 * 대표이미지 같은 경우에는 총 3장을 등록할 수 있음 -> 
-		 * prdimglist 사이즈가 4장이면 대표이미지 3장, 상세이미지 1장 등록된 경우
-		 * 
-		 * 2. 상품코드 생성
-		 * */
-		
 		// 상품코드 생성
 		String productCode = createPrdCode(request.getFnval());
+		
 		// Product 객체 생성
 		Product product = Product.builder()
 				.prdcode(productCode)
@@ -65,20 +55,14 @@ public class AdminItemService {
 				.prdsalesstatus(true)
 				.build();
 		
-		// Product 객체 db 에 저장 
-		int prdRowNum = productDao.prdinsert(product);
-		
 		log.info("product={}", product.toString());
-		log.info("prdRowNum : " + prdRowNum);
 		
-		// PrdDetail 객체 생성 후  db 저장
+		// PrdDetail 객체 생성
 		PrdDetail prdDetail = new PrdDetail();
 		prdDetail.setPrdcode(productCode);
 		log.info("prdDetail={}", prdDetail.toString());
 		
-		int prdDetailRowNum = prdDetailDao.prddetailinsert(prdDetail);
-		
-		// function, ingredient 객체 생성 후 db 저장
+		// function, ingredient 객체 생성
 		Function function = Function.builder()
 				.prdcode(productCode)
 				.fnval(request.getFnval())
@@ -89,29 +73,54 @@ public class AdminItemService {
 				.igdval(request.getIgdval())
 				.build();
 		
-		int prdfnRowNum = functionDao.fninsert(function);
-		int prdingRowNum = ingredientDao.igdinsert(ingredient);
-		
 		// prdContents 객체 생성
 		PrdContents prdContents = new PrdContents();
 		prdContents.setPrdcode(productCode);
 		
 		// 대표 이미지 리스트 가져오기
-		List<MultipartFile> itemList = request.getPrdimglist();
-		
-		if (itemList.size() > 0) {
+		if(!request.getPrdimglist().isEmpty()) { // 이미지가 등록된 경우
+			List<MultipartFile> itemList = request.getPrdimglist();
+			
+			// 대표이미지 1장은 고정
 			MultipartFile imgRep = itemList.get(0);
 			prdContents.setPrdimgrep1oname(imgRep.getOriginalFilename());
 			prdContents.setPrdimgrep1type(imgRep.getContentType());
 			
+			// 상세이미지는 1장으로 고정
 			MultipartFile imgDetail = itemList.get(itemList.size()-1);
 			prdContents.setPrdimgdetailoname(imgDetail.getOriginalFilename());
 			prdContents.setPrdimgdetailtype(imgDetail.getContentType());
 			
-			try {
-				prdContents.setPrdimgrep1(imgRep.getBytes());
-				prdContents.setPrdimgdetail(imgDetail.getBytes());
-			} catch (Exception e) {}
+			if (itemList.size()-1 == 2) {
+				MultipartFile imgRep1 = itemList.get(1);
+				prdContents.setPrdimgrep2oname(imgRep1.getOriginalFilename());
+				prdContents.setPrdimgrep2type(imgRep1.getContentType());
+				
+				MultipartFile imgRep2 = itemList.get(2);
+				prdContents.setPrdimgrep3oname(imgRep2.getOriginalFilename());
+				prdContents.setPrdimgrep3type(imgRep2.getContentType());
+				
+				try {
+					prdContents.setPrdimgrep1(imgRep.getBytes());
+					prdContents.setPrdimgrep2(imgRep1.getBytes());
+					prdContents.setPrdimgrep3(imgRep2.getBytes());
+					
+					prdContents.setPrdimgdetail(imgDetail.getBytes());
+				} catch (Exception e) {}
+			} else {
+				MultipartFile imgRep1 = itemList.get(1);
+				prdContents.setPrdimgrep2oname(imgRep1.getOriginalFilename());
+				prdContents.setPrdimgrep2type(imgRep1.getContentType());
+				
+				try {
+					prdContents.setPrdimgrep1(imgRep.getBytes());
+					prdContents.setPrdimgrep2(imgRep1.getBytes());
+					prdContents.setPrdimgdetail(imgDetail.getBytes());
+				} catch (Exception e) {}
+			}
+		} else {
+			// 이미지가 등록되지 않은 경우
+			throw new RuntimeException("이미지가 추가되지 않았습니다. 상품 이미지를 추가해주세요.");
 		}
 		
 		prdContents.setPrdtarget(request.getPrdtarget());
@@ -121,14 +130,21 @@ public class AdminItemService {
 		prdContents.setPrdtype(request.getPrdtype());
 		prdContents.setPrdingredient(request.getPrdingredient());
 		
-		// prdcontents 객체 db에 저장
-		int prdContentsRowNum = prdContentsDao.prdcontentsinsert(prdContents);
-		
-		// prdhashtag 객체 생성 후 저장
+		// prdhashtag 객체 생성
 		PrdHashtag prdHashtag = new PrdHashtag();
 		prdHashtag.setPrdcode(productCode);
 		prdHashtag.setTagval(request.getTagval());
 		
+		// Product 객체 db 에 저장 
+		int prdRowNum = productDao.prdinsert(product);
+		// PrdDetail 객체 db 에 저장
+		int prdDetailRowNum = prdDetailDao.prddetailinsert(prdDetail);
+		// Function, Ingredient 객체 db 에 저장
+		int prdfnRowNum = functionDao.fninsert(function);
+		int prdingRowNum = ingredientDao.igdinsert(ingredient);
+		// prdcontents 객체 db에 저장
+		int prdContentsRowNum = prdContentsDao.prdcontentsinsert(prdContents);
+		// PrdHashtag 객체 db 에 저장
 		int prdHashtagRowNum = prdHashtagDao.prdhashtaginsert(prdHashtag);
 	}
 	
