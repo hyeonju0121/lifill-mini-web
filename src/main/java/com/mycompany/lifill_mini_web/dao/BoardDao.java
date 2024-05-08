@@ -19,4 +19,5 @@ public interface BoardDao {
 	public Board bSelectByAttachData(int bno);
 	public int bUpdate(Board board);
 	public int bDeleteByBno(int bno);
+
 }

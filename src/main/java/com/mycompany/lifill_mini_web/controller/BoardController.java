@@ -32,15 +32,37 @@ public class BoardController {
 		return "board/index";
 	}
 	
-	@RequestMapping("/qna")
-	public String qna() {
-		log.info("qna() 실행");
-		return "board/qna";
-	}
-	
 	@RequestMapping("/faq")
-	public String faq() {
-		log.info("faq() 실행");
+	public String faq(String pageNo, Model model, HttpSession session) {
+		
+		log.info("실행");
+		
+		// pageNo를 받지 못 했을 경우, 세션에 저장되어 있는지 확인
+		if (pageNo == null) {
+			pageNo = (String) session.getAttribute("pageNo");
+			// 세션에도 저장되어 있지 않으면 기본값을 1로 세팅
+			if (pageNo == null) {
+				pageNo = "1";
+			}
+		}
+		
+		// 세션에 pageNo 저장
+		session.setAttribute("pageNo", pageNo);
+
+		// 문자열을 정수로 변환
+		int intPageNo = Integer.parseInt(pageNo);
+		
+		// Pager 객체 생성
+		int rowsPagingTarget = service.getTotalRowsFaq();
+		Pager pager = new Pager(5, 5, rowsPagingTarget, intPageNo);
+		
+		// Service에서 게시물 목록 요청
+		List<Board> faqList = service.getFaqList(pager);
+		
+		// JSP에서 이용할 수 있도록 설정
+		model.addAttribute("pager", pager);
+		model.addAttribute("faqList", faqList);
+
 		return "board/faq";
 	}
 	
@@ -65,8 +87,8 @@ public class BoardController {
 		int intPageNo = Integer.parseInt(pageNo);
 		
 		// Pager 객체 생성
-		int rowsPagingTarget = service.getTotalRows();
-		Pager pager = new Pager(2, 5, rowsPagingTarget, intPageNo);
+		int rowsPagingTarget = service.getTotalRowsNotice();
+		Pager pager = new Pager(5, 5, rowsPagingTarget, intPageNo);
 		
 		// Service에서 게시물 목록 요청
 		List<Board> noticeList = service.getNoticeList(pager);
@@ -76,13 +98,6 @@ public class BoardController {
 		model.addAttribute("noticeList", noticeList);
 
 		return "board/notice";
-	}
-	
-	@GetMapping("/detailNotice")
-	public String detailNotice(int bno, Model model) {
-		Board board = service.getBoard(bno);
-		model.addAttribute("board", board);
-		return "board/detailNotice";
 	}
 	
 	@GetMapping("/attachDownload")
