@@ -5,4 +5,13 @@
 	
 <mapper namespace="com.mycompany.lifill_mini_web.dao.PrdHashtagDao"> 
 
+	<insert id="prdhashtaginsert" parameterType="PrdHashtag">
+		<selectKey keyProperty="tagno" order="BEFORE" resultType="int">
+			select seq_tagno.nextval from dual
+		</selectKey>
+		insert into prdhashtag(
+			tagno, prdcode, tagval)
+		values(
+			#{tagno}, #{prdcode}, #{tagval})
+	</insert>
 </mapper>

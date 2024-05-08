@@ -4,5 +4,14 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 	
 <mapper namespace="com.mycompany.lifill_mini_web.dao.FunctionDao"> 
+	<insert id="fninsert" parameterType="Function">
+		<selectKey keyProperty="fnno" order="BEFORE" resultType="int">
+			select seq_fnno.nextval from dual
+		</selectKey>
+		insert into function(
+			fnno, prdcode, fnval)
+		values(
+			#{fnno}, #{prdcode}, #{fnval})
+	</insert>
 
 </mapper>

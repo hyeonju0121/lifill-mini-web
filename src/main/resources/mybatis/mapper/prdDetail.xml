@@ -4,5 +4,12 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 	
 <mapper namespace="com.mycompany.lifill_mini_web.dao.PrdDetailDao"> 
+	
+	<!-- insert 시, has a 관계 입력 
+		: #{[vo객체].[instance variable]}
+	-->
+	<insert id="prddetailinsert" parameterType="PrdDetail">
+		insert into prddetail (prdcode) values (#{prdcode})
+	</insert>
 
 </mapper>

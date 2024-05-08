@@ -4,5 +4,7 @@ import lombok.Data;
 
 @Data
 public class PrdDetail {
+//	private Product product;
 	private String prdcode;
+	
 }

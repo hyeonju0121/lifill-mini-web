@@ -3,6 +3,19 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 	
-<mapper namespace="com.mycompany.lifill_mini_web.dao.PrdContentsDao"> 
+<mapper namespace="com.mycompany.lifill_mini_web.dao.PrdContentsDao">
+	
+	<insert id="prdcontentsinsert" parameterType="PrdContents">
+		insert into prdcontents(
+			prdcode, prdimgrep1oname, prdimgrep1type, prdimgrep1,
+			prdimgdetailoname, prdimgdetailtype, prdimgdetail,
+			prdtarget, prdtimes, prdmethod, prdeffect, prdtype, prdingredient
+		)
+		values(
+			#{prdcode}, #{prdimgrep1oname}, #{prdimgrep1type}, #{prdimgrep1}, 
+			#{prdimgdetailoname}, #{prdimgdetailtype}, #{prdimgdetail}, 
+			#{prdtarget}, #{prdtimes}, #{prdmethod}, #{prdeffect}, #{prdtype}, #{prdingredient} 
+		)
+	</insert> 
 
 </mapper>

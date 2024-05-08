@@ -51,7 +51,7 @@
 					<a href="${pageContext.request.contextPath}/admin/item/dashboard" class="sidebar-link">대시보드</a>
 				</li>
 				<li class="sidebar-item">
-					<a href="${pageContext.request.contextPath}/admin/item/create" class="sidebar-link">상품 등록</a>
+					<a href="${pageContext.request.contextPath}/admin/item/createItemForm" class="sidebar-link">상품 등록</a>
 				</li>
 				<li class="sidebar-item">
 					<a href="${pageContext.request.contextPath}/admin/item/itemList" class="sidebar-link">전체 상품 목록</a>

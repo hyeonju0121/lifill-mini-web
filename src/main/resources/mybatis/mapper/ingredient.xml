@@ -4,5 +4,14 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 	
 <mapper namespace="com.mycompany.lifill_mini_web.dao.IngredientDao"> 
+	<insert id="igdinsert" parameterType="Ingredient">
+		<selectKey keyProperty="igdno" order="BEFORE" resultType="int">
+			select seq_igdno.nextval from dual
+		</selectKey>
+		insert into ingredient(
+			igdno, prdcode, igdval)
+		values(
+			#{igdno}, #{prdcode}, #{igdval})
+	</insert>
 
 </mapper>
