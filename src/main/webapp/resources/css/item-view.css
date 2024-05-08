@@ -8,6 +8,55 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select {
 
 /* 상세 페이지에서 추가된 css들 */
 
+/* .product-section {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+} */
+
+.product-section {
+	display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.img_box {
+	width: calc(50% - 20px);
+	font-size: 0;
+	margin-right: 20px;
+}
+
+.item-overview {
+	width: calc(50% - 20px);
+}
+
+@media (max-width: 600px) {
+    .img_box, .item-overview {
+        width: calc(100% - 20px);
+    }
+}
+
+.sub-rep-img img {
+	width: 100px;
+	height: 100px;
+	margin-right: 10px;
+}
+
+.rep_img_box {
+	height: 75%;
+	box-sizing: border-box;
+}
+
+.rep_img {
+	width: 80%;
+	heigth: 300px;
+}
+
+.sub-rep-img {
+	height: 20%;
+	box-sizing: border-box;
+}
+
 .info-name div {
 	margin: 2px;
 	width: 150px;
@@ -39,7 +88,7 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select {
 	position: sticky;
 	top: 0px; /* 도달했을때 고정시킬 위치 */
 	padding: 5px;
-	z-index: 10;
+	z-index: 1000;
 	height:900px;
 	width: 410px;
 }
@@ -48,6 +97,12 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select {
 #menu-nav {
 	width: 850px;
 	position: relative;
+	z-index: 1000;
+	height: 50;
+}
+
+#menu-nav li.active {
+    border-bottom: 4px solid #37cbe9;
 }
 
 #menu-nav::after {
@@ -91,33 +146,43 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select {
   	position: sticky;
 	top: 0px; /* 도달했을때 고정시킬 위치 */
 	padding: 5px;
-	height:90px;
+	height:70px;
 	/* margin-bottom: 20px; */
 	text-algin: center;
 	background-color: white;
 }
 
+#menu-nav ul {
+	height: 100%;
+} 
+
+#menu-nav ul li {
+	height: 100%;
+} 
+
 /* ---------------------------------- */
-.item-overview {
-	width:600px;
-}
+
 #cart-button1 {
 	background-color:white;
-	width:280px;
-	height: 60px;
+	width:45%;
+	height: 70%;
 	margin-top: 10px;
 	margin-right: 5px;
 	color: #37cbe9;
 	border: 1px solid #37cbe9;
+	border-radius: 0;
+	display: inline;
 }
 
 #buy-button1 {
 	background-color:#37cbe9; 
-	width:280px; 
+	width:45%;
+	height: 70%;
 	color:white;
-	height: 60px;
 	margin-top: 10px;
 	border: none;
+	border-radius: 0;
+	display: inline;
 }
 
 #cart-button2 {
@@ -156,11 +221,16 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select {
 	height:750px;
 }
 
+.item-info {
+	width: 100%;
+	height: 85%;
+}
+
 .button-area1 {
-	position: absolute;
 	right: 0;
 	bottom: 0;
-	width:600px;
+	width:100%;
+	height: 15%;
 }
 
 .button-area2 {
@@ -246,6 +316,7 @@ div [class^="col-"] {
 .card {
 	transition: 0.5s;
 	cursor: pointer;
+	z-index: 10;
 }
 
 .card-title {

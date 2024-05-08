@@ -25,68 +25,68 @@
 				var totalResult = true;
 								
 				//ID검사 아이디는 알파벳소문자,숫자혼용 7~11자
-				var uidPattern = /^(?=.*\d)(?=.*[a-z]).{7,11}$/;
-				var uidResult = uidPattern.test( $("#uid").val());
-				if(uidResult) {
-					$("#uidSpan").removeClass("text-danger");
+				var midPattern = /^(?=.*\d)(?=.*[a-z]).{7,11}$/;
+				var midResult = midPattern.test( $("#mid").val());
+				if(midResult) {
+					$("#midSpan").removeClass("text-danger");
 				} else{
-					$("#uidSpan").addClass("text-danger");
+					$("#midSpan").addClass("text-danger");
 					totalResult = false;
 				}
 									
 				//Email 검사하기
-				var emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-				var emailResult = emailPattern.test($("#email").val());
-				if(emailResult) {
-					$("#emailSpan").removeClass("text-danger");
+				var memailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+				var memailResult = memailPattern.test($("#memail").val());
+				if(memailResult) {
+					$("#memailSpan").removeClass("text-danger");
 				} else {
-					$("#emailSpan").addClass("text-danger");
+					$("#memailSpan").addClass("text-danger");
 					totalResult = false;
 				}
 				
 				//Password 검사하기
-				var passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&*?_])(?=.*[A-Z]).{10,15}$/;
-				var passwordResult = passwordPattern.test($("#password1").val());
-				if(passwordResult) {
-					$("#passwordSpan1").removeClass("text-danger");
+				var mpasswordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&*?_])(?=.*[A-Z]).{10,15}$/;
+				var mpasswordResult = mpasswordPattern.test($("#mpassword").val());
+				if(mpasswordResult) {
+					$("#mpasswordSpan1").removeClass("text-danger");
 				} else {
-					$("#passwordSpan1").addClass("text-danger");
+					$("#mpasswordSpan1").addClass("text-danger");
 					totalResult = false;
 				}
 				
 				//Password 확인
-				if($('#password1').val() == $('#password2').val()) {
-				   $("#passwordSpan2").removeClass("text-danger");
-				   $("#passwordSpan2").html("");
+				if($('#mpassword').val() == $('#mpassword2').val()) {
+				   $("#mpasswordSpan2").removeClass("text-danger");
+				   $("#mpasswordSpan2").html("");
 				} else {
-					$("#passwordSpan2").html("비밀번호가 일치하지 않습니다.");
- 		            $("#passwordSpan2").addClass("text-danger");
+					$("#mpasswordSpan2").html("비밀번호가 일치하지 않습니다.");
+ 		            $("#mpasswordSpan2").addClass("text-danger");
  		            totalResult = false;
 				}
 							
 				 //Phone 검사하기
- 		         var phonePattern = /^(010|011)\d{3,4}\d{4}$/;
- 		         var phoneResult = phonePattern.test($("#phone").val());
+ 		         var mphonePattern = /^(010|011)\d{3,4}\d{4}$/;
+ 		         var mphoneResult = mphonePattern.test($("#mphone").val());
  		         
- 		         if(phoneResult) {
- 		            $("#phoneSpan").removeClass("text-danger");
- 		            $("#phoneSpan").html("");
+ 		         if(mphoneResult) {
+ 		            $("#mphoneSpan").removeClass("text-danger");
+ 		            $("#mphoneSpan").html("");
  		         } else {
- 		            $("#phoneSpan").html("전화번호 형식이 아닙니다.");
- 		            $("#phoneSpan").addClass("text-danger");
+ 		        	$("#mphoneSpan").html("전화번호 형식이 아닙니다.");
+ 		            $("#mphoneSpan").addClass("text-danger");
  		            totalResult = false;
  		         }
  		         
  		         //이름 검사하기
- 		         var namePattern = /^[가-힣]{2,5}$/;
- 		         var nameResult = namePattern.test($("#uname").val());
+ 		         var mnamePattern = /^[가-힣]{2,5}$/;
+ 		         var mnameResult = mnamePattern.test($("#mname").val());
  		         
- 		         if(nameResult) {
- 		        	$("#nameSpan").removeClass("text-danger");
- 		        	$("#nameSpan").html("");
+ 		         if(mnameResult) {
+ 		        	$("#mnameSpan").removeClass("text-danger");
+ 		        	$("#mnameSpan").html("");
  		         } else {
- 		        	$("#nameSpan").html("이름 형식에 맞게 입력해주세요.");
- 		        	$("#nameSpan").addClass("text-danger");
+ 		        	$("#mnameSpan").html("이름 형식에 맞게 입력해주세요.");
+ 		        	$("#mnameSpan").addClass("text-danger");
  		        	totalResult = false;
  		         }
  		        	 
@@ -165,36 +165,36 @@
 			          <div>정보를 입력해주세요</div>
 				        </div>
 					        <form id="joinForm" name="joinForm" 
-			            	  action="/lifill_mini_web/main" 
+			            	  action="join" 
 			            	  onsubmit="handleCheckData()"
 			            	  novalidate>
 						        <div class="user-info">
 							            <div>* 아이디</div>
-							            <input type="text" class="form-control" id="uid" name="uid"/>
-							            <span id="uidSpan" class="form-text">알파벳 소문자, 숫자를 혼용해서 7자 이상 11자 이하</span>
+							            <input type="text" class="form-control" id="mid" name="mid"/>
+							            <span id="midSpan" class="form-text">알파벳 소문자, 숫자를 혼용해서 7자 이상 11자 이하</span>
 							            <div>* 비밀번호</div>
-							            <input type="password" class="form-control" id="password1" name="password1"/>
-							            <span id="passwordSpan1" class="form-text">알파벳 대소문자, 숫자, 특수문자를 혼용해서 10자 이상 15자 이하</span>
+							            <input type="password" class="form-control" id="mpassword" name="mpassword"/>
+							            <span id="mpasswordSpan1" class="form-text">알파벳 대소문자, 숫자, 특수문자를 혼용해서 10자 이상 15자 이하</span>
 							            <div>* 비밀번호 재확인</div>
-							            <input type="password" class="form-control" id="password2" name="password2"/>
-							            <span id="passwordSpan2" class="form-text">비밀번호 확인</span>
+							            <input type="password" class="form-control" id="mpassword2" name="mpassword2"/>
+							            <span id="mpasswordSpan2" class="form-text">비밀번호 확인</span>
 							            <div>* 이름</div>
-							            <input type="text" class="form-control" id="uname" name="uname"/>
-							            <span id="nameSpan" class="form-text" >성함을 입력해주세요.</span>
+							            <input type="text" class="form-control" id="mname" name="mname"/>
+							            <span id="mnameSpan" class="form-text" >성함을 입력해주세요.</span>
 							            <div>* 이메일</div>
-							            <input type="email" class="form-control" id="email" name="email"/>
-							            <span id="emailSpan" class="form-text">이메일 형식에 맞춰서 작성해주세요.</span>
+							            <input type="email" class="form-control" id="memail" name="memail"/>
+							            <span id="memailSpan" class="form-text">이메일 형식에 맞춰서 작성해주세요.</span>
 							            <div>* 휴대폰</div>
-							            <input type="tel" class="form-control" id="phone" name="phone"/>
-							            <span id="phoneSpan" class="form-text">숫자만 입력해주세요.</span>							            							            
+							            <input type="tel" class="form-control" id="mphone" name="mphone"/>
+							            <span id="mphoneSpan" class="form-text">숫자만 입력해주세요.</span>							            							            
 										<div>* 주소</div><!-- onclick은 무조건 javascript와 연결. javascript 안 적어줘도 됨 -->
-										<input type="text" id="sample6_postcode" placeholder="우편번호" readonly/>
 										<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"/><br>
-										<input type="text" id="sample6_address" placeholder="주소" readonly/><br>
-										<input type="text" id="sample6_detailAddress" placeholder="상세주소"/>
+										<input type="text" name="mzipcode" id="sample6_postcode" placeholder="우편번호" readonly/>
+										<input type="text" name="maddress1" id="sample6_address" placeholder="주소" readonly/><br>
+										<input type="text" name="maddress2" id="sample6_detailAddress" placeholder="상세주소"/>
 						          </div>
 					       	 <div class="btn-test">
-					         <button class="button-test">가입하기</button>
+					         <button type="submit" class="button-test">가입하기</button>
 					       	</div>
 		       			</form>
 		       			<script defer src="${pageContext.request.contextPath}/js/sign_up.js"> </script>

@@ -23,20 +23,19 @@
 			// nav에 있는 li가 클릭됐을 때 하단에 border를 적용하기 위한 함수 선언
 			document.addEventListener("DOMContentLoaded", function() {
 			    const items = document.querySelectorAll('#menu-nav li');
-			    let previousItem = null;
-
 			    items.forEach(item => {
 			        item.addEventListener('click', function() {
-			            if (previousItem !== null) {
-			                previousItem.style.borderBottom = 'none';
-			            }
-
-			            this.style.borderBottom = '4px solid #37cbe9';
-
-			            previousItem = this;
+			            // 모든 항목의 활성 클래스를 제거
+			            items.forEach(item => {
+			                item.classList.remove('active');
+			            });
+			
+			            // 클릭된 항목에 활성 클래스 추가
+			            this.classList.add('active');
 			        });
 			    });
 			});
+
 			
 			// 수량 버튼 함수
 			function count(type)  {
@@ -60,6 +59,33 @@
 	              // 결과 출력
 	              resultElement.innerText = number;
 	         }
+			
+			document.addEventListener("DOMContentLoaded", function() {
+			    const items = document.querySelectorAll('#menu-nav li');
+
+			    // Handle click event on each menu item
+			    items.forEach(item => {
+			        item.addEventListener('click', function(event) {
+			            event.preventDefault();
+			            
+			            // 이동할 섹션의 id를 얻기
+			            const targetId = this.querySelector('a').getAttribute('href');
+			            const targetSection = document.querySelector(targetId);
+
+			            // 이동할 섹션으로 바로 이동
+			            scrollToSection(targetSection);
+			        });
+			    });
+
+			    // 클릭된 섹션으로 스크롤을 이동하는 함수
+			    function scrollToSection(section) {
+			        const offsetTop = section.offsetTop;
+			        window.scrollTo({
+			            top: offsetTop,
+			            behavior: "instant" // 값을 smooth로 주면 부드럽게 스크롤
+			        });
+			    }
+			});
 
 		</script>
 		
@@ -74,16 +100,16 @@
 				라이필 > 기능별 > 눈 건강
 			</div>
 			<!-- 상품 사진과 설명, 가격 영역 -->
-			<div class="d-flex">
-				<div class="w-50 d-flex flex-column">
+			<div class="product-section">
+				<div class="img_box">
 					<!-- 1. 상품 사진 영역 -->
-					<div class="rep_img_box" style="width:620px; height:550px">
-						<img 
-						src="${pageContext.request.contextPath}/resources/image/item_rep/eye/eye3_image1.png"
-						style="width:620px; height:550px"/>
+					<div class="rep_img_box">
+						<img
+						class="rep_img"
+						src="${pageContext.request.contextPath}/resources/image/item_rep/eye/eye3_image1.png"/>
 					</div>
 					
-					<div class="sub-rep-img mt-3" style="height:200px">
+					<div class="sub-rep-img mt-5">
 						<div class="d-flex">
 							<div>
 								<img 
@@ -98,7 +124,7 @@
 				</div>
 				
 				<!-- 2. 가격, 영양 성분 안내, 구매하기/장바구니 버튼 위치 영역 -->
-				<div class="item-overview container" style="position: relative;">
+				<div class="item-overview">
 					<div class="item-info">
 						<div class="company text-start">
 							<h2 style="margin:5px;"><b>effekt.</b></h2>
@@ -179,15 +205,11 @@
 								</div>
 							</div>
 						</div>
-						<div class="button-area1 d-flex">
-							<span>
-								<button id="cart-button1" type="button" class="btn" onclick="location.href='${pageContext.request.contextPath}/member/cart'">장바구니</button>
-							</span>
-							<span>
-								<button id="buy-button1" type="button" class="btn">구매하기</button>
-							</span>
-						</div>
 						
+					</div>
+					<div class="button-area1">
+						<button id="cart-button1" type="button" class="btn" onclick="location.href='${pageContext.request.contextPath}/member/cart'">장바구니</button>
+						<button id="buy-button1" type="button" class="btn">구매하기</button>
 					</div>
 				</div>
 			</div>
