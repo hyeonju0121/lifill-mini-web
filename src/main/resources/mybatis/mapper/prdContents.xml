@@ -8,13 +8,17 @@
 	<insert id="prdcontentsinsert" parameterType="PrdContents">
 		insert into prdcontents(
 			prdcode, prdimgrep1oname, prdimgrep1type, prdimgrep1,
+			prdimgrep2oname, prdimgrep2type, prdimgrep2,
+			prdimgrep3oname, prdimgrep3type, prdimgrep3,
 			prdimgdetailoname, prdimgdetailtype, prdimgdetail,
-			prdtarget, prdtimes, prdmethod, prdeffect, prdtype, prdingredient
+			prdtarget, prdtimes, prdmethod, prdeffect, prdtype, prdingredient, prdcreatedat
 		)
 		values(
 			#{prdcode}, #{prdimgrep1oname}, #{prdimgrep1type}, #{prdimgrep1}, 
+			#{prdimgrep2oname}, #{prdimgrep2type}, #{prdimgrep2},
+			#{prdimgrep3oname}, #{prdimgrep3type}, #{prdimgrep3},
 			#{prdimgdetailoname}, #{prdimgdetailtype}, #{prdimgdetail}, 
-			#{prdtarget}, #{prdtimes}, #{prdmethod}, #{prdeffect}, #{prdtype}, #{prdingredient} 
+			#{prdtarget}, #{prdtimes}, #{prdmethod}, #{prdeffect}, #{prdtype}, #{prdingredient}, sysdate 
 		)
 	</insert> 
 

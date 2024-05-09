@@ -1,8 +1,6 @@
 package com.mycompany.lifill_mini_web.dto;
 
-import java.util.List;
-
-import org.springframework.web.multipart.MultipartFile;
+import java.util.Date;
 
 import lombok.Data;
 
@@ -32,4 +30,7 @@ public class PrdContents {
 	private String prdeffect;
 	private String prdtype;
 	private String prdingredient;
+	
+	private Date prdcreatedat;
+	private Date prdupdatedat;
 }

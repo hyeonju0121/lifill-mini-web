@@ -196,6 +196,7 @@ public class AdminItemService {
 		int num = productDao.prdcount();
 		
 		if (num == 0) { num = 1;}
+		num++;
 		
 		String numStr = String.valueOf(num);
 		numStr = String.format("%04d", Integer.parseInt(numStr));
