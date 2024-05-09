@@ -10,7 +10,7 @@
 		where mid=#{mid}
 	</select>
 	
-	<insert id="minsert" parameterType="Member">
+	<insert id="mInsert" parameterType="Member">
 		insert into member (mid, mpassword, mname, mphone, memail, mrole, mcreatedat)
 		values(#{mid}, #{mpassword}, #{mname}, #{mphone}, #{memail}, #{mrole}, sysdate)
 	</insert>

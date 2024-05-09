@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.mycompany.lifill_mini_web.dto.Address;
 import com.mycompany.lifill_mini_web.dto.Inquiry;
 import com.mycompany.lifill_mini_web.dto.Member;
 import com.mycompany.lifill_mini_web.security.LifillUserDetails;
@@ -45,8 +46,13 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/join")
-	public String join(Member member) {
-		service.join(member);
+	public String join(Member member, Address address) {
+		log.info("실행");
+		log.info("member={}",member.toString());
+		log.info("address={}", address.toString());
+		
+		service.join(member, address);
+		log.info("2번째 실행");
 		return "redirect:/member/sign_in";
 	}
 	

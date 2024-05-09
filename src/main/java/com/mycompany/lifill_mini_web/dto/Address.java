@@ -7,5 +7,7 @@ public class Address {
 
 	private String mid;
 	private String mzipcode;
-	private String madrress;
+	private String maddress;
+	private String maddress1;
+	private String maddress2;
 }

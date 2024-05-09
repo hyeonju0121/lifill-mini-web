@@ -5,4 +5,8 @@
 
 <mapper namespace="com.mycompany.lifill_mini_web.dao.AddressDao"> 
 
+	<insert id="aInsert" parameterType="Address">
+		insert into address (mid, mzipcode, maddress)
+		values(#{mid}, #{mzipcode}, #{maddress})
+	</insert>
 </mapper>
