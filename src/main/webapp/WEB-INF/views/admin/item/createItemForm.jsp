@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,43 +29,69 @@
 			
 		<script type="text/javascript">
 		$(function(){
-		    
 		    // 기능별 선택
-		    chnFnvalType('fneye' , 'lutein');
+		    chnFnvalType('눈건강' , '루테인');
 		});
 
 		function chnFnvalType(type , select) {
 		    
-		    $('#igdval').empty();
+		    $('#igdvallist').empty();
 		    
-		    if(type == 'fneye') { // 눈 건강
-		        $('#igdval').append("<option value='lutein' >루테인</option>'");
-		    } else if (type == 'fnintestine') {  // 장 건강
-		        $('#igdval').append("<option value='probiotics' >프로바이오틱스</option>'");
-		    } else if ( type == 'fnliver') {  // 간 건강
-		        $('#igdval').append("<option value='milkthistle' >밀크씨슬</option>'");
-		    } else if ( type == 'fnjoint') {  // 뼈/관절 건강
-		        $('#igdval').append("<option value='magnesium' >마그네슘</option>'");
-		        $('#igdval').append("<option value='glucosamine' >글루코사민</option>'");
-		        $('#igdval').append("<option value='calcium' >칼슘</option>'");
-		    } else if ( type == 'fnimmunity') {  // 면역력
-		        $('#igdval').append("<option value='propolis' >프로폴리스</option>'");
-		        $('#igdval').append("<option value='Zinc' >아연</option>'");
-		    } else if ( type == 'fnfatigue') {  // 만성피로
-		        $('#igdval').append("<option value='vitamin' >비타민</option>'");
-		        $('#igdval').append("<option value='theanine' >테아닌</option>'");
-		    } else if ( type == 'fnblood') {  // 혈액순환
-		        $('#igdval').append("<option value='omega' >오메가3</option>'");
-		    } 
+		    if(type == '눈건강') { // 눈 건강
+		    	$("#selboxDirect").hide();
+		    	$('#igdvallist').append("<option value='루테인'>루테인</option>'");
+		        $('#igdvallist').append("<option value='direct'>직접 입력</option>'");
+		    } else if (type == '장건강') {  // 장 건강
+		    	$("#selboxDirect").hide();
+		        $('#igdvallist').append("<option value='프로바이오틱스' >프로바이오틱스</option>'");
+		       $('#igdvallist').append("<option value='direct'>직접 입력</option>'");
+		    } else if ( type == '간건강') {  // 간 건강
+		    	$("#selboxDirect").hide();
+		    	$('#igdvallist').append("<option value='밀크씨슬' >밀크씨슬</option>'");
+		        $('#igdvallist').append("<option value='direct'>직접 입력</option>'");
+		    }  else if ( type == '뼈,관절건강') {  // 뼈/관절 건강
+		    	$("#selboxDirect").hide();
+		    	$('#igdvallist').append("<option value='마그네슘' >마그네슘</option>'");
+		        $('#igdvallist').append("<option value='글루코사민' >글루코사민</option>'");
+		        $('#igdvallist').append("<option value='칼슘' >칼슘</option>'");
+		        $('#igdvallist').append("<option value='direct'>직접 입력</option>'");
+		    } else if ( type == '면역력') {  // 면역력
+		    	$("#selboxDirect").hide();
+		    	$('#igdvallist').append("<option value='프로폴리스' >프로폴리스</option>'");
+		        $('#igdvallist').append("<option value='아연' >아연</option>'");
+		        $('#igdvallist').append("<option value='direct'>직접 입력</option>'");
+		    } else if ( type == '만성피로') {  // 만성피로
+		    	$("#selboxDirect").hide();
+		    	$('#igdvallist').append("<option value='비타민' >비타민</option>'");
+		        $('#igdvallist').append("<option value='테아닌' >테아닌</option>'");
+		        $('#igdvallist').append("<option value='direct'>직접 입력</option>'");
+		    } else if ( type == '혈액순환') {  // 혈액순환
+		    	$("#selboxDirect").hide();
+		    	$('#igdvallist').append("<option value='오메가3' >오메가3</option>'");
+		        $('#igdvallist').append("<option value='direct'>직접 입력</option>'");
+		    }  
 		    
-		    document.getElementById("igdval").style.display = "";
+		    document.getElementById("igdvallist").style.display = "";
 		    
 		    if ($.trim(select) != "") {
 		        $('#fnval').val(type);
-		        $('#igdval').val(select);
+		        $('#igdvallist').val(select);
 		    }
 		} 
 		
+		$(function(){
+		    //직접입력 인풋박스 기존에는 숨어있다가
+		    $("#selboxDirect").hide();
+
+		    $("#igdvallist").change(function() {
+		        //직접입력을 누를 때 나타남
+		        if($("#igdvallist").val() == "direct") {
+		        $("#selboxDirect").show();
+		        }  else {
+		        $("#selboxDirect").hide();
+		        }
+		    }) 
+		});
 		</script>
 </head>
 
@@ -108,13 +136,9 @@
 													<!-- 눈건강, 장건강, 간건강, 뼈,관절건강, 만성피로, 혈행개선 -->
 													<div class="td">	
 														<select id="fnval" name="fnval" onChange="chnFnvalType(this.value)" >
-														    <option value="fneye">눈건강</option>
-														    <option value="fnintestine">장건강</option>
-														    <option value="fnliver">간건강</option>
-														    <option value="fnjoint">뼈/관절 건강</option>
-														    <option value="fnimmunity">면역력</option>
-														    <option value="fnfatigue">만성피로</option>
-														    <option value="fnblood">혈액순환</option>
+														    <c:forEach var="val" items="${fnvalList}">
+														   		<option value="${val}">${val}</option>
+														    </c:forEach>
 														</select>
 														
 													</div>
@@ -124,8 +148,11 @@
 														<p class="form_label">성분별</p>
 													</div>
 													<div class="td">	
-														<select id="igdval" name="igdval" style="width:120px; display:none;" >
+														<select id="igdvallist" name="igdval" style="width:120px; display:none;" >
 														</select>
+														
+														<!--igdval 에서 '직접입력'을 선택하면 나타날 인풋박스-->
+														<input type="text" id="selboxDirect"  name="directval"/>
 													</div>
 												</div>
 												<div class="tr">
@@ -173,7 +200,7 @@
 																		<div class="attach_top">
 																			<label class="attach_img" for="prdimgdetailattach">사진 첨부</label>
 																			<p class="guide_txt">파일 1개당 10MB까지 첨부 가능합니다. (JPG, JPEG, PNG, GIF만 첨부 가능)</p>
-																			<input class="input_file" id="prdimgdetailattach"  name="prdimgdetailattach" type="file" multiple>
+																			<input class="input_file" id="prdimgdetailattach"  name="prdimgdetailattach" type="file">
 																		</div>
 																		<div class="attached" data-file="prdimgdetailattach" id="inputUploadFile"></div>
 																	</div> 
