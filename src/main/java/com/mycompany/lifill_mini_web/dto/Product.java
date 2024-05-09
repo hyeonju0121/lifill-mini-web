@@ -27,14 +27,17 @@ public class Product {
 		private String prdbrand;
 		private int prdprice;
 		private int prdstock;
-		private boolean prdsubscribable;
-		private boolean prdsalesstatus;
+		private String prdsubscribable;
+		private String prdsalesstatus;
 		
 		// function
 		private String fnval;
 		
 		// ingredient
 		private String igdval;
+		
+		// 성분 값을 직접 입력한 경우 
+		private String directval;
 		
 		// prdhashtag
 		private String tagval;

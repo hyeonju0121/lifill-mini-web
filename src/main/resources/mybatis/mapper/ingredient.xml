@@ -8,10 +8,8 @@
 		<selectKey keyProperty="igdno" order="BEFORE" resultType="int">
 			select seq_igdno.nextval from dual
 		</selectKey>
-		insert into ingredient(
-			igdno, prdcode, igdval)
-		values(
-			#{igdno}, #{prdcode}, #{igdval})
+		insert into ingredient(igdno, fnno, igdval)
+		values(#{igdno}, #{fnno}, #{igdval})
 	</insert>
 
 </mapper>

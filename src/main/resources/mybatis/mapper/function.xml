@@ -13,5 +13,13 @@
 		values(
 			#{fnno}, #{prdcode}, #{fnval})
 	</insert>
+	
+	<select id="fnSelectFnval" resultType="String">
+		select fnval from function
+	</select>
+	
+	<select id="fnSelectByFnval" parameterType="String" resultType="int">
+		select fnno from function where fnval=#{fnval}
+	</select>
 
 </mapper>

@@ -1,5 +1,9 @@
 package com.mycompany.lifill_mini_web.dto;
 
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
