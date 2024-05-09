@@ -11,6 +11,7 @@ import lombok.Data;
 @Builder
 public class Product {
 	private String prdcode;
+	private int fnno;
 	private String prdname;
 	private String prdbrand;
 	private int prdprice;
