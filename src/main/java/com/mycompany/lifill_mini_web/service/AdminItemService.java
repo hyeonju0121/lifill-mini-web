@@ -15,8 +15,11 @@ import com.mycompany.lifill_mini_web.dao.PrdContentsDao;
 import com.mycompany.lifill_mini_web.dao.PrdDetailDao;
 import com.mycompany.lifill_mini_web.dao.PrdHashtagDao;
 import com.mycompany.lifill_mini_web.dao.ProductDao;
+import com.mycompany.lifill_mini_web.dto.CreateProductRequest;
 import com.mycompany.lifill_mini_web.dto.Function;
+import com.mycompany.lifill_mini_web.dto.GetProductResponse;
 import com.mycompany.lifill_mini_web.dto.Ingredient;
+import com.mycompany.lifill_mini_web.dto.Pager;
 import com.mycompany.lifill_mini_web.dto.PrdContents;
 import com.mycompany.lifill_mini_web.dto.PrdDetail;
 import com.mycompany.lifill_mini_web.dto.PrdHashtag;
@@ -42,7 +45,7 @@ public class AdminItemService {
 
 	// 상품 등록
 	@Transactional
-	public void createItem(Product.createProductRequest request) {
+	public void createItem(CreateProductRequest request) {
 		// 상품코드 생성
 		String productCode = createPrdCode(request.getFnval());
 		
@@ -163,6 +166,21 @@ public class AdminItemService {
 		int prdHashtagRowNum = prdHashtagDao.prdhashtaginsert(prdHashtag);
 	}
 	
+	//public List<Product.GetProductResponse> getProductList(Pager pager) {
+	// 상품 목록 조회
+	public List<GetProductResponse> getProductList() {
+		log.info("실행");
+		
+		//List<Product.GetProductResponse> productList = productDao.prdselect(pager);
+		List<GetProductResponse> productList = productDao.prdselect();
+		
+		for (GetProductResponse product : productList) {
+			log.info("product={}", product.toString());
+		}
+		
+		return productList;
+	}
+	
 	/**
 	 * 상품 코드 생성 메소드
 	 * ex) P100-0001
@@ -195,7 +213,9 @@ public class AdminItemService {
 		
 		int num = productDao.prdcount();
 		
-		if (num == 0) { num = 1;}
+		if (num == 0) { 
+			num = 1;
+		}
 		num++;
 		
 		String numStr = String.valueOf(num);
@@ -219,5 +239,9 @@ public class AdminItemService {
 	// 기능별 테이블에 존재하는 fnval 값들 리스트로 생성하는 메소드
 	public List<String> getFnvalList() {
 		return functionDao.fnSelectFnval();
+	}
+
+	public int getTotalRows() {
+		return productDao.prdcount();
 	}
 }

@@ -20,5 +20,41 @@
 		)
 	</insert>
 	
-
+	<select id="prdselect" resultType="GetProductResponse">
+		select   t3.prdcode, t4.prdname, t4.prdbrand, t4.prdprice, t4.prdstock,
+		         t4.prdimgrep1oname, t4.prdimgrep1type,
+		         t4.prdimgdetailoname, t4.prdimgdetailtype,
+		         t4.prdcreatedat,
+		         t3.fnno, t3.fnval, t3.igdno, t3.igdval
+		from (
+		        select t1.prdcode, fnno, fnval, igdno, igdval
+		        from (
+		                select p.prdcode, i.igdno, i.igdval
+		                from product p, ingredient i
+		                where p.igdno=i.igdno
+		             ) t1, (
+		                select p.prdcode, f.fnno, f.fnval
+		                from product p, function f
+		                where p.fnno=f.fnno
+		             ) t2
+		        where t1.prdcode = t2.prdcode
+		    ) t3, (
+		                select t1.prdcode, t1.prdname, t1.prdbrand, t1.prdprice, t1.prdstock,
+		                     prdcontents.prdimgrep1oname, prdcontents.prdimgrep1type,
+		                     prdcontents.prdimgdetailoname, prdcontents.prdimgdetailtype,
+		                     prdcontents.prdcreatedat
+		                from 
+		                    prdcontents, 
+		                    (
+		                        select p.prdcode, p.fnno, p.prdname, p.prdbrand, p.prdprice, p.prdstock
+		                        from product p , prddetail pd
+		                        where p.prdcode=pd.prdcode
+		                    ) t1
+		                where prdcontents.prdcode=t1.prdcode
+		                order by prdcontents.prdcreatedat
+		            ) t4
+		where t3.prdcode=t4.prdcode
+		
+	</select>
+	
 </mapper>
