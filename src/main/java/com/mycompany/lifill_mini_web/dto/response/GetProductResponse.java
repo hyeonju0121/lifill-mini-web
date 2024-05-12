@@ -1,4 +1,4 @@
-package com.mycompany.lifill_mini_web.dto;
+package com.mycompany.lifill_mini_web.dto.response;
 
 import java.util.Date;
 

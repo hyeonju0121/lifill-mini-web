@@ -3,7 +3,6 @@ package com.mycompany.lifill_mini_web.service;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.management.RuntimeErrorException;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,21 +14,22 @@ import com.mycompany.lifill_mini_web.dao.PrdContentsDao;
 import com.mycompany.lifill_mini_web.dao.PrdDetailDao;
 import com.mycompany.lifill_mini_web.dao.PrdHashtagDao;
 import com.mycompany.lifill_mini_web.dao.ProductDao;
-import com.mycompany.lifill_mini_web.dto.CreateProductRequest;
-import com.mycompany.lifill_mini_web.dto.Function;
-import com.mycompany.lifill_mini_web.dto.GetProductResponse;
+import com.mycompany.lifill_mini_web.dao.ProductResponseDao;
 import com.mycompany.lifill_mini_web.dto.Ingredient;
-import com.mycompany.lifill_mini_web.dto.Pager;
 import com.mycompany.lifill_mini_web.dto.PrdContents;
 import com.mycompany.lifill_mini_web.dto.PrdDetail;
 import com.mycompany.lifill_mini_web.dto.PrdHashtag;
 import com.mycompany.lifill_mini_web.dto.Product;
+import com.mycompany.lifill_mini_web.dto.request.CreateProductRequest;
+import com.mycompany.lifill_mini_web.dto.response.ProductResponse;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
 public class AdminItemService {
+	@Resource
+	private ProductResponseDao productResponseDao;
 	@Resource
 	private ProductDao productDao;
 	@Resource
@@ -168,13 +168,13 @@ public class AdminItemService {
 	
 	//public List<Product.GetProductResponse> getProductList(Pager pager) {
 	// 상품 목록 조회
-	public List<GetProductResponse> getProductList() {
+	public List<ProductResponse> getProductList() {
 		log.info("실행");
 		
 		//List<Product.GetProductResponse> productList = productDao.prdselect(pager);
-		List<GetProductResponse> productList = productDao.prdselect();
+		List<ProductResponse> productList = productResponseDao.prdselect();
 		
-		for (GetProductResponse product : productList) {
+		for (ProductResponse product : productList) {
 			log.info("product={}", product.toString());
 		}
 		

@@ -1,4 +1,4 @@
-package com.mycompany.lifill_mini_web.dto;
+package com.mycompany.lifill_mini_web.dto.request;
 
 import java.util.List;
 

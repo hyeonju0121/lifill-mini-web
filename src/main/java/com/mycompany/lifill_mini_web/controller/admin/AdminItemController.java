@@ -2,8 +2,6 @@ package com.mycompany.lifill_mini_web.controller.admin;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,11 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.mycompany.lifill_mini_web.dto.Board;
-import com.mycompany.lifill_mini_web.dto.CreateProductRequest;
-import com.mycompany.lifill_mini_web.dto.GetProductResponse;
-import com.mycompany.lifill_mini_web.dto.Pager;
-import com.mycompany.lifill_mini_web.dto.Product;
+import com.mycompany.lifill_mini_web.dto.request.CreateProductRequest;
+import com.mycompany.lifill_mini_web.dto.response.ProductResponse;
 import com.mycompany.lifill_mini_web.service.AdminItemService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -93,7 +88,7 @@ public class AdminItemController {
 		// adminBoardService 에서 게시물 목록 요청
 		//Pager pager = new Pager(10, 10, rows, intPageNo);
 		//List<Product.GetProductResponse> productList = adminItemService.getProductList(pager);
-		List<GetProductResponse> productList = adminItemService.getProductList();
+		List<ProductResponse> productList = adminItemService.getProductList();
 		
 		// jsp 에서 사용할 수 있도록 설정
 		//model.addAttribute("pager", pager);

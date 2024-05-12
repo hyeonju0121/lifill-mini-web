@@ -25,10 +25,10 @@
 		<typeAlias type="com.mycompany.lifill_mini_web.dto.PrdHashtag" alias="PrdHashtag"/>
 		<typeAlias type="com.mycompany.lifill_mini_web.dto.PrdDetail" alias="PrdDetail"/>
 		<typeAlias type="com.mycompany.lifill_mini_web.dto.Product" alias="Product"/>
-		<typeAlias type="com.mycompany.lifill_mini_web.dto.GetProductResponse" alias="GetProductResponse"/>
 		<typeAlias type="com.mycompany.lifill_mini_web.dto.Refund" alias="Refund"/>
 		<typeAlias type="com.mycompany.lifill_mini_web.dto.Review" alias="Review"/>
 		<typeAlias type="com.mycompany.lifill_mini_web.dto.Pager" alias="Pager"/>
+		<typeAlias type="com.mycompany.lifill_mini_web.dto.response.ProductResponse" alias="ProductResponse"/>
 	</typeAliases>
 	
 </configuration>
