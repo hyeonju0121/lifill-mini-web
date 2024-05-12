@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -57,18 +60,47 @@
 					    <thead class="table-dark">
 					      <tr>
 					        <th>No</th>
-					        <th>카테고리</th>
-					        <th>세부카테고리</th>
+					        <th>기능별</th>
+					        <th>성분별</th>
 					        <th>상품코드</th>
 					        <th>브랜드</th>
 					        <th>상품명</th>
 					        <th>판매가</th>
+					        <th>재고</th>
 					        <th>등록일시</th>
 					        <th>수정/삭제</th>
 					      </tr>
 					    </thead>
 					    <tbody>
-					      <tr>
+					    <c:forEach var="product" items="${productList}">
+					     	<tr>
+						      <td></td>
+						      <td>${product.fnval}</td>
+						      <td>${product.igdval}</td>
+						      <td>${product.prdcode}</td>
+						      <td>${product.prdbrand}</td>
+						      <td>
+					    		<div class="img_box d-flex">
+									<div id="itemImg">
+										<img src="attachDownload?prdcode=${product.prdcode}" 
+											class="rounded-3" style="width:90px;height:90px;"/>
+									</div>
+									<span class="ms-2">${product.prdname}</span>
+								</div>
+					        </td>
+						      <td>${product.prdprice}</td>
+						      <td>${product.prdstock}</td>
+						      <td><fmt:formatDate value="${product.prdcreatedat}" pattern="yyyy-MM-dd"/></td>
+						      <td>
+						      	<div class="btn_big_wrap">
+									<button type="button" onclick="location.href='${pageContext.request.contextPath}/admin/item/itemUpdate'" class="btn btn-outline-dark">수정</button>
+									<button type="button" onclick="location.href='#'" class="btn btn-outline-dark">삭제</button>
+								</div>
+						      </td>
+						    </tr>
+					     </c:forEach>
+					    
+					     <!-- <tr>
 					        <td>1</td>
 					        <td>기능별</td>
 					        <td>눈 건강</td>
@@ -91,127 +123,7 @@
 									<button type="button" onclick="location.href='#'" class="btn btn-outline-dark">삭제</button>
 								</div>
 					        </td>
-					      </tr>
-					      <tr>
-					        <td>2</td>
-					        <td>기능별</td>
-					        <td>눈 건강</td>
-					        <td>P00001</td>
-					        <td>effekt</td>
-					        <td>
-					    		<div class="img_box d-flex">
-									<div id="itemImg">
-										<img src="${pageContext.request.contextPath}/resources/image/item_rep/eye/eye3_image1.png" 
-											class="rounded-3" style="width:90px;height:90px;"/>
-									</div>
-									<span class="ms-2">초임계 루테인아스타잔틴 코어</span>
-								</div>
-					        </td>
-					        <td>29,800원</td>
-					        <td>2024-04-22 09:15</td>
-					        <td>
-					        	<div class="btn_big_wrap">
-									<button type="button" onclick="location.href='#'" class="btn btn-outline-dark">수정</button>
-									<button type="button" onclick="location.href='#'" class="btn btn-outline-dark">삭제</button>
-								</div>
-					        </td>
-					      </tr>
-					      <tr>
-					        <td>3</td>
-					        <td>기능별</td>
-					        <td>눈 건강</td>
-					        <td>P00001</td>
-					        <td>effekt</td>
-					        <td>
-					    		<div class="img_box d-flex">
-									<div id="itemImg">
-										<img src="${pageContext.request.contextPath}/resources/image/item_rep/eye/eye3_image1.png" 
-											class="rounded-3" style="width:90px;height:90px;"/>
-									</div>
-									<span class="ms-2">초임계 루테인아스타잔틴 코어</span>
-								</div>
-					        </td>
-					        <td>29,800원</td>
-					        <td>2024-04-22 09:15</td>
-					        <td>
-					        	<div class="btn_big_wrap">
-									<button type="button" onclick="location.href='#'" class="btn btn-outline-dark">수정</button>
-									<button type="button" onclick="location.href='#'" class="btn btn-outline-dark">삭제</button>
-								</div>
-					        </td>
-					      </tr>
-					      <tr>
-					        <td>4</td>
-					        <td>기능별</td>
-					        <td>눈 건강</td>
-					        <td>P00001</td>
-					        <td>effekt</td>
-					        <td>
-					    		<div class="img_box d-flex">
-									<div id="itemImg">
-										<img src="${pageContext.request.contextPath}/resources/image/item_rep/eye/eye3_image1.png" 
-											class="rounded-3" style="width:90px;height:90px;"/>
-									</div>
-									<span class="ms-2">초임계 루테인아스타잔틴 코어</span>
-								</div>
-					        </td>
-					        <td>29,800원</td>
-					        <td>2024-04-22 09:15</td>
-					        <td>
-					        	<div class="btn_big_wrap">
-									<button type="button" onclick="location.href='#'" class="btn btn-outline-dark">수정</button>
-									<button type="button" onclick="location.href='#'" class="btn btn-outline-dark">삭제</button>
-								</div>
-					        </td>
-					      </tr>
-					      <tr>
-					        <td>5</td>
-					        <td>기능별</td>
-					        <td>눈 건강</td>
-					        <td>P00001</td>
-					        <td>effekt</td>
-					        <td>
-					    		<div class="img_box d-flex">
-									<div id="itemImg">
-										<img src="${pageContext.request.contextPath}/resources/image/item_rep/eye/eye3_image1.png" 
-											class="rounded-3" style="width:90px;height:90px;"/>
-									</div>
-									<span class="ms-2">초임계 루테인아스타잔틴 코어</span>
-								</div>
-					        </td>
-					        <td>29,800원</td>
-					        <td>2024-04-22 09:15</td>
-					        <td>
-					        	<div class="btn_big_wrap">
-									<button type="button" onclick="location.href='#'" class="btn btn-outline-dark">수정</button>
-									<button type="button" onclick="location.href='#'" class="btn btn-outline-dark">삭제</button>
-								</div>
-					        </td>
-					      </tr>
-					      <tr>
-					        <td>6</td>
-					        <td>기능별</td>
-					        <td>눈 건강</td>
-					        <td>P00001</td>
-					        <td>effekt</td>
-					        <td>
-					    		<div class="img_box d-flex">
-									<div id="itemImg">
-										<img src="${pageContext.request.contextPath}/resources/image/item_rep/eye/eye3_image1.png" 
-											class="rounded-3" style="width:90px;height:90px;"/>
-									</div>
-									<span class="ms-2">초임계 루테인아스타잔틴 코어</span>
-								</div>
-					        </td>
-					        <td>29,800원</td>
-					        <td>2024-04-22 09:15</td>
-					        <td>
-					        	<div class="btn_big_wrap">
-									<button type="button" onclick="location.href='#'" class="btn btn-outline-dark">수정</button>
-									<button type="button" onclick="location.href='#'" class="btn btn-outline-dark">삭제</button>
-								</div>
-					        </td>
-					      </tr>
+					      </tr>-->
 					    </tbody>
 					  </table>
 					</div>

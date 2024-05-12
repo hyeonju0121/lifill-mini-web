@@ -51,8 +51,8 @@ public class ProductResponse {
 	private String prdtype;
 	private String prdingredient;
 	
-	private Date createdAt;
-	private Date updatedAt;
+	private Date prdcreatedat;
+	private Date prdupdatedat;
 	
 	// Prdhashtag table
 	private int tagno;

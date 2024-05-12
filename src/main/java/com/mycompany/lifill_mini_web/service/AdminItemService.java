@@ -15,6 +15,7 @@ import com.mycompany.lifill_mini_web.dao.PrdDetailDao;
 import com.mycompany.lifill_mini_web.dao.PrdHashtagDao;
 import com.mycompany.lifill_mini_web.dao.ProductDao;
 import com.mycompany.lifill_mini_web.dao.ProductResponseDao;
+import com.mycompany.lifill_mini_web.dto.Board;
 import com.mycompany.lifill_mini_web.dto.Ingredient;
 import com.mycompany.lifill_mini_web.dto.PrdContents;
 import com.mycompany.lifill_mini_web.dto.PrdDetail;
@@ -180,6 +181,20 @@ public class AdminItemService {
 		
 		return productList;
 	}
+	
+	
+	// 상품 단건 조회
+	public ProductResponse getProduct(String prdcode) {
+		ProductResponse product = productResponseDao.prdSelectByPrdcode(prdcode);
+		return product;
+	}
+	
+	// 상품코드 기준으로 AttachData (대표이미지) 조회
+	public byte[] getAttachData(String prdcode) {
+		ProductResponse product = productResponseDao.prdSelectByAttachData(prdcode);
+		return product.getPrdimgrep1();
+	}
+	
 	
 	/**
 	 * 상품 코드 생성 메소드
