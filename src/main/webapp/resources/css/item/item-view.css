@@ -1,0 +1,714 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+body, h1, h2, h3, h4, h5, h6, input, textarea, select {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 상세 페이지에서 추가된 css들 */
+
+/* .product-section {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+} */
+
+.product-section {
+	display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.img_box {
+	width: calc(50% - 20px);
+	font-size: 0;
+	margin-right: 20px;
+}
+
+.item-overview {
+	width: calc(50% - 20px);
+}
+
+@media (max-width: 1000px) {
+    .img_box, .item-overview {
+        width: calc(100% - 20px);
+    }
+}
+
+.sub-rep-img img {
+	width: 100px;
+	height: 100px;
+	margin-right: 10px;
+}
+
+.rep_img_box {
+	height: 75%;
+	box-sizing: border-box;
+}
+
+.rep_img {
+	width: 80%;
+	heigth: 300px;
+}
+
+.sub-rep-img {
+	height: 20%;
+	box-sizing: border-box;
+}
+
+.info-name div {
+	margin: 2px;
+	width: 150px;
+}
+
+.info-value div {
+	margin: 2px;
+	width: 400px;
+	
+}
+
+.count_box {
+    line-height: normal;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    margin-bottom: 20px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.count_tit {
+    line-height: normal;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    margin-right: 20px;
+    font-weight: 700;
+    overflow: hidden;
+}
+
+.count_set {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.total_item {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 20px 0 30px;
+}
+
+.total_box {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    padding-top: 20px;
+    border-top: 1px solid #F2F2F2;
+}
+
+.tit {
+    line-height: normal;
+    font-size: 14px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+}
+
+.total {
+    line-height: normal;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.btn_del {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    vertical-align: middle;
+    cursor: pointer;
+    flex: 0 0 auto;
+    width: 14px;
+    height: 14px;
+    margin-left: 5px;
+    background: url('../image/icon/btn_delete.png') no-repeat center /contain;
+    border-radius: 50%;
+}
+
+.blind {
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: inline-block;
+    position: absolute;
+    z-index: -1;
+    width: 1px;
+    height: 1px;
+    border: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+}
+
+.accordion-button {
+    line-height: normal;
+    margin: 0;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 600;
+    background-color: white;
+    padding: 30px 26px 30px 0;
+    background-repeat: no-repeat;
+    background-position: 100% center;
+    background-image: url('../image/icon/minus.png');
+}
+
+    
+
+.acc_header {
+    line-height: normal;
+    color: var(--txt-color);
+    box-sizing: border-box;
+    margin: 0;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 30px 26px 30px 0;
+    background-repeat: no-repeat;
+    background-position: 100% center;
+    background-image: url('../image/icon/btn_minus.png');
+}
+
+#qtySpinner {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0 15px;
+    transition: all 0.5s;
+    vertical-align: middle;
+    width: 50px;
+    height: 30px;
+    border: none;
+    border-radius: 0;
+    border-top: 1px solid #CCCCCC;
+    border-bottom: 1px solid #CCCCCC;
+    font-weight: 500;
+    text-align: center;
+    appearance: none;
+    border-color: gray;
+    font-size: 12px;
+}
+
+.info-minus {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-weight: 500;
+    vertical-align: middle;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    text-indent: -9999px;
+    overflow: hidden;
+    white-space: nowrap;
+    background: url('../image/icon/btn_minus.png') no-repeat center center/contain;
+}
+
+.info-plus {
+	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-weight: 500;
+    vertical-align: middle;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    text-indent: -9999px;
+    overflow: hidden;
+    white-space: nowrap;
+    background: url('../image/icon/btn_plus.png') no-repeat center center/contain;
+}
+
+.delivery-name div {
+	margin: 2px;
+	width: 150px;
+}
+
+.delivery-value div {
+	margin: 2px;
+	width: 400px;
+}
+
+
+/* 스크롤 따라다니게 하기------------------- */
+.buy-box {
+	width: 410px;
+}
+
+.buy-box-area {
+	position: sticky;
+	top: 0px; /* 도달했을때 고정시킬 위치 */
+	padding: 5px;
+	z-index: 1000;
+	height:900px;
+	width: 410px;
+}
+
+/* 네비게이션 바------------------- */
+#menu-nav {
+	width: 850px;
+	position: relative;
+	z-index: 1000;
+	height: 50;
+}
+
+#scroll_to a.active {
+    border-bottom: 3px solid #37cbe9;
+}
+
+#menu-nav::after {
+	content: "";
+	position: absolute;
+	height: 3px;
+	background-color: #37cbe9;
+	bottom: 0;
+    left: 0;
+}
+
+/* .tabnav ul {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+	overflow: hidden;
+	height: 75px;
+}
+ */
+.tabnav li {
+	display: inline-block;
+	text-align:center;
+	border-right: 1px solid #000000;
+	padding: 8px 30px;
+	
+}
+
+.tabnav li a {
+	display: flex;
+	color: black;
+	padding: 20px;
+	text-decoration: none;
+}
+
+.scroll_to {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    justify-content: space-around;
+    height: 57px;
+    flex: 0 0 57px;
+}
+
+.scroll_to a {
+    line-height: normal;
+    box-sizing: border-box;
+    font-weight: 500;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-bottom: 1px solid #cccccc;
+    outline: none;
+    background-color: inherit;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.sticky {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    height: auto !important;
+    transition: left 0.4s ease, right 0.4s ease;
+    position: sticky;
+    width: 100%;
+    background-color: white;
+    z-index: 10;
+    top: 0px;
+}
+
+.tab_btn {
+    line-height: normal;
+    box-sizing: border-box;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background-color: inherit;
+    justify-content: center;
+    font-size: 18px;
+    border-bottom: 2px solid #cccccc;
+    font-weight: bold;
+}
+/* .tabnav li a:hover:not(.active) {
+	background-color: lightgrey;
+} */
+
+.list-bar {
+  	position: sticky;
+	/* top: 0px; */ /* 도달했을때 고정시킬 위치 */
+	padding: 5px;
+	/* height:70px; */
+	/* margin-bottom: 20px; */
+	text-algin: center;
+	background-color: white;
+    user-select: text;
+    line-height: normal;
+    font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    transition: left 0.4s ease, right 0.4s ease;
+    height: auto !important;
+    width: 100%; 
+    z-index: 10;
+    top: 0px;
+}
+
+#menu-nav ul {
+	height: 100%;
+} 
+
+#menu-nav ul li {
+	height: 100%;
+} 
+
+/* ---------------------------------- */
+
+#cart-button1 {
+	background-color:white;
+	width:45%;
+	height: 70%;
+	margin-top: 10px;
+	margin-right: 5px;
+	color: #37cbe9;
+	border: 1px solid #37cbe9;
+	border-radius: 0;
+	display: inline;
+}
+
+#buy-button1 {
+	background-color:#37cbe9; 
+	width:45%;
+	height: 70%;
+	color:white;
+	margin-top: 10px;
+	border: none;
+	border-radius: 0;
+	display: inline;
+}
+
+#cart-button2 {
+	background-color:white;
+	width:190px;
+	height: 50px;
+	margin-top: 10px;
+	margin-right: 5px;
+	color: #37cbe9;
+	border: 1px solid #37cbe9;
+}
+
+
+#buy-button2 {
+	background-color:#37cbe9; 
+	width:190px; 
+	color:white;
+	height: 50px;
+	margin-top: 10px;
+	border: none;
+}
+
+.minus-button, .plus-button {
+	width:30px;
+	height:30px;
+	border: 1px solid grey;
+	border-radius: 50%;
+	padding: 5px;
+	font-size: 18px;
+	text-align: center;
+	line-height: 0px;
+}
+
+.buy-info-area {
+	background-color: #f8f8f8;
+	height:750px;
+}
+
+.item-info {
+	width: 100%;
+	height: 85%;
+	justify-content: space-between;
+}
+
+.button-area1 {
+	right: 0;
+	bottom: 0;
+	width:100%;
+	height: 15%;
+}
+
+.form_table {
+	display: flex;
+	justify-content: space-between;
+}
+
+.tr {
+	justify-content: space-between;
+}
+
+.th1 {
+	text-align: left;
+}
+
+.th2 {
+	text-align: left;
+	width: 50%;
+}
+
+.button-area2 {
+	height: 80px;
+}
+
+.item-name {
+	font-size: 14px;
+}
+
+.count-button {
+	margin-top: 3px;
+}
+
+.total-price {
+	width:380px;
+}
+
+#price-sum, #real-price {
+	text-align: right;
+}
+
+/* 상세 페이지에서 추가된 css들 끝*/
+
+/* carousel 위치 ------------------------------ */
+.carousel {
+	overflow: hidden;
+	width: 100%;
+}
+
+.carousel-inner {
+    /* display: flex; */
+    justify-content: center; /* Center the items horizontally */
+    align-items: center; /* Center the items vertically */
+}
+
+..carousel-item {
+    margin: 0 auto; /* Set left and right margins to auto */
+    display: inline-block; /* Ensure each item behaves as a block element */
+}
+
+/* image size ------------------------------ */
+.icon-img {
+	height: 25px;
+}
+
+.banner-img {
+	height: 500px;
+	width: 100%;
+}
+
+.carousel-control-prev {
+	left:-80px;
+}
+
+.carousel-control-next {
+	right:-20px;
+}
+
+/* best item ------------------------------- */
+.card {
+	padding: 10px;
+	margin: 0 15px;
+}
+
+.card-wrapper {
+	padding: 10px;
+	margin: 0 10px;
+    max-width: 1080px;
+}
+
+.best-item-card {
+	width:17rem;
+}
+/* review ---------------------------------- */
+
+
+div [class^="col-"] {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.card {
+	transition: 0.5s;
+	cursor: pointer;
+	z-index: 10;
+}
+
+.card-title {
+	font-size: 15px;
+	transition: 1s;
+	cursor: pointer;
+}
+
+.card-title i {
+	font-size: 15px;
+	transition: 1s;
+	cursor: pointer;
+	color: #ffa710
+}
+
+.card-title i:hover {
+	transform: scale(1.25) rotate(100deg);
+	color: #18d4ca;
+}
+
+.card:hover {
+	transform: scale(1.05);
+	box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
+}
+
+.card-text {
+	height: 80px;
+}
+/* ------------------------------------------ */
+
+/* review-card------------------------------- */
+.review-card {
+	width:200px;
+	margin-right:10px;
+}
+
+/* tabnav li--------------------------------- */
+
+#detail {
+	height: 500px;
+}
+
+#detail.hidden {
+	height: 200px; overflow: hidden;
+}
+
+a#btnMore {
+	margin: 30px auto; background-color:red; color:white;
+}
+
+.detailMore {
+	position: relative;
+}
+
+.detailMore:before {
+    content: '';
+    position: absolute;
+    top: -125px;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 96px;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8) 66%, rgba(255, 255, 255, 0.94) 83%, rgba(255, 255, 255, 0.98) 91%, #ffffff);
+}
+
+
+
+/* footer ----------------------------------- */
+.footer{
+  background: #152F4F;
+  color:white;
+  
+  .links{
+    ul {list-style-type: none;}
+    li a{
+      color: white;
+      transition: color .2s;
+      &:hover{
+        text-decoration:none;
+        color:#4180CB;
+        }
+    }
+  }  
+  .about-company{
+    i{font-size: 25px;}
+    a{
+      color:white;
+      transition: color .2s;
+      &:hover{color:#4180CB}
+    }
+    padding-right: 100px;
+    
+  } 
+  .location{
+    i{font-size: 18px;}
+    padding-left: 100px;
+  }
+  .copyright p{border-top:1px solid rgba(255,255,255,.1);} 
+}

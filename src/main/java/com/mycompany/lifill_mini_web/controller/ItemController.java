@@ -1,7 +1,13 @@
 package com.mycompany.lifill_mini_web.controller;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.mycompany.lifill_mini_web.dto.response.ProductResponse;
+import com.mycompany.lifill_mini_web.service.ProductService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -10,6 +16,9 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class ItemController {
 
+	@Resource
+	private ProductService service;
+	
 	@RequestMapping("")
 	public String index() {
 		log.info("index() 실행");
@@ -53,8 +62,13 @@ public class ItemController {
 	}
 	
 	@RequestMapping("/item_view")
-	public String itemView() {
+	public String itemView(Model model, String prdcode) {
 		log.info("itemView() 실행");
+		
+		ProductResponse product = service.getProduct("P100-0010");
+		
+		model.addAttribute("product", product);
+		
 		return "item/item_view";
 	}
 	
