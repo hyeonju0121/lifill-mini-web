@@ -22,4 +22,9 @@ public class ProductService {
 		return product;
 	}
 	
+	public byte[] getAttachData(String prdcode) {
+		ProductResponse product = productResponseDao.prdSelectByAttachData(prdcode);
+		return product.getPrdimgrep1();
+	}
+	
 }

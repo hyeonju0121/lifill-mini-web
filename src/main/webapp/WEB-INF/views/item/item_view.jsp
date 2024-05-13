@@ -15,7 +15,7 @@
 		<script src="${pageContext.request.contextPath}/resources/jquery/jquery-3.7.1.min.js"></script>
 		
 		<!-- external css -->
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/item/item-view.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/item-view.css">
 		
 		<!-- 사용자 정의 자바스크립트 -->
 		<script>
@@ -69,6 +69,7 @@
 			function count(n)  {
 	        	// 결과를 표시할 element
 	            const element = $('#qtySpinner');
+	            const element2 = $('#qtySpinner2');
 	              
 	            // 현재 화면에 표시된 값
 	            var number = element.val();
@@ -86,6 +87,7 @@
 	              
 	            // 결과 출력
 	            element.val(number);
+	            element2.val(number);
 	         }
 			
 			function setQtyAndPrc(type) {
@@ -111,12 +113,30 @@
 				
 				var hiddenTotalInput = $("#hiddenTotal");
 		        var outputP = $("#tprice");
-			    
-		        if (hiddenTotalInput.value <= 0) {
-		        	outputP.text(0);
-		        } else {
-		            outputP.text(hiddenTotalInput.val());
-		        }
+		        var outputP2 = $("#price-tag");
+		        var outputP3 = $("#price-sum");
+		       
+	            outputP.text(hiddenTotalInput.val() + "원");
+	            outputP2.text(hiddenTotalInput.val() + "원");
+	            outputP3.text("합계 : " + hiddenTotalInput.val() + "원");
+	            
+	            /* var prdcode = "${product.prdcode}";
+	            var buyLink = 'order?prdcode=' + prdcode + '&amount=' + qty + '&price=' + prc;
+	            
+	            $("#buy-button1").attr("onclick", "location.href='" + buyLink + "'");
+	            $("#buy-button2").attr("onclick", "location.href='" + buyLink + "'"); */
+			}
+			
+			function order() {
+				var amount = parseInt($("#qtySpinner").val());
+				var totalPrice = parseInt($("#hiddenTotal").val());
+				
+				var prdcode = "${product.prdcode}";
+				
+				var urlString = 'order?prdcode=' + prdcode + '&ordAmount=' + amount + '&ordPrice=' + totalPrice;
+				console.log(amount, totalPrice);
+
+			    window.location.href = urlString;
 			}
 
 		</script>
@@ -129,7 +149,7 @@
 		
 		<div class="container" style="padding:0 30px; margin-bottom: 30px; ">
 			<div class="item-section mt-2 mb-2" style="font-size: 12px">
-				<a href="/">라이필</a> > <a href="#">${product.igdval}</a> > <a href="#">${product.fnval}</a>
+				<a href="#">라이필</a> > <a href="#">${product.igdval}</a> > <a href="#">${product.fnval}</a>
 			</div>
 			<!-- 상품 사진과 설명, 가격 영역 -->
 			<div class="product-section">
@@ -138,17 +158,17 @@
 					<div class="rep_img_box">
 						<img
 						class="rep_img"
-						src="${pageContext.request.contextPath}/resources/image/item_rep/eye/eye3_image1.png"/>
+						src="attachDownload?prdcode=${product.prdcode}"/>
 					</div>
 					
 					<div class="sub-rep-img mt-5">
 						<div class="d-flex">
 							<div>
 								<img 
-								src="${pageContext.request.contextPath}/resources/image/item_rep/eye/eye3_image1.png" 
+								src="${product.prdimgrep2}" 
 								style="width:100px; height:100px"/>
 								<img 
-								src="${pageContext.request.contextPath}/resources/image/item_rep/eye/eye3_image2.png" 
+								src="${product.prdimgrep3}" 
 								style="width:100px; height:100px"/>
 							</div>
 						</div>
@@ -256,10 +276,10 @@
 								<input type="hidden" id="cntItmNo" value="">
 								<div class="count_box">
 									<div class="count_tit">
-										<span class="option">초임계 루테인아스타잔틴 코어</span>
-										<button type="reset" class="btn_del" onclick="resetSelectOption2(4);">
+										<span class="option">${product.prdname}</span>
+										<!-- <button type="reset" class="btn_del" onclick="resetSelectOption2(4);">
 											<span class="blind">지우기</span>
-										</button>
+										</button> -->
 									</div>
 									<div class="count_set">
 										<button type="button" name="button" class="info-minus" onclick="setQtyAndPrc('m')">
@@ -283,7 +303,7 @@
 						</div>
 						<div class="button-area1">
 							<button id="cart-button1" type="button" class="btn" onclick="location.href='${pageContext.request.contextPath}/member/cart?prdcode=${product.prdcode}'">장바구니</button>
-							<button id="buy-button1" type="button" class="btn" onclick="location.herf='item/order?prdcode=${product.prdcode}'">구매하기</button>
+							<button id="buy-button1" type="button" class="btn" onclick="order()">구매하기</button>
 						</div>
 					</div>
 				</div>
@@ -333,7 +353,7 @@
 									</div>
 								</div>
 								<!-- 두 번째 슬라이드 -->
-								<div class="carousel-item">
+								<%-- <div class="carousel-item">
 									<div class="card-wrapper container-sm d-flex justify-content-around m-5">
 										<div class="card best-item-card">
 											<img src="${pageContext.request.contextPath}/resources/image/item_rep/eye/eye6.png" 
@@ -364,7 +384,7 @@
 											</div>
 										</div>
 									</div>
-								</div>
+								</div> --%>
 							</div>
 								
 							<!-- carousel button -->
@@ -393,7 +413,7 @@
 						<div class="scroll_to" id="scroll_to">
 							<a href="#item_detail_img_sec" class="tab_btn">상품 설명</a>
 							<a href="#review-sec" class="tab_btn">리뷰</a>
-							<a href="#question-sec" class="tab_btn" name="qnaTab">문의</a>
+							<a href="#question-sec" class="tab_btn">문의</a>
 							<a href="#delivery-sec" class="tab_btn">배송/반품/교환 안내</a>
 						</div>
 					</div>
@@ -416,27 +436,6 @@
 							   <div class="card-header">유OO님</div>
 							    <div class="card-body">
 							    	몇 년째 재구매중
-							    </div>
-							</div>
-							
-							<div class="riview-card card card-block">
-							   <div class="card-header">변OO님</div>
-							    <div class="card-body">
-							    	짱 좋습니다
-							    </div>
-							</div>
-
-							<div class="riview-card card card-block" style="width:200px; margin-right:10px">
-							   <div class="card-header">곽OO님</div>
-							    <div class="card-body">
-							    	선물용으로 좋은듯
-							    </div>
-							</div>
-							
-							<div class="riview-card card card-block" style="width:200px; margin-right:10px">
-							   <div class="card-header">김OO님</div>
-							    <div class="card-body">
-							    	저는 별로였어요
 							    </div>
 							</div>
 						</div>
@@ -480,61 +479,64 @@
 										</div>
 									</div>
 							</div>
-							<div class="accordion-item mt-3">
-								<div class="accordion-header">
-									<div class="accordion-button collapsed" type="button"
-									data-bs-toggle="collapse" data-bs-target="#flush-collapseSix"
-									aria-expanded="false" aria-controls="flush-collapseSix">
-										<div class="tit_area" id="delivery-sec">
-											<strong>배송/반품/취소 안내</strong>
-										</div>
-									</div>
-								</div>
-								<div id="flush-collapseSix" class="accordion-collapse collapse"
-									data-bs-parent="#accordionFlushExample">
-									<div class="accordion-body">
-										<div class="contents">
-												<div class="delivery-notice">
-													<p style="margin-left: 5px;"><b>배송 안내</b></p>
-													<p style="margin-left: 5px;">배송은 평일 결제 시 오후 12시에 출고가 마감됩니다. 오후 12시 이후 결제 건은 익일 출고가 진행됩니다. <br/>
-													(주말 결제 시 다음 영업일 출고)</p>
-													<ul>
-														<li>배송이 시작된 후에는 배송지 변경 및 취소가 불가능합니다.</li>
-														<li>배송기간은 출고일로부터 평균 3~5일 정도 소요됩니다.</li>
-														<li>도서·산간 지역 배송 시 추가 배송비가 없으나, <br/>
-														배송 기일이 추가적으로 소요될 수 있는 점 양해하여 주시기 바랍니다.</li>
-														<li>배송 과정 중 기상 악화 혹은 도로교통 상황에 따라 부득이하게 지연 배송이 발생될 수 있습니다.</li>
-													</ul>
-												</div>
-												<div class="item-exchange-notice">
-													<p style="margin-left: 5px;"><b>반품 및 교환 안내</b></p>
-													<p style="margin-left: 5px;">교환 및 반품은 상품을 수령한 날부터 7일 이내에 고객센터로 문의해 주시기 바랍니다.</p>
-													<ul>
-														<li>제품 이상, 오배송 등과 같은 회사에 귀책사유가 있는 경우 맞교환이 진행됩니다.<br/>
-														(배송비 회사 부담/부분 반품 가능)</li>
-														<li>제품 교환은 단순 고객 변심의 경우에는 교환을 원하는 제품은 <br/>
-														반품(배송비 5,000원 고객부담)으로 진행되고, 수령을 원하는 제품은 추가 결제로 배송됩니다.</li>
-														<li>반품 후 환불금액은 상품 회수 및 검수 후 결정됩니다. <br/>
-														(검수 시 상품의 훼손 및 누락이 있을 경우 변동될 수 있습니다.)</li>
-														<li>반품완료 및 교환회수 완료는 택배기사가 고객님께 반품/교환 상품을 <br/>
-														인계받은(수거) 날로부터 약 3~5일 소요됩니다. (영업일 기준)</li>
-													</ul>
-												</div>
-												<div class="order-cancle-notice">
-													<p style="margin-left: 5px;"><b>주문취소 안내</b></p>
-													<p style="margin-left: 5px;">주문취소는 [발송대기] 상태일 경우에만 취소가 가능합니다. 홈페이지에서 직접 취소하실 수 있습니다.</p>
-													<ul>
-														<li>마이페이지 > 결제관리 > 해당 결제건 선택</li>
-														<li>[배송중]부터는 취소가 불가능하니, 고객센터에 문의하여 반품으로 진행해 주시기 바랍니다.</li>
-														<li>주문 상품의 부분 취소가 필요하신 경우 전체 주문취소 후 다시 구매해 주시기 바랍니다.</li>
-													</ul>
-												</div>
+							<div id="delivery-sec">
+								<div class="accordion-item mt-3">
+									<div class="accordion-header">
+										<div class="accordion-button collapsed" type="button"
+										data-bs-toggle="collapse" data-bs-target="#flush-collapseSix"
+										aria-expanded="false" aria-controls="flush-collapseSix">
+											<div class="tit_area">
+												<strong>배송/반품/취소 안내</strong>
 											</div>
 										</div>
 									</div>
+									<div id="flush-collapseSix" class="accordion-collapse collapse"
+										data-bs-parent="#accordionFlushExample">
+										<div class="accordion-body">
+											<div class="contents">
+													<div class="delivery-notice">
+														<p style="margin-left: 5px;"><b>배송 안내</b></p>
+														<p style="margin-left: 5px;">배송은 평일 결제 시 오후 12시에 출고가 마감됩니다. 오후 12시 이후 결제 건은 익일 출고가 진행됩니다. <br/>
+														(주말 결제 시 다음 영업일 출고)</p>
+														<ul>
+															<li>배송이 시작된 후에는 배송지 변경 및 취소가 불가능합니다.</li>
+															<li>배송기간은 출고일로부터 평균 3~5일 정도 소요됩니다.</li>
+															<li>도서·산간 지역 배송 시 추가 배송비가 없으나, <br/>
+															배송 기일이 추가적으로 소요될 수 있는 점 양해하여 주시기 바랍니다.</li>
+															<li>배송 과정 중 기상 악화 혹은 도로교통 상황에 따라 부득이하게 지연 배송이 발생될 수 있습니다.</li>
+														</ul>
+													</div>
+													<div class="item-exchange-notice">
+														<p style="margin-left: 5px;"><b>반품 및 교환 안내</b></p>
+														<p style="margin-left: 5px;">교환 및 반품은 상품을 수령한 날부터 7일 이내에 고객센터로 문의해 주시기 바랍니다.</p>
+														<ul>
+															<li>제품 이상, 오배송 등과 같은 회사에 귀책사유가 있는 경우 맞교환이 진행됩니다.<br/>
+															(배송비 회사 부담/부분 반품 가능)</li>
+															<li>제품 교환은 단순 고객 변심의 경우에는 교환을 원하는 제품은 <br/>
+															반품(배송비 5,000원 고객부담)으로 진행되고, 수령을 원하는 제품은 추가 결제로 배송됩니다.</li>
+															<li>반품 후 환불금액은 상품 회수 및 검수 후 결정됩니다. <br/>
+															(검수 시 상품의 훼손 및 누락이 있을 경우 변동될 수 있습니다.)</li>
+															<li>반품완료 및 교환회수 완료는 택배기사가 고객님께 반품/교환 상품을 <br/>
+															인계받은(수거) 날로부터 약 3~5일 소요됩니다. (영업일 기준)</li>
+														</ul>
+													</div>
+													<div class="order-cancle-notice">
+														<p style="margin-left: 5px;"><b>주문취소 안내</b></p>
+														<p style="margin-left: 5px;">주문취소는 [발송대기] 상태일 경우에만 취소가 가능합니다. 홈페이지에서 직접 취소하실 수 있습니다.</p>
+														<ul>
+															<li>마이페이지 > 결제관리 > 해당 결제건 선택</li>
+															<li>[배송중]부터는 취소가 불가능하니, 고객센터에 문의하여 반품으로 진행해 주시기 바랍니다.</li>
+															<li>주문 상품의 부분 취소가 필요하신 경우 전체 주문취소 후 다시 구매해 주시기 바랍니다.</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</div>
+								</div>
 							</div>
+							
 					</div>
-					<div id="detail" class="hidden">
+					<%-- <div id="detail" class="hidden">
 						<img src="${pageContext.request.contextPath}/resources/image/item_rep/eye/eye3_image1.png" alt="상품상세이미지">
 					</div>
 					<div class="detailMore">
@@ -546,19 +548,19 @@
 					    $('#detail').removeClass('hidden');
 					    $('.detailMore').remove();
 					}
-					</script>
+					</script> --%>
 				</div>
 				
 				<!-- 2. 구매하기 박스 영역 -->
 				<div class="buy_box">
 					<div class="buy-box-area">
 						<div class="buy-info-area">
-							<span class="item-name">초임계 루테인아스타잔틴 코어</span>
+							<span class="item-name">${product.prdname}</span>
 							<div class="count-button">						
-								<button type="button" class="minus-button btn" onclick="count(-1)">-</button>
-								<span id="result">1</span>
-								<button type="button" class="plus-button btn" onclick="count(1)">+</button>
-								<h6 style="margin-top: 4px; margin-bottom: 4px;">29800원</h6>
+								<button type="button" class="info-minus btn" onclick="setQtyAndPrc('m')">-</button>
+								<input id="qtySpinner2" data-min="1" data-txt="inv" min="1" value="1" readonly/>
+								<button type="button" class="info-plus btn" onclick="setQtyAndPrc('p')">+</button>
+								<h6 id="price-tag" style="margin-top: 4px; margin-bottom: 4px;">${product.prdprice}원</h6>
 							</div>
 							<hr/>
 						</div>
@@ -566,7 +568,7 @@
 							<hr/>
 						<div class="total-price">
 							<div class="price-sum">
-								<h3 id="price-sum">합계 : 29,800원</h3>
+								<h3 id="price-sum">합계 : ${product.prdprice}원</h3>
 							</div>
 						</div>
 						<div class="button-area2 d-flex">
@@ -574,7 +576,7 @@
 								<button id="cart-button2" type="button" class="btn" onclick="location.href='${pageContext.request.contextPath}/member/cart'">장바구니</button>
 							</span>
 							<span>
-								<button id="buy-button2" type="button" class="btn">구매하기</button>
+								<button id="buy-button2" type="button" class="btn" onclick="order()">구매하기</button>
 							</span>
 						</div>
 					</div>

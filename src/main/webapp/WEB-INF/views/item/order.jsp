@@ -153,13 +153,13 @@
 												</div>
 												<div class="buy_info02">
 													<p class="option"><!-- data-ga-variant="BEIGE/L" -->
-														<em>1</em>개
+														<em>${orderDetail.odtamount}</em>개
 													</p>
 												</div>
 											</a>
 											<div class="price_info  discount_price" id="price-value0">
 												<p class="prd_prcie">
-													<span class="real_price">29,800</span>
+													<span class="real_price">${orderDetail.prdprice}원</span>
 												</p>
 											</div>
 										</div>
@@ -168,27 +168,6 @@
 							
 							</section>
 							
-							<section class="order_block">
-								<div class="tit_area">
-									<h3 class="tit_lv2 ">결제 방법</h3>
-									<div class="checkbox">
-										<input type="checkbox" name="dfPayMnCdYn" id="dfPayMnCdYn" value="Y" tabindex="0">
-										<label for="dfPayMnCdYn"><span>기본 결제수단으로 저장</span></label>
-									</div>
-								</div>
-								<div class="payment">
-									<ul class="option_box option_2 radio_select">
-										<li class="option">
-											<input id="chkProd1" type="radio" name="pay.payMnCd" value="CREDT_CARD_PAY">
-											<label for="chkProd1">신용카드</label>
-										</li>
-										<li class="option">
-											<input id="chkProd2" type="radio" name="pay.payMnCd" value="RLTM_BNK_ACCT_PAY">
-											<label for="chkProd2">실시간 계좌이체</label>
-										</li>
-									</ul>
-								</div>
-							</section>
 						</div>
 						
 						<!-- 오른쪽 구매 박스 영역 -->
