@@ -17,6 +17,7 @@ import com.mycompany.lifill_mini_web.dao.ProductDao;
 import com.mycompany.lifill_mini_web.dao.ProductResponseDao;
 import com.mycompany.lifill_mini_web.dto.Board;
 import com.mycompany.lifill_mini_web.dto.Ingredient;
+import com.mycompany.lifill_mini_web.dto.Pager;
 import com.mycompany.lifill_mini_web.dto.PrdContents;
 import com.mycompany.lifill_mini_web.dto.PrdDetail;
 import com.mycompany.lifill_mini_web.dto.PrdHashtag;
@@ -167,13 +168,9 @@ public class AdminItemService {
 		int prdHashtagRowNum = prdHashtagDao.prdhashtaginsert(prdHashtag);
 	}
 	
-	//public List<Product.GetProductResponse> getProductList(Pager pager) {
 	// 상품 목록 조회
-	public List<ProductResponse> getProductList() {
-		log.info("실행");
-		
-		//List<Product.GetProductResponse> productList = productDao.prdselect(pager);
-		List<ProductResponse> productList = productResponseDao.prdselect();
+	public List<ProductResponse> getProductList(Pager pager) {
+		List<ProductResponse> productList = productResponseDao.prdSelectByPage(pager);
 		
 		for (ProductResponse product : productList) {
 			log.info("product={}", product.toString());
