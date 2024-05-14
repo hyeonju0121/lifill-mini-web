@@ -6,6 +6,6 @@ import lombok.Data;
 public class OrderDetail {
 	private String ordid;
 	private String prdcode;
-	private int prdprice;
 	private int odtamount;
+	private int prdprice;
 }

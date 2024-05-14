@@ -13,6 +13,7 @@ public class Member {
 	private String mphone;
 	private String memail;
 	private String mrole;
+	private boolean menabled;
 	private Date mcreatedat;
 	private Date mupdatedat;
 }

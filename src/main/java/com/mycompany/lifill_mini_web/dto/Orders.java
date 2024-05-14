@@ -8,12 +8,13 @@ import lombok.Data;
 public class Orders {
 	private String ordid;
 	private String mid;
-	private String prdcode;
-	private int ordamount;
-	private int totalprice;
+	private int ordtotalamount;
+	private int ordtotalprice;
 	private String ordrequest;
 	private String ordstatus;
-	private Date orddate;
+	private String ordpostnum;
+	private Date ordcreatedat;
+	private Date ordupdatedat;
 	private String ordreceivername;
 	private String ordreceiveraddress;
 	private String ordreceiverzipcode;
