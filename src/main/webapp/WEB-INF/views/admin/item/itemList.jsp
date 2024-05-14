@@ -108,7 +108,7 @@
 									<td>
 										<div class="btn_big_wrap">
 											<button type="button"
-												onclick="location.href='${pageContext.request.contextPath}/admin/item/itemUpdate'"
+												onclick="location.href='${pageContext.request.contextPath}/admin/item/updateItemForm?prdcode=${product.prdcode}'"
 												class="btn btn-outline-dark">수정</button>
 											<button type="button" onclick="location.href='#'"
 												class="btn btn-outline-dark">삭제</button>

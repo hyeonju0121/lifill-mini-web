@@ -20,5 +20,18 @@
 		)
 	</insert>
 	
+	<update id="prdUpdate" parameterType="Product">
+		update product set
+			prdname=#{prdname}, 
+			prdbrand=#{prdbrand}, 
+			prdprice=#{prdprice}, 
+			prdstock=#{prdstock},
+			prdsubscribable=#{prdsubscribable}, 
+			prdsalesstatus=#{prdsalesstatus}, 
+			fnno=#{fnno}
+		
+		where prdcode=#{prdcode}
+	</update>
+	
 	
 </mapper>

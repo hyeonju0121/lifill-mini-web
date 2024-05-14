@@ -9,4 +9,6 @@ public interface IngredientDao {
 
 	public int igdinsert(Ingredient ingredient);
 
+	public int igdUpdate(Ingredient ingredient);
+
 }

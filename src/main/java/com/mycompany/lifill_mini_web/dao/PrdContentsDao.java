@@ -9,4 +9,6 @@ public interface PrdContentsDao {
 
 	public int prdcontentsinsert(PrdContents prdContents);
 
+	public int prdcontentsUpdate(PrdContents prdContents);
+
 }

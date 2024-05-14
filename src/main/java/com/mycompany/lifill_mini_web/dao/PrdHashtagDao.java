@@ -9,4 +9,6 @@ public interface PrdHashtagDao {
 
 	public int prdhashtaginsert(PrdHashtag prdHashtag);
 
+	public int prdhashtagUpdate(PrdHashtag prdHashtag);
+
 }

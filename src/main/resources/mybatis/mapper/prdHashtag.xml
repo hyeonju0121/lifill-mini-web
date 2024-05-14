@@ -14,4 +14,10 @@
 		values(
 			#{tagno}, #{prdcode}, #{tagval})
 	</insert>
+	
+	<update id="prdhashtagUpdate" parameterType="PrdHashtag">
+		update prdhashtag set
+			tagval=#{tagval}
+		where prdcode=#{prdcode}
+	</update>
 </mapper>

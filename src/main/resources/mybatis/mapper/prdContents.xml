@@ -21,5 +21,46 @@
 			#{prdtarget}, #{prdtimes}, #{prdmethod}, #{prdeffect}, #{prdtype}, #{prdingredient}, sysdate 
 		)
 	</insert> 
+	
+	<update id="prdcontentsUpdate" parameterType="PrdContents">
+		update prdcontents set
+			<!-- 첨부파일이 지정 안된 경우 -->
+			prdtarget=#{prdtarget}, 
+			prdtimes=#{prdtimes}, 
+			prdmethod=#{prdmethod}, 
+			prdeffect=#{prdeffect}, 
+			prdtype=#{prdtype}, 
+			prdingredient=#{prdingredient},
+			prdupdatedat=sysdate
+			<!-- 대표이미지1가 지정된 경우 -->
+			<if test="prdimgrep1oname != null">
+				,
+				prdimgrep1oname=#{prdimgrep1oname}, 
+				prdimgrep1type=#{prdimgrep1type}, 
+				prdimgrep1=#{prdimgrep1}
+			</if>
+			<!-- 대표이미지2가 지정된 경우 -->
+			<if test="prdimgrep2oname != null">
+				,
+				prdimgrep2oname=#{prdimgrep3oname}, 
+				prdimgrep2type=#{prdimgrep3type}, 
+				prdimgrep2=#{prdimgrep3}
+			</if>
+			<!-- 대표이미지3가 지정된 경우 -->
+			<if test="prdimgrep2oname != null">
+				,
+				prdimgrep3oname=#{prdimgrep3oname}, 
+				prdimgrep3type=#{prdimgrep3type}, 
+				prdimgrep3=#{prdimgrep3}
+			</if>
+			<!-- 상세이미가 지정된 경우 -->
+			<if test="prdimgdetailoname != null">
+				,
+				prdimgdetailoname=#{prdimgdetailoname}, 
+				prdimgdetailtype=#{prdimgdetailtype}, 
+				prdimgdetail=#{prdimgdetail}
+			</if>
+			where prdcode=#{prdcode}
+	</update>
 
 </mapper>
