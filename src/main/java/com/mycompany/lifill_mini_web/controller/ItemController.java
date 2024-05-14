@@ -6,12 +6,12 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.mycompany.lifill_mini_web.dto.OrderDetail;
 import com.mycompany.lifill_mini_web.dto.response.ProductResponse;
 import com.mycompany.lifill_mini_web.service.ProductService;
 
@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ItemController {
 
 	@Resource
-	private ProductService service;
+	private ProductService productService;
 	
 	@RequestMapping("")
 	public String index() {
@@ -47,7 +47,7 @@ public class ItemController {
 	public String productResponseList(
 			Model model) {
 		//Service에서 게시물 목록 요청
-		List<ProductResponse> productResponseList = service.getProductResponseList();
+		List<ProductResponse> productResponseList = productService.getProductResponseList();
 		log.info("service 실행");
 		
 		
@@ -56,7 +56,7 @@ public class ItemController {
 		}
 		
 		// 판매중인 상품 total count 가져오기
-		int totalCnt = service.getSalesOnCnt();
+		int totalCnt = productService.getSalesOnCnt();
 		
 		//JSP 에서 사용할 수 있도록 설정
 		model.addAttribute("productResponseList",productResponseList);
@@ -94,7 +94,7 @@ public class ItemController {
 	public String itemView(Model model, String prdcode) {
 		log.info("itemView() 실행");
 		
-		ProductResponse product = service.getProductResponse(prdcode);
+		ProductResponse product = productService.getProductResponse(prdcode);
 		
 		model.addAttribute("product", product);
 		
@@ -104,8 +104,8 @@ public class ItemController {
 	@GetMapping("/attachDownload")
 	public void attachDownload(String prdcode, HttpServletResponse response) throws Exception {
 		// 다운로드할 데이터를 준비
-		ProductResponse product = service.getProductResponse(prdcode);
-		byte[] data = service.getAttachData(prdcode);
+		ProductResponse product = productService.getProductResponse(prdcode);
+		byte[] data = productService.getAttachData(prdcode);
 
 		// 응답 헤더 구성
 		response.setContentType(product.getPrdimgrep1type());
@@ -120,17 +120,26 @@ public class ItemController {
 		os.close();
 	}
 	
-	@RequestMapping("/order")
-	public String order(String prdcode, int ordAmount, int ordPrice, Model model) {
-		log.info("order() 실행");
+	@Secured("ROLE_USER")
+	@RequestMapping("/buyNow")
+	public String buyNow(String prdcode, int ordamount, int ordprice, Model model) {
+		log.info("buyNow() 실행");
 		
-		OrderDetail odt = new OrderDetail();
-		odt.setPrdcode(prdcode);
-		odt.setOdtamount(ordAmount);
-		odt.setPrdprice(ordPrice);
-		
-		model.addAttribute("orderDetail", odt);
+		// 서비스 -> prdcode 기준으로 해당 productResponse 객체 가져오기
+		ProductResponse productResponse = productService.getProductResponse(prdcode);
+		// jsp에서 사용할 수 있도록 model로 넘겨주기
+		model.addAttribute("product", productResponse);
+		model.addAttribute("amount", ordamount);
+		model.addAttribute("price",ordprice);
 		
 		return "item/order";
 	}
+	
+	// 장바구니에 담긴 상품을 구매하려 할 때 실행되는 내용
+		@RequestMapping("/buyOnCart")
+		public String buyOnCart(String mid, String prdcode, int ordAmount, int ordPrice, Model model) {
+			log.info("buyOnCart() 실행");
+			
+			return "item/order";
+		}
 }

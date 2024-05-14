@@ -109,7 +109,7 @@
 								
 								<ul id="items">
 									<c:forEach var="productResponse" items="${productResponseList}">
-										<li class="store-product-wrapper"><a href="${pageContext.request.contextPath}/item/item_view"
+										<li class="store-product-wrapper"><a href="${pageContext.request.contextPath}/item/item_view?prdcode=${productResponse.prdcode}"
 											onclick="selectStoreProduct(this, '');">
 												<figure class="">
 													<img

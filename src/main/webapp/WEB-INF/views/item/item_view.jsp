@@ -119,12 +119,6 @@
 	            outputP.text(hiddenTotalInput.val() + "원");
 	            outputP2.text(hiddenTotalInput.val() + "원");
 	            outputP3.text("합계 : " + hiddenTotalInput.val() + "원");
-	            
-	            /* var prdcode = "${product.prdcode}";
-	            var buyLink = 'order?prdcode=' + prdcode + '&amount=' + qty + '&price=' + prc;
-	            
-	            $("#buy-button1").attr("onclick", "location.href='" + buyLink + "'");
-	            $("#buy-button2").attr("onclick", "location.href='" + buyLink + "'"); */
 			}
 			
 			function order() {
@@ -133,7 +127,7 @@
 				
 				var prdcode = "${product.prdcode}";
 				
-				var urlString = 'order?prdcode=' + prdcode + '&ordAmount=' + amount + '&ordPrice=' + totalPrice;
+				var urlString = 'buyNow?prdcode=' + prdcode + '&ordamount=' + amount + '&ordprice=' + totalPrice;
 				console.log(amount, totalPrice);
 
 			    window.location.href = urlString;
