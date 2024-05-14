@@ -1,7 +1,6 @@
 package com.mycompany.lifill_mini_web.controller.admin;
 
 import java.io.OutputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -201,6 +200,16 @@ public class AdminBoardController {
 
 		return "admin/board/faqList";
 	}
+	
+	@GetMapping("/board/detailFaq")
+	public String detailFaq(int bno, Model model) {
+		Board board = adminBoardService.getBoard(bno);
+
+		model.addAttribute("board", board);
+
+		return "admin/board/detailFaq";
+	}
+
 
 	@RequestMapping("/board/writeFaqForm")
 	public String writeFaqForm() {
