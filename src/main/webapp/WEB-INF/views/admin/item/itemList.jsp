@@ -52,13 +52,13 @@
 				<div class="sub bg-light">
 					<div class="sub2 col-sm-8 mt-2">
 						<ul>
-							<li class="sub-li">전체 <span class="itemTotalCount">21</span>건
+							<li class="sub-li">전체 <span class="itemTotalCount">${totalCnt}</span>건
 								|
 							</li>
-							<li class="sub-li">판매함 <span class="itemTotalCount">20</span>건
+							<li class="sub-li">판매함 <span class="itemTotalCount">${salesOn}</span>건
 								|
 							</li>
-							<li class="sub-li">판매안함 <span class="itemTotalCount">1</span>건
+							<li class="sub-li">판매안함 <span class="itemTotalCount">${salesOff}</span>건
 							</li>
 						</ul>
 					</div>
@@ -81,7 +81,7 @@
 								<th>판매가</th>
 								<th>재고</th>
 								<th>등록일시</th>
-								<th>수정/삭제</th>
+								<th>수정</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -110,8 +110,6 @@
 											<button type="button"
 												onclick="location.href='${pageContext.request.contextPath}/admin/item/updateItemForm?prdcode=${product.prdcode}'"
 												class="btn btn-outline-dark">수정</button>
-											<button type="button" onclick="location.href='#'"
-												class="btn btn-outline-dark">삭제</button>
 										</div>
 									</td>
 								</tr>

@@ -1,5 +1,6 @@
 package com.mycompany.lifill_mini_web.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -298,6 +299,16 @@ public class AdminItemService {
 		int prdHashtagRowNum = prdHashtagDao.prdhashtagUpdate(prdHashtag);
 	}
 
+	// 판매중인 상품 total count 
+	public int getSalesOnCnt() {
+		return productDao.prdSalesOnCount();
+	}
+	
+	// 판매안하는 상품 total count 
+	public int getSalesOffCnt() {
+		return productDao.prdSalesOffCount();
+	}
+	
 	/**
 	 * 상품 코드 생성 메소드 ex) P100-0001
 	 * 

@@ -9,6 +9,14 @@
 		select count(*) from product
 	</select>
 	
+	<select id="prdSalesOnCount" resultType="int">
+		select count(*) from product where prdsalesstatus=1
+	</select>
+	
+	<select id="prdSalesOffCount" resultType="int">
+		select count(*) from product where prdsalesstatus=0
+	</select>
+	
 	<insert id="prdinsert" parameterType="Product">
 		insert into product(
 			prdcode, prdname, prdbrand, prdprice, prdstock,

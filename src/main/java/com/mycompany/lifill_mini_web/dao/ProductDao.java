@@ -9,5 +9,7 @@ public interface ProductDao {
 	public int prdcount();
 	public int prdinsert(Product product);
 	public int prdUpdate(Product product);
+	public int prdSalesOnCount();
+	public int prdSalesOffCount();
 
 }

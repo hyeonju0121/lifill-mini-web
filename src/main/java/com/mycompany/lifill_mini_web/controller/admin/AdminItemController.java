@@ -94,10 +94,22 @@ public class AdminItemController {
 		// adminBoardService 에서 게시물 목록 요청
 		Pager pager = new Pager(5, 5, rows, intPageNo);
 		List<ProductResponse> productList = adminItemService.getProductList(pager);
+		
+		// 전체 판매 상품 total count
+		int totalCnt = adminItemService.getTotalRows();
+		
+		// 판매중인 상품 total count
+		int salesOn = adminItemService.getSalesOnCnt();
+		
+		// 판매안하는 상품 total count
+		int salesOff = adminItemService.getSalesOffCnt();
 
 		// jsp 에서 사용할 수 있도록 설정
 		model.addAttribute("pager", pager);
 		model.addAttribute("productList", productList);
+		model.addAttribute("totalCnt", totalCnt);
+		model.addAttribute("salesOn", salesOn);
+		model.addAttribute("salesOff", salesOff);
 
 		return "admin/item/itemList";
 	}
