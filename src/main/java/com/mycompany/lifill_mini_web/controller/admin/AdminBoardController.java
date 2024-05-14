@@ -50,7 +50,7 @@ public class AdminBoardController {
 		int intPageNo = Integer.parseInt(pageNo);
 
 		// Pager 객체 생성
-		int rowsPagingTarget = adminBoardService.getTotalRows();
+		int rowsPagingTarget = adminBoardService.getTotalRowsNotice();
 		Pager pager = new Pager(5, 5, rowsPagingTarget, intPageNo);
 
 		List<Board> noticeList = adminBoardService.getBoardList(pager);
@@ -65,7 +65,7 @@ public class AdminBoardController {
 	@GetMapping("/board/detailNotice")
 	public String detailNotice(int bno, Model model) {
 		Board board = adminBoardService.getBoard(bno);
-		
+
 		model.addAttribute("board", board);
 
 		return "admin/board/detailNotice";
@@ -161,27 +161,124 @@ public class AdminBoardController {
 
 		return "redirect:/admin/board/detailNotice?bno=" + board.getBno();
 	}
-	
+
 	@GetMapping("/board/deleteNotice")
 	public String deleteBoard(int bno) {
 		adminBoardService.removeBoard(bno);
 		return "redirect:/admin/board/noticeList";
 	}
-	
 
 	// 자주묻는질문 -------------------------------------------
 	@RequestMapping("/board/faqList")
-	public String faqList() {
+	public String faqList(String pageNo, Model model, HttpSession session) {
 		log.info("faqList() 실행");
+
+		/*
+		 * 게시글 상세보기에서 목록을 누르면 첫번째 페이지로 이동 -> session에서 페이지 넘버 가져오기 pageNo를 받지 못했을 경우,
+		 * 저장되어있는지 확인
+		 */
+		if (pageNo == null) {
+			pageNo = (String) session.getAttribute("pageNo");
+			if (pageNo == null) {
+				// 세션에 저장되어 있지 않을 경우 "1"로 강제 세팅
+				pageNo = "1";
+			}
+		}
+		// 세션에 pageNo 저장
+		session.setAttribute("pageNo", pageNo);
+		// 문자열을 정수로 변환
+		int intPageNo = Integer.parseInt(pageNo);
+
+		// Pager 객체 생성
+		int rowsPagingTarget = adminBoardService.getTotalRowsFaq();
+		Pager pager = new Pager(5, 5, rowsPagingTarget, intPageNo);
+
+		List<Board> faqList = adminBoardService.getFaqList(pager);
+
+		// jsp 에서 사용할 수 있도록 설정
+		model.addAttribute("pager", pager);
+		model.addAttribute("faqList", faqList);
+
 		return "admin/board/faqList";
 	}
 
-	@RequestMapping("/board/writeFaq")
-	public String writeFaq() {
-		log.info("writeFaq() 실행");
-		return "admin/board/writeFaq";
+	@RequestMapping("/board/writeFaqForm")
+	public String writeFaqForm() {
+		log.info("writeFaqForm() 실행");
+		return "admin/board/writeFaqForm";
 	}
 
+	@PostMapping("/board/writeFaq")
+	public String writeFaq(Board board) {
+		log.info("writeFaq() 실행");
+
+		// 요청 데이터의 유효성 검사
+		// 파일 원래 이름과 type 로그 출력 --------------------------
+		/*
+		 * log.info("original filename: " + board.getBattach().getOriginalFilename());
+		 * log.info("filetype: " + board.getBattach().getContentType());
+		 */
+
+		// (첨부 파일이 있는지 여부 조사)첨부파일이 넘어오지 않을 경우 상황도 생각해줘야 함
+		// 첨부파일이 존재하는 경우
+		if (board.getBattach() != null && !board.getBattach().isEmpty()) {
+			// DTO 추가 설정
+			board.setBattachoname(board.getBattach().getOriginalFilename());
+			board.setBattachtype(board.getBattach().getContentType());
+
+			try {
+				// 비즈니스 로직 측에서 발생하는 예외는 없기 때문에, try-catch로 예외처리 함
+				log.info("board.attachdata: ", board.getBattach().getBytes());
+				board.setBattachdata(board.getBattach().getBytes());
+			} catch (Exception e) {
+			}
+		}
+
+		// 로그인된 사용자 아이디 설정
+		board.setMid("hyeonju0121");
+
+		// 비즈니스 로직 처리를 서비스로 위임
+		adminBoardService.writeFaq(board);
+		return "redirect:/admin/board/faqList";
+	}
+
+	@GetMapping("/board/updateFaqForm")
+	public String updateFaqForm(int bno, Model model) {
+		Board board = adminBoardService.getBoard(bno);
+
+		model.addAttribute("board", board);
+
+		return "admin/board/updateFaqForm";
+	}
+
+	@PostMapping("/board/updateFaq")
+	public String updateFaq(Board board) {
+		log.info("실행");
+		// (첨부 파일이 있는지 여부 조사)첨부파일이 넘어오지 않을 경우 상황도 생각해줘야 함
+		// 첨부파일이 존재하는 경우
+		if (board.getBattach() != null && !board.getBattach().isEmpty()) {
+			// DTO 추가 설정
+			board.setBattachoname(board.getBattach().getOriginalFilename());
+			board.setBattachtype(board.getBattach().getContentType());
+			try {
+				// 비즈니스 로직 측에서 발생하는 예외는 없기 때문에, try-catch로 예외처리 함
+				board.setBattachdata(board.getBattach().getBytes());
+			} catch (Exception e) {
+			}
+		}
+
+		// 비즈니스 로직 처리를 서비스로 위임
+		adminBoardService.updateBoard(board);
+
+		return "redirect:/admin/board/detailFaq?bno=" + board.getBno();
+	}
+	
+	@GetMapping("/board/deleteFaq")
+	public String deleteFaq(int bno) {
+		adminBoardService.removeBoard(bno);
+		return "redirect:/admin/board/faqList";
+	}
+	
 	// 1:1 문의 -------------------------------------------
 	@RequestMapping("/board/inquiryList")
 	public String inquiryList() {

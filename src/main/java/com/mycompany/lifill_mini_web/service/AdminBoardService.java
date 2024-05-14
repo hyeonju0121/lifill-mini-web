@@ -22,7 +22,10 @@ public class AdminBoardService {
 	// 공지사항 작성
 	@Transactional
 	public void writeNotice(Board board) {
+		Board boardTemp = noticeBsubCategoryValidation(board);
 		board.setBtype("notice");
+		board.setBsubcategory(boardTemp.getBsubcategory());
+
 		board.setBsubcategory(board.getBsubcategory());
 
 		log.info("board: " + board);
@@ -44,15 +47,13 @@ public class AdminBoardService {
 	public Board getBoard(int bno) {
 		Board board = boardDao.bSelectByBno(bno);
 		
-		 board = boardBtypeValidation(board);
-		
 		return board;
 	}
 	
 	/*
 	 * board btype 타입 변환 메소드 
 	 */
-	public Board boardBtypeValidation(Board board) {
+	public Board noticeBsubCategoryValidation(Board board) {
 		String bSubCategoryTemp = board.getBsubcategory();
 		
 		switch(bSubCategoryTemp) {
@@ -61,6 +62,23 @@ public class AdminBoardService {
 			case "delivery": board.setBsubcategory("배송"); break;
 			default: 
 				throw new RuntimeException("공지사항 타입 설정이 잘못 되었습니다.");
+		}
+		return board;
+	}
+	
+	/*
+	 * faq btype 타입 변환 메소드 
+	 */
+	public Board faqBsubCategoryValidation(Board board) {
+		String bSubCategoryTemp = board.getBsubcategory();
+		
+		switch(bSubCategoryTemp) {
+			case "member": board.setBsubcategory("회원정보"); break;
+			case "order": board.setBsubcategory("주문/결제"); break;
+			case "exchange": board.setBsubcategory("교환/반품"); break;
+			case "delivery": board.setBsubcategory("배송"); break;
+			default: 
+				throw new RuntimeException("자주묻는질문 타입 설정이 잘못 되었습니다.");
 		}
 		return board;
 	}
@@ -76,6 +94,36 @@ public class AdminBoardService {
 
 	public void removeBoard(int bno) {
 		boardDao.bDeleteByBno(bno);
+	}
+
+	// -------------------------------------------------------
+	// faq 작성 
+	@Transactional
+	public void writeFaq(Board board) {
+		Board boardTemp = faqBsubCategoryValidation(board);
+		board.setBtype("faq");
+		board.setBsubcategory(boardTemp.getBsubcategory());
+
+		log.info("board: " + board);
+		int rowNum = boardDao.bInsert(board);
+		log.info("rowNum: " + rowNum + ", bno: " + board.getBno());
+	}
+	
+	public List<Board> getFaqList(Pager pager) {
+		List<Board> board = boardDao.bAdminSelectByPageForFaq(pager);
+		
+		return board;
+	}
+	
+	
+	public int getTotalRowsNotice() {
+		int totalRows = boardDao.bCountNoticeType();
+		return totalRows;
+	}
+	
+	public int getTotalRowsFaq() {
+		int totalRows = boardDao.bCountFaqType();
+		return totalRows;
 	}
 
 }

@@ -18,24 +18,14 @@ public class UserBoardService {
 	
 	public List<Board> getNoticeList(Pager pager) {
 		// 비즈니스 로직 처리 코드...
-		
 		List<Board> boardList = boardDao.bSelectByPageForNotice(pager);
-		
-		for (Board temp: boardList) {
-			temp = boardBtypeValidation(temp);
-		}
 		
 		return boardList;
 	}
 	
 	public List<Board> getFaqList(Pager pager) {
 		// 비즈니스 로직 처리 코드...
-		
 		List<Board> boardList = boardDao.bSelectByPageForFaq(pager);
-		
-		for (Board temp: boardList) {
-			temp = boardBtypeValidation(temp);
-		}
 		
 		return boardList;
 	}
@@ -88,4 +78,20 @@ public class UserBoardService {
 		}
 	}
 
+	/*
+	 * faq btype 타입 변환 메소드 
+	 */
+	public Board faqBsubCategoryValidation(Board board) {
+		String bSubCategoryTemp = board.getBsubcategory();
+		
+		switch(bSubCategoryTemp) {
+			case "member": board.setBsubcategory("회원정보"); break;
+			case "order": board.setBsubcategory("주문/결제"); break;
+			case "exchange": board.setBsubcategory("교환/반품"); break;
+			case "delivery": board.setBsubcategory("배송"); break;
+			default: 
+				throw new RuntimeException("자주묻는질문 타입 설정이 잘못 되었습니다.");
+		}
+		return board;
+	}
 }
