@@ -7,6 +7,17 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select {
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
+.icon-rating{
+	height: 16px;
+	width: 16px;
+}
+
+h5{
+	margin-top: 10px;
+    margin-bottom: 10px;
+    line-height: 1.2;
+    font-size: 1rem;
+}
 
 
 a {
@@ -15,6 +26,20 @@ a {
   
 }
 
+.prd-product-brand{
+	word-break: keep-all;
+    line-height: 1.2;
+    letter-spacing: -.4px;
+    list-style: none;
+    color: inherit;
+    white-space: break-spaces;
+    font-style: normal;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    margin-right: 5px;
+    font-weight: 700;
+}
 
 .category {
     word-break: keep-all;
@@ -101,7 +126,7 @@ a {
     padding-bottom: 18px;
     font-weight: 700;
     text-align: center;
-    font-size: 16px;
+    font-size: 15px;
     color: #ff5c35;
     border-bottom: 3px solid #37cbe9;
 }
@@ -237,7 +262,7 @@ a {
     -webkit-box-align: center;
     align-items: center;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 15px;
     display: none;
 }
 
@@ -277,7 +302,6 @@ a {
     font-size: 14px;
     font-weight: 700;
     border: none;
-    background: url(/images/store/common/icon-arrow-down-gray-circled@3x.png) no-repeat 62px -2px;
     background-size: 20px 20px;
     padding-right: 20px;
 }
@@ -397,9 +421,6 @@ figure {
     line-height: 1.2;
     list-style: none;
     color: inherit;
-    margin: 0;
-    padding: 0;
-    border: 0;
     font-size: 100%;
     vertical-align: baseline;
     margin-top: 16px;
@@ -418,7 +439,7 @@ figure {
     font-weight: 700;
     border: 1px solid #37cbe9;
     color: #37cbe9;
-   	margin-bottom: 5;
+   	margin-bottom: 3px;
 }
 
 .health_functional_food h3 {
@@ -462,7 +483,7 @@ figure {
     border: 0;
     vertical-align: baseline;
     margin-top: 8px;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 700;
 }
 
@@ -515,12 +536,15 @@ figure {
     line-height: 1.2;
     list-style: none;
     color: inherit;
-    margin: 0;
-    padding: 0;
-    border: 0;
     vertical-align: baseline;
     display: flex;
-    flex-wrap: wrap;
     margin-top: 8px;
-    font-size: 12px;
+    font-size: 11px;
+    display: inline;
+    margin-right: 6px;
+    background-color: #f2f2f2;
+    padding: 4px 6px;
+    border-radius: 3px;
+    color: #636366;
+    border: 1px solid #eaeaea;
 }

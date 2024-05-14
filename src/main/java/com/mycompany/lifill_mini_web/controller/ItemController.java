@@ -1,6 +1,7 @@
 package com.mycompany.lifill_mini_web.controller;
 
 import java.io.OutputStream;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -36,11 +37,34 @@ public class ItemController {
 		return "item/category1";
 	}
 	
-	@RequestMapping("/category2")
+	/*@RequestMapping("/category2")
 	public String category2() {
 		log.info("category2() 실행");
 		return "item/category2";
+	}*/
+	
+	@GetMapping("/category2")
+	public String productResponseList(
+			Model model) {
+		//Service에서 게시물 목록 요청
+		List<ProductResponse> productResponseList = service.getProductResponseList();
+		log.info("service 실행");
+		
+		
+		for (ProductResponse temp : productResponseList) {
+			log.info("temp={}", temp.toString());
+		}
+		
+		// 판매중인 상품 total count 가져오기
+		int totalCnt = service.getSalesOnCnt();
+		
+		//JSP 에서 사용할 수 있도록 설정
+		model.addAttribute("productResponseList",productResponseList);
+		model.addAttribute("totalCnt", totalCnt);
+		return "item/category2";
 	}
+	
+	
 	
 	@RequestMapping("/category3")
 	public String category3() {
@@ -70,7 +94,7 @@ public class ItemController {
 	public String itemView(Model model, String prdcode) {
 		log.info("itemView() 실행");
 		
-		ProductResponse product = service.getProduct("P100-0010");
+		ProductResponse product = service.getProductResponse(prdcode);
 		
 		model.addAttribute("product", product);
 		
@@ -80,7 +104,7 @@ public class ItemController {
 	@GetMapping("/attachDownload")
 	public void attachDownload(String prdcode, HttpServletResponse response) throws Exception {
 		// 다운로드할 데이터를 준비
-		ProductResponse product = service.getProduct(prdcode);
+		ProductResponse product = service.getProductResponse(prdcode);
 		byte[] data = service.getAttachData(prdcode);
 
 		// 응답 헤더 구성

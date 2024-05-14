@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+body, h1, h2, h3, h4, h5, h6, input, textarea, select {
+	font-family: 'Noto Sans KR', sans-serif;
+}
 
 .icon-img {
 	height: 25px;
@@ -33,11 +38,11 @@ html, body {
 	height: 100%;
 }
 
-*{
+/* *{
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-}
+} */
 
 ul{
 	margin: 0;
