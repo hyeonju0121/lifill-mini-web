@@ -4,10 +4,9 @@ import lombok.Data;
 
 @Data
 public class Cart {
-	
 	private int cid;
 	private String mid;
-	private int ctotalamount;
-	private int ctotalprice;
+	private int camount;
+	private int cprice;
 
 }

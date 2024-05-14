@@ -13,7 +13,6 @@
 		<typeAlias type="com.mycompany.lifill_mini_web.dto.Address" alias="Address"/>
 		<typeAlias type="com.mycompany.lifill_mini_web.dto.Board" alias="Board"/>
 		<typeAlias type="com.mycompany.lifill_mini_web.dto.Cart" alias="Cart"/>
-		<typeAlias type="com.mycompany.lifill_mini_web.dto.CartDetail" alias="CartDetail"/>
 		<typeAlias type="com.mycompany.lifill_mini_web.dto.Function" alias="Function"/>
 		<typeAlias type="com.mycompany.lifill_mini_web.dto.Ingredient" alias="Ingredient"/>
 		<typeAlias type="com.mycompany.lifill_mini_web.dto.Inquiry" alias="Inquiry"/>
