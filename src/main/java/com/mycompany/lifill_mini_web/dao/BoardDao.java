@@ -19,5 +19,8 @@ public interface BoardDao {
 	public Board bSelectByAttachData(int bno);
 	public int bUpdate(Board board);
 	public int bDeleteByBno(int bno);
-
+	
+	
+	public List<Board> bAdminSelectByPageForNotice(Pager pager);
+	public List<Board> bAdminSelectByPageForFaq(Pager pager);
 }

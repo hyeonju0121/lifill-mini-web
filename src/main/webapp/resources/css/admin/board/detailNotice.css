@@ -104,6 +104,10 @@ td, th {
     padding: 0;
 }
 
+#bcontent {
+	white-space: pre-line;
+}
+
 /* button ---------------------------*/
 .btn_big_wrap {
     line-height: normal;
@@ -157,4 +161,3 @@ td, th {
     flex: 0 0 200px;
     margin-left: 10px;
 }
-

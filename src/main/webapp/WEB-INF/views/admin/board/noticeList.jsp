@@ -23,6 +23,7 @@
 		<!-- external css -->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin/board/noticeList.css">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin/sidebar.css">
+	
 	</head>
 	
 	<body>
@@ -80,43 +81,31 @@
 					    
 					  <tr>
 					  	<td colspan="9" class="text-center">
-					  		<ul class="pagination justify-content-center">
-								<li class="page-item"><a class="page-link" href="noticeList?pageNo=1">처음</a></li>
-								<c:if test="${pager.groupNo>1}">
-				                     <li class="page-item"><a class="page-link" href="noticeList?pageNo=${pager.startPageNo-1}">이전</a></li>
-				                </c:if>
-				                
-				                <c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
-				                     <c:if test="${pager.pageNo != i}">
-				                        <li class="page-item"><a class="page-link" href="noticeList?pageNo=${i}">${i}</a></li>
-				                     </c:if>
-				                     <!-- 현재 페이지가 i 쪽이면, 강조된 모양 (danger)으로 다르게 표시  -->
-				                     <c:if test="${pager.pageNo == i}">
-				                        <li class="page-item"><a class="page-link" href="noticeList?pageNo=${i}">${i}</a></li>
-				                     </c:if>
-				                </c:forEach>
-				                
-				                <c:if test="${pager.groupNo<pager.totalGroupNo}">
-				                     <li class="page-item"><a class="page-link" href="noticeList?pageNo=${pager.endPageNo+1}">다음</a></li>
+						     <div class="pager">
+				                  <a class="btn btn-sm first-page" href="noticeList?pageNo=1">처음</a>
+				                  <c:if test="${pager.groupNo>1}">
+				                     <a class="btn btn-sm prev-group" href="noticeList?pageNo=${pager.startPageNo-1}">이전</a>
 				                  </c:if>
-				                 <li class="page-item"><a class="page-link" href="noticeList?pageNo=${pager.totalPageNo}">맨끝</a></li>
-						    </ul>
+				                  
+				                  <c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
+				                     <c:if test="${pager.pageNo != i}">
+				                        <a class="btn btn-sm current-group-pages" href="noticeList?pageNo=${i}">${i}</a>
+				                     </c:if>
+				                     <c:if test="${pager.pageNo == i}">
+				                        <a class="btn btn-sm current-page" href="noticeList?pageNo=${i}">${i}</a>
+				                     </c:if>
+				                  </c:forEach>
+				                  
+				                  <c:if test="${pager.groupNo<pager.totalGroupNo}">
+				                     <a class="btn btn-sm next-group" href="noticeList?pageNo=${pager.endPageNo+1}">다음</a>
+				                  </c:if>
+				                  <a class="btn btn-sm last-page" href="noticeList?pageNo=${pager.totalPageNo}">맨끝</a>
+				               </div>
 					  	  </td>
 				       </tr>  
 					  </table>
 					</div>
 				</div>
-				<!-- 
-				<ul class="pagination justify-content-center">
-					<li class="page-item"><a class="page-link" href="javascript:void(0);">처음</a></li>
-				    <li class="page-item"><a class="page-link" href="javascript:void(0);">이전</a></li>
-				    <li class="page-item"><a class="page-link" href="javascript:void(0);">1</a></li>
-				    <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
-				    <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
-				    <li class="page-item"><a class="page-link" href="javascript:void(0);">4</a></li>
-				    <li class="page-item"><a class="page-link" href="javascript:void(0);">다음</a></li>
-				  	<li class="page-item"><a class="page-link" href="javascript:void(0);">맨끝</a></li>
-				  </ul> -->
 			</div>
 		</div>
 		

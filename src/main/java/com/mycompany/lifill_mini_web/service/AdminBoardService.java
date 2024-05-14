@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mycompany.lifill_mini_web.dao.BoardDao;
 import com.mycompany.lifill_mini_web.dto.Board;
@@ -19,8 +20,10 @@ public class AdminBoardService {
 	private BoardDao boardDao;
 
 	// 공지사항 작성
+	@Transactional
 	public void writeNotice(Board board) {
 		board.setBtype("notice");
+		board.setBsubcategory(board.getBsubcategory());
 
 		log.info("board: " + board);
 		int rowNum = boardDao.bInsert(board);
@@ -28,11 +31,8 @@ public class AdminBoardService {
 	}
 
 	public List<Board> getBoardList(Pager pager) {
-		List<Board> board = boardDao.bSelectByPageForNotice(pager);
+		List<Board> board = boardDao.bAdminSelectByPageForNotice(pager);
 		
-		for (Board temp: board) {
-			temp = boardBtypeValidation(temp);
-		}
 		return board;
 	}
 
@@ -56,12 +56,13 @@ public class AdminBoardService {
 		String bSubCategoryTemp = board.getBsubcategory();
 		
 		switch(bSubCategoryTemp) {
-			case "general": board.setBsubcategory("일반"); return board;
-			case "product": board.setBsubcategory("상품"); return board;
-			case "delivery": board.setBsubcategory("배송"); return board;
+			case "general": board.setBsubcategory("일반"); break;
+			case "product": board.setBsubcategory("상품"); break;
+			case "delivery": board.setBsubcategory("배송"); break;
 			default: 
 				throw new RuntimeException("공지사항 타입 설정이 잘못 되었습니다.");
 		}
+		return board;
 	}
 
 	public byte[] getAttachData(int bno) {

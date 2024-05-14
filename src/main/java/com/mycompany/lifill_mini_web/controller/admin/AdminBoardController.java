@@ -49,12 +49,10 @@ public class AdminBoardController {
 		// 문자열을 정수로 변환
 		int intPageNo = Integer.parseInt(pageNo);
 
-		// 페이징 대상이 되는 전체 행의 수 구하기
-		// 만약에, 검색어를 이용해서 전체 행의 수를 구한다면 searchRows 라는 서비스 메소드를 만들어서 진행하기
-		int rows = adminBoardService.getTotalRows();
+		// Pager 객체 생성
+		int rowsPagingTarget = adminBoardService.getTotalRows();
+		Pager pager = new Pager(5, 5, rowsPagingTarget, intPageNo);
 
-		// adminBoardService 에서 게시물 목록 요청
-		Pager pager = new Pager(10, 10, rows, intPageNo);
 		List<Board> noticeList = adminBoardService.getBoardList(pager);
 
 		// jsp 에서 사용할 수 있도록 설정

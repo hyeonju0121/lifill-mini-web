@@ -65,8 +65,8 @@
 						    </thead>
 						    <tbody>
 						      <tr>
-						         <td colspan="2">
-						         	<p>내용: ${board.bcontent}</p>
+						         <td id="bcontent" colspan="2">
+						         	<p>${board.bcontent}</p>
 						         	
 						         	<c:if test="${board.battachoname != null}">
 							      		<div class="mb-2">
@@ -74,19 +74,6 @@
 								      		<img src="attachDownload?bno=${board.bno}" width="300"/>
 							      		</div>
 						      		</c:if>
-						         
-						            <!-- <p><span>안녕하세요.&nbsp;</span></p>
-						            <p><span>라이필을 이용해주시는 고객님께 깊이 감사드립니다.&nbsp;&nbsp;</span></p>
-						            <p><span>&nbsp;</span></p>
-						            <p><span>라이필의 안정적인 서비스를 제공하기 위하여 시스템 점검을 진행합니다.</span></p>
-						            <p><span>&nbsp;</span></p>
-						            <p><span>- 점검일시 : 2024-3-23(토) 03:00 ~ 06:00</span></p>
-						            <p><span>- 점검내용 : 서비스 점검&nbsp;&nbsp;</span></p>
-						            <p><span>- 중단서비스 : 사이트 (PC/Mobile) 접속 불가&nbsp; &nbsp;</span></p>
-						            <p><span>&nbsp;</span></p>
-						            <p><span>점검 시간에는 사이트 접속이 중단되오니, W컨셉을 이용하는 고객님의 많은 양해를 부탁 드립니다.</span></p>
-						            <p><span>&nbsp;</span></p>
-						            <p><span>감사합니다.</span></p> -->
 						         </td>
 						      </tr>
 						    </tbody>
