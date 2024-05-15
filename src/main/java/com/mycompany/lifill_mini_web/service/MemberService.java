@@ -13,6 +13,7 @@ import com.mycompany.lifill_mini_web.dao.MemberDao;
 import com.mycompany.lifill_mini_web.dto.Address;
 import com.mycompany.lifill_mini_web.dto.Inquiry;
 import com.mycompany.lifill_mini_web.dto.Member;
+import com.mycompany.lifill_mini_web.dto.response.MemberResponse;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -38,10 +39,10 @@ public class MemberService {
 	}
 	
 	@Transactional
-	public void join(Member member, Address address) {
+	public void join(MemberResponse memberResponse) {
 		// 입력받은 비밀번호를 암호화
 		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-		member.setMpassword(passwordEncoder.encode(member.getMpassword()));
+		memberResponse.setMpassword(passwordEncoder.encode(memberResponse.getMpassword()));
 		
 		/*// address1과 2를 합친 값을 Address DTO의 maddress 필드에 저장
 		String fullAddress = member.getMaddress1() + ", " + member.getMaddress2();
@@ -49,15 +50,26 @@ public class MemberService {
 		//log.info("member.getAddress={}", member.getAddress().toString());
 		
 		// sign_up 폼에서 입력받는 내용이 아니므로 직접 설정
-		member.setMrole("ROLE_USER");
+		memberResponse.setMrole("ROLE_USER");
+		memberResponse.setMenable(true);
 		
 		// Member 객체의 필드 값을 DB에 삽입
-		memberDao.mInsert(member);
+		memberDao.mInsert(memberResponse);
 		
-		String fullAddress = address.getMaddress1() + ", " + address.getMaddress2();
-		address.setMaddress(fullAddress);
+		String fullAddress = memberResponse.getMaddress1() + ", " + memberResponse.getMaddress2();
+		memberResponse.setMaddress(fullAddress);
 		
 		// Address 객체의 필드 값을 DB에 삽입
-		addressDao.aInsert(address);
+		addressDao.aInsert(memberResponse);
+	}
+	
+	public String getMemberAddress(Member member) {
+		String maddress = memberDao.selectAddressByMid(member.getMid());
+		return maddress;
+	}
+
+	public String getMemberZipcode(Member member) {
+		String mzipcode = memberDao.selectZipcodeByMid(member.getMid());
+		return mzipcode;
 	}
 }

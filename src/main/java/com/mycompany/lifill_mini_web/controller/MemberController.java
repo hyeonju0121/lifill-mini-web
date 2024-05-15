@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.mycompany.lifill_mini_web.dto.Address;
 import com.mycompany.lifill_mini_web.dto.Inquiry;
 import com.mycompany.lifill_mini_web.dto.Member;
+import com.mycompany.lifill_mini_web.dto.response.MemberResponse;
 import com.mycompany.lifill_mini_web.security.LifillUserDetails;
 import com.mycompany.lifill_mini_web.service.MemberService;
 
@@ -25,7 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 public class MemberController {
 	
 	@Autowired
-	private MemberService service;
+	private MemberService memberService;
 	
 	@RequestMapping("")
 	public String index() {
@@ -46,13 +46,11 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/join")
-	public String join(Member member, Address address) {
+	public String join(MemberResponse memberResponse) {
 		log.info("실행");
-		log.info("member={}",member.toString());
-		log.info("address={}", address.toString());
+		log.info("memberResponse={}",memberResponse.toString());
 		
-		service.join(member, address);
-		log.info("2번째 실행");
+		memberService.join(memberResponse);
 		return "redirect:/member/sign_in";
 	}
 	
@@ -90,18 +88,6 @@ public class MemberController {
 	public String csInquiry() {
 		log.info("csInquiry() 실행");
 		return "member/mypage/csInquiry";
-	}
-	
-	@RequestMapping("/myQnaList")
-	public String myQnaList() {
-		log.info("myQnaList() 실행");
-		return "member/mypage/myQnaList";
-	}
-	
-	@RequestMapping("/qnaInquiry")
-	public String qnaInquiry() {
-		log.info("qnaInquiry() 실행");
-		return "member/mypage/qnaInquiry";
 	}
 	
 	@RequestMapping("/myGoodsReviewList")
@@ -147,7 +133,7 @@ public class MemberController {
 		inquiry.setMid("tjdwns3823");
 
 		// 비즈니스 로직 처리를 서비스로 위임
-		service.applyInquiry(inquiry);
+		memberService.applyInquiry(inquiry);
 		
 		return "redirect:/member/myInquiryList";	
 	}

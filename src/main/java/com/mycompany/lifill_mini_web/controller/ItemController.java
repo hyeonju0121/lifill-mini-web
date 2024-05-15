@@ -7,12 +7,20 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.mycompany.lifill_mini_web.dto.Member;
+import com.mycompany.lifill_mini_web.dto.request.SingleOrderRequest;
 import com.mycompany.lifill_mini_web.dto.response.ProductResponse;
+import com.mycompany.lifill_mini_web.security.LifillUserDetails;
+import com.mycompany.lifill_mini_web.service.MemberService;
+import com.mycompany.lifill_mini_web.service.OrderService;
 import com.mycompany.lifill_mini_web.service.ProductService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +32,10 @@ public class ItemController {
 
 	@Resource
 	private ProductService productService;
+	@Resource
+	private OrderService orderService;
+	@Resource
+	private MemberService memberService;
 	
 	@RequestMapping("")
 	public String index() {
@@ -125,21 +137,55 @@ public class ItemController {
 	public String buyNow(String prdcode, int ordamount, int ordprice, Model model) {
 		log.info("buyNow() 실행");
 		
+		// 로그인한 회원의 객체 얻기
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		LifillUserDetails userDetails = (LifillUserDetails) authentication.getPrincipal();
+		Member member = userDetails.getMember();
+		
+		String maddress = memberService.getMemberAddress(member);
+		String mzipcode = memberService.getMemberZipcode(member);
+		
 		// 서비스 -> prdcode 기준으로 해당 productResponse 객체 가져오기
 		ProductResponse productResponse = productService.getProductResponse(prdcode);
 		// jsp에서 사용할 수 있도록 model로 넘겨주기
 		model.addAttribute("product", productResponse);
 		model.addAttribute("amount", ordamount);
 		model.addAttribute("price",ordprice);
+		model.addAttribute("member", member);
+		model.addAttribute("maddress", maddress);
+		model.addAttribute("mzipcode", mzipcode);
 		
 		return "item/order";
 	}
 	
 	// 장바구니에 담긴 상품을 구매하려 할 때 실행되는 내용
-		@RequestMapping("/buyOnCart")
-		public String buyOnCart(String mid, String prdcode, int ordAmount, int ordPrice, Model model) {
-			log.info("buyOnCart() 실행");
-			
-			return "item/order";
-		}
+	@RequestMapping("/buyOnCart")
+	public String buyOnCart(String mid, String prdcode, int ordAmount, int ordPrice, Model model) {
+		log.info("buyOnCart() 실행");
+		
+		return "item/order";
+	}
+	
+	@PostMapping("/buy")
+	public String buy(SingleOrderRequest singleOrder) {
+		log.info("buy() 실행");
+		
+		log.info("singleOrder={}", singleOrder.toString());
+		
+		orderService.createOrder(singleOrder);
+		
+		return "item/orderComplete";
+	}
+	
+	/*// 구매 완료시 보여지는 JSP
+	@PostMapping("/orderComplete")
+	public String orderComplete(SingleOrderRequest singleOrder) {
+		log.info("orderComplete() 실행");
+		
+		log.info("singleOrder={}", singleOrder.toString());
+		
+		orderService.createOrder(singleOrder);
+		
+		return "item/orderComplete";
+	}*/
 }

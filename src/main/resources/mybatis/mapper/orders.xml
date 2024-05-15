@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+	
+<mapper namespace="com.mycompany.lifill_mini_web.dao.OrderDao"> 
+
+	<select id="orderCount" resultType="int">
+		select count(*) from orders
+		where to_char(ordcreatedat, 'YYYY-MM-DD') = to_char(SYSDATE, 'YYYY-MM-DD')
+	</select>
+	
+	<insert id="createOrders" parameterType="Orders">
+		insert into orders (
+			ordid, mid, ordtotalamount, ordtotalprice,
+			ordrequest, ordstatus, ordcreatedat, 
+			ordreceivername, ordreceiveraddress, ordreceiverzipcode, ordreceiverphone
+		)
+		values(
+			#{ordid}, #{mid}, #{ordtotalamount}, #{ordtotalprice}, 
+			#{ordrequest}, #{ordstatus}, SYSDATE, 
+			#{ordreceivername}, #{ordreceiveraddress}, #{ordreceiverzipcode}, #{ordreceiverphone}
+		)
+	</insert>
+</mapper>

@@ -5,7 +5,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Insert title here</title>
+		<title>라이필 > 주문</title>
 		
 		<!-- Bootstrap 5를 위한 외부 라이브러리 설정 -->
 		<link href="${pageContext.request.contextPath}/resources/bootstrap-5.3.3/css/bootstrap.min.css" rel="stylesheet">
@@ -42,6 +42,11 @@
 	            element.val(number);
 	         }
 			
+			// order.jsp 웹 페이지 로딩시 setQtyAndPrc 함수 호출
+			$(function(){
+				setQtyAndPrc();
+			});
+			
 			function setQtyAndPrc(type) {
 				
 				// 수량을 변경하는 함수를 호출
@@ -61,6 +66,10 @@
 		        
 				var total = qty * prc;
 				
+				// 매개변수로 보낼 input 태그에 결제 금액을 value로 저장
+				var tprice = $("#total-price").val(total);
+				
+				// 단순 가격 출력을 위한 text 변경 코드
 		        var outputP = $("#price-sum1");
 		        var outputP2 = $("#price-sum2");
 		        var outputP3 = $("#price-sum3");
@@ -70,6 +79,7 @@
 	            outputP3.text(total + "원");
 			}
 			
+			// 약관 동의 체크시에만 버튼이 활성화 되도록 하는 함수
 			$(document).ready(function() {
 		        $('#btnAgreePurchase').change(function() {
 		            if ($(this).is(':checked')) {
@@ -82,7 +92,8 @@
 		        });
 		    });
 			
-			function sample6_execDaumPostcode() {
+			// Daum이 제공하는 우편번호 검색 기능 사용을 위한 함수 
+			function DaumPostcode() {
 		        new daum.Postcode({
 		            oncomplete: function(data) {
 		                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
@@ -118,18 +129,67 @@
 		                }
 		
 		                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-		                document.getElementById('sample6_postcode').value = data.zonecode;
-		                document.getElementById("sample6_address").value = addr;
+		                document.getElementById('zipcode').value = data.zonecode;
+		                document.getElementById("address1").value = addr;
 		                // 커서를 상세주소 필드로 이동한다.
-		                document.getElementById("sample6_detailAddress").focus();
+		                document.getElementById("address2").focus();
 		            }
 		        }).open();
 		    }
+			
+	        $(document).ready(function() {
+	            $('#orderForm').on('submit', function(event) {
+	                var address1 = $('#address1').val();
+	                var address2 = $('#address2').val();
+	                
+	                // 주소와 상세 주소를 합친 문자열
+	                var fullAddress = address1 + ', ' + address2;
+	                
+	                // 합친 문자열을 value값으로 전달
+	                $('#fullAddress').val(fullAddress);
+	            });
+	        });
+	        
+	        // 회원 정보와 동일 체크박스의 값이 변할 때 실행되는 함수
+	        $(document).ready(function() {
+	            $('#getMemberInfo').change(function() {
+	            	
+	            	var mname = $('#mname').val();
+	            	var mphone = $('#mphone').val();
+	            	var mzipcode = $('#mzipcode').val();
+	            	var maddress = $('#maddress').val();
+
+	            	var rname = $('#receivername').val();
+	            	var rphone = $('#receiverphone').val();
+	            	var rzipcode = $('#receiverzipcode').val();
+	            	var raddress1 = $('#address1').val();
+	            	var raddress2 = $('#address2').val();
+	            	
+	            	var address = maddress.split(', ');
+	            	
+	                if ($(this).prop('checked')) {
+	                	$('#receivername').val(mname);
+	                	$('#receiverphone').val(mphone);
+	                	$('#receiverzipcode').val(mzipcode);
+	                	$('#address1').val(address[0]);
+	                	$('#address2').val(address[1]);
+	                } else {
+	                	$('#receivername').val('');
+	                	$('#receiverphone').val('');
+	                	$('#receiverzipcode').val('');
+	                	$('#address1').val('');
+	                	$('#address2').val('');
+	                }
+
+	            });
+	        });
+	        
 		</script>
 		
 	</head>
 	
 	<body>
+		<%@ include file="/WEB-INF/views/common/nav.jsp"%>
 		
 		<div class="container">
 			<div class="order_center">
@@ -138,49 +198,26 @@
 					<span id="here"><b>02. ORDER</b></span>
 					<span>03. ORDER COMPLETED</span>
 				</div>
-				
-				<form action="/" name="orderDTO" id="orderDTO" method="post">
+				<form action="buy" id="orderForm" method="post">
 					<div class="order_wrap">
 						<!-- 왼쪽 영역 -->
 						<div class="order_left">
 							<section class="order_block">
-								<div class="tit_area">
-									<h3 class="tit_lv2 ">배송 정보</h3>
-									<div class="checkbox">
-										<input type="checkbox" name="baseDlvspYn" id="baseDlvspYn" value="Y" tabindex="0" checked="">
-										<label for="baseDlvspYn"><span>기본 배송지로 등록</span></label>
-									</div>
-								</div>
-								
 								<div class="checkbox align_right">
-									<input type="checkbox" name="getMbrInfo" id="getMbrInfo" tabindex="0">
+									<input type="checkbox" id="getMemberInfo" tabindex="0">
 									<label for="getMbrInfo"><span>회원 정보와 동일</span></label>
 								</div>
-								
 								<div class="form_section">
-									<p class="form_label required">주문 고객</p>
-									<div class="form_group">
-										<div class="input_clear">
-											<input type="text" title="주문 고객 입력" id="newCstmrNm" value="" new-validate="required;" maxlength="33">
-											<button type="button" class="clear_btn"><span class="blind">삭제</span></button>
-											<p class="err_txt" id="validatorNewCstmrNm"></p>
-										</div>
-									</div>
 									<p class="form_label required">받는 분</p>
 									<div class="form_group">
 										<div class="input_clear">
-											<input type="text" title="받는 분 입력" placeholder="" id="newAddrseNm" value="" new-validate="required;" maxlength="33">
-											<button type="button" class="clear_btn"><span class="blind">삭제</span></button>
-											<p class="err_txt" id="validatorNewAddrseNm"></p>
+											<input id="receivername" type="text" name="ordreceivername" title="받는 분 입력" placeholder="" value="">
 										</div>
 									</div>
 									<p class="form_label required">휴대폰 번호</p>
 									<div class="form_group">
 										<div class="input_clear">
-											<input type="hidden" id="newAddrseMobilNationNo" value="82">
-											<input placeholder="'-' 없이 숫자만 입력" type="text" title="주문자 휴대폰 번호 입력('-' 없이 숫자만 입력)" id="newAddrseMobilNo" onkeyup="onlyNumber3(this)" value="" new-validate="required;digit;rangelength:10 11;digit;phone;" maxlength="13">
-											<button type="button" class="clear_btn"><span class="blind">삭제</span></button>
-											<p class="err_txt" id="validatorNewAddrseMobilNo"></p>
+											<input id="receiverphone" placeholder="'-' 없이 숫자만 입력" type="text" title="주문자 휴대폰 번호 입력('-' 없이 숫자만 입력)" value="" name="ordreceiverphone">
 										</div>
 									</div>
 									<p class="form_label required">배송 주소</p>
@@ -188,57 +225,48 @@
 										<div class="form_set col">
 											<div class="multi_input">
 												<div class="input_clear">
-													<input type="hidden" id="newAddrSectCd" value="">
-													<input type="text" title="배송주소 우편번호" id="newAddrsePostNo" value="" readonly="" new-validate="required;postno" maxlength="7">
-													<button type="button" class="clear_btn"><span class="blind">삭제</span></button>
+													<input id="receiverzipcode" type="text" name="ordreceiverzipcode" id="zipcode" value="" readonly>
 												</div>
-												<<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호"/>
+												<input type="button" onclick="DaumPostcode()" value="찾기"/>
 											</div>
 											<div class="multi_input">
 												<div class="input_clear">
-													<input type="text" title="주소" readonly="" id="newAddrseBaseAddr" value="" new-validate="required;xssquotation" maxlength="100">
-													<button type="button" class="clear_btn"><span class="blind">삭제</span></button>
+													<input type="text" readonly id="address1" value="">
 												</div>
 											</div>
 											<div class="multi_input">
 												<div class="input_clear">
-													<input type="text" title="상세주소 입력" placeholder="상세 주소를 입력해주세요." id="newAddrseDetailAddr" value="" new-validate="required;xssquotation" maxlength="66">
-													<button type="button" class="clear_btn"><span class="blind">삭제</span></button>
-													<p class="err_txt" id="validatorNewAddrseDetailAddr"></p>
+													<input type="text" placeholder="상세 주소를 입력해주세요." id="address2" value="">
 												</div>
+												<input type="hidden" id="fullAddress" name="ordreceiveraddress">
 											</div>
 										</div>
 										<div class="form_set col">
-											<div class="custom_select_wrap" id="noDlvInfoDiv2">
-												<button type="button" class="option_selected" id="newDlvMemo" data-type="new">배송 요청사항 선택</button><!-- [D] : 활성상태 .is_active 추가 -->
-												<select class="option_list" style="display: block;"><!-- [D] : 활성상태 .is_active 추가 -->
-													<option><button type="button" data-value="부재 시 경비실에 맡겨주세요" data-type="new" onclick="changeInput(this);" class="option">부재 시 경비실에 맡겨주세요</button></option>
-													<option><button type="button" data-value="부재 시 문 앞에 놓아주세요" data-type="new" onclick="changeInput(this);" class="option">부재 시 문 앞에 놓아주세요</button></option>
-													<option><button type="button" data-value="배송 전에 연락주세요" data-type="new" onclick="changeInput(this);" class="option">배송 전에 연락주세요</button></option>
-													<option><button type="button" data-value="빠른 배송 부탁드려요" data-type="new" onclick="changeInput(this);" class="option">빠른 배송 부탁드려요</button></option>
-													<option><button type="button" data-value="DRT_INPUT" data-type="new" onclick="changeInput(this);" class="option">직접 입력</button></option>
+											<div class="custom_select_wrap">
+												<p class="option_selected" data-type="new">배송 요청사항 선택</p><!-- [D] : 활성상태 .is_active 추가 -->
+												<select class="option_list" name="ordrequest">
+													<option value="부재 시 경비실에 맡겨주세요">부재 시 경비실에 맡겨주세요</option>
+													<option value="부재 시 문 앞에 놓아주세요">부재 시 문 앞에 놓아주세요</option>
+													<option value="빠른 배송 부탁드려요">빠른 배송 부탁드려요</option>
+													<option value="DRT_INPUT">직접 입력</option>
 												</select>
 											</div> 
-											<div class="input_clear dlvMemoInput" id="newDlvMemoInputDiv" style="display: none;" data-type="new">
-												<input type="text" title="배송시 요청사항 직접 입력" placeholder="배송기사님에게 전달되는 메시지 입니다." id="newDlvMemoInput" maxlength="33">
-												<button type="button" class="clear_btn"><span class="blind">삭제</span></button>
+											<div class="input_clear dlvMemoInput" style="display: none;" data-type="new">
+												<input type="text" placeholder="배송기사님에게 전달되는 메시지 입니다.">
 											</div>
 										</div>
-								
 									</div>
 								</div>
 							</section>
-							
 							<section class="order_block">
-											<div class="tit_area"><h3 class="tit_lv2 ">주문 상품 정보 (1건)</h3></div>
-							
-							<ul class=" order_list">
+											<div class="tit_area"><h3 class="tit_lv2 ">주문 상품 정보</h3></div>
+							<ul class="order_list">
 								<li class="buy_detail">
 							            <div class="product_area">
 											<div class="thumb_area">
 												<a href="item_view">
 													<span class="thumb">
-														<img src="attachDownload?prdcode=${product.prdcode}" alt="">
+														<img src="attachDownload?prdcode=${product.prdcode}">
 													</span>
 												</a>
 											</div>
@@ -248,14 +276,15 @@
 														${product.prdbrand}</span>
 													<span class="prd_name">
 							                        	<a href="item_view?prdcode=${product.prdcode}">${product.prdname}</a></span>
+							                        	<input type="hidden" name="prdcode" value="${product.prdcode}"/>
 							                        	<br/>
 													<div class="buy_info02">
 														<p class="option"><!-- data-ga-variant="BEIGE/L" -->
-															<button type="button" name="button" class="info-minus" onclick="setQtyAndPrc('m')">
+															<button type="button" class="info-minus" onclick="setQtyAndPrc('m')">
 																<span>-</span>
 															</button>
-															<input id="qtySpinner" name="quantity" type="text" title="수량 선택" class="count" data-page="productDetail" data-min="1" data-txt="inv" min="1" value="${amount}" readonly>
-															<button type="button" name="button" class="info-plus" onclick="setQtyAndPrc('p')">
+															<input id="qtySpinner" name="ordtotalamount" type="text" class="count" min="1" value="${amount}" readonly>
+															<button type="button" class="info-plus" onclick="setQtyAndPrc('p')">
 																<span>+</span>
 															</button>
 														</p>
@@ -271,9 +300,7 @@
 										</div>
 									</li>
 								</ul>
-							
 							</section>
-							
 						</div>
 						
 						<!-- 오른쪽 구매 박스 영역 -->
@@ -285,6 +312,7 @@
 										<dt>총 결제 금액</dt>
 										<dd id="price-sum2">${price}원</dd>
 									</dl>
+									<input id="total-price" type="hidden" name="ordtotalprice" value=""/>
 									<dl class="total_sum_detail">
 										<dt>총 상품 금액</dt>
 										<dd id="price-sum3">${price}원</dd>
@@ -293,7 +321,6 @@
 										<dt>정기 구독 할인 금액</dt>
 										<dd id="subscribeSum">0원</dd>
 									</dl>
-			
 									<div class="agree_box">
 										<div class="agree_cont">
 											<div class="terms_cont">
@@ -306,9 +333,7 @@
 											</div>
 										</div>
 									</div>
-			
 								</div>
-								
 								<div class="total_order_wrap">
 									<div class="btn_big_wrap">
 										<button type="submit" id="btnPayment" class="paySum" disabled>결제하기</button>
@@ -318,12 +343,18 @@
 							</div>
 						</div>
 
-
 					</div>
 				</form>
 				<script defer src="${pageContext.request.contextPath}/js/sign_up.js"> </script>
-		       			<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+		       	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+		       	
+		       	<input id="mname" type="hidden" value="${member.mname}">
+		       	<input id="mphone" type="hidden" value="${member.mphone}">
+		       	<input id="mzipcode" type="hidden" value="${mzipcode}">
+		       	<input id="maddress" type="hidden" value="${maddress}">
 			</div>
 		</div>
+		<!--------------- footer ---------------->
+		<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 	</body>
 </html>

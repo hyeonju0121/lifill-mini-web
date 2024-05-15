@@ -10,8 +10,21 @@
 		where mid=#{mid}
 	</select>
 	
-	<insert id="mInsert" parameterType="Member">
+	<insert id="mInsert" parameterType="MemberResponse">
 		insert into member (mid, mpassword, mname, mphone, memail, mrole, mcreatedat)
 		values(#{mid}, #{mpassword}, #{mname}, #{mphone}, #{memail}, #{mrole}, sysdate)
 	</insert>
+	
+	<select id="selectAddressByMid" parameterType="String" resultType="String">
+		select maddress
+		from address
+		where mid=#{mid}
+	</select>
+	
+	<select id="selectZipcodeByMid" parameterType="String" resultType="String">
+		select mzipcode
+		from address
+		where mid=#{mid}
+	</select>
+	
 </mapper>

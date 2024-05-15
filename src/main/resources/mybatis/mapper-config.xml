@@ -17,8 +17,9 @@
 		<typeAlias type="com.mycompany.lifill_mini_web.dto.Ingredient" alias="Ingredient"/>
 		<typeAlias type="com.mycompany.lifill_mini_web.dto.Inquiry" alias="Inquiry"/>
 		<typeAlias type="com.mycompany.lifill_mini_web.dto.Member" alias="Member"/>
+		<typeAlias type="com.mycompany.lifill_mini_web.dto.response.MemberResponse" alias="MemberResponse"/>
 		<typeAlias type="com.mycompany.lifill_mini_web.dto.Orders" alias="Orders"/>
-		<typeAlias type="com.mycompany.lifill_mini_web.dto.OrderDetail" alias="OrderDetail"/>
+		<typeAlias type="com.mycompany.lifill_mini_web.dto.OrdersDetail" alias="OrdersDetail"/>
 		<typeAlias type="com.mycompany.lifill_mini_web.dto.Payment" alias="Payment"/>
 		<typeAlias type="com.mycompany.lifill_mini_web.dto.PrdContents" alias="PrdContents"/>
 		<typeAlias type="com.mycompany.lifill_mini_web.dto.PrdHashtag" alias="PrdHashtag"/>
@@ -28,6 +29,7 @@
 		<typeAlias type="com.mycompany.lifill_mini_web.dto.Review" alias="Review"/>
 		<typeAlias type="com.mycompany.lifill_mini_web.dto.Pager" alias="Pager"/>
 		<typeAlias type="com.mycompany.lifill_mini_web.dto.response.ProductResponse" alias="ProductResponse"/>
+		<typeAlias type="com.mycompany.lifill_mini_web.dto.request.SingleOrderRequest" alias="SingleOrderRequest"/>
 	</typeAliases>
 	
 </configuration>

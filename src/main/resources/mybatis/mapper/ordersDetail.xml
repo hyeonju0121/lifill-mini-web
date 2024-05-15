@@ -5,4 +5,13 @@
 	
 <mapper namespace="com.mycompany.lifill_mini_web.dao.OrderDetailDao"> 
 
+	<insert id="createOrdersDetail" parameterType="OrdersDetail">
+		insert into ordersdetail (
+			ordid, prdcode, prdprice, odtamount
+		)
+		values(
+			#{ordid}, #{prdcode}, #{prdprice}, #{odtamount}
+		)
+	</insert>
+
 </mapper>
