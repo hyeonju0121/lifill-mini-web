@@ -466,7 +466,8 @@
 															<li>홈페이지 1대1 문의를 이용해주세요.</li>
 														</ul>
 														
-														<button class="btn btn-sm btn-dark">문의하기</button>
+														<button onclick="location.href='${pageContext.request.contextPath}/member/qnaInquiry?prdcode=${product.prdcode}'" 
+															class="btn btn-sm btn-dark">문의하기</button>
 													</div>
 												</div>
 											</div>

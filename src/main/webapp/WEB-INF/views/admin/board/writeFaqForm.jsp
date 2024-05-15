@@ -91,7 +91,7 @@
 					</div>
 					
 					<div class="btn_big_wrap btn_size_fix">
-						<button type="button" class="white" onclick="location.href='faqList'">취소</button>
+						 <button type="button" class="white" onclick="location.href='faqList'">취소</button>
 						<button type="submit" class="btnInsert">등록</button>
 					</div>
 				</form>	

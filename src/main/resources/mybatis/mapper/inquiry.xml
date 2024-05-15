@@ -13,4 +13,44 @@
 		#{inqno}, #{mid}, #{prdcode} ,#{inqtitle}, #{inqcontent}, #{inqtype}, sysdate, #{inqstatus}
 		)
 	</insert>
+	
+	<insert id="insertCsInquiry" parameterType="Inquiry">
+		<selectKey keyProperty="inqno" order="BEFORE" resultType="int">
+			select seq_inqno.nextval from dual
+		</selectKey>
+		insert into inquiry(
+			inqno, mid, prdcode, inqtitle, inqcontent, inqtype, inqcreatedat, inqstatus
+		) values (
+			#{inqno}, #{mid}, #{prdcode} ,#{inqtitle}, #{inqcontent}, #{inqtype}, sysdate, #{inqstatus}
+		)
+	</insert>
+	
+	<select id="selectCsInquiry" parameterType='String' resultType="InquiryResponse">
+		select seq, inqno, mid, prdcode, inqtitle, inqcontent, inqtype, inqcreatedat, inqupdatedat, inqreply, inqstatus, prdbrand, prdname
+		from (
+		    select rownum as seq, inqno, mid, prdcode, inqtitle, inqcontent, inqtype, inqcreatedat, inqupdatedat, inqreply, inqstatus,
+		           prdbrand, prdname
+		    from (
+				select i.inqno, i.mid, i.prdcode, i.inqtitle, i.inqcontent, 
+		               i.inqtype, i.inqcreatedat, i.inqupdatedat, i.inqreply, i.inqstatus,
+		               p.prdbrand, p.prdname
+		        from inquiry i, product p
+		        where i.prdcode=p.prdcode
+		            and mid=#{mid}
+		    )
+		)
+		order by seq desc
+	</select>
+	
+	<select id="getQnaCnt" parameterType="String">
+		select count(*) from inquiry where mid=#{mid}
+	</select>
+	
+	<select id="getQnaApplyCnt" parameterType="String">
+		select count(*) from inquiry where mid=#{mid} and inqstatus='답변완료'
+	</select>
+	
+	<select id="getQnaNoApplyCnt" parameterType="String">
+		select count(*) from inquiry where mid=#{mid} and inqstatus='답변대기중'
+	</select>
 </mapper>

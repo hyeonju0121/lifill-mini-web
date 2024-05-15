@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -84,26 +86,26 @@
 					<div class="tit_area line_thick">
 						<h2 class="tit_lv2">상품 문의</h2>
 					</div>
-					
+					<form name="qnaInquiry" id="qnaInquiry" method="post" action="applyCsInquiry">
 					<div class="section_block">
 						<div class="form_table no_line">
-						<form id="applyInquiry" method="post" action="writeBoard"> <!-- enctype="multipart/form-data" -->
 							<div class="tr">
+								<input type="hidden" id="prdcode" name="prdcode" value="${product.prdcode}">
 								<div class="th">
 									<p class="form_label required">문의 상품 </p>
 								</div>
 								<div class="img-td">
 									<div class="profile_wrap">
-											<!-- [D] 파일첨부 기능 .profile_attach -->
-											<div class="profile profile_attach">
-												<a href="#" class="img_box">
-				                                    <div id="defaultImg" style=""></div>
-												</a>
-												<div class="profile_edit">
-													<p class="tit">[브랜드]<span class="sub">상품명</span></p>
-												</div>
+										<div class="profile profile_attach">
+											<div id="itemImg">
+												<img src="attachDownload?prdcode=${product.prdcode}"
+													class="rounded-3" style="width: 90px; height: 90px;" />
+											</div>
+											<div class="profile_edit">
+												<p class="tit">[${product.prdbrand}]<span class="sub">${product.prdname}</span></p>
 											</div>
 										</div>
+									</div>
 								</div>
 							</div>
 							
@@ -113,8 +115,8 @@
 								</div>
 								<div class="td">
 									<div class="custom_select_wrap lg">
-									  <select name="inqtype" id="inqtype" style="width:100%; height:50px; border: 1px solid gray;">
-									    <option value="product">상품문의</option>
+									  <select name="requestInqval" id="requestInqval" style="width:100%; height:50px; border: 1px solid gray;">
+									    <option value="product" selected>상품문의</option>
 									  </select>
 									</div>
 								</div>
@@ -151,11 +153,9 @@
 							<button type="button" class="white" onclick="location.href='myInquiryList'">취소</button>
 							<button type="submit" class="btnInsert">등록</button>
 						</div>
-						</form>
 						</div>
-						
 					</div>
-					
+					</form>
 				</div>
 			</div>
 		</div>

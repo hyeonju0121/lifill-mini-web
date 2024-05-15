@@ -1,7 +1,11 @@
 package com.mycompany.lifill_mini_web.service;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,6 +17,8 @@ import com.mycompany.lifill_mini_web.dao.MemberDao;
 import com.mycompany.lifill_mini_web.dto.Address;
 import com.mycompany.lifill_mini_web.dto.Inquiry;
 import com.mycompany.lifill_mini_web.dto.Member;
+import com.mycompany.lifill_mini_web.dto.request.CreateInquiryRequest;
+import com.mycompany.lifill_mini_web.dto.response.InquiryResponse;
 import com.mycompany.lifill_mini_web.dto.response.MemberResponse;
 
 import lombok.extern.slf4j.Slf4j;
@@ -29,9 +35,6 @@ public class MemberService {
 	private AddressDao addressDao;
 	
 	public void applyInquiry(Inquiry inquiry) {
-		// 비즈니스 로직 처리 코드...
-		
-		
 		int rowNum = inquiryDao.insert(inquiry);
 		
 		log.info("inquiry: " + inquiry);
@@ -72,4 +75,88 @@ public class MemberService {
 		String mzipcode = memberDao.selectZipcodeByMid(member.getMid());
 		return mzipcode;
 	}
+	
+	// 단순 상품 문의 등록
+		@Transactional
+		public void insertQnaInquiry(CreateInquiryRequest request) {
+			// 사용자 정보 가져오기
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			String mid = authentication.getName();
+
+			// 상품 유형 검사
+			int inqtype = inqTypeValidation(request.getRequestInqval());
+
+			Inquiry inquiry = new Inquiry();
+			inquiry.setMid(mid);
+			inquiry.setPrdcode(request.getPrdcode());
+			inquiry.setInqtitle(request.getInqtitle());
+			inquiry.setInqcontent(request.getInqcontent());
+			inquiry.setInqtype(inqtype);
+			inquiry.setInqstatus("답변대기중");
+
+			log.info("inquiry={}", inquiry.toString());
+
+			int inqRowNum = inquiryDao.insertCsInquiry(inquiry);
+		}
+
+		// 상품 문의 조회
+		public List<InquiryResponse> getQnaInquiry() {
+			// 사용자 정보 가져오기
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			String mid = authentication.getName();
+
+			List<InquiryResponse> inquiryList = inquiryDao.selectCsInquiry(mid);
+
+			return inquiryList;
+		}
+
+		// 회원 아이디에 해당하는 단순상품 전체 문의 건수 조회
+		public int getQnaCount() {
+			// 사용자 정보 가져오기
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			String mid = authentication.getName();
+
+			return inquiryDao.getQnaCnt(mid);
+		}
+
+		// 회원 아이디에 해당하는 단순상품 답변완료  건수 조회
+		public int getQnaApplyCount() {
+			// 사용자 정보 가져오기
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			String mid = authentication.getName();
+
+			return inquiryDao.getQnaApplyCnt(mid);
+		}
+
+		// 회원 아이디에 해당하는 단순상품 답변대기 건수 조회
+		public int getQnaNoApplyCount() {
+			// 사용자 정보 가져오기
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			String mid = authentication.getName();
+
+			return inquiryDao.getQnaNoApplyCnt(mid);
+		}
+
+		// 상품 유형 검사 메소드
+		public int inqTypeValidation(String requestInqval) {
+			int inqtype = 0;
+
+			switch (requestInqval) {
+			case "product":
+				inqtype = 1;
+				break;
+			case "return":
+				inqtype = 2;
+				break;
+			case "exchange":
+				inqtype = 3;
+				break;
+			case "delivery":
+				inqtype = 4;
+				break;
+			default:
+				throw new RuntimeException("문의 타입 설정이 잘못 되었습니다.");
+			}
+			return inqtype;
+		}
 }

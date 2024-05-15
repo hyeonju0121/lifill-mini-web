@@ -1,21 +1,31 @@
 package com.mycompany.lifill_mini_web.controller;
 
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mycompany.lifill_mini_web.dto.Inquiry;
 import com.mycompany.lifill_mini_web.dto.Member;
+import com.mycompany.lifill_mini_web.dto.request.CreateInquiryRequest;
+import com.mycompany.lifill_mini_web.dto.response.InquiryResponse;
 import com.mycompany.lifill_mini_web.dto.response.MemberResponse;
+import com.mycompany.lifill_mini_web.dto.response.ProductResponse;
 import com.mycompany.lifill_mini_web.security.LifillUserDetails;
 import com.mycompany.lifill_mini_web.service.MemberService;
+import com.mycompany.lifill_mini_web.service.ProductService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,6 +36,9 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@Resource
+	private ProductService productService;
 	
 	@RequestMapping("")
 	public String index() {
@@ -90,6 +103,48 @@ public class MemberController {
 		return "member/mypage/csInquiry";
 	}
 	
+	@Secured("ROLE_USER")
+	@RequestMapping("/myQnaList")
+	public String myQnaList(Model model) {
+		log.info("myQnaList() 실행");
+
+		// 문의 객체 가져오기
+		List<InquiryResponse> inquiryList = memberService.getQnaInquiry();
+		int totalQnaCnt = memberService.getQnaCount();
+		int totalApplyCnt = memberService.getQnaApplyCount();
+		int totalNoApplyCnt = memberService.getQnaNoApplyCount();
+
+		model.addAttribute("inquiryList", inquiryList);
+		model.addAttribute("totalQnaCnt", totalQnaCnt);
+		model.addAttribute("totalApplyCnt", totalApplyCnt);
+		model.addAttribute("totalNoApplyCnt", totalNoApplyCnt);
+
+		return "member/mypage/myQnaList";
+	}
+
+	// 단순 상품 문의 작성 폼
+	@GetMapping("/qnaInquiry")
+	public String qnaInquiry(String prdcode, Model model) {
+		log.info("qnaInquiry() 실행");
+
+		// 해당 상품코드 객체 가져오기
+		ProductResponse product = productService.getProductResponse(prdcode);
+		model.addAttribute("product", product);
+
+		return "member/mypage/qnaInquiry";
+	}
+
+	// 상품 문의 post 요청
+	@Secured("ROLE_USER")
+	@PostMapping("/applyCsInquiry")
+	public String applyCsInquiry(CreateInquiryRequest request) {
+		log.info("실행");
+
+		memberService.insertQnaInquiry(request);
+
+		return "redirect:/member/myQnaList";
+	}
+	
 	@RequestMapping("/myGoodsReviewList")
 	public String myGoodsReviewList() {
 		log.info("myGoodsReviewList() 실행");
@@ -108,9 +163,10 @@ public class MemberController {
 		return "member/mypage/pwdConfirm";
 	}
 	
+	/*
 	@PostMapping("/writeBoard")
 	public String writeBoard(Inquiry inquiry) {
-		/*
+		
 		// 요청 데이터의 유효성 검사
 		log.info("original filename : " + inquiry.getInqAttach().getOriginalFilename());
 		log.info("file type : " + inquiry.getInqAttach().getContentType());
@@ -124,7 +180,7 @@ public class MemberController {
 				inquiry.setInqAttachData(inquiry.getInqAttach().getBytes());
 			} catch (Exception e) {}
 		}
-		*/
+		
 		inquiry.setPrdcode("EYE001");
 		inquiry.setInqtype("PRODUCT");
 		inquiry.setInqstatus("답변대기중");
@@ -136,7 +192,7 @@ public class MemberController {
 		memberService.applyInquiry(inquiry);
 		
 		return "redirect:/member/myInquiryList";	
-	}
+	}*/
 	
 	@GetMapping("/userInfo")
 	public String userInfo(Authentication authentication) {
@@ -162,5 +218,24 @@ public class MemberController {
 		log.info("mrole : " + authorityList);
 		      
 		return "redirect:/";
+	}
+	
+	@GetMapping("/attachDownload")
+	public void attachDownload(String prdcode, HttpServletResponse response) throws Exception {
+		// 다운로드할 데이터를 준비
+		ProductResponse product = productService.getProductResponse(prdcode);
+		byte[] data = productService.getAttachData(prdcode);
+
+		// 응답 헤더 구성
+		response.setContentType(product.getPrdimgrep1type());
+		// 한글 파일의 이름 -> 인코딩 변경
+		String fileName = new String(product.getPrdimgrep1oname().getBytes("UTF-8"), "ISO-8859-1");
+		response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
+		// 응답 본문에 파일 데이터 출력
+		OutputStream os = response.getOutputStream();
+		os.write(data);
+		os.write(data);
+		os.flush();
+		os.close();
 	}
 }

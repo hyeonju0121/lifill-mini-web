@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -19,7 +21,7 @@
 		
 		<!-- 사용자 정의 자바스크립트 -->
 		<script>
-			
+
 		</script>
 		
 	</head>
@@ -89,15 +91,15 @@
 							<!-- 해당 탭 선택 시 ,is_active 추가 -->
 							<li class="step is_active" onclick="">
 								<!-- 갯수가 1개 이상일 경우 ,is_active 추가 -->
-								<a href="#" class="count ">0</a>
+								<a href="#" class="count ">${totalQnaCnt}</a>
 								<span class="status">전체문의</span>
 							</li>
 							<li class="step" onclick="">
-									<a href="#" class="count ">0</a>
+									<a href="#" class="count ">${totalApplyCnt}</a>
 									<span class="status">답변 완료</span>
 								</li>
 							<li class="step" onclick="">
-									<a href="#" class="count ">0</a>
+									<a href="#" class="count ">${totalNoApplyCnt}</a>
 									<span class="status">답변대기</span>
 								</li>
 							</ul>
@@ -105,11 +107,81 @@
 				
 					<div class="section_block data_detail">
 						<!-- 문의 내역이 없는 경우 -->
-						<div class="no_data type4" id="noDataDiv" style="">등록된 상품 Q&A가 없습니다.</div>
+						<c:if test="${totalQnaCnt < 1}">
+							<div class="no_data type4" id="noDataDiv" style="">등록된 상품 Q&A가 없습니다.</div>
+						</c:if>
 						
-						</div>
+						<c:if test="${totalQnaCnt >= 1}">
+							<table>
+								<div class="done_wrap type4">
+										<div class="notice">
+											<div class="tab_cont_box">
+												<div class="tab_cont" data-id="tab-01">
+													<div class="tab_cont_inner faq_accordion">
+														<div class="divi_line qna_inquiry_board">
+															<div class="accordion accordion-flush" id="qna_List">
+																<c:forEach var="qna" items="${inquiryList}">
+																<div class="acc_header" name="qna">
+																	<button class="accordion-button collapsed" 
+																				type="button" 
+																				data-bs-toggle="collapse" 
+																				data-bs-target="#flush-collapse${qna.seq}" 
+																				aria-expanded="false" 
+																				aria-controls="flush-collapse${qna.seq}">
+																		<span class="prd_num">${qna.seq}</span>
+																		<ul class="badge_auto_list1">
+																			<li>상품</li>
+																		</ul>
+																		<ul class="badge_auto_list2">
+																			<li>${qna.inqstatus}</li>
+																		</ul>
+																		<div class="prd_subtit">${qna.inqtitle}</div>              
+																		<span class="prd_date"><fmt:formatDate value="${qna.inqcreatedat}" pattern="yyyy-MM-dd"/></span>
+																	</button>
+																</div>
+																
+																<div id="flush-collapse${qna.seq}" class="accordion-collapse collapse" data-bs-parent="#qna_List">
+															      <div class="accordion-body">
+																	<div class="acc_cont cart_list order">
+																		<div class="img-td">
+																			<div class="profile_wrap">
+																				<div class="profile profile_attach">
+																					<div id="itemImg">
+																						<img src="attachDownload?prdcode=${qna.prdcode}"
+																							class="rounded-3" style="width: 90px; height: 90px;" />
+																					</div>
+																					<div class="profile_edit">
+																						<p class="tit">[${qna.prdbrand}]<span class="sub">${qna.prdname}</span></p>
+																					</div>
+																					</div>
+																				</div>
+																			</div>
+																			<hr>
+																		  <div class="contents">${qna.inqcontent}</div>
+																		  <c:if test="${qna.inqstatus} eq '답변완료'">
+																			  <hr>
+																			  <div class="comment">
+																			  	<p class="tit">[라이필 관리자]</p>
+																			  	<div class="text">${qna.inqreply}</div>
+																			  	<span class="prd_date"><fmt:formatDate value="${qna.inqupdatedat}" pattern="yyyy-MM-dd"/></span>
+																			  </div>
+																		  </c:if>
+																	</div>
+															      </div>
+															    </div>
+															   </c:forEach>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</table>
+						</c:if>
+						
 				</div>
-				
+				</div>
 			</div>
 		</div>
 	</body>

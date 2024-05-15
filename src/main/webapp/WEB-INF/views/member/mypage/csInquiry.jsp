@@ -95,7 +95,6 @@
 								<div class="td">
 									<div class="custom_select_wrap lg">
 									  <select name="inqtype" id="inqtype" style="width:100%; height:50px; border: 1px solid gray;">
-									    <option value="product">상품문의</option>
 									    <option value="return">반품</option>
 									    <option value="exchange">교환/환불</option>
 									    <option value="delivery">배송</option>
