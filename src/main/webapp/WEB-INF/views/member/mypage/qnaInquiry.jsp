@@ -15,7 +15,7 @@
 		<script src="${pageContext.request.contextPath}/resources/jquery/jquery-3.7.1.min.js"></script>
 		
 		<!-- external css -->
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mypage/myGoodsReviewList.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mypage/qnaInquiry.css">
 		
 		<!-- 사용자 정의 자바스크립트 -->
 		<script>
@@ -80,39 +80,82 @@
 					</div>
 				</div>
 				
-				<div id="content">
-					<div class="tit_area line_thick mb0">
-						<strong class="tit_lv2">상품 리뷰</strong>
+				<div class="content">
+					<div class="tit_area line_thick">
+						<h2 class="tit_lv2">상품 문의</h2>
 					</div>
-					<div class="widget_managing_reviews js-pagination-list">
-					    <div class="widget_managing_reviews__head">
-							<div class="managing_reviews_header">
-								<ul class="managing_reviews_header__tab_list">
-							    	<li id="can_write_review" class="managing_reviews_header__tab managing_reviews_header__tab--active">
-							    		<a href="#" class="managing_reviews_header__tab_link" data-remote="true">
-									        작성 가능한 리뷰 0
-									    </a>
-							    	</li>
-							    	<li id="written_review" class="managing_reviews_header__tab ">
-								    	<a href="#" class="managing_reviews_header__tab_link" data-remote="true">
-										내가 작성한 리뷰 0
-								    	</a>
-								    </li>
-							  	</ul>
-							    <div class="managing_reviews_header__message managing_reviews_header__message--pending_reviews">
-							        현재 작성 가능한 리뷰가 없습니다.
-							    </div>
-							    <div class="managing_reviews_header__pending_reviews_description">
-								※ 배송이 완료된 상품만 목록에 노출됩니다.
-							    </div>
+					
+					<div class="section_block">
+						<div class="form_table no_line">
+						<form id="applyInquiry" method="post" action="writeBoard"> <!-- enctype="multipart/form-data" -->
+							<div class="tr">
+								<div class="th">
+									<p class="form_label required">문의 상품 </p>
+								</div>
+								<div class="img-td">
+									<div class="profile_wrap">
+											<!-- [D] 파일첨부 기능 .profile_attach -->
+											<div class="profile profile_attach">
+												<a href="#" class="img_box">
+				                                    <div id="defaultImg" style=""></div>
+												</a>
+												<div class="profile_edit">
+													<p class="tit">[브랜드]<span class="sub">상품명</span></p>
+												</div>
+											</div>
+										</div>
+								</div>
 							</div>
-					    </div>
-					    <div class="widget_managing_reviews__list">
-					      <ul>
-					      
-					      </ul>
-					    </div>
-				  	</div>
+							
+							<div class="tr">
+								<div class="th">
+									<p class="form_label required">문의 유형 </p>
+								</div>
+								<div class="td">
+									<div class="custom_select_wrap lg">
+									  <select name="inqtype" id="inqtype" style="width:100%; height:50px; border: 1px solid gray;">
+									    <option value="product">상품문의</option>
+									  </select>
+									</div>
+								</div>
+							</div>
+							
+							<div class="tr">
+								<div class="th">
+									<p class="form_label required">문의 제목</p>
+								</div>
+								<div class="td">
+									<div class="textarea_group sm">
+										<textarea id="inqtitle" name="inqtitle" title="문의제목 입력" placeholder="문의 제목을 입력해주세요." maxlength="100"></textarea>
+										<p class="form_bytes"><span class="byte">0</span>/100</p>
+									</div>
+								</div>
+							</div>
+							<div class="tr">
+								<div class="th">
+									<p class="form_label required">문의 내용</p>
+								</div>
+								<div class="td">
+									<div class="textarea_group lg">
+										<textarea id="inqcontent" name="inqcontent" placeholder="문의 내용을 입력해주세요." cols="" rows="" title="문의내용 입력" maxlength="1000" onpaste="checkCnt(this)" onchange="checkCnt(this)" onkeydown="checkCnt(this)" onkeyup="checkCnt(this)"></textarea>
+										<p class="form_bytes"><span class="byte">0</span>/1,000</p>
+									</div>
+								</div>
+							</div>
+						<ul class="list_type1 type2 mt30">
+							<li>배송, 교환/반품/취소에 대한 문의는 My Page &gt; 1:1문의를 통해 접수 부탁드립니다.</li>
+							<li>상품과 관련없는 내용, 비방, 광고, 불건전한 내용의 글은 사전 동의없이 삭제될 수 있습니다.</li>
+							<li>작성하신 문의는 My Page &gt; 상품 Q&A에서 확인하실 수 있습니다.</li>
+						</ul>
+						<div class="btn_big_wrap btn_size_fix">
+							<button type="button" class="white" onclick="location.href='myInquiryList'">취소</button>
+							<button type="submit" class="btnInsert">등록</button>
+						</div>
+						</form>
+						</div>
+						
+					</div>
+					
 				</div>
 			</div>
 		</div>

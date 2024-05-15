@@ -45,6 +45,7 @@
 							<a class="menu_depth01" href="#">나의 참여 내역</a>
 							<ul class="menu_depth02">
 								<li id="inquiry"><a href="myInquiryList">1:1 문의</a></li>
+								<li id="inquiryItem"><a href="myQnaList">상품 Q&A</a></li>
 								<li id="review"><a href="myGoodsReviewList" >상품 리뷰</a></li>
 							</ul>
 						</li>

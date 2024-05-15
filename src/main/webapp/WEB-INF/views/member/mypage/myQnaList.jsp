@@ -15,7 +15,7 @@
 		<script src="${pageContext.request.contextPath}/resources/jquery/jquery-3.7.1.min.js"></script>
 		
 		<!-- external css -->
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mypage/myGoodsReviewList.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mypage/myQnaList.css">
 		
 		<!-- 사용자 정의 자바스크립트 -->
 		<script>
@@ -80,40 +80,36 @@
 					</div>
 				</div>
 				
-				<div id="content">
-					<div class="tit_area line_thick mb0">
-						<strong class="tit_lv2">상품 리뷰</strong>
+				<div class="content">
+					<div class="tit_area line_thick">
+						<h2 class="tit_lv2">상품 Q&A</h2>
 					</div>
-					<div class="widget_managing_reviews js-pagination-list">
-					    <div class="widget_managing_reviews__head">
-							<div class="managing_reviews_header">
-								<ul class="managing_reviews_header__tab_list">
-							    	<li id="can_write_review" class="managing_reviews_header__tab managing_reviews_header__tab--active">
-							    		<a href="#" class="managing_reviews_header__tab_link" data-remote="true">
-									        작성 가능한 리뷰 0
-									    </a>
-							    	</li>
-							    	<li id="written_review" class="managing_reviews_header__tab ">
-								    	<a href="#" class="managing_reviews_header__tab_link" data-remote="true">
-										내가 작성한 리뷰 0
-								    	</a>
-								    </li>
-							  	</ul>
-							    <div class="managing_reviews_header__message managing_reviews_header__message--pending_reviews">
-							        현재 작성 가능한 리뷰가 없습니다.
-							    </div>
-							    <div class="managing_reviews_header__pending_reviews_description">
-								※ 배송이 완료된 상품만 목록에 노출됩니다.
-							    </div>
-							</div>
-					    </div>
-					    <div class="widget_managing_reviews__list">
-					      <ul>
-					      
-					      </ul>
-					    </div>
-				  	</div>
+					<div class="section_block">
+						<ul class="my_order has_border">
+							<!-- 해당 탭 선택 시 ,is_active 추가 -->
+							<li class="step is_active" onclick="">
+								<!-- 갯수가 1개 이상일 경우 ,is_active 추가 -->
+								<a href="#" class="count ">0</a>
+								<span class="status">전체문의</span>
+							</li>
+							<li class="step" onclick="">
+									<a href="#" class="count ">0</a>
+									<span class="status">답변 완료</span>
+								</li>
+							<li class="step" onclick="">
+									<a href="#" class="count ">0</a>
+									<span class="status">답변대기</span>
+								</li>
+							</ul>
+					</div>
+				
+					<div class="section_block data_detail">
+						<!-- 문의 내역이 없는 경우 -->
+						<div class="no_data type4" id="noDataDiv" style="">등록된 상품 Q&A가 없습니다.</div>
+						
+						</div>
 				</div>
+				
 			</div>
 		</div>
 	</body>

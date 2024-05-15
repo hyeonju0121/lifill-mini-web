@@ -92,6 +92,18 @@ public class MemberController {
 		return "member/mypage/csInquiry";
 	}
 	
+	@RequestMapping("/myQnaList")
+	public String myQnaList() {
+		log.info("myQnaList() 실행");
+		return "member/mypage/myQnaList";
+	}
+	
+	@RequestMapping("/qnaInquiry")
+	public String qnaInquiry() {
+		log.info("qnaInquiry() 실행");
+		return "member/mypage/qnaInquiry";
+	}
+	
 	@RequestMapping("/myGoodsReviewList")
 	public String myGoodsReviewList() {
 		log.info("myGoodsReviewList() 실행");
