@@ -11,4 +11,6 @@ public interface IngredientDao {
 
 	public int igdUpdate(Ingredient ingredient);
 
+	public Ingredient igdSelectByPrdcode(String productCode);
+
 }

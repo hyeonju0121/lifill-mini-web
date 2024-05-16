@@ -20,11 +20,11 @@
 	<insert id="prdinsert" parameterType="Product">
 		insert into product(
 			prdcode, prdname, prdbrand, prdprice, prdstock,
-			prdsubscribable, prdsalesstatus, fnno
+			prdsubscribable, prdsalesstatus, fnno, igdno
 		)
 		values(
 			#{prdcode}, #{prdname}, #{prdbrand}, #{prdprice}, #{prdstock}, 
-			#{prdsubscribable}, #{prdsalesstatus}, #{fnno}
+			#{prdsubscribable}, #{prdsalesstatus}, #{fnno}, #{igdno}
 		)
 	</insert>
 	

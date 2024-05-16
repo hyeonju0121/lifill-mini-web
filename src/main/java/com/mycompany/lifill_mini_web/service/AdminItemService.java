@@ -52,16 +52,6 @@ public class AdminItemService {
 		// 상품코드 생성
 		String productCode = createPrdCode(request.getFnval());
 
-		// Product 객체 생성
-		int fnno = functionDao.fnSelectByFnval(request.getFnval());
-
-		Product product = Product.builder().prdcode(productCode).fnno(fnno).prdname(request.getPrdname())
-				.prdbrand(request.getPrdbrand()).prdprice(request.getPrdprice()).prdstock(request.getPrdstock())
-				.prdsubscribable(strbool(request.getPrdsubscribable()))
-				.prdsalesstatus(strbool(request.getPrdsalesstatus())).build();
-
-		log.info("product={}", product.toString());
-
 		// 사용자가 성분 직접 입력했는지 검사 메소드
 		String igdval = request.getIgdval();
 		if (igdval.equals("direct")) { // 직접 입력한 경우
@@ -69,7 +59,28 @@ public class AdminItemService {
 		}
 
 		// ingredient 객체 생성
-		Ingredient ingredient = Ingredient.builder().fnno(fnno).igdval(igdval).build();
+		Ingredient ingredient = new Ingredient();
+		ingredient.setPrdcode(productCode);
+		ingredient.setIgdval(igdval);
+		
+		// Ingredient 객체 db 에 저장
+		int prdingRowNum = ingredientDao.igdinsert(ingredient);
+		
+		// 생성된 Ingredient 객체 가져오기
+		ingredient = ingredientDao.igdSelectByPrdcode(productCode);
+		log.info("생성된 ingredient 객체={}", ingredient.toString());
+
+		// Product 객체 생성
+		int fnno = functionDao.fnSelectByFnval(request.getFnval());
+
+		Product product = Product.builder().prdcode(productCode).fnno(fnno).prdname(request.getPrdname())
+				.prdbrand(request.getPrdbrand()).prdprice(request.getPrdprice()).prdstock(request.getPrdstock())
+				.prdsubscribable(strbool(request.getPrdsubscribable()))
+				.prdsalesstatus(strbool(request.getPrdsalesstatus()))
+				.igdno(ingredient.getIgdno())
+				.build();
+
+		log.info("product={}", product.toString());
 
 		// PrdDetail 객체 생성
 		PrdDetail prdDetail = new PrdDetail();
@@ -155,8 +166,6 @@ public class AdminItemService {
 		int prdRowNum = productDao.prdinsert(product);
 		// PrdDetail 객체 db 에 저장
 		int prdDetailRowNum = prdDetailDao.prddetailinsert(prdDetail);
-		// Ingredient 객체 db 에 저장
-		int prdingRowNum = ingredientDao.igdinsert(ingredient);
 		// prdcontents 객체 db에 저장
 		int prdContentsRowNum = prdContentsDao.prdcontentsinsert(prdContents);
 		// PrdHashtag 객체 db 에 저장
@@ -187,14 +196,11 @@ public class AdminItemService {
 	public void updateItem(CreateProductRequest request) {
 		ProductResponse productResponse = productResponseDao.prdSelectByPrdcode(request.getPrdcode());
 		log.info("productResponse={}", productResponse.toString());
-		
+
 		// Product 객체 생성
 		int fnno = functionDao.fnSelectByFnval(request.getFnval());
 
-		Product product = Product.builder()
-				.prdcode(request.getPrdcode())
-				.fnno(fnno)
-				.prdname(request.getPrdname())
+		Product product = Product.builder().prdcode(request.getPrdcode()).fnno(fnno).prdname(request.getPrdname())
 				.prdbrand(request.getPrdbrand()).prdprice(request.getPrdprice()).prdstock(request.getPrdstock())
 				.prdsubscribable(strbool(request.getPrdsubscribable()))
 				.prdsalesstatus(strbool(request.getPrdsalesstatus())).build();
@@ -208,15 +214,12 @@ public class AdminItemService {
 		}
 
 		// ingredient 객체 생성
-		Ingredient ingredient = Ingredient.builder()
-				.igdno(productResponse.getIgdno())
-				.igdval(igdval)
-				.build();
+		Ingredient ingredient = Ingredient.builder().igdno(productResponse.getIgdno()).igdval(igdval).build();
 
 		// prdContents 객체 생성
 		PrdContents prdContents = new PrdContents();
 		prdContents.setPrdcode(request.getPrdcode());
-		
+
 		log.info("getPrdimglist.size()={}", request.getPrdimglist().size());
 
 		// 대표 이미지 리스트 가져오기
@@ -273,7 +276,7 @@ public class AdminItemService {
 				} catch (Exception e) {
 				}
 			}
-		} 
+		}
 
 		prdContents.setPrdtarget(request.getPrdtarget());
 		prdContents.setPrdtimes(request.getPrdtimes());
@@ -283,7 +286,7 @@ public class AdminItemService {
 		prdContents.setPrdingredient(request.getPrdingredient());
 
 		log.info("prdcontents={}", prdContents.toString());
-		
+
 		// prdhashtag 객체 생성
 		PrdHashtag prdHashtag = new PrdHashtag();
 		prdHashtag.setPrdcode(request.getPrdcode());
@@ -299,26 +302,21 @@ public class AdminItemService {
 		int prdHashtagRowNum = prdHashtagDao.prdhashtagUpdate(prdHashtag);
 	}
 
-	// 판매중인 상품 total count 
+	// 판매중인 상품 total count
 	public int getSalesOnCnt() {
 		return productDao.prdSalesOnCount();
 	}
-	
-	// 판매안하는 상품 total count 
+
+	// 판매안하는 상품 total count
 	public int getSalesOffCnt() {
 		return productDao.prdSalesOffCount();
 	}
-	
+
 	/**
 	 * 상품 코드 생성 메소드 ex) P100-0001
 	 * 
-	 * 눈건강 -> 100 
-	 * 장건강 -> 200 
-	 * 간건강 -> 300 
-	 * 뼈,관절건강 -> 400 
-	 * 면역력 -> 500 
-	 * 만성피로 -> 600 
-	 * 혈액순환 -> 700
+	 * 눈건강 -> 100 장건강 -> 200 간건강 -> 300 뼈,관절건강 -> 400 면역력 -> 500 만성피로 -> 600 혈액순환 ->
+	 * 700
 	 * 
 	 * @param fnval
 	 * @return resultItemCode
