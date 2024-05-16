@@ -14,8 +14,8 @@
 						<li><a href="#">LIFILL 스토리</a></li>
 						<li><a href="#">SHOP</a>
 							<ul class="submenu">
-								<li><a href="${pageContext.request.contextPath}/item/category1">전체상품</a>
-								<li><a href="#">기능별</a>
+								<!-- <li><a href="${pageContext.request.contextPath}/item/category1">전체상품</a>-->
+								<li><a href="${pageContext.request.contextPath}/item/categories/function">기능별</a>
 									<ul class="submenu2">
 										<li><a href="#">간 건강</a></li>
 										<li><a href="#">눈 건강</a></li>
@@ -24,7 +24,7 @@
 										<li><a href="#">수면, 스트레스</a></li>
 									</ul>
 								</li>
-								<li><a href="#">성분별</a>
+								<li><a href="${pageContext.request.contextPath}/item/categories/ingredient">성분별</a>
 									<ul class="submenu2">
 										<li><a href="#">비타민/미네랄</a></li>
 										<li><a href="#">유산균</a></li>

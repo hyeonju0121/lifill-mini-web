@@ -62,11 +62,11 @@ public class ItemController {
 		List<ProductResponse> productResponseList = productService.getProductResponseList();
 		log.info("service 실행");
 		
-		
+		/*
 		for (ProductResponse temp : productResponseList) {
 			log.info("temp={}", temp.toString());
 		}
-		
+		*/
 		// 판매중인 상품 total count 가져오기
 		int totalCnt = productService.getSalesOnCnt();
 		
@@ -76,7 +76,44 @@ public class ItemController {
 		return "item/category2";
 	}
 	
+	@GetMapping("/categories/function")
+	public String categoriesFunction(Model model) {
+		//Service에서 게시물 목록 요청
+		List<ProductResponse> productResponseList = productService.getProductResponseList();
+		log.info("service 실행");
+		
+		/*for (ProductResponse temp : productResponseList) {
+			log.info("temp={}", temp.toString());
+		}*/
+		
+		// 판매중인 상품 total count 가져오기
+		int totalCnt = productService.getSalesOnCnt();
+		
+		//JSP 에서 사용할 수 있도록 설정
+		model.addAttribute("productResponseList",productResponseList);
+		model.addAttribute("totalCnt", totalCnt);
+		return "item/function";
+	}
 	
+	@GetMapping("/categories/ingredient")
+	public String categoriesIngredient(Model model) {
+		//Service에서 게시물 목록 요청
+		List<ProductResponse> productResponseList = productService.getProductResponseList();
+		log.info("service 실행");
+		
+		
+	/*	for (ProductResponse temp : productResponseList) {
+			log.info("temp={}", temp.toString());
+		}*/
+		
+		// 판매중인 상품 total count 가져오기
+		int totalCnt = productService.getSalesOnCnt();
+		
+		//JSP 에서 사용할 수 있도록 설정
+		model.addAttribute("productResponseList",productResponseList);
+		model.addAttribute("totalCnt", totalCnt);
+		return "item/ingredient";
+	}
 	
 	@RequestMapping("/category3")
 	public String category3() {

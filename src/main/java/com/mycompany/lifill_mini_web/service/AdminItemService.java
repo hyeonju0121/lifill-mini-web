@@ -51,7 +51,7 @@ public class AdminItemService {
 	public void createItem(CreateProductRequest request) {
 		// 상품코드 생성
 		String productCode = createPrdCode(request.getFnval());
-
+		
 		// 사용자가 성분 직접 입력했는지 검사 메소드
 		String igdval = request.getIgdval();
 		if (igdval.equals("direct")) { // 직접 입력한 경우

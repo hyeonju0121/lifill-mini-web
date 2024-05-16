@@ -1,0 +1,540 @@
+@charset "UTF-8";
+
+/* font ------------------------------------- */
+@import
+	url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap')
+	;
+
+body, h1, h2, h3, h4, h5, h6, input, textarea, select {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.icon-rating {
+	height: 16px;
+	width: 16px;
+}
+
+h5 {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	line-height: 1.2;
+	font-size: 1rem;
+}
+
+a {
+	text-decoration-line: none;
+	color: inherit;
+}
+
+.prd-product-brand {
+	word-break: keep-all;
+	line-height: 1.2;
+	letter-spacing: -.4px;
+	list-style: none;
+	color: inherit;
+	white-space: break-spaces;
+	font-style: normal;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	margin-right: 5px;
+	font-weight: 700;
+}
+
+.category {
+	word-break: keep-all;
+	line-height: 1.2;
+	color: #333;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	display: block;
+}
+
+.list {
+	word-break: keep-all;
+	line-height: 1.2;
+	color: #333;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	display: block;
+	position: relative;
+	border-top: 12px solid #f2f2f2;
+	margin-top: 40px;
+	padding-top: 36px;
+	margin-bottom: 120px;
+}
+
+.wrapper {
+	word-break: keep-all;
+	line-height: 1.2;
+	color: #333;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	position: relative;
+	box-sizing: border-box;
+	margin: 0 auto;
+	padding: 0 15px;
+}
+
+section.category ul.category2 li.on {
+	color: #37cbe9;
+	border-bottom: 2px solid #37cbe9;
+}
+
+.items-total {
+	word-break: keep-all;
+	line-height: 1.2;
+	color: #333;
+	font-weight: 700;
+	font-style: normal;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+}
+
+.category2 {
+	word-break: keep-all;
+	line-height: 1.2;
+	color: #333;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	list-style: none;
+	margin-top: 32px;
+	display: flex;
+}
+
+.category2 li {
+	word-break: keep-all;
+	line-height: 1.2;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: baseline;
+	list-style: none;
+	-webkit-box-flex: 1;
+	flex: 1 1 auto;
+	box-sizing: border-box;
+	padding-bottom: 18px;
+	font-weight: 700;
+	text-align: center;
+	font-size: 15px;
+	color: black;
+	border-bottom: 3px solid #37cbe9;
+}
+
+section.category ul.category2 li {
+	-webkit-box-flex: 1;
+	-ms-flex: 1 1 auto;
+	flex: 1 1 auto;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	padding-bottom: 18px;
+	font-size: 18px;
+	font-weight: 700;
+	text-align: center;
+	border-bottom: 1px solid #eaeaea;
+}
+
+/*--------------------------------------------------*/
+.category3 {
+	word-break: keep-all;
+	line-height: 1.2;
+	color: #333;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	margin-top: 24px;
+}
+
+.category3 ul {
+	word-break: keep-all;
+	line-height: 1.2;
+	color: #333;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	list-style: none;
+	grid-template-columns: repeat(auto-fit, 50%);
+	display: grid;
+}
+
+.category3 ul li {
+	word-break: keep-all;
+	color: #333;
+	margin: 0;
+	padding: 0;
+	vertical-align: baseline;
+	list-style: none;
+	height: 40px;
+	line-height: 40px;
+	font-size: 14px;
+	text-align: center;
+	border: 1px solid #eaeaea;
+}
+
+.category3 ul li.highlight {
+	color: #37cbe9;
+	font-weight: 700;
+	background-color: #f4fffd;
+}
+
+.list {
+	word-break: keep-all;
+	line-height: 1.2;
+	color: #333;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	display: block;
+	position: relative;
+	border-top: 12px solid #f2f2f2;
+	margin-top: 40px;
+	padding-top: 36px;
+	margin-bottom: 120px;
+}
+
+.wrapper {
+	word-break: keep-all;
+	line-height: 1.2;
+	color: #333;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	position: relative;
+	box-sizing: border-box;
+	margin: 0 auto;
+	width: 100%;
+	padding: 0 15px;
+}
+
+.wrapper h2 {
+	word-break: keep-all;
+	line-height: 1.2;
+	color: #333;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: baseline;
+	font-weight: 600;
+	position: relative;
+	font-size: 22px;
+	display: inline-block;
+}
+
+#items-total {
+	word-break: keep-all;
+	line-height: 1.2;
+	color: #333;
+	font-weight: 700;
+	font-style: normal;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+}
+
+.sort-nav {
+	float: right;
+}
+
+section.list .wrapper>div.sort-nav>ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+section.list .wrapper>div.sort-nav>ul>li {
+    margin-left: 20px;
+}
+
+
+.on {
+	word-break: keep-all;
+	line-height: 1.2;
+	color: #333;
+	cursor: pointer;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	list-style: none;
+	margin-left: 20px;
+	font-weight: 700;
+}
+
+#sort {
+	word-break: keep-all;
+	appearance: none;
+	display: block;
+	font-size: 14px;
+	font-weight: 700;
+	border: none;
+	background-size: 20px 20px;
+	padding-right: 20px;
+}
+
+#items {
+	word-break: keep-all;
+	line-height: 1.2;
+	color: #333;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	list-style: none;
+	margin-top: 41px;
+	box-sizing: border-box;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	justify-content: space-around;
+	column-gap: 29px;
+	row-gap: 56px;
+}
+
+.store-product-wrapper {
+	word-break: keep-all;
+	line-height: 1.2;
+	color: #333;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	list-style: none;
+}
+
+.store-product-wrapper  a {
+	word-break: keep-all;
+	line-height: 1.2;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	text-decoration: none;
+	color: inherit;
+}
+
+.store-product-wrapper  a  figure {
+	word-break: keep-all;
+	line-height: 1.2;
+	list-style: none;
+	color: inherit;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	display: block;
+	position: relative;
+	width: 100%;
+	/* background-color: #f2f2f2; */
+	border-radius: 8px;
+}
+
+figure {
+	word-break: keep-all;
+	line-height: 1.2;
+	list-style: none;
+	color: inherit;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	display: block;
+	position: relative;
+	width: 100%;
+	/* background-color: #f2f2f2; */
+	border-radius: 8px;
+}
+
+.store-product-wrapper  a  figure  img {
+	word-break: keep-all;
+	line-height: 1.2;
+	list-style: none;
+	/* color: inherit; */
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	max-width: 100%;
+	/* height: auto; */
+	width: 253px;
+	height: 253px;
+}
+
+.cart {
+	word-break: keep-all;
+	list-style: none;
+	cursor: pointer;
+	position: absolute;
+	border: none;
+	border-radius: 6px;
+	background-color: #fff;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
+	right: 6px;
+	bottom: 6px;
+	padding: 4px;
+}
+
+.store-product-content {
+	word-break: keep-all;
+	line-height: 1.2;
+	list-style: none;
+	color: inherit;
+	font-size: 100%;
+	vertical-align: baseline;
+	margin-top: 16px;
+}
+
+.health_functional_food {
+	word-break: keep-all;
+	line-height: 1.2;
+	list-style: none;
+	margin: 0;
+	vertical-align: baseline;
+	box-sizing: border-box;
+	padding: 2px 8px;
+	border-radius: 10px;
+	font-size: 10px;
+	font-weight: 700;
+	border: 1px solid #37cbe9;
+	color: #37cbe9;
+	margin-bottom: 3px;
+}
+
+.health_functional_food h3 {
+	word-break: keep-all;
+	line-height: 1.2;
+	list-style: none;
+	color: inherit;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: baseline;
+	margin-top: 8px;
+	font-size: 14px;
+	font-weight: 400;
+	white-space: break-spaces;
+}
+
+.health_functional_food h3 em {
+	word-break: keep-all;
+	line-height: 1.2;
+	list-style: none;
+	color: inherit;
+	white-space: break-spaces;
+	font-style: normal;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	margin-right: 8px;
+	font-weight: 700;
+}
+
+.health_functional_food p {
+	word-break: keep-all;
+	line-height: 1.2;
+	list-style: none;
+	color: inherit;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: baseline;
+	margin-top: 8px;
+	font-size: 15px;
+	font-weight: 700;
+}
+
+.health_functional_food p em {
+	word-break: keep-all;
+	line-height: 1.2;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	margin-right: 6px;
+	font-weight: 700;
+	color: #ff5c35;
+}
+
+.health_functional_food p strike {
+	word-break: keep-all;
+	line-height: 1.2;
+	list-style: none;
+	font-size: 14px;
+	font-weight: 400;
+	color: #bbbbbe;
+	display: block;
+	margin-left: 0;
+}
+
+.icon rating {
+	word-break: keep-all;
+	line-height: 1.2;
+	list-style: none;
+	color: inherit;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	display: inline-block;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	vertical-align: top;
+	width: 16px;
+	height: 16px;
+	background-size: 16px 16px;
+	background-image: url(/images/store/list/icon-star-16-yellow.svg);
+}
+
+.hashtag {
+	word-break: keep-all;
+	line-height: 1.2;
+	list-style: none;
+	color: inherit;
+	vertical-align: baseline;
+	display: flex;
+	margin-top: 8px;
+	font-size: 11px;
+	display: inline;
+	margin-right: 6px;
+	background-color: #f2f2f2;
+	padding: 4px 6px;
+	border-radius: 3px;
+	color: #636366;
+	border: 1px solid #eaeaea;
+}
