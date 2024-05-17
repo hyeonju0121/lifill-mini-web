@@ -55,537 +55,6 @@
 		where t3.prdcode=t4.prdcode
 	</select>
 	
-	<!-- sort  -->
-	<select id="selectAllPrdListSortZero" parameterType="ItemPageRequest" resultType="ProductResponse">
-		select   t3.prdcode, t4.prdname, t4.prdbrand, t4.prdprice, t4.prdstock,
-		         t4.prdsubscribable, t4.prdsalesstatus,
-		         t4.prdimgrep1oname, t4.prdimgrep1type,
-		         t4.prdimgrep2oname, t4.prdimgrep2type,
-		         t4.prdimgrep3oname, t4.prdimgrep3type,
-				 t4.prdimgdetailoname, t4.prdimgdetailtype,
-		         t4.prdtarget, t4.prdtimes, t4.prdmethod,
-		         t4.prdeffect, t4.prdtype, t4.prdingredient,
-				 t4.prdcreatedat, t4.prdupdatedat,
-		         t4.tagno, t4.tagval,
-		         t3.fnno, t3.fnval, t3.igdno, t3.igdval
-		from (
-		        select t1.prdcode, fnno, fnval, igdno, igdval
-		        from (
-		                select p.prdcode, i.igdno, i.igdval
-		                from product p, ingredient i
-		                where p.igdno=i.igdno
-		             ) t1, (
-		                select p.prdcode, f.fnno, f.fnval
-		                from product p, function f
-		                where p.fnno=f.fnno
-		             ) t2
-		        where t1.prdcode = t2.prdcode
-		    ) t3, (
-		                select t1.prdcode, t1.prdname, t1.prdbrand, t1.prdprice, t1.prdstock,
-                               t1.prdsubscribable, t1.prdsalesstatus,
-                               prdcontents.prdimgrep1oname, prdcontents.prdimgrep1type,
-                               prdcontents.prdimgrep2oname, prdcontents.prdimgrep2type,
-                               prdcontents.prdimgrep3oname, prdcontents.prdimgrep3type,
-		                       prdcontents.prdimgdetailoname, prdcontents.prdimgdetailtype,
-                               prdcontents.prdtarget, prdcontents.prdtimes, prdcontents.prdmethod,
-                               prdcontents.prdeffect, prdcontents.prdtype, prdcontents.prdingredient,
-		                       prdcontents.prdcreatedat, prdcontents.prdupdatedat,
-                               prdhashtag.tagno, prdhashtag.tagval
-		                from 
-		                    prdcontents, 
-		                    (
-		                        select p.prdcode, p.fnno, p.prdname, p.prdbrand, p.prdprice, p.prdstock,
-                                       p.prdsubscribable, p.prdsalesstatus
-		                        from product p , prddetail pd
-		                        where p.prdcode=pd.prdcode
-		                    ) t1, prdhashtag
-		                where prdcontents.prdcode=t1.prdcode
-                             and prdcontents.prdcode=prdhashtag.prdcode 
-		                order by prdcontents.prdcreatedat
-		            ) t4
-		where t3.prdcode=t4.prdcode
-		and t4.prdsalesstatus=1
-		and t4.prdsubscribable=#{filter}
-		order by t4.prdcreatedat desc
-	</select>
-	
-	<select id="selectAllPrdListSortOne" parameterType="ItemPageRequest" resultType="ProductResponse">
-		select   t3.prdcode, t4.prdname, t4.prdbrand, t4.prdprice, t4.prdstock,
-		         t4.prdsubscribable, t4.prdsalesstatus,
-		         t4.prdimgrep1oname, t4.prdimgrep1type,
-		         t4.prdimgrep2oname, t4.prdimgrep2type,
-		         t4.prdimgrep3oname, t4.prdimgrep3type,
-				 t4.prdimgdetailoname, t4.prdimgdetailtype,
-		         t4.prdtarget, t4.prdtimes, t4.prdmethod,
-		         t4.prdeffect, t4.prdtype, t4.prdingredient,
-				 t4.prdcreatedat, t4.prdupdatedat,
-		         t4.tagno, t4.tagval,
-		         t3.fnno, t3.fnval, t3.igdno, t3.igdval
-		from (
-		        select t1.prdcode, fnno, fnval, igdno, igdval
-		        from (
-		                select p.prdcode, i.igdno, i.igdval
-		                from product p, ingredient i
-		                where p.igdno=i.igdno
-		             ) t1, (
-		                select p.prdcode, f.fnno, f.fnval
-		                from product p, function f
-		                where p.fnno=f.fnno
-		             ) t2
-		        where t1.prdcode = t2.prdcode
-		    ) t3, (
-		                select t1.prdcode, t1.prdname, t1.prdbrand, t1.prdprice, t1.prdstock,
-                               t1.prdsubscribable, t1.prdsalesstatus,
-                               prdcontents.prdimgrep1oname, prdcontents.prdimgrep1type,
-                               prdcontents.prdimgrep2oname, prdcontents.prdimgrep2type,
-                               prdcontents.prdimgrep3oname, prdcontents.prdimgrep3type,
-		                       prdcontents.prdimgdetailoname, prdcontents.prdimgdetailtype,
-                               prdcontents.prdtarget, prdcontents.prdtimes, prdcontents.prdmethod,
-                               prdcontents.prdeffect, prdcontents.prdtype, prdcontents.prdingredient,
-		                       prdcontents.prdcreatedat, prdcontents.prdupdatedat,
-                               prdhashtag.tagno, prdhashtag.tagval
-		                from 
-		                    prdcontents, 
-		                    (
-		                        select p.prdcode, p.fnno, p.prdname, p.prdbrand, p.prdprice, p.prdstock,
-                                       p.prdsubscribable, p.prdsalesstatus
-		                        from product p , prddetail pd
-		                        where p.prdcode=pd.prdcode
-		                    ) t1, prdhashtag
-		                where prdcontents.prdcode=t1.prdcode
-                             and prdcontents.prdcode=prdhashtag.prdcode 
-		                order by prdcontents.prdcreatedat
-		            ) t4
-		where t3.prdcode=t4.prdcode
-		and t4.prdsalesstatus=1
-		and t4.prdsubscribable=#{filter}
-		order by t4.prdprice desc
-	</select>
-	
-	<select id="selectAllPrdListSortTwo" parameterType="ItemPageRequest" resultType="ProductResponse">
-		select   t3.prdcode, t4.prdname, t4.prdbrand, t4.prdprice, t4.prdstock,
-		         t4.prdsubscribable, t4.prdsalesstatus,
-		         t4.prdimgrep1oname, t4.prdimgrep1type,
-		         t4.prdimgrep2oname, t4.prdimgrep2type,
-		         t4.prdimgrep3oname, t4.prdimgrep3type,
-				 t4.prdimgdetailoname, t4.prdimgdetailtype,
-		         t4.prdtarget, t4.prdtimes, t4.prdmethod,
-		         t4.prdeffect, t4.prdtype, t4.prdingredient,
-				 t4.prdcreatedat, t4.prdupdatedat,
-		         t4.tagno, t4.tagval,
-		         t3.fnno, t3.fnval, t3.igdno, t3.igdval
-		from (
-		        select t1.prdcode, fnno, fnval, igdno, igdval
-		        from (
-		                select p.prdcode, i.igdno, i.igdval
-		                from product p, ingredient i
-		                where p.igdno=i.igdno
-		             ) t1, (
-		                select p.prdcode, f.fnno, f.fnval
-		                from product p, function f
-		                where p.fnno=f.fnno
-		             ) t2
-		        where t1.prdcode = t2.prdcode
-		    ) t3, (
-		                select t1.prdcode, t1.prdname, t1.prdbrand, t1.prdprice, t1.prdstock,
-                               t1.prdsubscribable, t1.prdsalesstatus,
-                               prdcontents.prdimgrep1oname, prdcontents.prdimgrep1type,
-                               prdcontents.prdimgrep2oname, prdcontents.prdimgrep2type,
-                               prdcontents.prdimgrep3oname, prdcontents.prdimgrep3type,
-		                       prdcontents.prdimgdetailoname, prdcontents.prdimgdetailtype,
-                               prdcontents.prdtarget, prdcontents.prdtimes, prdcontents.prdmethod,
-                               prdcontents.prdeffect, prdcontents.prdtype, prdcontents.prdingredient,
-		                       prdcontents.prdcreatedat, prdcontents.prdupdatedat,
-                               prdhashtag.tagno, prdhashtag.tagval
-		                from 
-		                    prdcontents, 
-		                    (
-		                        select p.prdcode, p.fnno, p.prdname, p.prdbrand, p.prdprice, p.prdstock,
-                                       p.prdsubscribable, p.prdsalesstatus
-		                        from product p , prddetail pd
-		                        where p.prdcode=pd.prdcode
-		                    ) t1, prdhashtag
-		                where prdcontents.prdcode=t1.prdcode
-                             and prdcontents.prdcode=prdhashtag.prdcode 
-		                order by prdcontents.prdcreatedat
-		            ) t4
-		where t3.prdcode=t4.prdcode
-		and t4.prdsalesstatus=1
-		and t4.prdsubscribable=#{filter}
-		order by t4.prdprice asc
-	</select>
-	
-	
-	<select id="selectPrdListSortZero" parameterType="ItemPageRequest" resultType="ProductResponse">
-		select   t3.prdcode, t4.prdname, t4.prdbrand, t4.prdprice, t4.prdstock,
-		         t4.prdsubscribable, t4.prdsalesstatus,
-		         t4.prdimgrep1oname, t4.prdimgrep1type,
-		         t4.prdimgrep2oname, t4.prdimgrep2type,
-		         t4.prdimgrep3oname, t4.prdimgrep3type,
-				 t4.prdimgdetailoname, t4.prdimgdetailtype,
-		         t4.prdtarget, t4.prdtimes, t4.prdmethod,
-		         t4.prdeffect, t4.prdtype, t4.prdingredient,
-				 t4.prdcreatedat, t4.prdupdatedat,
-		         t4.tagno, t4.tagval,
-		         t3.fnno, t3.fnval, t3.igdno, t3.igdval
-		from (
-		        select t1.prdcode, fnno, fnval, igdno, igdval
-		        from (
-		                select p.prdcode, i.igdno, i.igdval
-		                from product p, ingredient i
-		                where p.igdno=i.igdno
-		             ) t1, (
-		                select p.prdcode, f.fnno, f.fnval
-		                from product p, function f
-		                where p.fnno=f.fnno
-		             ) t2
-		        where t1.prdcode = t2.prdcode
-		        and t2.fnval=#{subCategory}
-		    ) t3, (
-		                select t1.prdcode, t1.prdname, t1.prdbrand, t1.prdprice, t1.prdstock,
-                               t1.prdsubscribable, t1.prdsalesstatus,
-                               prdcontents.prdimgrep1oname, prdcontents.prdimgrep1type,
-                               prdcontents.prdimgrep2oname, prdcontents.prdimgrep2type,
-                               prdcontents.prdimgrep3oname, prdcontents.prdimgrep3type,
-		                       prdcontents.prdimgdetailoname, prdcontents.prdimgdetailtype,
-                               prdcontents.prdtarget, prdcontents.prdtimes, prdcontents.prdmethod,
-                               prdcontents.prdeffect, prdcontents.prdtype, prdcontents.prdingredient,
-		                       prdcontents.prdcreatedat, prdcontents.prdupdatedat,
-                               prdhashtag.tagno, prdhashtag.tagval
-		                from 
-		                    prdcontents, 
-		                    (
-		                        select p.prdcode, p.fnno, p.prdname, p.prdbrand, p.prdprice, p.prdstock,
-                                       p.prdsubscribable, p.prdsalesstatus
-		                        from product p , prddetail pd
-		                        where p.prdcode=pd.prdcode
-		                    ) t1, prdhashtag
-		                where prdcontents.prdcode=t1.prdcode
-                             and prdcontents.prdcode=prdhashtag.prdcode 
-		                order by prdcontents.prdcreatedat
-		            ) t4
-		where t3.prdcode=t4.prdcode
-		and t4.prdsalesstatus=1
-		and t4.prdsubscribable=#{filter}
-		order by t4.prdcreatedat desc
-	</select>
-	
-	<select id="selectPrdListSortOne" parameterType="ItemPageRequest" resultType="ProductResponse">
-		select   t3.prdcode, t4.prdname, t4.prdbrand, t4.prdprice, t4.prdstock,
-		         t4.prdsubscribable, t4.prdsalesstatus,
-		         t4.prdimgrep1oname, t4.prdimgrep1type,
-		         t4.prdimgrep2oname, t4.prdimgrep2type,
-		         t4.prdimgrep3oname, t4.prdimgrep3type,
-				 t4.prdimgdetailoname, t4.prdimgdetailtype,
-		         t4.prdtarget, t4.prdtimes, t4.prdmethod,
-		         t4.prdeffect, t4.prdtype, t4.prdingredient,
-				 t4.prdcreatedat, t4.prdupdatedat,
-		         t4.tagno, t4.tagval,
-		         t3.fnno, t3.fnval, t3.igdno, t3.igdval
-		from (
-		        select t1.prdcode, fnno, fnval, igdno, igdval
-		        from (
-		                select p.prdcode, i.igdno, i.igdval
-		                from product p, ingredient i
-		                where p.igdno=i.igdno
-		             ) t1, (
-		                select p.prdcode, f.fnno, f.fnval
-		                from product p, function f
-		                where p.fnno=f.fnno
-		             ) t2
-		        where t1.prdcode = t2.prdcode
-		        and t2.fnval=#{subCategory}
-		    ) t3, (
-		                select t1.prdcode, t1.prdname, t1.prdbrand, t1.prdprice, t1.prdstock,
-                               t1.prdsubscribable, t1.prdsalesstatus,
-                               prdcontents.prdimgrep1oname, prdcontents.prdimgrep1type,
-                               prdcontents.prdimgrep2oname, prdcontents.prdimgrep2type,
-                               prdcontents.prdimgrep3oname, prdcontents.prdimgrep3type,
-		                       prdcontents.prdimgdetailoname, prdcontents.prdimgdetailtype,
-                               prdcontents.prdtarget, prdcontents.prdtimes, prdcontents.prdmethod,
-                               prdcontents.prdeffect, prdcontents.prdtype, prdcontents.prdingredient,
-		                       prdcontents.prdcreatedat, prdcontents.prdupdatedat,
-                               prdhashtag.tagno, prdhashtag.tagval
-		                from 
-		                    prdcontents, 
-		                    (
-		                        select p.prdcode, p.fnno, p.prdname, p.prdbrand, p.prdprice, p.prdstock,
-                                       p.prdsubscribable, p.prdsalesstatus
-		                        from product p , prddetail pd
-		                        where p.prdcode=pd.prdcode
-		                    ) t1, prdhashtag
-		                where prdcontents.prdcode=t1.prdcode
-                             and prdcontents.prdcode=prdhashtag.prdcode 
-		                order by prdcontents.prdcreatedat
-		            ) t4
-		where t3.prdcode=t4.prdcode
-		and t4.prdsalesstatus=1
-		and t4.prdsubscribable=#{filter}
-		order by t4.prdprice desc
-	</select>
-	
-	<select id="selectPrdListSortTwo" parameterType="ItemPageRequest" resultType="ProductResponse">
-		select   t3.prdcode, t4.prdname, t4.prdbrand, t4.prdprice, t4.prdstock,
-		         t4.prdsubscribable, t4.prdsalesstatus,
-		         t4.prdimgrep1oname, t4.prdimgrep1type,
-		         t4.prdimgrep2oname, t4.prdimgrep2type,
-		         t4.prdimgrep3oname, t4.prdimgrep3type,
-				 t4.prdimgdetailoname, t4.prdimgdetailtype,
-		         t4.prdtarget, t4.prdtimes, t4.prdmethod,
-		         t4.prdeffect, t4.prdtype, t4.prdingredient,
-				 t4.prdcreatedat, t4.prdupdatedat,
-		         t4.tagno, t4.tagval,
-		         t3.fnno, t3.fnval, t3.igdno, t3.igdval
-		from (
-		        select t1.prdcode, fnno, fnval, igdno, igdval
-		        from (
-		                select p.prdcode, i.igdno, i.igdval
-		                from product p, ingredient i
-		                where p.igdno=i.igdno
-		             ) t1, (
-		                select p.prdcode, f.fnno, f.fnval
-		                from product p, function f
-		                where p.fnno=f.fnno
-		             ) t2
-		        where t1.prdcode = t2.prdcode
-		        and t2.fnval=#{subCategory}
-		    ) t3, (
-		                select t1.prdcode, t1.prdname, t1.prdbrand, t1.prdprice, t1.prdstock,
-                               t1.prdsubscribable, t1.prdsalesstatus,
-                               prdcontents.prdimgrep1oname, prdcontents.prdimgrep1type,
-                               prdcontents.prdimgrep2oname, prdcontents.prdimgrep2type,
-                               prdcontents.prdimgrep3oname, prdcontents.prdimgrep3type,
-		                       prdcontents.prdimgdetailoname, prdcontents.prdimgdetailtype,
-                               prdcontents.prdtarget, prdcontents.prdtimes, prdcontents.prdmethod,
-                               prdcontents.prdeffect, prdcontents.prdtype, prdcontents.prdingredient,
-		                       prdcontents.prdcreatedat, prdcontents.prdupdatedat,
-                               prdhashtag.tagno, prdhashtag.tagval
-		                from 
-		                    prdcontents, 
-		                    (
-		                        select p.prdcode, p.fnno, p.prdname, p.prdbrand, p.prdprice, p.prdstock,
-                                       p.prdsubscribable, p.prdsalesstatus
-		                        from product p , prddetail pd
-		                        where p.prdcode=pd.prdcode
-		                    ) t1, prdhashtag
-		                where prdcontents.prdcode=t1.prdcode
-                             and prdcontents.prdcode=prdhashtag.prdcode 
-		                order by prdcontents.prdcreatedat
-		            ) t4
-		where t3.prdcode=t4.prdcode
-		and t4.prdsalesstatus=1
-		and t4.prdsubscribable=#{filter}
-		order by t4.prdprice asc
-	</select>
-	
-	<select id="selectAllPrdListFilterZero" parameterType="ItemPageRequest" resultType="ProductResponse">
-		select   t3.prdcode, t4.prdname, t4.prdbrand, t4.prdprice, t4.prdstock,
-		         t4.prdsubscribable, t4.prdsalesstatus,
-		         t4.prdimgrep1oname, t4.prdimgrep1type,
-		         t4.prdimgrep2oname, t4.prdimgrep2type,
-		         t4.prdimgrep3oname, t4.prdimgrep3type,
-				 t4.prdimgdetailoname, t4.prdimgdetailtype,
-		         t4.prdtarget, t4.prdtimes, t4.prdmethod,
-		         t4.prdeffect, t4.prdtype, t4.prdingredient,
-				 t4.prdcreatedat, t4.prdupdatedat,
-		         t4.tagno, t4.tagval,
-		         t3.fnno, t3.fnval, t3.igdno, t3.igdval
-		from (
-		        select t1.prdcode, fnno, fnval, igdno, igdval
-		        from (
-		                select p.prdcode, i.igdno, i.igdval
-		                from product p, ingredient i
-		                where p.igdno=i.igdno
-		             ) t1, (
-		                select p.prdcode, f.fnno, f.fnval
-		                from product p, function f
-		                where p.fnno=f.fnno
-		             ) t2
-		        where t1.prdcode = t2.prdcode
-		    ) t3, (
-		                select t1.prdcode, t1.prdname, t1.prdbrand, t1.prdprice, t1.prdstock,
-                               t1.prdsubscribable, t1.prdsalesstatus,
-                               prdcontents.prdimgrep1oname, prdcontents.prdimgrep1type,
-                               prdcontents.prdimgrep2oname, prdcontents.prdimgrep2type,
-                               prdcontents.prdimgrep3oname, prdcontents.prdimgrep3type,
-		                       prdcontents.prdimgdetailoname, prdcontents.prdimgdetailtype,
-                               prdcontents.prdtarget, prdcontents.prdtimes, prdcontents.prdmethod,
-                               prdcontents.prdeffect, prdcontents.prdtype, prdcontents.prdingredient,
-		                       prdcontents.prdcreatedat, prdcontents.prdupdatedat,
-                               prdhashtag.tagno, prdhashtag.tagval
-		                from 
-		                    prdcontents, 
-		                    (
-		                        select p.prdcode, p.fnno, p.prdname, p.prdbrand, p.prdprice, p.prdstock,
-                                       p.prdsubscribable, p.prdsalesstatus
-		                        from product p , prddetail pd
-		                        where p.prdcode=pd.prdcode
-		                    ) t1, prdhashtag
-		                where prdcontents.prdcode=t1.prdcode
-                             and prdcontents.prdcode=prdhashtag.prdcode 
-		                order by prdcontents.prdcreatedat
-		            ) t4
-		where t3.prdcode=t4.prdcode
-		and t4.prdsalesstatus=1
-		order by t4.prdcreatedat desc
-	</select>
-	
-	<select id="selectAllPrdListFilterSubZero" parameterType="ItemPageRequest" resultType="ProductResponse">
-		select   t3.prdcode, t4.prdname, t4.prdbrand, t4.prdprice, t4.prdstock,
-		         t4.prdsubscribable, t4.prdsalesstatus,
-		         t4.prdimgrep1oname, t4.prdimgrep1type,
-		         t4.prdimgrep2oname, t4.prdimgrep2type,
-		         t4.prdimgrep3oname, t4.prdimgrep3type,
-				 t4.prdimgdetailoname, t4.prdimgdetailtype,
-		         t4.prdtarget, t4.prdtimes, t4.prdmethod,
-		         t4.prdeffect, t4.prdtype, t4.prdingredient,
-				 t4.prdcreatedat, t4.prdupdatedat,
-		         t4.tagno, t4.tagval,
-		         t3.fnno, t3.fnval, t3.igdno, t3.igdval
-		from (
-		        select t1.prdcode, fnno, fnval, igdno, igdval
-		        from (
-		                select p.prdcode, i.igdno, i.igdval
-		                from product p, ingredient i
-		                where p.igdno=i.igdno
-		             ) t1, (
-		                select p.prdcode, f.fnno, f.fnval
-		                from product p, function f
-		                where p.fnno=f.fnno
-		             ) t2
-		        where t1.prdcode = t2.prdcode
-		        and t2.fnval=#{subCategory}
-		    ) t3, (
-		                select t1.prdcode, t1.prdname, t1.prdbrand, t1.prdprice, t1.prdstock,
-                               t1.prdsubscribable, t1.prdsalesstatus,
-                               prdcontents.prdimgrep1oname, prdcontents.prdimgrep1type,
-                               prdcontents.prdimgrep2oname, prdcontents.prdimgrep2type,
-                               prdcontents.prdimgrep3oname, prdcontents.prdimgrep3type,
-		                       prdcontents.prdimgdetailoname, prdcontents.prdimgdetailtype,
-                               prdcontents.prdtarget, prdcontents.prdtimes, prdcontents.prdmethod,
-                               prdcontents.prdeffect, prdcontents.prdtype, prdcontents.prdingredient,
-		                       prdcontents.prdcreatedat, prdcontents.prdupdatedat,
-                               prdhashtag.tagno, prdhashtag.tagval
-		                from 
-		                    prdcontents, 
-		                    (
-		                        select p.prdcode, p.fnno, p.prdname, p.prdbrand, p.prdprice, p.prdstock,
-                                       p.prdsubscribable, p.prdsalesstatus
-		                        from product p , prddetail pd
-		                        where p.prdcode=pd.prdcode
-		                    ) t1, prdhashtag
-		                where prdcontents.prdcode=t1.prdcode
-                             and prdcontents.prdcode=prdhashtag.prdcode 
-		                order by prdcontents.prdcreatedat
-		            ) t4
-		where t3.prdcode=t4.prdcode
-		and t4.prdsalesstatus=1
-		order by t4.prdcreatedat desc
-	</select>
-	
-	<select id="prdselectBySalesstatus" resultType="ProductResponse">
-		select   t3.prdcode, t4.prdname, t4.prdbrand, t4.prdprice, t4.prdstock,
-			         t4.prdsubscribable, t4.prdsalesstatus,
-			         t4.prdimgrep1oname, t4.prdimgrep1type,
-			         t4.prdimgrep2oname, t4.prdimgrep2type,
-			         t4.prdimgrep3oname, t4.prdimgrep3type,
-					 t4.prdimgdetailoname, t4.prdimgdetailtype,
-			         t4.prdtarget, t4.prdtimes, t4.prdmethod,
-			         t4.prdeffect, t4.prdtype, t4.prdingredient,
-					 t4.prdcreatedat, t4.prdupdatedat,
-			         t4.tagno, t4.tagval,
-			         t3.fnno, t3.fnval, t3.igdno, t3.igdval
-			from (
-			        select t1.prdcode, fnno, fnval, igdno, igdval
-			        from (
-			                select p.prdcode, i.igdno, i.igdval
-			                from product p, ingredient i
-			                where p.igdno=i.igdno
-			             ) t1, (
-			                select p.prdcode, f.fnno, f.fnval
-			                from product p, function f
-			                where p.fnno=f.fnno
-			             ) t2
-			        where t1.prdcode = t2.prdcode
-			    ) t3, (
-			                select t1.prdcode, t1.prdname, t1.prdbrand, t1.prdprice, t1.prdstock,
-	                               t1.prdsubscribable, t1.prdsalesstatus,
-	                               prdcontents.prdimgrep1oname, prdcontents.prdimgrep1type,
-	                               prdcontents.prdimgrep2oname, prdcontents.prdimgrep2type,
-	                               prdcontents.prdimgrep3oname, prdcontents.prdimgrep3type,
-			                       prdcontents.prdimgdetailoname, prdcontents.prdimgdetailtype,
-	                               prdcontents.prdtarget, prdcontents.prdtimes, prdcontents.prdmethod,
-	                               prdcontents.prdeffect, prdcontents.prdtype, prdcontents.prdingredient,
-			                       prdcontents.prdcreatedat, prdcontents.prdupdatedat,
-	                               prdhashtag.tagno, prdhashtag.tagval
-			                from 
-			                    prdcontents, 
-			                    (
-			                        select p.prdcode, p.fnno, p.prdname, p.prdbrand, p.prdprice, p.prdstock,
-	                                       p.prdsubscribable, p.prdsalesstatus
-			                        from product p , prddetail pd
-			                        where p.prdcode=pd.prdcode
-			                    ) t1, prdhashtag
-			                where prdcontents.prdcode=t1.prdcode
-	                             and prdcontents.prdcode=prdhashtag.prdcode 
-			                order by prdcontents.prdcreatedat
-			            ) t4
-			where t3.prdcode=t4.prdcode
-	        and t4.prdsalesstatus=1
-	</select>
-	
-	
-	<select id="prdSelectByPrdcode" parameterType="String" resultType="ProductResponse">
-		select   t3.prdcode, t4.prdname, t4.prdbrand, t4.prdprice, t4.prdstock,
-		         t4.prdsubscribable, t4.prdsalesstatus,
-		         t4.prdimgrep1oname, t4.prdimgrep1type,
-		         t4.prdimgrep2oname, t4.prdimgrep2type,
-		         t4.prdimgrep3oname, t4.prdimgrep3type,
-				 t4.prdimgdetailoname, t4.prdimgdetailtype,
-		         t4.prdtarget, t4.prdtimes, t4.prdmethod,
-		         t4.prdeffect, t4.prdtype, t4.prdingredient,
-				 t4.prdcreatedat, t4.prdupdatedat,
-		         t4.tagno, t4.tagval,
-		         t3.fnno, t3.fnval, t3.igdno, t3.igdval
-		from (
-		        select t1.prdcode, fnno, fnval, igdno, igdval
-		        from (
-		                select p.prdcode, i.igdno, i.igdval
-		                from product p, ingredient i
-		                where p.igdno=i.igdno
-		             ) t1, (
-		                select p.prdcode, f.fnno, f.fnval
-		                from product p, function f
-		                where p.fnno=f.fnno
-		             ) t2
-		        where t1.prdcode = t2.prdcode
-		    ) t3, (
-		                select t1.prdcode, t1.prdname, t1.prdbrand, t1.prdprice, t1.prdstock,
-                               t1.prdsubscribable, t1.prdsalesstatus,
-                               prdcontents.prdimgrep1oname, prdcontents.prdimgrep1type,
-                               prdcontents.prdimgrep2oname, prdcontents.prdimgrep2type,
-                               prdcontents.prdimgrep3oname, prdcontents.prdimgrep3type,
-		                       prdcontents.prdimgdetailoname, prdcontents.prdimgdetailtype,
-                               prdcontents.prdtarget, prdcontents.prdtimes, prdcontents.prdmethod,
-                               prdcontents.prdeffect, prdcontents.prdtype, prdcontents.prdingredient,
-		                       prdcontents.prdcreatedat, prdcontents.prdupdatedat,
-                               prdhashtag.tagno, prdhashtag.tagval
-		                from 
-		                    prdcontents, 
-		                    (
-		                        select p.prdcode, p.fnno, p.prdname, p.prdbrand, p.prdprice, p.prdstock,
-                                       p.prdsubscribable, p.prdsalesstatus
-		                        from product p , prddetail pd
-		                        where p.prdcode=pd.prdcode
-		                    ) t1, prdhashtag
-		                where prdcontents.prdcode=t1.prdcode
-                             and prdcontents.prdcode=prdhashtag.prdcode 
-		                order by prdcontents.prdcreatedat
-		            ) t4
-		where t3.prdcode=t4.prdcode
-		and t3.prdcode=#{prdcode}
-	</select>
-	
 	<select id="prdSelectByPage" parameterType="Pager" resultType="ProductResponse">
 		<![CDATA[
 		select rnum, seq, prdcode, prdname, prdbrand, prdprice, prdstock,
@@ -694,7 +163,7 @@
 	
 	</select>
 	
-	<select id="prdselectBySubCategory" parameterType="String" resultType="ProductResponse">
+	<select id="prdSelectByPrdcode" parameterType="String" resultType="ProductResponse">
 		select   t3.prdcode, t4.prdname, t4.prdbrand, t4.prdprice, t4.prdstock,
 		         t4.prdsubscribable, t4.prdsalesstatus,
 		         t4.prdimgrep1oname, t4.prdimgrep1type,
@@ -718,7 +187,6 @@
 		                where p.fnno=f.fnno
 		             ) t2
 		        where t1.prdcode = t2.prdcode
-		        	and t2.fnval=#{subCategory}
 		    ) t3, (
 		                select t1.prdcode, t1.prdname, t1.prdbrand, t1.prdprice, t1.prdstock,
                                t1.prdsubscribable, t1.prdsalesstatus,
@@ -743,7 +211,792 @@
 		                order by prdcontents.prdcreatedat
 		            ) t4
 		where t3.prdcode=t4.prdcode
+		and t3.prdcode=#{prdcode}
 	</select>
+	
+	
+	<select id="selectAllPrdByPage" parameterType="ItemPageRequest" resultType="ProductResponse">
+		<![CDATA[
+		select rnum, seq, prdcode, prdname, prdbrand, prdprice, prdstock,
+		       prdsubscribable, prdsalesstatus,
+		       prdimgrep1oname, prdimgrep1type,
+		       prdimgrep2oname, prdimgrep2type,
+		       prdimgrep3oname, prdimgrep3type,
+		       prdimgdetailoname, prdimgdetailtype,
+		       prdtarget, prdtimes, prdmethod,
+		       prdeffect, prdtype, prdingredient,
+		       prdcreatedat, prdupdatedat,
+		       tagno, tagval,
+		       fnno, fnval, igdno, igdval
+	    from (
+	        select rownum as rnum, seq, prdcode, prdname, prdbrand, prdprice, prdstock,
+	               prdsubscribable, prdsalesstatus,
+                   prdimgrep1oname, prdimgrep1type,
+                   prdimgrep2oname, prdimgrep2type,
+                   prdimgrep3oname, prdimgrep3type,
+                   prdimgdetailoname, prdimgdetailtype,
+                   prdtarget, prdtimes, prdmethod,
+                   prdeffect, prdtype, prdingredient,
+                   prdcreatedat, prdupdatedat,
+                   tagno, tagval,
+                   fnno, fnval, igdno, igdval
+	        from (
+	            select seq, prdcode, prdname, prdbrand, prdprice, prdstock,
+	                   prdsubscribable, prdsalesstatus,
+                       prdimgrep1oname, prdimgrep1type,
+                       prdimgrep2oname, prdimgrep2type,
+                       prdimgrep3oname, prdimgrep3type,
+                       prdimgdetailoname, prdimgdetailtype,
+                       prdtarget, prdtimes, prdmethod,
+                       prdeffect, prdtype, prdingredient,
+                       prdcreatedat, prdupdatedat,
+                       tagno, tagval,
+                       fnno, fnval, igdno, igdval
+	            from (
+	                select rownum as seq, prdcode, prdname, prdbrand, prdprice, prdstock,
+                                 prdsubscribable, prdsalesstatus,
+                                 prdimgrep1oname, prdimgrep1type,
+                                 prdimgrep2oname, prdimgrep2type,
+                                 prdimgrep3oname, prdimgrep3type,
+                                 prdimgdetailoname, prdimgdetailtype,
+                                 prdtarget, prdtimes, prdmethod,
+                                 prdeffect, prdtype, prdingredient,
+	                             prdcreatedat, prdupdatedat,
+                                 tagno, tagval,
+	                             fnno, fnval, igdno, igdval
+	                from (
+	                        select   t3.prdcode, t4.prdname, t4.prdbrand, t4.prdprice, t4.prdstock,
+	                                     t4.prdsubscribable, t4.prdsalesstatus,
+                                         t4.prdimgrep1oname, t4.prdimgrep1type,
+                                         t4.prdimgrep2oname, t4.prdimgrep2type,
+                                         t4.prdimgrep3oname, t4.prdimgrep3type,
+                                         t4.prdimgdetailoname, t4.prdimgdetailtype,
+                                         t4.prdtarget, t4.prdtimes, t4.prdmethod,
+                                         t4.prdeffect, t4.prdtype, t4.prdingredient,
+	                                     t4.prdcreatedat,t4.prdupdatedat,
+                                         t4.tagno,t4.tagval,
+	                                     t3.fnno, t3.fnval, t3.igdno, t3.igdval
+	                            from (
+	                                    select t1.prdcode, fnno, fnval, igdno, igdval
+	                                    from (
+	                                            select p.prdcode, i.igdno, i.igdval
+	                                            from product p, ingredient i
+	                                            where p.igdno=i.igdno
+	                                         ) t1, (
+	                                            select p.prdcode, f.fnno, f.fnval
+	                                            from product p, function f
+	                                            where p.fnno=f.fnno
+	                                         ) t2
+	                                    where t1.prdcode = t2.prdcode
+	                                ) t3, (
+	                                            select t1.prdcode, t1.prdname, t1.prdbrand, t1.prdprice, t1.prdstock,
+                                                       t1.prdsubscribable, t1.prdsalesstatus,
+                                                       prdcontents.prdimgrep1oname, prdcontents.prdimgrep1type,
+                                                       prdcontents.prdimgrep2oname, prdcontents.prdimgrep2type,
+                                                       prdcontents.prdimgrep3oname, prdcontents.prdimgrep3type,
+                                                       prdcontents.prdimgdetailoname, prdcontents.prdimgdetailtype,
+                                                       prdcontents.prdtarget, prdcontents.prdtimes, prdcontents.prdmethod,
+                                                       prdcontents.prdeffect, prdcontents.prdtype, prdcontents.prdingredient,
+                                                       prdcontents.prdcreatedat, prdcontents.prdupdatedat,
+                                                       prdhashtag.tagno, prdhashtag.tagval
+	                                            from 
+	                                                prdcontents, 
+                                            (
+                                                select p.prdcode, p.fnno, p.prdname, p.prdbrand, p.prdprice, p.prdstock,
+                                                       p.prdsubscribable, p.prdsalesstatus
+                                                from product p , prddetail pd
+                                                where p.prdcode=pd.prdcode
+                                            ) t1, prdhashtag
+	                                            where prdcontents.prdcode=t1.prdcode
+                                                    and prdcontents.prdcode=prdhashtag.prdcode
+	                                            order by prdcontents.prdcreatedat
+                                           ) t4
+	                            where t3.prdcode=t4.prdcode
+	                            and t4.prdsalesstatus=1
+	                            and t4.prdsubscribable=#{filter}
+                                order by t4.prdcreatedat asc
+	                        )
+	                    )
+	                    order by seq desc
+			    )
+			    where rownum <= #{pager.endRowNo}
+			)
+			where rnum >= #{pager.startRowNo}
+		]]>
+	
+	</select>
+	
+	<select id="selectAllPrdByPageSortZero" parameterType="ItemPageRequest" resultType="ProductResponse">
+		<![CDATA[
+		select rnum, seq, prdcode, prdname, prdbrand, prdprice, prdstock,
+		       prdsubscribable, prdsalesstatus,
+		       prdimgrep1oname, prdimgrep1type,
+		       prdimgrep2oname, prdimgrep2type,
+		       prdimgrep3oname, prdimgrep3type,
+		       prdimgdetailoname, prdimgdetailtype,
+		       prdtarget, prdtimes, prdmethod,
+		       prdeffect, prdtype, prdingredient,
+		       prdcreatedat, prdupdatedat,
+		       tagno, tagval,
+		       fnno, fnval, igdno, igdval
+	    from (
+	        select rownum as rnum, seq, prdcode, prdname, prdbrand, prdprice, prdstock,
+	               prdsubscribable, prdsalesstatus,
+                   prdimgrep1oname, prdimgrep1type,
+                   prdimgrep2oname, prdimgrep2type,
+                   prdimgrep3oname, prdimgrep3type,
+                   prdimgdetailoname, prdimgdetailtype,
+                   prdtarget, prdtimes, prdmethod,
+                   prdeffect, prdtype, prdingredient,
+                   prdcreatedat, prdupdatedat,
+                   tagno, tagval,
+                   fnno, fnval, igdno, igdval
+	        from (
+	            select seq, prdcode, prdname, prdbrand, prdprice, prdstock,
+	                   prdsubscribable, prdsalesstatus,
+                       prdimgrep1oname, prdimgrep1type,
+                       prdimgrep2oname, prdimgrep2type,
+                       prdimgrep3oname, prdimgrep3type,
+                       prdimgdetailoname, prdimgdetailtype,
+                       prdtarget, prdtimes, prdmethod,
+                       prdeffect, prdtype, prdingredient,
+                       prdcreatedat, prdupdatedat,
+                       tagno, tagval,
+                       fnno, fnval, igdno, igdval
+	            from (
+	                select rownum as seq, prdcode, prdname, prdbrand, prdprice, prdstock,
+                                 prdsubscribable, prdsalesstatus,
+                                 prdimgrep1oname, prdimgrep1type,
+                                 prdimgrep2oname, prdimgrep2type,
+                                 prdimgrep3oname, prdimgrep3type,
+                                 prdimgdetailoname, prdimgdetailtype,
+                                 prdtarget, prdtimes, prdmethod,
+                                 prdeffect, prdtype, prdingredient,
+	                             prdcreatedat, prdupdatedat,
+                                 tagno, tagval,
+	                             fnno, fnval, igdno, igdval
+	                from (
+	                        select   t3.prdcode, t4.prdname, t4.prdbrand, t4.prdprice, t4.prdstock,
+	                                     t4.prdsubscribable, t4.prdsalesstatus,
+                                         t4.prdimgrep1oname, t4.prdimgrep1type,
+                                         t4.prdimgrep2oname, t4.prdimgrep2type,
+                                         t4.prdimgrep3oname, t4.prdimgrep3type,
+                                         t4.prdimgdetailoname, t4.prdimgdetailtype,
+                                         t4.prdtarget, t4.prdtimes, t4.prdmethod,
+                                         t4.prdeffect, t4.prdtype, t4.prdingredient,
+	                                     t4.prdcreatedat,t4.prdupdatedat,
+                                         t4.tagno,t4.tagval,
+	                                     t3.fnno, t3.fnval, t3.igdno, t3.igdval
+	                            from (
+	                                    select t1.prdcode, fnno, fnval, igdno, igdval
+	                                    from (
+	                                            select p.prdcode, i.igdno, i.igdval
+	                                            from product p, ingredient i
+	                                            where p.igdno=i.igdno
+	                                         ) t1, (
+	                                            select p.prdcode, f.fnno, f.fnval
+	                                            from product p, function f
+	                                            where p.fnno=f.fnno
+	                                         ) t2
+	                                    where t1.prdcode = t2.prdcode
+	                                ) t3, (
+	                                            select t1.prdcode, t1.prdname, t1.prdbrand, t1.prdprice, t1.prdstock,
+                                                       t1.prdsubscribable, t1.prdsalesstatus,
+                                                       prdcontents.prdimgrep1oname, prdcontents.prdimgrep1type,
+                                                       prdcontents.prdimgrep2oname, prdcontents.prdimgrep2type,
+                                                       prdcontents.prdimgrep3oname, prdcontents.prdimgrep3type,
+                                                       prdcontents.prdimgdetailoname, prdcontents.prdimgdetailtype,
+                                                       prdcontents.prdtarget, prdcontents.prdtimes, prdcontents.prdmethod,
+                                                       prdcontents.prdeffect, prdcontents.prdtype, prdcontents.prdingredient,
+                                                       prdcontents.prdcreatedat, prdcontents.prdupdatedat,
+                                                       prdhashtag.tagno, prdhashtag.tagval
+	                                            from 
+	                                                prdcontents, 
+                                            (
+                                                select p.prdcode, p.fnno, p.prdname, p.prdbrand, p.prdprice, p.prdstock,
+                                                       p.prdsubscribable, p.prdsalesstatus
+                                                from product p , prddetail pd
+                                                where p.prdcode=pd.prdcode
+                                            ) t1, prdhashtag
+	                                            where prdcontents.prdcode=t1.prdcode
+                                                    and prdcontents.prdcode=prdhashtag.prdcode
+	                                            order by prdcontents.prdcreatedat
+                                           ) t4
+	                            where t3.prdcode=t4.prdcode
+	                            and t4.prdsalesstatus=1
+	                            and t4.prdsubscribable=#{filter}
+                                order by t4.prdcreatedat asc
+	                        )
+	                    )
+	                    order by seq desc
+			    )
+			    where rownum <= #{pager.endRowNo}
+			)
+			where rnum >= #{pager.startRowNo}
+		]]>
+	
+	</select>
+	
+	<select id="selectAllPrdByPageSortOne" parameterType="ItemPageRequest" resultType="ProductResponse">
+		<![CDATA[
+		select rnum, seq, prdcode, prdname, prdbrand, prdprice, prdstock,
+		       prdsubscribable, prdsalesstatus,
+		       prdimgrep1oname, prdimgrep1type,
+		       prdimgrep2oname, prdimgrep2type,
+		       prdimgrep3oname, prdimgrep3type,
+		       prdimgdetailoname, prdimgdetailtype,
+		       prdtarget, prdtimes, prdmethod,
+		       prdeffect, prdtype, prdingredient,
+		       prdcreatedat, prdupdatedat,
+		       tagno, tagval,
+		       fnno, fnval, igdno, igdval
+	    from (
+	        select rownum as rnum, seq, prdcode, prdname, prdbrand, prdprice, prdstock,
+	               prdsubscribable, prdsalesstatus,
+                   prdimgrep1oname, prdimgrep1type,
+                   prdimgrep2oname, prdimgrep2type,
+                   prdimgrep3oname, prdimgrep3type,
+                   prdimgdetailoname, prdimgdetailtype,
+                   prdtarget, prdtimes, prdmethod,
+                   prdeffect, prdtype, prdingredient,
+                   prdcreatedat, prdupdatedat,
+                   tagno, tagval,
+                   fnno, fnval, igdno, igdval
+	        from (
+	            select seq, prdcode, prdname, prdbrand, prdprice, prdstock,
+	                   prdsubscribable, prdsalesstatus,
+                       prdimgrep1oname, prdimgrep1type,
+                       prdimgrep2oname, prdimgrep2type,
+                       prdimgrep3oname, prdimgrep3type,
+                       prdimgdetailoname, prdimgdetailtype,
+                       prdtarget, prdtimes, prdmethod,
+                       prdeffect, prdtype, prdingredient,
+                       prdcreatedat, prdupdatedat,
+                       tagno, tagval,
+                       fnno, fnval, igdno, igdval
+	            from (
+	                select rownum as seq, prdcode, prdname, prdbrand, prdprice, prdstock,
+                                 prdsubscribable, prdsalesstatus,
+                                 prdimgrep1oname, prdimgrep1type,
+                                 prdimgrep2oname, prdimgrep2type,
+                                 prdimgrep3oname, prdimgrep3type,
+                                 prdimgdetailoname, prdimgdetailtype,
+                                 prdtarget, prdtimes, prdmethod,
+                                 prdeffect, prdtype, prdingredient,
+	                             prdcreatedat, prdupdatedat,
+                                 tagno, tagval,
+	                             fnno, fnval, igdno, igdval
+	                from (
+	                        select   t3.prdcode, t4.prdname, t4.prdbrand, t4.prdprice, t4.prdstock,
+	                                     t4.prdsubscribable, t4.prdsalesstatus,
+                                         t4.prdimgrep1oname, t4.prdimgrep1type,
+                                         t4.prdimgrep2oname, t4.prdimgrep2type,
+                                         t4.prdimgrep3oname, t4.prdimgrep3type,
+                                         t4.prdimgdetailoname, t4.prdimgdetailtype,
+                                         t4.prdtarget, t4.prdtimes, t4.prdmethod,
+                                         t4.prdeffect, t4.prdtype, t4.prdingredient,
+	                                     t4.prdcreatedat,t4.prdupdatedat,
+                                         t4.tagno,t4.tagval,
+	                                     t3.fnno, t3.fnval, t3.igdno, t3.igdval
+	                            from (
+	                                    select t1.prdcode, fnno, fnval, igdno, igdval
+	                                    from (
+	                                            select p.prdcode, i.igdno, i.igdval
+	                                            from product p, ingredient i
+	                                            where p.igdno=i.igdno
+	                                         ) t1, (
+	                                            select p.prdcode, f.fnno, f.fnval
+	                                            from product p, function f
+	                                            where p.fnno=f.fnno
+	                                         ) t2
+	                                    where t1.prdcode = t2.prdcode
+	                                ) t3, (
+	                                            select t1.prdcode, t1.prdname, t1.prdbrand, t1.prdprice, t1.prdstock,
+                                                       t1.prdsubscribable, t1.prdsalesstatus,
+                                                       prdcontents.prdimgrep1oname, prdcontents.prdimgrep1type,
+                                                       prdcontents.prdimgrep2oname, prdcontents.prdimgrep2type,
+                                                       prdcontents.prdimgrep3oname, prdcontents.prdimgrep3type,
+                                                       prdcontents.prdimgdetailoname, prdcontents.prdimgdetailtype,
+                                                       prdcontents.prdtarget, prdcontents.prdtimes, prdcontents.prdmethod,
+                                                       prdcontents.prdeffect, prdcontents.prdtype, prdcontents.prdingredient,
+                                                       prdcontents.prdcreatedat, prdcontents.prdupdatedat,
+                                                       prdhashtag.tagno, prdhashtag.tagval
+	                                            from 
+	                                                prdcontents, 
+                                            (
+                                                select p.prdcode, p.fnno, p.prdname, p.prdbrand, p.prdprice, p.prdstock,
+                                                       p.prdsubscribable, p.prdsalesstatus
+                                                from product p , prddetail pd
+                                                where p.prdcode=pd.prdcode
+                                            ) t1, prdhashtag
+	                                            where prdcontents.prdcode=t1.prdcode
+                                                    and prdcontents.prdcode=prdhashtag.prdcode
+	                                            order by prdcontents.prdcreatedat
+                                           ) t4
+	                            where t3.prdcode=t4.prdcode
+	                            and t4.prdsalesstatus=1
+	                            and t4.prdsubscribable=#{filter}
+                                order by t4.prdprice asc
+	                        )
+	                    )
+	                    order by seq desc
+			    )
+			    where rownum <= #{pager.endRowNo}
+			)
+			where rnum >= #{pager.startRowNo}
+		]]>
+	
+	</select>
+	
+	<select id="selectAllPrdByPageSortTwo" parameterType="ItemPageRequest" resultType="ProductResponse">
+		<![CDATA[
+		select rnum, seq, prdcode, prdname, prdbrand, prdprice, prdstock,
+		       prdsubscribable, prdsalesstatus,
+		       prdimgrep1oname, prdimgrep1type,
+		       prdimgrep2oname, prdimgrep2type,
+		       prdimgrep3oname, prdimgrep3type,
+		       prdimgdetailoname, prdimgdetailtype,
+		       prdtarget, prdtimes, prdmethod,
+		       prdeffect, prdtype, prdingredient,
+		       prdcreatedat, prdupdatedat,
+		       tagno, tagval,
+		       fnno, fnval, igdno, igdval
+	    from (
+	        select rownum as rnum, seq, prdcode, prdname, prdbrand, prdprice, prdstock,
+	               prdsubscribable, prdsalesstatus,
+                   prdimgrep1oname, prdimgrep1type,
+                   prdimgrep2oname, prdimgrep2type,
+                   prdimgrep3oname, prdimgrep3type,
+                   prdimgdetailoname, prdimgdetailtype,
+                   prdtarget, prdtimes, prdmethod,
+                   prdeffect, prdtype, prdingredient,
+                   prdcreatedat, prdupdatedat,
+                   tagno, tagval,
+                   fnno, fnval, igdno, igdval
+	        from (
+	            select seq, prdcode, prdname, prdbrand, prdprice, prdstock,
+	                   prdsubscribable, prdsalesstatus,
+                       prdimgrep1oname, prdimgrep1type,
+                       prdimgrep2oname, prdimgrep2type,
+                       prdimgrep3oname, prdimgrep3type,
+                       prdimgdetailoname, prdimgdetailtype,
+                       prdtarget, prdtimes, prdmethod,
+                       prdeffect, prdtype, prdingredient,
+                       prdcreatedat, prdupdatedat,
+                       tagno, tagval,
+                       fnno, fnval, igdno, igdval
+	            from (
+	                select rownum as seq, prdcode, prdname, prdbrand, prdprice, prdstock,
+                                 prdsubscribable, prdsalesstatus,
+                                 prdimgrep1oname, prdimgrep1type,
+                                 prdimgrep2oname, prdimgrep2type,
+                                 prdimgrep3oname, prdimgrep3type,
+                                 prdimgdetailoname, prdimgdetailtype,
+                                 prdtarget, prdtimes, prdmethod,
+                                 prdeffect, prdtype, prdingredient,
+	                             prdcreatedat, prdupdatedat,
+                                 tagno, tagval,
+	                             fnno, fnval, igdno, igdval
+	                from (
+	                        select   t3.prdcode, t4.prdname, t4.prdbrand, t4.prdprice, t4.prdstock,
+	                                     t4.prdsubscribable, t4.prdsalesstatus,
+                                         t4.prdimgrep1oname, t4.prdimgrep1type,
+                                         t4.prdimgrep2oname, t4.prdimgrep2type,
+                                         t4.prdimgrep3oname, t4.prdimgrep3type,
+                                         t4.prdimgdetailoname, t4.prdimgdetailtype,
+                                         t4.prdtarget, t4.prdtimes, t4.prdmethod,
+                                         t4.prdeffect, t4.prdtype, t4.prdingredient,
+	                                     t4.prdcreatedat,t4.prdupdatedat,
+                                         t4.tagno,t4.tagval,
+	                                     t3.fnno, t3.fnval, t3.igdno, t3.igdval
+	                            from (
+	                                    select t1.prdcode, fnno, fnval, igdno, igdval
+	                                    from (
+	                                            select p.prdcode, i.igdno, i.igdval
+	                                            from product p, ingredient i
+	                                            where p.igdno=i.igdno
+	                                         ) t1, (
+	                                            select p.prdcode, f.fnno, f.fnval
+	                                            from product p, function f
+	                                            where p.fnno=f.fnno
+	                                         ) t2
+	                                    where t1.prdcode = t2.prdcode
+	                                ) t3, (
+	                                            select t1.prdcode, t1.prdname, t1.prdbrand, t1.prdprice, t1.prdstock,
+                                                       t1.prdsubscribable, t1.prdsalesstatus,
+                                                       prdcontents.prdimgrep1oname, prdcontents.prdimgrep1type,
+                                                       prdcontents.prdimgrep2oname, prdcontents.prdimgrep2type,
+                                                       prdcontents.prdimgrep3oname, prdcontents.prdimgrep3type,
+                                                       prdcontents.prdimgdetailoname, prdcontents.prdimgdetailtype,
+                                                       prdcontents.prdtarget, prdcontents.prdtimes, prdcontents.prdmethod,
+                                                       prdcontents.prdeffect, prdcontents.prdtype, prdcontents.prdingredient,
+                                                       prdcontents.prdcreatedat, prdcontents.prdupdatedat,
+                                                       prdhashtag.tagno, prdhashtag.tagval
+	                                            from 
+	                                                prdcontents, 
+                                            (
+                                                select p.prdcode, p.fnno, p.prdname, p.prdbrand, p.prdprice, p.prdstock,
+                                                       p.prdsubscribable, p.prdsalesstatus
+                                                from product p , prddetail pd
+                                                where p.prdcode=pd.prdcode
+                                            ) t1, prdhashtag
+	                                            where prdcontents.prdcode=t1.prdcode
+                                                    and prdcontents.prdcode=prdhashtag.prdcode
+	                                            order by prdcontents.prdcreatedat
+                                           ) t4
+	                            where t3.prdcode=t4.prdcode
+	                            and t4.prdsalesstatus=1
+	                            and t4.prdsubscribable=#{filter}
+                                order by t4.prdprice desc
+	                        )
+	                    )
+	                    order by seq desc
+			    )
+			    where rownum <= #{pager.endRowNo}
+			)
+			where rnum >= #{pager.startRowNo}
+		]]>
+	
+	</select>
+	
+	<!-- subCategory 에 해당하는 정렬 구분 페이징 처리 메소드  --> 
+	
+	<select id="selectPrdByPageSortZero" parameterType="ItemPageRequest" resultType="ProductResponse">
+		<![CDATA[
+		select rnum, seq, prdcode, prdname, prdbrand, prdprice, prdstock,
+		       prdsubscribable, prdsalesstatus,
+		       prdimgrep1oname, prdimgrep1type,
+		       prdimgrep2oname, prdimgrep2type,
+		       prdimgrep3oname, prdimgrep3type,
+		       prdimgdetailoname, prdimgdetailtype,
+		       prdtarget, prdtimes, prdmethod,
+		       prdeffect, prdtype, prdingredient,
+		       prdcreatedat, prdupdatedat,
+		       tagno, tagval,
+		       fnno, fnval, igdno, igdval
+	    from (
+	        select rownum as rnum, seq, prdcode, prdname, prdbrand, prdprice, prdstock,
+	               prdsubscribable, prdsalesstatus,
+                   prdimgrep1oname, prdimgrep1type,
+                   prdimgrep2oname, prdimgrep2type,
+                   prdimgrep3oname, prdimgrep3type,
+                   prdimgdetailoname, prdimgdetailtype,
+                   prdtarget, prdtimes, prdmethod,
+                   prdeffect, prdtype, prdingredient,
+                   prdcreatedat, prdupdatedat,
+                   tagno, tagval,
+                   fnno, fnval, igdno, igdval
+	        from (
+	            select seq, prdcode, prdname, prdbrand, prdprice, prdstock,
+	                   prdsubscribable, prdsalesstatus,
+                       prdimgrep1oname, prdimgrep1type,
+                       prdimgrep2oname, prdimgrep2type,
+                       prdimgrep3oname, prdimgrep3type,
+                       prdimgdetailoname, prdimgdetailtype,
+                       prdtarget, prdtimes, prdmethod,
+                       prdeffect, prdtype, prdingredient,
+                       prdcreatedat, prdupdatedat,
+                       tagno, tagval,
+                       fnno, fnval, igdno, igdval
+	            from (
+	                select rownum as seq, prdcode, prdname, prdbrand, prdprice, prdstock,
+                                 prdsubscribable, prdsalesstatus,
+                                 prdimgrep1oname, prdimgrep1type,
+                                 prdimgrep2oname, prdimgrep2type,
+                                 prdimgrep3oname, prdimgrep3type,
+                                 prdimgdetailoname, prdimgdetailtype,
+                                 prdtarget, prdtimes, prdmethod,
+                                 prdeffect, prdtype, prdingredient,
+	                             prdcreatedat, prdupdatedat,
+                                 tagno, tagval,
+	                             fnno, fnval, igdno, igdval
+	                from (
+	                        select   t3.prdcode, t4.prdname, t4.prdbrand, t4.prdprice, t4.prdstock,
+	                                     t4.prdsubscribable, t4.prdsalesstatus,
+                                         t4.prdimgrep1oname, t4.prdimgrep1type,
+                                         t4.prdimgrep2oname, t4.prdimgrep2type,
+                                         t4.prdimgrep3oname, t4.prdimgrep3type,
+                                         t4.prdimgdetailoname, t4.prdimgdetailtype,
+                                         t4.prdtarget, t4.prdtimes, t4.prdmethod,
+                                         t4.prdeffect, t4.prdtype, t4.prdingredient,
+	                                     t4.prdcreatedat,t4.prdupdatedat,
+                                         t4.tagno,t4.tagval,
+	                                     t3.fnno, t3.fnval, t3.igdno, t3.igdval
+	                            from (
+	                                    select t1.prdcode, fnno, fnval, igdno, igdval
+	                                    from (
+	                                            select p.prdcode, i.igdno, i.igdval
+	                                            from product p, ingredient i
+	                                            where p.igdno=i.igdno
+	                                         ) t1, (
+	                                            select p.prdcode, f.fnno, f.fnval
+	                                            from product p, function f
+	                                            where p.fnno=f.fnno
+	                                         ) t2
+	                                    where t1.prdcode = t2.prdcode
+	                                ) t3, (
+	                                            select t1.prdcode, t1.prdname, t1.prdbrand, t1.prdprice, t1.prdstock,
+                                                       t1.prdsubscribable, t1.prdsalesstatus,
+                                                       prdcontents.prdimgrep1oname, prdcontents.prdimgrep1type,
+                                                       prdcontents.prdimgrep2oname, prdcontents.prdimgrep2type,
+                                                       prdcontents.prdimgrep3oname, prdcontents.prdimgrep3type,
+                                                       prdcontents.prdimgdetailoname, prdcontents.prdimgdetailtype,
+                                                       prdcontents.prdtarget, prdcontents.prdtimes, prdcontents.prdmethod,
+                                                       prdcontents.prdeffect, prdcontents.prdtype, prdcontents.prdingredient,
+                                                       prdcontents.prdcreatedat, prdcontents.prdupdatedat,
+                                                       prdhashtag.tagno, prdhashtag.tagval
+	                                            from 
+	                                                prdcontents, 
+                                            (
+                                                select p.prdcode, p.fnno, p.prdname, p.prdbrand, p.prdprice, p.prdstock,
+                                                       p.prdsubscribable, p.prdsalesstatus
+                                                from product p , prddetail pd
+                                                where p.prdcode=pd.prdcode
+                                            ) t1, prdhashtag
+	                                            where prdcontents.prdcode=t1.prdcode
+                                                    and prdcontents.prdcode=prdhashtag.prdcode
+	                                            order by prdcontents.prdcreatedat
+                                           ) t4
+	                            where t3.prdcode=t4.prdcode
+	                            and t4.prdsalesstatus=1
+	                            and t3.fnval=#{subCategory}
+	                            and t4.prdsubscribable=#{filter}
+                                order by t4.prdcreatedat asc
+	                        )
+	                    )
+	                    order by seq desc
+			    )
+			    where rownum <= #{pager.endRowNo}
+			)
+			where rnum >= #{pager.startRowNo}
+		]]>
+	
+	</select>
+	
+	<select id="selectPrdByPageSortOne" parameterType="ItemPageRequest" resultType="ProductResponse">
+		<![CDATA[
+		select rnum, seq, prdcode, prdname, prdbrand, prdprice, prdstock,
+		       prdsubscribable, prdsalesstatus,
+		       prdimgrep1oname, prdimgrep1type,
+		       prdimgrep2oname, prdimgrep2type,
+		       prdimgrep3oname, prdimgrep3type,
+		       prdimgdetailoname, prdimgdetailtype,
+		       prdtarget, prdtimes, prdmethod,
+		       prdeffect, prdtype, prdingredient,
+		       prdcreatedat, prdupdatedat,
+		       tagno, tagval,
+		       fnno, fnval, igdno, igdval
+	    from (
+	        select rownum as rnum, seq, prdcode, prdname, prdbrand, prdprice, prdstock,
+	               prdsubscribable, prdsalesstatus,
+                   prdimgrep1oname, prdimgrep1type,
+                   prdimgrep2oname, prdimgrep2type,
+                   prdimgrep3oname, prdimgrep3type,
+                   prdimgdetailoname, prdimgdetailtype,
+                   prdtarget, prdtimes, prdmethod,
+                   prdeffect, prdtype, prdingredient,
+                   prdcreatedat, prdupdatedat,
+                   tagno, tagval,
+                   fnno, fnval, igdno, igdval
+	        from (
+	            select seq, prdcode, prdname, prdbrand, prdprice, prdstock,
+	                   prdsubscribable, prdsalesstatus,
+                       prdimgrep1oname, prdimgrep1type,
+                       prdimgrep2oname, prdimgrep2type,
+                       prdimgrep3oname, prdimgrep3type,
+                       prdimgdetailoname, prdimgdetailtype,
+                       prdtarget, prdtimes, prdmethod,
+                       prdeffect, prdtype, prdingredient,
+                       prdcreatedat, prdupdatedat,
+                       tagno, tagval,
+                       fnno, fnval, igdno, igdval
+	            from (
+	                select rownum as seq, prdcode, prdname, prdbrand, prdprice, prdstock,
+                                 prdsubscribable, prdsalesstatus,
+                                 prdimgrep1oname, prdimgrep1type,
+                                 prdimgrep2oname, prdimgrep2type,
+                                 prdimgrep3oname, prdimgrep3type,
+                                 prdimgdetailoname, prdimgdetailtype,
+                                 prdtarget, prdtimes, prdmethod,
+                                 prdeffect, prdtype, prdingredient,
+	                             prdcreatedat, prdupdatedat,
+                                 tagno, tagval,
+	                             fnno, fnval, igdno, igdval
+	                from (
+	                        select   t3.prdcode, t4.prdname, t4.prdbrand, t4.prdprice, t4.prdstock,
+	                                     t4.prdsubscribable, t4.prdsalesstatus,
+                                         t4.prdimgrep1oname, t4.prdimgrep1type,
+                                         t4.prdimgrep2oname, t4.prdimgrep2type,
+                                         t4.prdimgrep3oname, t4.prdimgrep3type,
+                                         t4.prdimgdetailoname, t4.prdimgdetailtype,
+                                         t4.prdtarget, t4.prdtimes, t4.prdmethod,
+                                         t4.prdeffect, t4.prdtype, t4.prdingredient,
+	                                     t4.prdcreatedat,t4.prdupdatedat,
+                                         t4.tagno,t4.tagval,
+	                                     t3.fnno, t3.fnval, t3.igdno, t3.igdval
+	                            from (
+	                                    select t1.prdcode, fnno, fnval, igdno, igdval
+	                                    from (
+	                                            select p.prdcode, i.igdno, i.igdval
+	                                            from product p, ingredient i
+	                                            where p.igdno=i.igdno
+	                                         ) t1, (
+	                                            select p.prdcode, f.fnno, f.fnval
+	                                            from product p, function f
+	                                            where p.fnno=f.fnno
+	                                         ) t2
+	                                    where t1.prdcode = t2.prdcode
+	                                ) t3, (
+	                                            select t1.prdcode, t1.prdname, t1.prdbrand, t1.prdprice, t1.prdstock,
+                                                       t1.prdsubscribable, t1.prdsalesstatus,
+                                                       prdcontents.prdimgrep1oname, prdcontents.prdimgrep1type,
+                                                       prdcontents.prdimgrep2oname, prdcontents.prdimgrep2type,
+                                                       prdcontents.prdimgrep3oname, prdcontents.prdimgrep3type,
+                                                       prdcontents.prdimgdetailoname, prdcontents.prdimgdetailtype,
+                                                       prdcontents.prdtarget, prdcontents.prdtimes, prdcontents.prdmethod,
+                                                       prdcontents.prdeffect, prdcontents.prdtype, prdcontents.prdingredient,
+                                                       prdcontents.prdcreatedat, prdcontents.prdupdatedat,
+                                                       prdhashtag.tagno, prdhashtag.tagval
+	                                            from 
+	                                                prdcontents, 
+                                            (
+                                                select p.prdcode, p.fnno, p.prdname, p.prdbrand, p.prdprice, p.prdstock,
+                                                       p.prdsubscribable, p.prdsalesstatus
+                                                from product p , prddetail pd
+                                                where p.prdcode=pd.prdcode
+                                            ) t1, prdhashtag
+	                                            where prdcontents.prdcode=t1.prdcode
+                                                    and prdcontents.prdcode=prdhashtag.prdcode
+	                                            order by prdcontents.prdcreatedat
+                                           ) t4
+	                            where t3.prdcode=t4.prdcode
+	                            and t4.prdsalesstatus=1
+	                            and t3.fnval=#{subCategory}
+	                            and t4.prdsubscribable=#{filter}
+                                order by t4.prdprice asc
+	                        )
+	                    )
+	                    order by seq desc
+			    )
+			    where rownum <= #{pager.endRowNo}
+			)
+			where rnum >= #{pager.startRowNo}
+		]]>
+	
+	</select>
+	
+	<select id="selectPrdByPageSortTwo" parameterType="ItemPageRequest" resultType="ProductResponse">
+		<![CDATA[
+		select rnum, seq, prdcode, prdname, prdbrand, prdprice, prdstock,
+		       prdsubscribable, prdsalesstatus,
+		       prdimgrep1oname, prdimgrep1type,
+		       prdimgrep2oname, prdimgrep2type,
+		       prdimgrep3oname, prdimgrep3type,
+		       prdimgdetailoname, prdimgdetailtype,
+		       prdtarget, prdtimes, prdmethod,
+		       prdeffect, prdtype, prdingredient,
+		       prdcreatedat, prdupdatedat,
+		       tagno, tagval,
+		       fnno, fnval, igdno, igdval
+	    from (
+	        select rownum as rnum, seq, prdcode, prdname, prdbrand, prdprice, prdstock,
+	               prdsubscribable, prdsalesstatus,
+                   prdimgrep1oname, prdimgrep1type,
+                   prdimgrep2oname, prdimgrep2type,
+                   prdimgrep3oname, prdimgrep3type,
+                   prdimgdetailoname, prdimgdetailtype,
+                   prdtarget, prdtimes, prdmethod,
+                   prdeffect, prdtype, prdingredient,
+                   prdcreatedat, prdupdatedat,
+                   tagno, tagval,
+                   fnno, fnval, igdno, igdval
+	        from (
+	            select seq, prdcode, prdname, prdbrand, prdprice, prdstock,
+	                   prdsubscribable, prdsalesstatus,
+                       prdimgrep1oname, prdimgrep1type,
+                       prdimgrep2oname, prdimgrep2type,
+                       prdimgrep3oname, prdimgrep3type,
+                       prdimgdetailoname, prdimgdetailtype,
+                       prdtarget, prdtimes, prdmethod,
+                       prdeffect, prdtype, prdingredient,
+                       prdcreatedat, prdupdatedat,
+                       tagno, tagval,
+                       fnno, fnval, igdno, igdval
+	            from (
+	                select rownum as seq, prdcode, prdname, prdbrand, prdprice, prdstock,
+                                 prdsubscribable, prdsalesstatus,
+                                 prdimgrep1oname, prdimgrep1type,
+                                 prdimgrep2oname, prdimgrep2type,
+                                 prdimgrep3oname, prdimgrep3type,
+                                 prdimgdetailoname, prdimgdetailtype,
+                                 prdtarget, prdtimes, prdmethod,
+                                 prdeffect, prdtype, prdingredient,
+	                             prdcreatedat, prdupdatedat,
+                                 tagno, tagval,
+	                             fnno, fnval, igdno, igdval
+	                from (
+	                        select   t3.prdcode, t4.prdname, t4.prdbrand, t4.prdprice, t4.prdstock,
+	                                     t4.prdsubscribable, t4.prdsalesstatus,
+                                         t4.prdimgrep1oname, t4.prdimgrep1type,
+                                         t4.prdimgrep2oname, t4.prdimgrep2type,
+                                         t4.prdimgrep3oname, t4.prdimgrep3type,
+                                         t4.prdimgdetailoname, t4.prdimgdetailtype,
+                                         t4.prdtarget, t4.prdtimes, t4.prdmethod,
+                                         t4.prdeffect, t4.prdtype, t4.prdingredient,
+	                                     t4.prdcreatedat,t4.prdupdatedat,
+                                         t4.tagno,t4.tagval,
+	                                     t3.fnno, t3.fnval, t3.igdno, t3.igdval
+	                            from (
+	                                    select t1.prdcode, fnno, fnval, igdno, igdval
+	                                    from (
+	                                            select p.prdcode, i.igdno, i.igdval
+	                                            from product p, ingredient i
+	                                            where p.igdno=i.igdno
+	                                         ) t1, (
+	                                            select p.prdcode, f.fnno, f.fnval
+	                                            from product p, function f
+	                                            where p.fnno=f.fnno
+	                                         ) t2
+	                                    where t1.prdcode = t2.prdcode
+	                                ) t3, (
+	                                            select t1.prdcode, t1.prdname, t1.prdbrand, t1.prdprice, t1.prdstock,
+                                                       t1.prdsubscribable, t1.prdsalesstatus,
+                                                       prdcontents.prdimgrep1oname, prdcontents.prdimgrep1type,
+                                                       prdcontents.prdimgrep2oname, prdcontents.prdimgrep2type,
+                                                       prdcontents.prdimgrep3oname, prdcontents.prdimgrep3type,
+                                                       prdcontents.prdimgdetailoname, prdcontents.prdimgdetailtype,
+                                                       prdcontents.prdtarget, prdcontents.prdtimes, prdcontents.prdmethod,
+                                                       prdcontents.prdeffect, prdcontents.prdtype, prdcontents.prdingredient,
+                                                       prdcontents.prdcreatedat, prdcontents.prdupdatedat,
+                                                       prdhashtag.tagno, prdhashtag.tagval
+	                                            from 
+	                                                prdcontents, 
+                                            (
+                                                select p.prdcode, p.fnno, p.prdname, p.prdbrand, p.prdprice, p.prdstock,
+                                                       p.prdsubscribable, p.prdsalesstatus
+                                                from product p , prddetail pd
+                                                where p.prdcode=pd.prdcode
+                                            ) t1, prdhashtag
+	                                            where prdcontents.prdcode=t1.prdcode
+                                                    and prdcontents.prdcode=prdhashtag.prdcode
+	                                            order by prdcontents.prdcreatedat
+                                           ) t4
+	                            where t3.prdcode=t4.prdcode
+	                            and t4.prdsalesstatus=1
+	                            and t3.fnval=#{subCategory}
+	                            and t4.prdsubscribable=#{filter}
+                                order by t4.prdprice desc
+	                        )
+	                    )
+	                    order by seq desc
+			    )
+			    where rownum <= #{pager.endRowNo}
+			)
+			where rnum >= #{pager.startRowNo}
+		]]>
+	
+	</select>
+	
 	
 	<select id="prdFunctionOnCount" parameterType="String" resultType="int">
 		select  count(*)
@@ -819,7 +1072,6 @@
 		where t3.prdcode=t4.prdcode
 		and t3.prdcode=#{prdcode}
 	</select>
-	
 	
 	
 </mapper>

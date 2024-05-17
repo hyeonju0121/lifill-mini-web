@@ -12,28 +12,20 @@ import com.mycompany.lifill_mini_web.dto.response.ProductResponse;
 public interface ProductResponseDao {
 	public List<ProductResponse> prdselect();
 	public List<ProductResponse> prdSelectByPage(Pager pager);
-	public List<ProductResponse> prdselectBySubCategory(String subCategory);
 	public ProductResponse prdSelectByPrdcode(String prdcode);
 	public ProductResponse prdSelectByAttachData(String prdcode);
-	public List<ProductResponse> prdselectBySalesstatus();
 	
 	public int prdFunctionOnCount(String subCategory);
 	
-	// sort
-	public List<ProductResponse> selectAllPrdListSortZero(ItemPageRequest request);
-	public List<ProductResponse> selectAllPrdListSortOne(ItemPageRequest request);
-	public List<ProductResponse> selectAllPrdListSortTwo(ItemPageRequest request);
+	// page -> subCategory= "all" 인 경우에 따른 정렬 처리 메소드 
+	public List<ProductResponse> selectAllPrdByPage(ItemPageRequest request);
+	public List<ProductResponse> selectAllPrdByPageSortZero(ItemPageRequest request);
+	public List<ProductResponse> selectAllPrdByPageSortOne(ItemPageRequest request);
+	public List<ProductResponse> selectAllPrdByPageSortTwo(ItemPageRequest request);
 	
-	public List<ProductResponse> selectPrdListSortZero(ItemPageRequest request);
-	public List<ProductResponse> selectPrdListSortOne(ItemPageRequest request);
-	public List<ProductResponse> selectPrdListSortTwo(ItemPageRequest request);
-
-	// filter
-	public List<ProductResponse> selectAllPrdListFilterZero(ItemPageRequest request);
-	public List<ProductResponse> selectAllPrdListFilterSubZero(ItemPageRequest request);
-	
-	
-	// cnt
-	
+	// page -> subCategory 
+	public List<ProductResponse> selectPrdByPageSortZero(ItemPageRequest request);
+	public List<ProductResponse> selectPrdByPageSortOne(ItemPageRequest request);
+	public List<ProductResponse> selectPrdByPageSortTwo(ItemPageRequest request);
 	
 }

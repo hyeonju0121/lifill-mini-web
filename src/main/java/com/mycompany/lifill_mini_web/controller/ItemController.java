@@ -119,26 +119,43 @@ public class ItemController {
 				@RequestParam(required = false, value="sort",
 							  defaultValue="0") String sort,
 				@RequestParam(required = false, value="filter",
-							  defaultValue="0") String filter) {
+							  defaultValue="0") String filter,
+				@RequestParam(required = false, value="pageNo",
+							  defaultValue="1") String pageNo, 
+				HttpSession session) {
 		
 		ItemPageRequest request = new ItemPageRequest();
 		request.setSubCategory(subCategory);
 		request.setSort(sort);
 		request.setFilter(filter);
+		request.setPageNo(pageNo);
 		
-		log.info("reqeust={}", request.toString());
+		log.info("request.toString={}", request.toString());
+		
+		if (pageNo == null) {
+			pageNo = (String) session.getAttribute("pageNo");
+			if (pageNo == null) {
+				// 세션에 저장되어 있지 않을 경우 "1"로 강제 세팅
+				pageNo = "1";
+			}
+		}
+		session.setAttribute("pageNo", pageNo);
+
+		int intPageNo = Integer.parseInt(pageNo);
+
+		// 페이징 대상이 되는 전체 행의 수 구하기 
+		int rows = productService.getItemPageRequestCount(request);
+
+		Pager pager = new Pager(12, 12, rows, intPageNo);
+		request.setPager(pager);
 		
 		// Service에서 게시물 목록 요청
 		List<ProductResponse> productResponseList = productService.getProductResponseList(request);
-		
-		// 서브카테고리에 맞는 판매중인 상품 total count 가져오기
-		//int totalCnt = productService.getSalesOnCnt(subCategory);
-		int totalCnt = productService.getItemPageRequestCount(request);
-		
+
 		// JSP 에서 사용할 수 있도록 설정
-		//model.addAttribute("pager", pager);
+		model.addAttribute("pager", pager);
 		model.addAttribute("productResponseList", productResponseList);
-		model.addAttribute("totalCnt", totalCnt);
+		model.addAttribute("totalCnt", rows);
 		return "item/function";
 	}
 	
