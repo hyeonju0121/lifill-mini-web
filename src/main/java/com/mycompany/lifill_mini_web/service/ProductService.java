@@ -55,13 +55,14 @@ public class ProductService {
 	    	return productResponse;
 	    }
 	    
-	    // 전체 상품 목록 조회 (서브카테고리, 정렬)
+	    // 전체 상품 목록 조회 (서브카테고리, 정렬, 필터)
 	    public List<ProductResponse> getProductResponseList(ItemPageRequest request) {
 	    	// 서브카테고리 조회 
 	    	String subCategory = request.getSubCategory();
+	    	log.info("subCategory={}", subCategory.toString());
+	    	
 	    	List<ProductResponse> productResponse = new ArrayList<>();
 	    	
-	    	// 정렬 
 	    	// 서브카테고리가 전체인 경우
 	    	if (subCategory.equals("all")) {
 	    		// filter 가 0인 경우 -> 전체 상품 조회 
@@ -81,16 +82,19 @@ public class ProductService {
 	    		subCategory = subCategoryValidation(subCategory);
 	    		request.setSubCategory(subCategory);
 	    		
-	    		// filter 가 0인 경우 -> 각 기능별에 해당하는 전체 상품 조회 
-	    		if (request.getFilter().equals("0")) {
-	    			productResponse = productResponseDao.selectAllPrdListFilterSubZero(request);
-	    			return productResponse;
-	    		}
-	    		
 	    		switch(request.getSort()) {
-	    			case "0" : productResponse = productResponseDao.selectPrdListSortZero(request); break;
-	    			case "1" : productResponse = productResponseDao.selectPrdListSortOne(request); break;
-	    			case "2" : productResponse = productResponseDao.selectPrdListSortTwo(request); break;
+	    			case "0" : 
+	    				productResponse = productResponseDao.selectPrdListSortZero(request); 
+	    				log.info("최신순으로 정렬");
+	    				break;
+	    			case "1" : 
+	    				productResponse = productResponseDao.selectPrdListSortOne(request);
+	    				log.info("높은 가격순으로 정렬");
+	    				break;
+	    			case "2" : 
+	    				productResponse = productResponseDao.selectPrdListSortTwo(request);
+	    				log.info("낮은 가격순으로 정렬");
+	    				break;
 	    		}
 	    	}
 	    	
@@ -100,7 +104,7 @@ public class ProductService {
 	    // 카테고리, 정렬, 필터 여부에 일치하는 상품 count 가져오기
 	    public int getItemPageRequestCount(ItemPageRequest request) {
 	    	String subCategory = request.getSubCategory();
-	    	log.info("subCategory={}", subCategory);
+	    	// log.info("subCategory={}", subCategory);
     		
     		int totalCnt = 0;
     		
@@ -118,7 +122,6 @@ public class ProductService {
 	    	} else { // 서브카테고리가 각 기능별에 해당하는 경우
 	    		subCategory = subCategoryValidation2(subCategory);
 	    		int subInt = Integer.parseInt(subCategory);
-	    		log.info("subInt={}", subInt);
 	    		String sub = String.valueOf(subInt);
 	    		
 	    		//subCategory = subCategoryValidation(subCategory);
