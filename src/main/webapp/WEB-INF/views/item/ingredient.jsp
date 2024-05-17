@@ -55,17 +55,24 @@
 					<div class="wrapper" style="width:1150px; margin-bottom:15px;">
 						<ul class="category2">
 							<li class="" data-code="ingredient"><a
-								href="${pageContext.request.contextPath}/item/categories/function">성분</a></li>
+								href="${pageContext.request.contextPath}/item/categories/function">기능</a></li>
 							<li class="on" data-code="function"><a
-								href="${pageContext.request.contextPath}/item/categories/ingredient">기능</a></li>
+								href="${pageContext.request.contextPath}/item/categories/ingredient">성분</a></li>
 						</ul>
 						<div class="category3" id="goCategory3">
 							<ul class="goCategory3" data-code="ingredient" >
 								<li class="highlight"><a href="#" data-code="ingredient">전체</a></li>
-								<li class=""><a href="#" data-code="nutrient">비타민/미네랄</a></li>
-								<li class=""><a href="#" data-code="lactobacillus">유산균</a></li>
-								<li class=""><a href="#" data-code="omega3">오메가3</a></li>
-								<li class=""><a href="#" data-code="supplements">영양제</a></li>
+								<li class=""><a href="#" data-code="nutrient">루테인</a></li>
+								<li class=""><a href="#" data-code="lactobacillus">프로바이오틱스</a></li>
+								<li class=""><a href="#" data-code="omega3">밀크씨슬</a></li>
+								<li class=""><a href="#" data-code="supplements">마그네슘</a></li>
+								<li class=""><a href="#" data-code="supplements">글루코사민</a></li>
+								<li class=""><a href="#" data-code="supplements">칼슘</a></li>
+								<li class=""><a href="#" data-code="supplements">프로폴리스</a></li>
+								<li class=""><a href="#" data-code="supplements">아연</a></li>
+								<li class=""><a href="#" data-code="supplements">비타민</a></li>
+								<li class=""><a href="#" data-code="supplements">테아닌</a></li>
+								<li class=""><a href="#" data-code="supplements">오메가3</a></li>
 							</ul>
 							
 						</div>

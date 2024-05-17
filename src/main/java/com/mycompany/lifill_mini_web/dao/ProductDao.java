@@ -11,5 +11,10 @@ public interface ProductDao {
 	public int prdUpdate(Product product);
 	public int prdSalesOnCount();
 	public int prdSalesOffCount();
+	
+	public int prdSelectFunctionOnCount();
+	public int getAllPrdSubOneCnt();
+	public int getPrdSubFilterCnt(String sub);
+	public int getPrdSubFilterOneCnt(String sub);
 
 }

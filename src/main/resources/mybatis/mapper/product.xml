@@ -42,4 +42,20 @@
 	</update>
 	
 	
+	<!-- 구독가능  전체 상품 개수 조회  -->
+	<select id="getAllPrdSubOneCnt" resultType="int">
+		select count(*) from product where prdsalesstatus=1 and prdsubscribable=1
+	</select>
+	
+	<select id="getPrdSubFilterCnt" parameterType="String" resultType="int">
+		select count(*) from product where prdsalesstatus=1 
+		and fnno=#{subInt}
+	</select>
+	
+	<select id="getPrdSubFilterOneCnt" parameterType="String" resultType="int">
+		select count(*) from product where prdsalesstatus=1 
+		and fnno=#{subInt}
+		and prdsubscribable=1
+	</select>
+	
 </mapper>
