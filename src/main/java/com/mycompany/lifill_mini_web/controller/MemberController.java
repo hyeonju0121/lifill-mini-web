@@ -12,6 +12,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +23,7 @@ import com.mycompany.lifill_mini_web.dto.Member;
 import com.mycompany.lifill_mini_web.dto.request.CreateInquiryRequest;
 import com.mycompany.lifill_mini_web.dto.response.InquiryResponse;
 import com.mycompany.lifill_mini_web.dto.response.MemberResponse;
+import com.mycompany.lifill_mini_web.dto.response.OrderResponse;
 import com.mycompany.lifill_mini_web.dto.response.ProductResponse;
 import com.mycompany.lifill_mini_web.security.LifillUserDetails;
 import com.mycompany.lifill_mini_web.service.MemberService;
@@ -67,36 +69,58 @@ public class MemberController {
 		return "redirect:/member/sign_in";
 	}
 	
+	@Secured("ROLE_USER")
 	@RequestMapping("/cart")
 	public String cart() {
 		log.info("cart() 실행");
 		return "member/cart";
 	}
 	
+	@Secured("ROLE_USER")
 	@RequestMapping("/mypage")
 	public String myPage() {
 		log.info("mypage() 실행");
 		return "member/mypage/myPage";
 	}
 	
+	@Secured("ROLE_USER")
 	@RequestMapping("/orderList")
-	public String orderList() {
+	public String orderList(Model model, Authentication authentication) {
 		log.info("orderList() 실행");
+
+		// 주문 객체 가져오기
+		List<OrderResponse> orderList = memberService.getOrderList();
+		int totalWaitDepositStatusCnt = memberService.getWaitDepositStatus();
+		int totalCompletePaymentStatusCnt = memberService.getCompletePaymentStatus();
+		int totalPreparingDeliveryStatusCnt = memberService.getPreparingDeliveryStatus();
+		int totalShippingStatusCnt = memberService.getShippingStatus();
+		int totalDeliveryCompletedStatusCnt = memberService.getDeliveryCompletedStatus();
+		
+		model.addAttribute("orderList", orderList);
+		model.addAttribute("totalWaitDepositStatusCnt", totalWaitDepositStatusCnt);
+		model.addAttribute("totalCompletePaymentStatusCnt", totalCompletePaymentStatusCnt);
+		model.addAttribute("totalPreparingDeliveryStatusCnt", totalPreparingDeliveryStatusCnt);
+		model.addAttribute("totalShippingStatusCnt", totalShippingStatusCnt);
+		model.addAttribute("totalDeliveryCompletedStatusCnt", totalDeliveryCompletedStatusCnt);
+		
 		return "member/mypage/orderList";
 	}
 	
+	@Secured("ROLE_USER")
 	@RequestMapping("/orderListClaim")
 	public String orderListClaim() {
 		log.info("orderListClaim() 실행");
 		return "member/mypage/orderList_claim";
 	}
 
+	@Secured("ROLE_USER")
 	@RequestMapping("/myInquiryList")
 	public String myInquiryList() {
 		log.info("myInquiryList() 실행");
 		return "member/mypage/myInquiryList";
 	}
 	
+	@Secured("ROLE_USER")
 	@RequestMapping("/csInquiry")
 	public String csInquiry() {
 		log.info("csInquiry() 실행");
@@ -151,10 +175,30 @@ public class MemberController {
 		return "member/mypage/myGoodsReviewList";
 	}
 	
+	@Secured("ROLE_USER")
 	@RequestMapping("/updateMember")
-	public String updateMember() {
+	public String updateMember(Authentication authentication, Model model) {
 		log.info("updateMember() 실행");
+		
+		LifillUserDetails userDetails = (LifillUserDetails) authentication.getPrincipal();
+		Member member = userDetails.getMember();
+		model.addAttribute("member", member);
+		
 		return "member/mypage/updateMember";
+	}
+	
+	@Transactional
+	@Secured("ROLE_USER")
+	@RequestMapping("/fixNewMemberInfo")
+	public String fixNewMemberInfo(Authentication authentication, String mpassword, String mphone) {
+		log.info("fixNewMemberInfo() 실행");
+		
+		LifillUserDetails userDetails = (LifillUserDetails) authentication.getPrincipal();
+		Member member = userDetails.getMember();
+		
+		memberService.updateNewMemberInfo(member, mpassword, mphone);
+		
+		return "member/mypage/fixNewMemberInfo";
 	}
 	
 	@RequestMapping("/pwdConfirm")
@@ -163,6 +207,34 @@ public class MemberController {
 		return "member/mypage/pwdConfirm";
 	}
 	
+	@PostMapping("/passwordMatching")
+	public String passwordMatching(String inputPassword, Model model) {
+		log.info("passwordMatching() 실행");
+		
+		boolean isMatched = memberService.isPasswordMatched(inputPassword);
+		
+		log.info("isMatched={}", isMatched);
+		
+		if (isMatched) {
+			// 로그인한 회원의 비밀번호 얻기
+			return "redirect:updateMember";
+		} else {
+			return "redirect:pwdConfirm";
+		}
+	}
+	
+	// 회원탈퇴를 요청했을 때
+	@PostMapping("/removeMember")
+	public String pwdConfir(Authentication authentication) {
+		log.info("pwdConfirm() 실행");
+		
+		LifillUserDetails userDetails = (LifillUserDetails) authentication.getPrincipal();
+		String mid = userDetails.getMember().getMid();
+		
+		memberService.updateMstatus(mid);
+		
+		return "member/mypage/removeMember";
+	}
 	/*
 	@PostMapping("/writeBoard")
 	public String writeBoard(Inquiry inquiry) {

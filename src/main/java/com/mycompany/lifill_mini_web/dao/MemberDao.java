@@ -12,4 +12,9 @@ public interface MemberDao {
 	public int mInsert(MemberResponse memberResponse);
 	public String selectAddressByMid(String mid);
 	public String selectZipcodeByMid(String mid);
+	public String getMpasswordbyMid(String mid);
+	public int updateMstatusbyMid(String mid);
+	public String selectMphoneByMid(Member member);
+	public void updateMpassword(Member member);
+	public void updateMphone(Member member);
 }
