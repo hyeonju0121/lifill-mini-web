@@ -31,4 +31,12 @@ public interface ProductResponseDao {
 	public List<ProductResponse> selectPrdByPageSortFilterOne(ItemPageRequest request);
 	public List<ProductResponse> selectPrdByPageSortFilterTwo(ItemPageRequest request);
 	
+	// ingredient -> subCategory
+	public List<ProductResponse> selectIgdPrdByPageSortZero(ItemPageRequest request);
+	public List<ProductResponse> selectIgdPrdByPageSortOne(ItemPageRequest request);
+	public List<ProductResponse> selectIgdPrdByPageSortTwo(ItemPageRequest request);
+	public List<ProductResponse> selectIgdPrdByPageSortFilterZero(ItemPageRequest request);
+	public List<ProductResponse> selectIgdPrdByPageSortFilterOne(ItemPageRequest request);
+	public List<ProductResponse> selectIgdPrdByPageSortFilterTwo(ItemPageRequest request);
+	
 }

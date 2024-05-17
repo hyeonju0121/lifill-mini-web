@@ -16,5 +16,10 @@ public interface ProductDao {
 	public int getAllPrdSubOneCnt();
 	public int getPrdSubFilterCnt(String sub);
 	public int getPrdSubFilterOneCnt(String sub);
+	
+	// ingredient count 가져오기 
+	public int getPrdIgdAllZeroCnt();
+	public int getPrdIgdFilterZeroCnt(String subCategory);
+	public int getPrdIgdFilterOneCnt(String subCategory);
 
 }

@@ -160,25 +160,48 @@ public class ItemController {
 	}
 	
 
-	/*@GetMapping("/categories/ingredient")
-	public String categoriesIngredient(Model model) {
-		// Service에서 게시물 목록 요청
-		List<ProductResponse> productResponseList = productService.getProductResponseList();
-		log.info("service 실행");
+	@GetMapping("/categories/ingredient")
+	public String categoriesIngredient(Model model,
+			@RequestParam(required = false, value = "subCategory", defaultValue = "all") String subCategory,
+			@RequestParam(required = false, value = "sort", defaultValue = "0") String sort,
+			@RequestParam(required = false, value = "filter", defaultValue = "0") String filter,
+			@RequestParam(required = false, value = "pageNo", defaultValue = "1") String pageNo, HttpSession session) {
 
+		ItemPageRequest request = new ItemPageRequest();
+		request.setSubCategory(subCategory);
+		request.setSort(sort);
+		request.setFilter(filter);
+		request.setPageNo(pageNo);
+
+		log.info("request.toString={}", request.toString());
+
+		if (pageNo == null) {
+			pageNo = (String) session.getAttribute("pageNo");
+			if (pageNo == null) {
+				// 세션에 저장되어 있지 않을 경우 "1"로 강제 세팅
+				pageNo = "1";
+			}
+		}
+		session.setAttribute("pageNo", pageNo);
+
+		int intPageNo = Integer.parseInt(pageNo);
+
+		// 페이징 대상이 되는 전체 행의 수 구하기
+		int rows = productService.getIgdItemPageRequestCount(request);
+
+		Pager pager = new Pager(12, 12, rows, intPageNo);
+		request.setPager(pager);
 		
-		 * for (ProductResponse temp : productResponseList) { log.info("temp={}",
-		 * temp.toString()); }
-		 
-
-		// 판매중인 상품 total count 가져오기
-		int totalCnt = productService.getSalesOnCnt();
+		// Service에서 게시물 목록 요청
+		List<ProductResponse> productResponseList = productService.getIgdProductResponseList(request);
 
 		// JSP 에서 사용할 수 있도록 설정
+		model.addAttribute("pager", pager);
 		model.addAttribute("productResponseList", productResponseList);
-		model.addAttribute("totalCnt", totalCnt);
+		model.addAttribute("totalCnt", rows);
+		
 		return "item/ingredient";
-	}*/
+	}
 
 	@RequestMapping("/category3")
 	public String category3() {

@@ -58,4 +58,54 @@
 		and prdsubscribable=1
 	</select>
 	
+	<!--ingredient 전체 상품 카운트 가져오기  -->
+	<select id="getPrdIgdAllZeroCnt" resultType="int">
+		select count(*)
+		from (
+		        select p.prdcode, i.igdno, i.igdval
+		        from product p, ingredient i
+		        where p.igdno=i.igdno) t1,
+		    (
+		        select p.prdcode, p.prdsubscribable, p.prdsalesstatus, f.fnno, f.fnval
+		        from product p, function f
+				where p.fnno=f.fnno
+		    ) t2
+		where t1.prdcode = t2.prdcode
+		and t2.prdsalesstatus = 1
+	</select>
+	
+	<select id="getPrdIgdFilterZeroCnt" parameterType="String" resultType="int">
+		select count(*)
+		from (
+		        select p.prdcode, i.igdno, i.igdval
+		        from product p, ingredient i
+		        where p.igdno=i.igdno) t1,
+		    (
+		        select p.prdcode, p.prdsubscribable, p.prdsalesstatus, f.fnno, f.fnval
+		        from product p, function f
+				where p.fnno=f.fnno
+		    ) t2
+		where t1.prdcode = t2.prdcode
+		and t1.igdval=#{subCategory}
+		and t2.prdsalesstatus=1
+	
+	</select>
+	
+	<select id="getPrdIgdFilterOneCnt" parameterType="String" resultType="int">
+		select count(*)
+		from (
+		        select p.prdcode, i.igdno, i.igdval
+		        from product p, ingredient i
+		        where p.igdno=i.igdno) t1,
+		    (
+		        select p.prdcode, p.prdsubscribable, p.prdsalesstatus, f.fnno, f.fnval
+		        from product p, function f
+				where p.fnno=f.fnno
+		    ) t2
+		where t1.prdcode = t2.prdcode
+		and t1.igdval=#{subCategory}
+		and t2.prdsalesstatus=1
+		and t2.prdsubscribable=1
+	</select>
+	
 </mapper>

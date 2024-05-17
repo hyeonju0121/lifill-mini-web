@@ -59,34 +59,34 @@ public class ProductService {
 			subCategory = subCategoryValidation(subCategory);
 			request.setSubCategory(subCategory);
 
-			// 정기구독을 체크한 경우 
-			if(request.getFilter().contentEquals("1")) {
+			// 정기구독을 체크한 경우
+			if (request.getFilter().contentEquals("1")) {
 				switch (request.getSort()) {
-					case "0":
-						productResponse = productResponseDao.selectPrdByPageSortZero(request);
-						break;
-					case "1":
-						productResponse = productResponseDao.selectPrdByPageSortOne(request);
-						break;
-					case "2":
-						productResponse = productResponseDao.selectPrdByPageSortTwo(request);
-						break;
+				case "0":
+					productResponse = productResponseDao.selectPrdByPageSortZero(request);
+					break;
+				case "1":
+					productResponse = productResponseDao.selectPrdByPageSortOne(request);
+					break;
+				case "2":
+					productResponse = productResponseDao.selectPrdByPageSortTwo(request);
+					break;
 				}
 			} else {
 				switch (request.getSort()) {
-					case "0":
-						productResponse = productResponseDao.selectPrdByPageSortFilterZero(request);
-						break;
-					case "1":
-						productResponse = productResponseDao.selectPrdByPageSortFilterOne(request);
-						break;
-					case "2":
-						productResponse = productResponseDao.selectPrdByPageSortFilterTwo(request);
-						break;
+				case "0":
+					productResponse = productResponseDao.selectPrdByPageSortFilterZero(request);
+					break;
+				case "1":
+					productResponse = productResponseDao.selectPrdByPageSortFilterOne(request);
+					break;
+				case "2":
+					productResponse = productResponseDao.selectPrdByPageSortFilterTwo(request);
+					break;
 				}
-				
+
 			}
-			
+
 		}
 		return productResponse;
 	}
@@ -125,6 +125,108 @@ public class ProductService {
 		}
 	}
 
+	// ingredient ----------------------------------------------------
+	// 전체 상품 목록 조회 (서브카테고리, 정렬, 필터)
+	public List<ProductResponse> getIgdProductResponseList(ItemPageRequest request) {
+		// 서브카테고리 조회
+		String subCategory = request.getSubCategory();
+		log.info("getProductResponseList() 진입: subCategory.toString={}", subCategory);
+
+		List<ProductResponse> productResponse = new ArrayList<>();
+
+		// 서브카테고리가 전체인 경우
+		// 서브카테고리에 따른 정렬, 필터(정기구독가능여부), 페이징 처리
+		if (subCategory.equals("all")) {
+			// subCategory = "all" 인 경우
+			// (subCategory=all, sort=0,1,2, filter=0,1)
+			// sort = 0,1,2 에 따른 필터 구분
+			switch (request.getSort()) {
+			case "0":
+				productResponse = productResponseDao.selectAllPrdByPageSortZero(request);
+				break;
+			case "1":
+				productResponse = productResponseDao.selectAllPrdByPageSortOne(request);
+				break;
+			case "2":
+				productResponse = productResponseDao.selectAllPrdByPageSortTwo(request);
+				break;
+			}
+		} else { // 서브카테고리가 각 기능별에 해당하는 경우
+			// subCategory = 001, 002, 003, 004, 005, 006, 007
+			// 001 -> 눈건강 변환
+			subCategory = subIgdCategoryValidation(subCategory);
+			request.setSubCategory(subCategory);
+			
+			log.info("subCategory.toString={}", subCategory);
+
+			// 정기구독을 체크한 경우
+			if (request.getFilter().contentEquals("1")) {
+				switch (request.getSort()) {
+				case "0":
+					productResponse = productResponseDao.selectIgdPrdByPageSortZero(request);
+					break;
+				case "1":
+					productResponse = productResponseDao.selectIgdPrdByPageSortOne(request);
+					break;
+				case "2":
+					productResponse = productResponseDao.selectIgdPrdByPageSortTwo(request);
+					break;
+				}
+			} else {
+				switch (request.getSort()) {
+				case "0":
+					productResponse = productResponseDao.selectIgdPrdByPageSortFilterZero(request);
+					break;
+				case "1":
+					productResponse = productResponseDao.selectIgdPrdByPageSortFilterOne(request);
+					break;
+				case "2":
+					productResponse = productResponseDao.selectIgdPrdByPageSortFilterTwo(request);
+					break;
+				}
+
+			}
+
+		}
+		return productResponse;
+	}
+
+	// 카테고리, 정렬, 필터 여부에 일치하는 상품 count 가져오기
+	public int getIgdItemPageRequestCount(ItemPageRequest request) {
+		// igdval = 001 -> 눈건강
+		String subCategory = request.getSubCategory();
+		log.info("subCategory={}", subCategory);
+
+		int totalCnt = 0;
+
+		// 서브카테고리가 전체인 경우
+		if (subCategory.equals("all")) {
+			// 구독가능상태여부가 0인 경우 -> 전체 상품 갯수 리턴
+			if (request.getFilter().equals("0")) { // subCategory = 0
+				totalCnt = productDao.getPrdIgdAllZeroCnt();
+				return totalCnt;
+			} else {
+				// filter 가 1인 경우 -> 구독 가능한 상품 갯수 리턴
+				totalCnt = productDao.getAllPrdSubOneCnt();
+				return totalCnt;
+			}
+		} else {
+			subCategory = subIgdCategoryValidation(subCategory);
+			
+			// 서브카테고리가 각 기능별에 해당하는 경우
+			// filter 가 0인 경우 -> 각 기능별에 해당하는 전체 상품 개수 조회
+			if (request.getFilter().equals("0")) {
+				totalCnt = productDao.getPrdIgdFilterZeroCnt(subCategory);
+				return totalCnt;
+			} else {
+				// filter 가 1인 경우 -> 구독 가능한 상품 갯수 리턴
+				totalCnt = productDao.getPrdIgdFilterOneCnt(subCategory);
+				return totalCnt;
+			}
+		}
+	}
+
+	// ----------------------------------------------------------------
 	// 상품 단건 조회
 	public ProductResponse getProductResponse(String prdcode) {
 		ProductResponse productResponse = productResponseDao.prdSelectByPrdcode(prdcode);
@@ -167,6 +269,36 @@ public class ProductService {
 			return "만성피로";
 		case "007":
 			return "혈액순환";
+		default:
+			throw new RuntimeException("잘못된 요청입니다.");
+		}
+	}
+
+	// 서브 카테고리 유형 검사 메소드
+	public String subIgdCategoryValidation(String subCategory) {
+		switch (subCategory) {
+		case "001":
+			return "루테인";
+		case "002":
+			return "프로바이오틱스";
+		case "003":
+			return "밀크씨슬";
+		case "004":
+			return "마그네슘";
+		case "005":
+			return "글루코사민";
+		case "006":
+			return "칼슘";
+		case "007":
+			return "프로폴리스";
+		case "008":
+			return "아연";
+		case "009":
+			return "비타민";
+		case "010":
+			return "테아닌";
+		case "011":
+			return "오메가3";
 		default:
 			throw new RuntimeException("잘못된 요청입니다.");
 		}

@@ -241,7 +241,7 @@
 							href="function?subCategory=${param.subCategory}&sort=${param.sort}&filter=${param.filter}&pageNo=${i}">${i}</a>
 					</c:if>
 					<c:if test="${pager.pageNo == i}">
-						<a class="btn btn-sm current-page" href="function?subCategory=${param.subCategory}&sort=${param.sort}&filter=${param.filter}&pageNo=${i}unction?pageNo=${i}">${i}</a>
+						<a class="btn btn-sm current-page" href="function?subCategory=${param.subCategory}&sort=${param.sort}&filter=${param.filter}&pageNo=${i}">${i}</a>
 					</c:if>
 				</c:forEach>
 	

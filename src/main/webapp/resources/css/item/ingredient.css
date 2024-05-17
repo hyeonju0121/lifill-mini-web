@@ -538,3 +538,19 @@ figure {
 	color: #636366;
 	border: 1px solid #eaeaea;
 }
+
+.pager {
+	position: absolute; /* 절대 위치 지정 */
+	left: 50%; /* 부모 요소의 가로 중앙으로 이동 */
+	transform: translateX(-50%); /* 가로 중앙으로 정렬 */
+	margin-top: 20px;
+}
+
+.pager a {
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.current-page {
+	color: #37cbe9;
+}
