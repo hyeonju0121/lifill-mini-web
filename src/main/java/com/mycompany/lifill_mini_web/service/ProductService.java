@@ -58,22 +58,35 @@ public class ProductService {
 			// 001 -> 눈건강 변환
 			subCategory = subCategoryValidation(subCategory);
 			request.setSubCategory(subCategory);
-			log.info("서브카테고리 정렬 진입: subCategory.toString={}", subCategory);
 
-			switch (request.getSort()) {
-			case "0":
-				productResponse = productResponseDao.selectPrdByPageSortZero(request);
-				log.info("최신순으로 정렬");
-				break;
-			case "1":
-				productResponse = productResponseDao.selectPrdByPageSortOne(request);
-				log.info("높은 가격순으로 정렬");
-				break;
-			case "2":
-				productResponse = productResponseDao.selectPrdByPageSortTwo(request);
-				log.info("낮은 가격순으로 정렬");
-				break;
+			// 정기구독을 체크한 경우 
+			if(request.getFilter().contentEquals("1")) {
+				switch (request.getSort()) {
+					case "0":
+						productResponse = productResponseDao.selectPrdByPageSortZero(request);
+						break;
+					case "1":
+						productResponse = productResponseDao.selectPrdByPageSortOne(request);
+						break;
+					case "2":
+						productResponse = productResponseDao.selectPrdByPageSortTwo(request);
+						break;
+				}
+			} else {
+				switch (request.getSort()) {
+					case "0":
+						productResponse = productResponseDao.selectPrdByPageSortFilterZero(request);
+						break;
+					case "1":
+						productResponse = productResponseDao.selectPrdByPageSortFilterOne(request);
+						break;
+					case "2":
+						productResponse = productResponseDao.selectPrdByPageSortFilterTwo(request);
+						break;
+				}
+				
 			}
+			
 		}
 		return productResponse;
 	}

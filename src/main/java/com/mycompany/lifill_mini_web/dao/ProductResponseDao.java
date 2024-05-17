@@ -27,5 +27,8 @@ public interface ProductResponseDao {
 	public List<ProductResponse> selectPrdByPageSortZero(ItemPageRequest request);
 	public List<ProductResponse> selectPrdByPageSortOne(ItemPageRequest request);
 	public List<ProductResponse> selectPrdByPageSortTwo(ItemPageRequest request);
+	public List<ProductResponse> selectPrdByPageSortFilterZero(ItemPageRequest request);
+	public List<ProductResponse> selectPrdByPageSortFilterOne(ItemPageRequest request);
+	public List<ProductResponse> selectPrdByPageSortFilterTwo(ItemPageRequest request);
 	
 }
