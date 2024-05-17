@@ -17,4 +17,7 @@ public interface MemberDao {
 	public String selectMphoneByMid(Member member);
 	public void updateMpassword(Member member);
 	public void updateMphone(Member member);
+	public String findId(Member member);
+	public String findPw(Member member);
+	public int changePw(Member member);
 }

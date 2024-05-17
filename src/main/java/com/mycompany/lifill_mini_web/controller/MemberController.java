@@ -60,6 +60,45 @@ public class MemberController {
 		return "member/sign_up";
 	}
 	
+	// 아이디 찾기 기능
+	@RequestMapping("/find_id")
+	public String findId(Member member, Model model) {
+		log.info("member.findId()실행");
+		memberService.findId(member);
+
+		if (memberService.findId(member) == null || memberService.findId(member) == "") {
+			return "member/result_id";
+		}
+		model.addAttribute("mid", memberService.findId(member));
+
+		return "member/find_id";
+	}
+	
+	// 비밀번호 찾기 기능
+	@RequestMapping("/find_pw")
+	public String findPw(Member member, Model model) {
+		log.info("member.findPw()실행");
+		memberService.findPw(member);
+
+		if (memberService.findPw(member) == null || memberService.findPw(member) == "") {
+			return "member/result_pw";
+		}
+		model.addAttribute("mpassword", memberService.findPw(member));
+		model.addAttribute("mid", member.getMid());
+		
+		return "/member/find_pw";
+	}
+		
+	@PostMapping("/ChangePw")
+	//비밀번호 재설정
+	public String ChangePw(Member member) {
+		log.info("Mpassword:" + member.getMpassword());
+		log.info("Mid:" + member.getMid());
+		memberService.changePw(member);
+		return "redirect:/member/sign_in";
+		
+	}
+	
 	@RequestMapping("/join")
 	public String join(MemberResponse memberResponse) {
 		log.info("실행");

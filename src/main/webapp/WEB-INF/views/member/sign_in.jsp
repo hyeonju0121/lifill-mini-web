@@ -82,6 +82,15 @@
 			            <!-- <label for="remember-check">
 			            <input type="checkbox" id="remember-check">아이디 저장
 			            </label> -->
+			            <div class="d-flex justify-content-end">
+			            <a href="${pageContext.request.contextPath}/member/find_id" style="text-decoration: none; color: black; font-size: small; text-align: right;" >
+			            	아이디 찾기&ensp;
+			            </a>
+			            <a href="${pageContext.request.contextPath}/member/find_pw" style="text-decoration: none; color: black; font-size: small; text-align: right;" >
+			            	비밀번호 찾기
+			            </a>
+			            </div>
+			            
 			            <input type="submit" value="Login">
 			          	<input type="button" value="회원가입" onclick="location.href='/lifill_mini_web/member/sign_up'">			            
 			        </form>

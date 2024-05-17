@@ -261,4 +261,23 @@ public boolean isPasswordMatched(String inputPassword) {
 		int cnt = orderDao.selectDeliveryCompletedStatusByMid(mid);
 		return cnt;
 	}
+	
+	public String findId(Member member) {
+		String mid = memberDao.findId(member);
+		return mid;
+	}
+	
+	public String findPw(Member member) {
+		String mpassword = memberDao.findPw(member);
+		return mpassword;
+	}
+
+	public void changePw(Member member) {
+		log.info("실행");
+	  PasswordEncoder passwordEncoder =
+	  PasswordEncoderFactories.createDelegatingPasswordEncoder();
+	  member.setMpassword(passwordEncoder.encode(member.getMpassword()));
+	  memberDao.changePw(member);
+	 /* log.info("Updating password for member ID: " + member.getMid());*/
+	}
 }
