@@ -576,3 +576,103 @@ ul.menu_depth02 a {
     background-color: #ccc;
     color: #fff;
 }
+
+.profile_wrap {
+    border-collapse: collapse;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    background: white;
+}
+
+.profile_attach {
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
+    border-collapse: collapse;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.img_box {
+    line-height: normal;
+    border-collapse: collapse;
+    box-sizing: border-box;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90px;
+    height: 90px;
+    padding-bottom: 0;
+    border-radius: 50%;
+    background: #F2F2F2;
+    color: #b1b1b1;
+    font-size: 32px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+#defaultImg {
+    line-height: normal;
+    border-collapse: collapse;
+    cursor: pointer;
+    color: #333333;
+    font-size: 32px;
+    font-weight: 700;
+    text-transform: uppercase;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.profile_edit {
+    line-height: normal;
+    font-weight: 500;
+    border-collapse: collapse;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    margin-left: 30px;
+}
+
+.tit {
+    line-height: normal;
+    font-size: 15px;
+    font-weight: 500;
+    border-collapse: collapse;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.sub {
+    line-height: normal;
+    font-weight: 500;
+    border-collapse: collapse;
+    box-sizing: border-box;
+    margin-left: 2px;
+    color: #999999;
+}
+
+.img-td {
+	color: var(--txt-color);
+    border-collapse: collapse;
+    box-sizing: border-box;
+    display: table-cell;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+    vertical-align: top;
+    flex: 1;
+    margin: 0;
+    margin-left: 30px;
+}

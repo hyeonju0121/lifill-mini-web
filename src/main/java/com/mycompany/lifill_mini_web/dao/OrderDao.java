@@ -18,4 +18,5 @@ public interface OrderDao {
 	public int selectPreparingDeliveryStatusByMid(String mid);
 	public int selectShippingStatusByMid(String mid);
 	public int selectDeliveryCompletedStatusByMid(String mid);
+	public OrderResponse selectOrderDetailByOrdid(String ordid);
 }

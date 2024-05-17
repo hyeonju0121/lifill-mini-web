@@ -1,85 +1,90 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>마이 페이지 - 라이필</title>
-		
-		<!-- Bootstrap 5를 위한 외부 라이브러리 설정 -->
-		<link href="${pageContext.request.contextPath}/resources/bootstrap-5.3.3/css/bootstrap.min.css" rel="stylesheet">
-		<script src="${pageContext.request.contextPath}/resources/bootstrap-5.3.3/js/bootstrap.bundle.min.js"></script>
-		
-		<!-- jQuery 외부 라이브러리  설정-->
-		<script src="${pageContext.request.contextPath}/resources/jquery/jquery-3.7.1.min.js"></script>
-		
-		<!-- external css -->
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mypage/orderList.css">
-		
-		<!-- 사용자 정의 자바스크립트 -->
-		<script>
-			
-		</script>
-		
-	</head>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>마이 페이지 - 라이필</title>
+
+<!-- Bootstrap 5를 위한 외부 라이브러리 설정 -->
+<link
+	href="${pageContext.request.contextPath}/resources/bootstrap-5.3.3/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="${pageContext.request.contextPath}/resources/bootstrap-5.3.3/js/bootstrap.bundle.min.js"></script>
+
+<!-- jQuery 외부 라이브러리  설정-->
+<script
+	src="${pageContext.request.contextPath}/resources/jquery/jquery-3.7.1.min.js"></script>
+
+<!-- external css -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/mypage/orderList.css">
+
+<!-- 사용자 정의 자바스크립트 -->
+<script>
 	
+</script>
+
+</head>
+
 	<body>
 		<!-- 네비게이션 바  ------------------------------------------------------------------------>
 		<%@ include file="/WEB-INF/views/common/nav.jsp"%>
-		
-		<div class="container wrap" style="width:100%; height: 100%; padding-top:100px; padding-bottom: 300px;">
+	
+		<div class="container wrap"
+			style="width: 100%; height: 100%; padding-top: 100px; padding-bottom: 300px;">
 			<div class="d-flex">
-				<div id="my_box"  style="width:24%; height: 80%; padding: 0px 30px;">
-					<h2 style="padding-bottom: 60px; width:15rem;"><a href="mypage" style="text-decoration-line: none; color:black;"><b>마이페이지</b></a></h2>
-					
+				<div id="my_box" style="width: 24%; height: 80%; padding: 0px 30px;">
+					<h2 style="padding-bottom: 60px; width: 15rem;">
+						<a href="mypage" style="text-decoration-line: none; color: black;"><b>마이페이지</b></a>
+					</h2>
+	
 					<ul class="my_menu">
-						<li id="menu1" style="height: 20%;">  
-							<a class="menu_depth01" href="#">나의 쇼핑 정보</a>
+						<li id="menu1" style="height: 20%;"><a class="menu_depth01"
+							href="#">나의 쇼핑 정보</a>
 							<ul class="menu_depth02">
 								<li id="order"><a href="orderList">주문 내역</a></li>
 								<li id="claim"><a href="orderListClaim">교환/반품/취소 내역</a></li>
-							</ul>
-						</li>
-						<li id="menu2" style="height: 20%; ">
-							<a class="menu_depth01" href="#">나의 참여 내역</a>
+							</ul></li>
+						<li id="menu2" style="height: 20%;"><a class="menu_depth01"
+							href="#">나의 참여 내역</a>
 							<ul class="menu_depth02">
 								<li id="inquiry"><a href="myInquiryList">1:1 문의</a></li>
 								<li id="inquiryItem"><a href="myQnaList">상품 Q&A</a></li>
-								<li id="review"><a href="myGoodsReviewList" >상품 리뷰</a></li>
-							</ul>
-						</li>
-						<li id="menu3" style="height: 20%;">
-							<a class="menu_depth01" href="#">나의 정보 관리</a>
+								<li id="review"><a href="myGoodsReviewList">상품 리뷰</a></li>
+							</ul></li>
+						<li id="menu3" style="height: 20%;"><a class="menu_depth01"
+							href="#">나의 정보 관리</a>
 							<ul class="menu_depth02">
 								<li id="update"><a href="pwdConfirm">회원 정보 수정</a></li>
-							</ul>
-						</li>
+							</ul></li>
 					</ul>
 					<div class="cs_area">
 						<div class="tit_area">
-							<a href="tel:010-2232-3823" class="cs_number">010-2232-3823</a>
-							<span class="txt_l">(유료)</span>
+							<a href="tel:010-2232-3823" class="cs_number">010-2232-3823</a> <span
+								class="txt_l">(유료)</span>
 						</div>
 						<p class="txt_time">평일 09:00 ~ 18:00 (토/일/공휴일 휴무)</p>
 						<p class="txt_break">(Break time 12:00 ~ 13:00)</p>
 						<div class="ico_list">
-							<a href="mailto:tjdwns3823@naver.com" class="ico_cs02">
-								<img src="${pageContext.request.contextPath}/resources/image/icon/mail.png" 
+							<a href="mailto:tjdwns3823@naver.com" class="ico_cs02"> <img
+								src="${pageContext.request.contextPath}/resources/image/icon/mail.png"
 								alt="Clickable Image"
-								style="width: 40px; height: 40px; margin-right: 10px;"/>
-								<span>tjdwns3823@naver.com 메일</span>
-							</a>
-							<a href="csInquiry" class="ico_cs03">
-								<img src="${pageContext.request.contextPath}/resources/image/icon/1on1.png" 
+								style="width: 40px; height: 40px; margin-right: 10px;" /> <span>tjdwns3823@naver.com
+									메일</span>
+							</a> <a href="csInquiry" class="ico_cs03"> <img
+								src="${pageContext.request.contextPath}/resources/image/icon/1on1.png"
 								alt="Clickable Image"
-								style="width: 40px; height: 40px; margin-right: 10px;"/>
-								<span>문의하기</span>
+								style="width: 40px; height: 40px; margin-right: 10px;" /> <span>문의하기</span>
 							</a>
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="content">
 					<div class="tit_area line_thick">
 						<strong class="tit_lv2">주문 내역</strong>
@@ -88,140 +93,218 @@
 						<div class="form_period_group">
 							<!-- 날짜 탭 -->
 							<ul class="form_period">
-								<li class="option">
-									<input type="radio" id="chkSize1" name="chkSize1" 
-									onclick="" data-date="0" checked="checked">
-									<label for="chkSize1">1개월</label>
-								</li>
-								<li class="option">
-									<input type="radio" id="chkSize2" name="chkSize2" 
-									onclick="" data-date="1">
-									<label for="chkSize2">3개월</label>
-								</li>
-								<li class="option">
-									<input type="radio" id="chkSize3" name="chkSize3" 
-									onclick="" data-date="2">
-									<label for="chkSize3">6개월</label>
-								</li>
-								<li class="option">
-									<input type="radio" id="chkSize4" name="chkSize4" 
-									onclick="" data-date="3">
-									<label for="chkSize4">1년</label>
-								</li>
+								<li class="option"><input type="radio" id="chkSize1"
+									name="chkSize1" onclick="" data-date="0" checked="checked">
+									<label for="chkSize1">1개월</label></li>
+								<li class="option"><input type="radio" id="chkSize2"
+									name="chkSize2" onclick="" data-date="1"> <label
+									for="chkSize2">3개월</label></li>
+								<li class="option"><input type="radio" id="chkSize3"
+									name="chkSize3" onclick="" data-date="2"> <label
+									for="chkSize3">6개월</label></li>
+								<li class="option"><input type="radio" id="chkSize4"
+									name="chkSize4" onclick="" data-date="3"> <label
+									for="chkSize4">1년</label></li>
 							</ul>
-							
+	
 							<!-- 시작일, 종료일 -->
 							<div class="form_set period">
 								<div class="date">
-									<input type="text" 
-									class="datepicker hasDatepicker" 
-									readonly="readonly" 
-									id="dateStart"/>
+									<input type="text" class="datepicker hasDatepicker"
+										readonly="readonly" id="dateStart" />
 									<button type="button" class="ui-datepicker-trigger">
-										<img src="${pageContext.request.contextPath}/resources/image/icon/calendar.png" 
-										alt="Select date" title="Select date">
+										<img
+											src="${pageContext.request.contextPath}/resources/image/icon/calendar.png"
+											alt="Select date" title="Select date">
 									</button>
 								</div>
-								
+	
 								<span class="bar">~</span>
-								
+	
 								<div class="date">
-									<input type="text" 
-									class="datepicker hasDatepicker" 
-									readonly="readonly" 
-									id="dateEnd">
+									<input type="text" class="datepicker hasDatepicker"
+										readonly="readonly" id="dateEnd">
 									<button type="button" class="ui-datepicker-trigger">
-										<img src="${pageContext.request.contextPath}/resources/image/icon/calendar.png" 
-										alt="Select date" title="Select date">
+										<img
+											src="${pageContext.request.contextPath}/resources/image/icon/calendar.png"
+											alt="Select date" title="Select date">
 									</button>
 								</div>
 							</div>
 							<button id="checkDate" type="button" class="btn" onclick="">조회</button>
 						</div>
-				
+	
 						<!-- 주문상태 카운트 -->
 						<ol class="my_order my_benefit">
-							<li class="step ">
-								<a href="#" class="count" style="display: none">0</a>
-								<span class="value disabled count" style="display: ">${totalWaitDepositStatusCnt}</span>
-								<span class="status">입금대기</span>
-							</li>
-							<li class="step ">
-								<a href="#" class="count" style="display: none">0</a>
-								<span class="value disabled count" style="display: ">${totalCompletePaymentStatusCnt}</span>
-								<span class="status">결제완료</span>
-							</li>
-							<li class="step ">
-								<a href="#" class="count" style="display: none">0</a>
-								<span class="value disabled count" style="color: #37cbe9;">${totalPreparingDeliveryStatusCnt}</span>
-								<span class="status">상품준비중</span>
-							</li>
-							<li class="step ">
-								<a href="#" class="count" style="display: none">0</a>
-								<span class="value disabled count" style="display: ">${totalShippingStatusCnt}</span>
-								<span class="status">배송중</span>
-							</li>
-							<li class="step ">
-								<a href="#" class="count" style="display: none">0</a>
-								<span class="value disabled count" style="display: ">${totalDeliveryCompletedStatusCnt}</span>
-								<span class="status">배송완료</span>
-							</li>
+							<li class="step "><a href="#" class="count"
+								style="display: none">0</a> <span class="value disabled count"
+								style="display:">${totalWaitDepositStatusCnt}</span> <span
+								class="status">입금대기</span></li>
+							<li class="step "><a href="#" class="count"
+								style="display: none">0</a> <span class="value disabled count"
+								style="display:">${totalCompletePaymentStatusCnt}</span> <span
+								class="status">결제완료</span></li>
+							<li class="step "><a href="#" class="count"
+								style="display: none">0</a> <span class="value disabled count"
+								style="">${totalPreparingDeliveryStatusCnt}</span>
+								<span class="status">상품준비중</span></li>
+							<li class="step "><a href="#" class="count"
+								style="display: none">0</a> <span class="value disabled count"
+								style="display:">${totalShippingStatusCnt}</span> <span
+								class="status">배송중</span></li>
+							<li class="step "><a href="#" class="count"
+								style="display: none">0</a> <span class="value disabled count"
+								style="display:">${totalDeliveryCompletedStatusCnt}</span> <span
+								class="status">배송완료</span></li>
 						</ol>
 					</div>
-				
+	
 					<div id="order_list_div" class="section_block">
 						<div class="no_data type4">
-							주문 내역이 없습니다.
+							<table class="order-table table-col n-order-view">
+								<colgroup>
+									<col style="width: *">
+									<col style="width: 14.2%">
+									<col style="width: 14.2%">
+									<col style="width: 14.2%">
+									<col style="width: 10.2%">
+									<col style="width: 11%">
+								</colgroup>
+								<thead>
+									<tr>
+										<th scope="col">상품정보</th>
+										<th scope="col">주문일자</th>
+										<th scope="col">주문번호</th>
+										<th scope="col">주문금액(수량)</th>
+										<th scope="col" colspan="2">주문 상태</th>
+									</tr>
+								</thead>
+								<tbody class="ordtable-tbody">
+									<c:forEach var="order" items="${orderList}">
+										<tr>
+											<td>
+												<div class="n-prd-row">
+												<a href="${pageContext.request.contextPath}/item/item_view?prdcode=${order.prdcode}" class="img-block">
+													<img
+														src="attachDownload?prdcode=${order.prdcode}"
+														alt="${order.prdname}">
+												</a>
+													<ul class="info">
+														<li class="brand">${order.prdbrand}</li>
+														<li class="name"><a href="${pageContext.request.contextPath}/item/item_view?prdcode=${order.prdcode}" id="goItem">${order.prdname}</a></li>
+													</ul>
+												</div>
+											</td>
+											<td><fmt:formatDate value="${order.ordcreatedat}" pattern="yyyy-MM-dd"/></td>
+											<td><a
+												href="orderView?ordid=${order.ordid}" id="goToorderDetail">${order.ordid}</a>
+											</td>
+											<td>
+												${order.ordtotalprice}원<br>
+												<span class="txt-default">${order.ordtotalamount}개</span>
+											</td>
+											<td>
+												<div class="status">
+													<span>${order.ordstatus}</span>
+												</div> <!-- 출고처리중 주문취소상태 -->
+											</td>
+											<c:if test="${order.ordstatus eq '입금대기'}">
+												<td>
+													<div class="btn-set btn-parents">
+														<button type="button" class="n-btn btn-sm btn-accent"
+															onclick="">주문취소</button>
+														<button type="button" class="n-btn btn-sm btn-accent"
+															onclick="location.href='${pageContext.request.contextPath}/member/csInquiry?prdcode=${order.prdcode}'">문의하기</button>
+													</div>
+												</td>
+											</c:if>
+											<c:if test="${order.ordstatus eq '결제완료'}">
+												<td>
+													<div class="btn-set btn-parents">
+														<button type="button" class="n-btn btn-sm btn-accent"
+															onclick="">주문취소</button>
+														<button type="button" class="n-btn btn-sm btn-accent"
+															onclick="location.href='${pageContext.request.contextPath}/member/csInquiry?prdcode=${order.prdcode}'">문의하기</button>
+													</div>
+												</td>
+											</c:if>
+											<c:if test="${order.ordstatus eq '상품준비중'}">
+												<td>
+													<div class="btn-set btn-parents">
+			
+														<button type="button" class="n-btn btn-sm btn-accent"
+															onclick="location.href='${pageContext.request.contextPath}/member/csInquiry?prdcode=${order.prdcode}'">문의하기</button>
+													</div>
+												</td>
+											</c:if>
+											<c:if test="${order.ordstatus eq '배송중'}">
+												<td>
+													<div class="btn-set btn-parents">
+														<button type="button" class="n-btn btn-sm btn-accent"
+															onclick="location.href='${pageContext.request.contextPath}/member/csInquiry?prdcode=${order.prdcode}'">문의하기</button>
+													</div>
+												</td>
+											</c:if>
+											<c:if test="${order.ordstatus eq '배송완료'}">
+												<td>
+													<div class="btn-set btn-parents">
+														<button type="button" class="n-btn btn-sm btn-accent" 
+															onclick="location.href='${pageContext.request.contextPath}/member/csInquiry?prdcode=${order.prdcode}'">문의하기</button>
+													</div>
+												</td>
+											</c:if>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
 						</div>
 					</div>
 					<!-- 주문/배송 단계 안내 -->
 					<div class="section_block order_ship_info">
 						<div class="grayline_box">
-							<div class="title_area">
-								주문/배송 단계 안내
-							</div>
+							<div class="title_area">주문/배송 단계 안내</div>
 							<ol class="step_guide_box">
-								<li class="box">
-									<strong class="tit"><em>STEP 1 </em>입금대기</strong>
+								<li class="box"><strong class="tit"><em>STEP 1
+									</em>입금대기</strong>
 									<ul class="list_type1 type2">
 										<li class="type2_1st_li">주문 후 입금 확인 중 상태입니다.</li>
-										<li class="type2_other_li"><span style="color:red; font-size: 13px;">무통장입금 확인은 10분</span> 정도 소요됩니다.</li>
-									</ul>
-								</li>
-								<li class="box">
-									<strong class="tit"><em>STEP 2 </em>결제완료</strong>
+										<li class="type2_other_li"><span
+											style="color: red; font-size: 13px;">무통장입금 확인은 10분</span> 정도
+											소요됩니다.</li>
+									</ul></li>
+								<li class="box"><strong class="tit"><em>STEP 2
+									</em>결제완료</strong>
 									<ul class="list_type1 type2">
 										<li class="type2_1st_li">입금이 확인되었습니다.</li>
 										<li class="type2_other_li">배송 주소 변경이 가능합니다.</li>
-									</ul>
-								</li>
-								<li class="box">
-									<strong class="tit"><em>STEP 3 </em>상품준비중</strong>
+									</ul></li>
+								<li class="box"><strong class="tit"><em>STEP 3
+									</em>상품준비중</strong>
 									<ul class="list_type1 type2">
 										<li class="type2_1st_li">상품 배송을 준비 중입니다.</li>
 										<li class="type2_other_li">주문취소, 배송 주소 변경이 불가능합니다.</li>
-									</ul>
-								</li>
-								<li class="box">
-									<strong class="tit"><em>STEP 4 </em>배송중</strong>
+									</ul></li>
+								<li class="box"><strong class="tit"><em>STEP 4
+									</em>배송중</strong>
 									<ul class="list_type1 type2">
 										<li class="type2_other_li">물품이 택배사로 전달되어 고객님께 배송중입니다.</li>
-									</ul>
-								</li>
-								<li class="box">
-									<strong class="tit"><em>STEP 5 </em>배송완료</strong>
+									</ul></li>
+								<li class="box"><strong class="tit"><em>STEP 5
+									</em>배송완료</strong>
 									<ul class="list_type1 type2">
 										<li class="type2_1st_li">고객님께 상품이 전달되었습니다.</li>
-										<li class="type2_other_li">교환/반품은<span style="color:red; font-size: 13px;"> 배송완료 후 7일 이내</span> 신청 가능합니다.</li>
-									</ul>
-								</li>
+										<li class="type2_other_li">교환/반품은<span
+											style="color: red; font-size: 13px;"> 배송완료 후 7일 이내</span> 신청
+											가능합니다.
+										</li>
+									</ul></li>
 							</ol>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		
+	
 		<!-- footer  ------------------------------------------------------------------------>
 		<!-- 현재 footer.css와 충돌하는 게 있는건지 css가 깨짐 -->
 	</body>

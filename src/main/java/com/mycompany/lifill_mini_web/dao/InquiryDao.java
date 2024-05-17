@@ -21,4 +21,14 @@ public interface InquiryDao {
 	public int getQnaApplyCnt(String mid);
 	
 	public int getQnaNoApplyCnt(String mid);
+	
+	public List<InquiryResponse> selectMTMInquiry(String mid);
+
+	public int getMTMCnt(String mid);
+
+	public int getMTMApplyCnt(String mid);
+
+	public int getMTMNoApplyCnt(String mid);
+
+	public int insertMTMInquiry(Inquiry inquiry);
 }

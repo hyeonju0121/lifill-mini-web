@@ -396,7 +396,7 @@ input[type="radio"]:checked + label {
     color: #b1b1b1;
     font-size: 20px;
     font-weight: bold;
-    border-bottom: 1px solid #b1b1b1;
+    border-bottom: 1px solid #37cbe9;
 }
 
 .my_order .step .status {
@@ -431,7 +431,6 @@ input[type="radio"]:checked + label {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    margin-top: 30px;
 }
 
 #goToorderDetail {
@@ -452,7 +451,7 @@ input[type="radio"]:checked + label {
     margin: 0;
     color: #999999;
     text-align: center;
-    padding: 60px 0;
+    padding: 0;
     font-size: 16px;
 }
 
@@ -553,7 +552,7 @@ input[type="radio"]:checked + label {
 }
 
 /* 주문 조회 테이블 -------------------- */
-.order-table {
+.n-table {
 	color: #000;
     border: 0;
     vertical-align: top;
@@ -570,7 +569,7 @@ input[type="radio"]:checked + label {
     border-top: 1px solid #000000;
 }
 
-.order-table thead tr {
+.n-table thead tr {
 	color: #000;
     border-spacing: 0;
     line-height: 1.5;
@@ -583,7 +582,7 @@ input[type="radio"]:checked + label {
     background: transparent;
 }
 
-.order-table thead tr th {
+.n-table thead tr th {
 	color: #000;
     line-height: 1.5;
     border-collapse: collapse;
@@ -600,7 +599,7 @@ input[type="radio"]:checked + label {
     font-weight: normal;
 }
 
-.ordtable-tbody {
+.n-table tbody {
 	color: #000;
     border-spacing: 0;
     line-height: 1.5;
@@ -613,7 +612,7 @@ input[type="radio"]:checked + label {
     background: transparent;
 }
 
-.ordtable-tbody tr {
+.n-table tbody tr {
     color: #000;
     border-spacing: 0;
     line-height: 1.5;
@@ -626,7 +625,7 @@ input[type="radio"]:checked + label {
     background: transparent;
 }
 
-.ordtable-tbody tr td {
+.n-table tbody tr td {
     color: #000;
     line-height: 1.5;
     font-size: 14px;
@@ -800,4 +799,344 @@ input[type="radio"]:checked + label {
     margin: 4px auto;
     white-space: nowrap;
     width: 65px;
+}
+
+.n-section-title {
+	color: #000;
+    margin: 0;
+    padding: 0;
+    display: block;
+    border-bottom: 3px solid #000000;
+    padding-bottom: 14px;
+    line-height: 1.5;
+    font-size: 14px;
+    position: relative;
+}
+
+.order {
+	color: #000;
+    line-height: 1.5;
+    font-size: 14px;
+    border: 0;
+    vertical-align: top;
+    background: transparent;
+    margin: 0;
+    outline: none;
+    overflow: hidden;
+    padding: 12px 0 6px 0;
+}
+
+.order dt {
+    color: #000;
+    line-height: 1.5;
+    font-size: 14px;
+    border: 0;
+    vertical-align: top;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    float: left;
+}
+
+.order dd {
+    color: #000;
+    line-height: 1.5;
+    font-size: 14px;
+    border: 0;
+    vertical-align: top;
+    background: transparent;
+    padding: 0;
+    outline: none;
+    float: left;
+    font-weight: bold;
+    margin: 0 30px 0 6px;
+}
+
+.n-order-view {
+	color: #000;
+    border: 0;
+    vertical-align: top;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border-spacing: 0;
+    width: 100%;
+    line-height: 1.5;
+    font-size: 14px;
+    border-collapse: collapse;
+    table-layout: fixed;
+    border-top: none;
+}
+
+.n-order-view thead {
+    color: #000;
+    border-spacing: 0;
+    line-height: 1.5;
+    font-size: 14px;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: top;
+    background: transparent;	
+}
+
+.n-order-view thead tr {
+    color: #000;
+    border-spacing: 0;
+    line-height: 1.5;
+    font-size: 14px;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: top;
+    background: transparent;	
+}
+
+.n-order-view thead tr th {
+	color: #000;
+    line-height: 1.5;
+    border-collapse: collapse;
+    border: 0;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border-spacing: 0;
+    height: 52px;
+    border-bottom: 1px solid #000000;
+    font-size: 16px;
+    vertical-align: middle;
+    font-weight: normal;
+}
+
+.n-order-view tbody {
+    color: #000;
+    border-spacing: 0;
+    line-height: 1.5;
+    font-size: 14px;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: top;
+    background: transparent;	
+}
+
+.n-order-view tbody td {
+    color: #000;
+    line-height: 1.5;
+    font-size: 14px;
+    border-collapse: collapse;
+    border: 0;
+    background: transparent;
+    margin: 0;
+    outline: none;
+    border-spacing: 0;
+    height: 70px;
+    padding: 10px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #f5f5f5;
+    text-align: center;
+    vertical-align: middle;
+    word-break: break-all;	
+}
+
+.n-table-title {
+	color: #000;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    display: block;
+    font-size: 18px;
+    margin-top: 80px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #000000;
+}
+
+.n-table-title h2 {
+	color: #000;
+    line-height: 1.5;
+    border: 0;
+    vertical-align: top;
+    background: transparent;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    font-size: inherit;
+    text-align: left;
+}
+
+.n-table {
+    color: #000;
+    border: 0;
+    vertical-align: top;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border-spacing: 0;
+    width: 100%;
+    line-height: 1.5;
+    font-size: 14px;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.n-table tbody {
+	color: #000;
+    border-spacing: 0;
+    line-height: 1.5;
+    font-size: 14px;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: top;
+    background: transparent;
+}
+
+.n-table tbody tr {
+	color: #000;
+    border-spacing: 0;
+    line-height: 1.5;
+    font-size: 14px;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: top;
+    background: transparent;
+}
+
+.n-table tbody tr th {
+    color: #000;
+    line-height: 1.5;
+    border-collapse: collapse;
+    border: 0;
+    background: transparent;
+    margin: 0;
+    outline: none;
+    border-spacing: 0;
+    height: auto;
+    padding: 15px 0;
+    box-sizing: border-box;
+    border-bottom: none;
+    font-size: 14px;
+    text-align: left;
+    font-weight: normal;
+    vertical-align: top;
+    border-top: none;
+}
+
+.n-table tbody tr td {
+    color: #000;
+    line-height: 1.5;
+    border-collapse: collapse;
+    border: 0;
+    background: transparent;
+    margin: 0;
+    outline: none;
+    border-spacing: 0;
+    height: auto;
+    padding: 15px 0;
+    box-sizing: border-box;
+    border-bottom: none;
+    font-size: 14px;
+    text-align: left;
+    vertical-align: inherit;
+    word-break: break-all;
+    border-top: none;
+}
+
+.order__list--information {
+    color: #000;
+    font-size: 14px;
+    line-height: 1.5;
+    vertical-align: top;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.order__item {
+    color: #000;
+    font-size: 14px;
+    line-height: 1.5;
+    border: 0;
+    vertical-align: top;
+    background: transparent;
+    margin: 0;
+    outline: none;
+    display: flex;
+    align-items: center;
+    height: auto !important;
+    padding: 16px 0;
+}
+
+.order__item__definition {
+    color: #000;
+    font-size: 14px;
+    line-height: 1.5;
+    border: 0;
+    vertical-align: top;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    width: 196px;
+    text-align: left;
+}
+
+.order__item__description {
+    color: #000;
+    font-size: 14px;
+    line-height: 1.5;
+    border: 0;
+    vertical-align: top;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+
+.n-order-view tbody tr td {
+	color: #000;
+    line-height: 1.5;
+    font-size: 14px;
+    border-collapse: collapse;
+    border: 0;
+    background: transparent;
+    margin: 0;
+    outline: none;
+    border-spacing: 0;
+    height: 70px;
+    padding: 10px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #f5f5f5;
+    text-align: center;
+    vertical-align: middle;
+    word-break: break-all;
+}
+
+.mypage-cont {
+	margin-bottom: 50px;
+}
+
+#goToOrderList {
+	background-color: black;
+	color: white;
+	border: 1px solid black;
+	border-radius: 0;
+	font-size: 14px;
+	margin-bottom: 50px;
+	width: 100px;
+	height: 40px;
 }

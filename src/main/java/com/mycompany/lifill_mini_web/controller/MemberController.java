@@ -146,6 +146,20 @@ public class MemberController {
 	}
 	
 	@Secured("ROLE_USER")
+	@RequestMapping("/orderView")
+	public String orderView(Model model, String ordid, String mid) {
+		log.info("orderView() 실행");
+		log.info("order={}", ordid);
+
+		// 해당 주문 건 가져오기
+		OrderResponse order = memberService.getOrderDetail(ordid);
+		
+		model.addAttribute("order",order);
+		
+		return "member/mypage/orderView";
+	}
+	
+	@Secured("ROLE_USER")
 	@RequestMapping("/orderListClaim")
 	public String orderListClaim() {
 		log.info("orderListClaim() 실행");
@@ -154,15 +168,32 @@ public class MemberController {
 
 	@Secured("ROLE_USER")
 	@RequestMapping("/myInquiryList")
-	public String myInquiryList() {
+	public String myInquiryList(Model model) {
 		log.info("myInquiryList() 실행");
+		
+		// 문의 객체 가져오기
+		List<InquiryResponse> inquiryList = memberService.getMToMInquiry();
+		int totalMTMCnt = memberService.getMTMCount();
+		int totalApplyCnt = memberService.getMTMApplyCount();
+		int totalNoApplyCnt = memberService.getMTMNoApplyCount();
+
+		model.addAttribute("inquiryList", inquiryList);
+		model.addAttribute("totalMTMCnt", totalMTMCnt);
+		model.addAttribute("totalApplyCnt", totalApplyCnt);
+		model.addAttribute("totalNoApplyCnt", totalNoApplyCnt);
+		
 		return "member/mypage/myInquiryList";
 	}
 	
 	@Secured("ROLE_USER")
 	@RequestMapping("/csInquiry")
-	public String csInquiry() {
+	public String csInquiry(Model model, String prdcode) {
 		log.info("csInquiry() 실행");
+		
+		// 해당 상품코드 객체 가져오기
+		ProductResponse product = productService.getProductResponse(prdcode);
+		model.addAttribute("product", product);
+				
 		return "member/mypage/csInquiry";
 	}
 	
@@ -304,6 +335,17 @@ public class MemberController {
 		
 		return "redirect:/member/myInquiryList";	
 	}*/
+	
+	@Transactional
+	@PostMapping("/applyMTMInquiry")
+	public String applyMTMInquiry(CreateInquiryRequest request) {
+		
+		log.info("실행");
+
+		memberService.insertMTMInquiry(request);
+
+		return "redirect:/member/myInquiryList";
+	}
 	
 	@GetMapping("/userInfo")
 	public String userInfo(Authentication authentication) {

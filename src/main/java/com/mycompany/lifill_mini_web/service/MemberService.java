@@ -165,7 +165,7 @@ public class MemberService {
 		return inqtype;
 	}
 	
-public boolean isPasswordMatched(String inputPassword) {
+	public boolean isPasswordMatched(String inputPassword) {
 		
 		log.info("실행");
 		// 로그인한 회원의 비밀번호 얻기
@@ -279,5 +279,67 @@ public boolean isPasswordMatched(String inputPassword) {
 	  member.setMpassword(passwordEncoder.encode(member.getMpassword()));
 	  memberDao.changePw(member);
 	 /* log.info("Updating password for member ID: " + member.getMid());*/
+	}
+	
+	public OrderResponse getOrderDetail(String ordid) {
+		log.info("실행");
+		OrderResponse order = orderDao.selectOrderDetailByOrdid(ordid);
+		
+		return order;
+	}
+
+	public List<InquiryResponse> getMToMInquiry() {
+		// 사용자 정보 가져오기
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String mid = authentication.getName();
+
+		List<InquiryResponse> inquiryList = inquiryDao.selectMTMInquiry(mid);
+
+		return inquiryList;
+	}
+
+	public int getMTMCount() {
+		// 사용자 정보 가져오기
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String mid = authentication.getName();
+
+		return inquiryDao.getMTMCnt(mid);
+	}
+
+	public int getMTMApplyCount() {
+		// 사용자 정보 가져오기
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String mid = authentication.getName();
+
+		return inquiryDao.getMTMApplyCnt(mid);
+	}
+
+	public int getMTMNoApplyCount() {
+		// 사용자 정보 가져오기
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String mid = authentication.getName();
+
+		return inquiryDao.getMTMNoApplyCnt(mid);
+	}
+
+	public void insertMTMInquiry(CreateInquiryRequest request) {
+		// 사용자 정보 가져오기
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String mid = authentication.getName();
+
+		// 상품 유형 검사
+		int inqtype = inqTypeValidation(request.getRequestInqval());
+
+		Inquiry inquiry = new Inquiry();
+		inquiry.setMid(mid);
+		inquiry.setPrdcode(request.getPrdcode());
+		inquiry.setInqtitle(request.getInqtitle());
+		inquiry.setInqcontent(request.getInqcontent());
+		inquiry.setInqtype(inqtype);
+		inquiry.setInqstatus("답변대기중");
+
+		log.info("inquiry={}", inquiry.toString());
+
+		int inqRowNum = inquiryDao.insertMTMInquiry(inquiry);
 	}
 }

@@ -32,6 +32,7 @@
 		<typeAlias type="com.mycompany.lifill_mini_web.dto.request.SingleOrderRequest" alias="SingleOrderRequest"/>
 		<typeAlias type="com.mycompany.lifill_mini_web.dto.response.InquiryResponse" alias="InquiryResponse"/>
 		<typeAlias type="com.mycompany.lifill_mini_web.dto.request.ItemPageRequest" alias="ItemPageRequest"/>
+		<typeAlias type="com.mycompany.lifill_mini_web.dto.response.OrderResponse" alias="OrderResponse"/>
 	</typeAliases>
 	
 </configuration>

@@ -85,71 +85,88 @@
 						<h2 class="tit_lv2">1:1 문의</h2>
 					</div>
 					
-					<div class="section_block">
-						<div class="form_table no_line">
-						<form id="applyInquiry" method="post" action="writeBoard"> <!-- enctype="multipart/form-data" -->
-							<div class="tr">
-								<div class="th">
-									<p class="form_label required">문의 유형 </p>
-								</div>
-								<div class="td">
-									<div class="custom_select_wrap lg">
-									  <select name="inqtype" id="inqtype" style="width:100%; height:50px; border: 1px solid gray;">
-									    <option value="return">반품</option>
-									    <option value="exchange">교환/환불</option>
-									    <option value="delivery">배송</option>
-									  </select>
+					<form id="applyInquiry" method="post" action="applyMTMInquiry"> <!-- enctype="multipart/form-data" -->
+						<div class="section_block">
+							<div class="form_table no_line">
+								<div class="tr">
+									<input type="hidden" id="prdcode" name="prdcode" value="${product.prdcode}">
+									<div class="th">
+										<p class="form_label required">문의 상품 </p>
 									</div>
-								</div>
-							</div>
-							
-							<div class="tr">
-								<div class="th">
-									<p class="form_label required">문의 제목</p>
-								</div>
-								<div class="td">
-									<div class="textarea_group sm">
-										<textarea id="inqtitle" name="inqtitle" title="문의제목 입력" placeholder="문의 제목을 입력해주세요." maxlength="100"></textarea>
-										<p class="form_bytes"><span class="byte">0</span>/100</p>
-									</div>
-								</div>
-							</div>
-							<div class="tr">
-								<div class="th">
-									<p class="form_label required">문의 내용</p>
-								</div>
-								<div class="td">
-									<div class="textarea_group lg">
-										<textarea id="inqcontent" name="inqcontent" placeholder="문의 내용을 입력해주세요." cols="" rows="" title="문의내용 입력" maxlength="1000" onpaste="checkCnt(this)" onchange="checkCnt(this)" onkeydown="checkCnt(this)" onkeyup="checkCnt(this)"></textarea>
-										<p class="form_bytes"><span class="byte">0</span>/1,000</p>
-									</div>
-									<!--파일첨부-->	
-									<!-- <div class="attach_wrap">
-										<div class="attach_top">
-											<input type="hidden" name="uploadType" value="inquiry">
-											<label class="attach_img" for="inputFile_1">사진 첨부</label>
-											<p class="guide_txt">최대 5개 / 개당 10MB까지 첨부 가능합니다. (JPG, JPEG, PNG, GIF만 첨부 가능)</p>
-											<input class="input_file" id="inqAttach" name="inqAttach" onchange="checkFileSizeAjax(event,this);" type="file" accept="image/*" multiple>
+									<div class="img-td">
+										<div class="profile_wrap">
+											<div class="profile profile_attach">
+												<div id="itemImg">
+													<img src="attachDownload?prdcode=${product.prdcode}"
+														class="rounded-3" style="width: 90px; height: 90px;" />
+												</div>
+												<div class="profile_edit">
+													<p class="tit">[${product.prdbrand}]<span class="sub">${product.prdname}</span></p>
+												</div>
+											</div>
 										</div>
-										[D] 파일 첨부 버튼 아이디와 data-file attribute 이름 맞춰줌
-										<div class="attached" data-file="inputFile_1" id="inputUploadFile"></div>
-									</div> -->
-									<!--//파일첨부-->	
+									</div>
 								</div>
+								<div class="tr">
+									<div class="th">
+										<p class="form_label required">문의 유형 </p>
+									</div>
+									<div class="td">
+										<div class="custom_select_wrap lg">
+										  <select name="requestInqval" id="inqtype" style="width:100%; height:50px; border: 1px solid gray;">
+										    <option value="return">반품</option>
+										    <option value="exchange">교환/환불</option>
+										    <option value="delivery">배송</option>
+										  </select>
+										</div>
+									</div>
+								</div>
+								
+								<div class="tr">
+									<div class="th">
+										<p class="form_label required">문의 제목</p>
+									</div>
+									<div class="td">
+										<div class="textarea_group sm">
+											<textarea id="inqtitle" name="inqtitle" title="문의제목 입력" placeholder="문의 제목을 입력해주세요." maxlength="100"></textarea>
+										</div>
+									</div>
+								</div>
+								<div class="tr">
+									<div class="th">
+										<p class="form_label required">문의 내용</p>
+									</div>
+									<div class="td">
+										<div class="textarea_group lg">
+											<textarea id="inqcontent" name="inqcontent" placeholder="문의 내용을 입력해주세요." cols="" rows="" title="문의내용 입력" maxlength="1000" onpaste="checkCnt(this)" onchange="checkCnt(this)" onkeydown="checkCnt(this)" onkeyup="checkCnt(this)"></textarea>
+										</div>
+										<!--파일첨부-->	
+										<!-- <div class="attach_wrap">
+											<div class="attach_top">
+												<input type="hidden" name="uploadType" value="inquiry">
+												<label class="attach_img" for="inputFile_1">사진 첨부</label>
+												<p class="guide_txt">최대 5개 / 개당 10MB까지 첨부 가능합니다. (JPG, JPEG, PNG, GIF만 첨부 가능)</p>
+												<input class="input_file" id="inqAttach" name="inqAttach" onchange="checkFileSizeAjax(event,this);" type="file" accept="image/*" multiple>
+											</div>
+											[D] 파일 첨부 버튼 아이디와 data-file attribute 이름 맞춰줌
+											<div class="attached" data-file="inputFile_1" id="inputUploadFile"></div>
+										</div> -->
+										<!--//파일첨부-->	
+									</div>
+								</div>
+							<ul class="list_type1 type2 mt30">
+								<li>정확한 답변 수신을 위해 문의 전에 회원정보를 업데이트해주세요. (My Page &gt; 회원정보 &gt; 회원정보 수정)</li>
+								<li>등록하신 문의 답변이 완료된 경우 재문의가 불가 하오니 서비스 
+									이용에 참고 부탁드립니다.</li>
+							</ul>
+							<div class="btn_big_wrap btn_size_fix">
+								<button type="button" class="white" onclick="location.href='myInquiryList'">취소</button>
+								<button type="submit" class="btnInsert">등록</button>
 							</div>
-						<ul class="list_type1 type2 mt30">
-							<li>정확한 답변 수신을 위해 문의 전에 회원정보를 업데이트해주세요. (My Page &gt; 회원정보 &gt; 회원정보 수정)</li>
-							<li>등록하신 문의 답변이 완료된 경우 재문의가 불가 하오니 서비스 
-								이용에 참고 부탁드립니다.</li>
-						</ul>
-						<div class="btn_big_wrap btn_size_fix">
-							<button type="button" class="white" onclick="location.href='myInquiryList'">취소</button>
-							<button type="submit" class="btnInsert">등록</button>
+							</div>
 						</div>
-						</form>
-						</div>
+					</form>
 						
-					</div>
 					
 				</div>
 			</div>

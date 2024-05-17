@@ -23,4 +23,6 @@ public class OrderResponse {
 	private String prdcode;
 	private int odtamount;
 	private int prdprice;
+	private String prdname;
+	private String prdbrand;
 }

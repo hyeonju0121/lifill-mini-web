@@ -23,15 +23,16 @@
 		)
 	</insert>
 	
-	<select id="selectOrderList" parameterType='String' resultType="MemberResponse">
+	<select id="selectOrderList" parameterType='String' resultType="OrderResponse">
 		
-		select rownum as seq, ord.ordid, mid, ordtotalamount, ordtotalprice, ordrequest, 
+		select rownum as seq, ord.ordid, mid, prd.prdname, prdbrand, ordtotalamount, ordtotalprice, ordrequest, 
 		ordstatus, ordpostnum, ordcreatedat, ordreceivername, ordreceiveraddress,
-		ordreceiverzipcode, ordreceiverphone, prdcode, odtamount, prdprice
+		ordreceiverzipcode, ordreceiverphone, odt.prdcode, odtamount, odt.prdprice
 
-		from orders ord, ordersdetail odt
-		
+		from orders ord, ordersdetail odt, product prd
+        
 		where ord.ordid = odt.ordid
+        and odt.prdcode = prd.prdcode
       	and mid=#{mid}
 	</select>
 	
@@ -58,5 +59,17 @@
 	<select id="selectDeliveryCompletedStatusByMid" resultType="int" parameterType="String">
 		select count(*) from orders
 		where ordstatus='배송완료' and mid=#{mid}
+	</select>
+	
+	<select id="selectOrderDetailByOrdid" resultType="OrderResponse" parameterType="String">
+		select rownum as seq, ord.ordid, mid, prd.prdname, prdbrand, ordtotalamount, ordtotalprice, ordrequest, 
+		ordstatus, ordpostnum, ordcreatedat, ordreceivername, ordreceiveraddress,
+		ordreceiverzipcode, ordreceiverphone, odt.prdcode, odtamount, odt.prdprice
+		
+		from orders ord, ordersdetail odt, product prd
+		
+		where ord.ordid=#{ordid}
+		and   ord.ordid = odt.ordid
+		and   odt.prdcode = prd.prdcode
 	</select>
 </mapper>
