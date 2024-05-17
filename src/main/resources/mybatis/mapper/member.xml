@@ -27,4 +27,34 @@
 		where mid=#{mid}
 	</select>
 	
+	<select id="getMpasswordbyMid" parameterType="String" resultType="String">
+		select mpassword
+		from member
+		where mid=#{mid}
+	</select>
+	
+	<update id="updateMstatusbyMid" parameterType="String">
+		update member
+		set menabled = 0
+		where mid=#{mid}
+	</update>
+	
+	<select id="selectMphoneByMid" parameterType="Member" resultType="String">
+		select mphone
+		from member
+		where mid=#{mid}
+	</select>
+	
+	<update id="updateMpassword" parameterType="Member">
+		update member
+		set mpassword=#{mpassword}
+		where mid=#{mid}
+	</update>
+	
+	<update id="updateMphone" parameterType="Member">
+		update member
+		set mphone=#{mphone}
+		where mid=#{mid}
+	</update>
+	
 </mapper>

@@ -80,7 +80,7 @@
 					</div>
 				</div>
 				
-				<div id="content">
+				<div class="content">
 					<div class="tit_area line_thick mb0">
 						<strong class="tit_lv2">상품 리뷰</strong>
 					</div>

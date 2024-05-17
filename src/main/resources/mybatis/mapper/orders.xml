@@ -22,4 +22,41 @@
 			#{ordreceivername}, #{ordreceiveraddress}, #{ordreceiverzipcode}, #{ordreceiverphone}
 		)
 	</insert>
+	
+	<select id="selectOrderList" parameterType='String' resultType="MemberResponse">
+		
+		select rownum as seq, ord.ordid, mid, ordtotalamount, ordtotalprice, ordrequest, 
+		ordstatus, ordpostnum, ordcreatedat, ordreceivername, ordreceiveraddress,
+		ordreceiverzipcode, ordreceiverphone, prdcode, odtamount, prdprice
+
+		from orders ord, ordersdetail odt
+		
+		where ord.ordid = odt.ordid
+      	and mid=#{mid}
+	</select>
+	
+	<select id="selectWaitDepositStatusByMid" resultType="int" parameterType="String">
+		select count(*) from orders
+		where ordstatus='입금대기' and mid=#{mid}
+	</select>
+	
+	<select id="selectCompletePaymentStatusByMid" resultType="int" parameterType="String">
+		select count(*) from orders
+		where ordstatus='결제완료' and mid=#{mid}
+	</select>
+	
+	<select id="selectPreparingDeliveryStatusByMid" resultType="int" parameterType="String">
+		select count(*) from orders
+		where ordstatus='상품준비중' and mid=#{mid}
+	</select>
+	
+	<select id="selectShippingStatusByMid" resultType="int" parameterType="String">
+		select count(*) from orders
+		where ordstatus='배송중' and mid=#{mid}
+	</select>
+	
+	<select id="selectDeliveryCompletedStatusByMid" resultType="int" parameterType="String">
+		select count(*) from orders
+		where ordstatus='배송완료' and mid=#{mid}
+	</select>
 </mapper>

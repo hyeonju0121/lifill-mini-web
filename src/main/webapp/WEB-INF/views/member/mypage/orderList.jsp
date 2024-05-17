@@ -143,27 +143,27 @@
 						<ol class="my_order my_benefit">
 							<li class="step ">
 								<a href="#" class="count" style="display: none">0</a>
-								<span class="value disabled count" style="display: ">0</span>
+								<span class="value disabled count" style="display: ">${totalWaitDepositStatusCnt}</span>
 								<span class="status">입금대기</span>
 							</li>
 							<li class="step ">
 								<a href="#" class="count" style="display: none">0</a>
-								<span class="value disabled count" style="display: ">0</span>
+								<span class="value disabled count" style="display: ">${totalCompletePaymentStatusCnt}</span>
 								<span class="status">결제완료</span>
 							</li>
 							<li class="step ">
 								<a href="#" class="count" style="display: none">0</a>
-								<span class="value disabled count" style="color: #37cbe9;">1</span>
+								<span class="value disabled count" style="color: #37cbe9;">${totalPreparingDeliveryStatusCnt}</span>
 								<span class="status">상품준비중</span>
 							</li>
 							<li class="step ">
 								<a href="#" class="count" style="display: none">0</a>
-								<span class="value disabled count" style="display: ">0</span>
+								<span class="value disabled count" style="display: ">${totalShippingStatusCnt}</span>
 								<span class="status">배송중</span>
 							</li>
 							<li class="step ">
 								<a href="#" class="count" style="display: none">0</a>
-								<span class="value disabled count" style="display: ">0</span>
+								<span class="value disabled count" style="display: ">${totalDeliveryCompletedStatusCnt}</span>
 								<span class="status">배송완료</span>
 							</li>
 						</ol>

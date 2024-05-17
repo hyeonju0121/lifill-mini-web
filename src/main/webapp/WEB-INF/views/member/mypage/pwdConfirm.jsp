@@ -81,7 +81,7 @@
 				</div>
 				
 				<div class="content">
-					<form method="post" action="updateMember" id="checkPwdForm">
+					<form method="post" action="passwordMatching" id="checkPwdForm">
 						<div class="tit_area line_thick">
 							<h2 class="tit_lv2">
 								회원정보 수정
@@ -96,18 +96,12 @@
 									<p class="ico_info">개인정보 보호를 위해 비밀번호를 다시 한번 입력해주시기 바랍니다.</p>
 								</div>
 								<div class="password_confirm">
-									<div class="com_bg_box">
-										<strong class="txt_l">tjd******</strong>
-									</div>
 									 <div class="input_clear">
-												<input type="password" placeholder="비밀번호 입력 (대/소문자 구분)" name="mbr.mbrPw" id="mbrPw" validate="required;" autocomplete="off">
-												<button type="button" class="clear_btn"><span class="blind">삭제</span></button>
-												<p class="err_txt" id="descMbrPw"></p>
-											</div>
-										<!-- [D] 에러상태의 경우 .input_error 추가  -->
+										<input type="password" placeholder="비밀번호 입력 (대/소문자 구분)" name="inputPassword" value="" id="mbrPw">
+									</div>
 								</div>
 								<div class="btn_big_wrap">
-									<a href="javascript:void(0);" onclick="location.href='updateMember'">확인</a>
+									<button type="submit">확인</button>
 								</div>
 							</div>
 						</div>

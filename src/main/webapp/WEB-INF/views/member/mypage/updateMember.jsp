@@ -19,7 +19,63 @@
 		
 		<!-- 사용자 정의 자바스크립트 -->
 		<script>
+			function changeMpassword() {
+				// 비밀번호 입력 양식의 데이터 검사
+  				var totalResult = true;
+
+  				//Password 검사하기
+				var mpasswordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&*?_])(?=.*[A-Z]).{10,15}$/;
+				var mpasswordResult = mpasswordPattern.test($("#pwcheck1").val());
+				if(mpasswordResult) {
+					$("#mpasswordSpan1").removeClass("text-danger");
+					$("#mpasswordSpan1").html("");
+				} else {
+					$("#mpasswordSpan1").addClass("text-danger");
+					$("#mpasswordSpan1").html("알파벳 대소문자, 숫자, 특수문자를 혼용해서 10자 이상 15자 이하로 작성해주세요.");
+					totalResult = false;
+				}
+				
+				//Password 확인
+				if($('#pwcheck1').val() == $('#pwcheck2').val()) {
+				   $("#mpasswordSpan2").removeClass("text-danger");
+				   $("#mpasswordSpan2").html("");
+				} else {
+					$("#mpasswordSpan2").html("비밀번호가 일치하지 않습니다.");
+ 		            $("#mpasswordSpan2").addClass("text-danger");
+ 		            totalResult = false;
+				}
+				
+				if (totalResult) {
+					var chpw = $("#pwcheck1").val();
+					$('#changePasswordModal').modal('hide');
+					$("#changedMpassword").val(chpw);
+				} 
+				 
+			}
 			
+			function changeMphone() {
+				// 전화번호 입력 양식의 데이터 검사
+  				var totalResult = true;
+  				
+				var mphonePattern = /^(010|011)\d{3,4}\d{4}$/;
+				var mphoneResult = mphonePattern.test($("#phoneCheck").val());
+				
+				if(mphoneResult) {
+				   $("#mphoneSpan").removeClass("text-danger");
+				   $("#mphoneSpan").html("");
+				} else {
+				$("#mphoneSpan").html("전화번호 형식이 아닙니다.");
+				   $("#mphoneSpan").addClass("text-danger");
+				   totalResult = false;
+				}
+				
+				if (totalResult) {
+					$('#changePhoneModal').modal('hide');
+					$("#changedMphone").val($("#phoneCheck").val());
+					$("#orgMphone").val($("#phoneCheck").val());
+				}
+				
+			}
 		</script>
 		
 	</head>
@@ -81,7 +137,7 @@
 				</div>
 				
 				<div class="content">
-					<form action="#" method="post" id="updateForm">
+					<form action="fixNewMemberInfo" method="post" id="updateForm">
 					    <div class="tit_area line_thick">
 							<strong class="tit_lv2">회원정보 수정</strong> 
 						</div>
@@ -97,7 +153,7 @@
 									</div>
 									<div class="td">
 										<div class="input_clear sm">
-											<input type="text" id="masName" placeholder="변*준" readonly="">
+											<input type="text" id="masName" placeholder="${member.mname}" readonly>
 										</div>
 									</div>
 								</div>
@@ -107,7 +163,7 @@
 									</div>
 									<div class="td">
 										<div class="input_clear sm">
-											<input type="text" id="masId" placeholder="tjd******" readonly="">
+											<input type="text" id="masId" placeholder="${member.mid}" readonly>
 										</div>
 									</div>
 								</div>
@@ -116,27 +172,8 @@
 										<p class="form_label">비밀번호</p>
 									</div>
 									<div class="td">
-										<button type="button" onclick="" class="btn white">비밀번호 변경</button>
-									</div>
-								</div>
-								<div class="tr">
-									<div class="th">
-										<p class="form_label">생년월일</p>
-									</div>
-									<div class="td">
-										<div class="input_clear sm">
-											<input type="text" id="masBrth" placeholder="199701**" readonly="">
-										</div>
-									</div>
-								</div>
-								<div class="tr">
-									<div class="th">
-										<p class="form_label">성별</p>
-									</div>
-									<div class="td">
-										<div class="input_clear sm">
-											<input type="text" value="남자" readonly="">
-										</div>
+										<button id="modalOpenButton1" class="secession_btn btn white" type="button" data-bs-toggle="modal" data-bs-target="#changePasswordModal">비밀번호 변경</button>
+										<input type="hidden" id="changedMpassword" name="mpassword" value="${member.mpassword}">
 									</div>
 								</div>
 								<div class="tr">
@@ -146,12 +183,10 @@
 									<div class="td">
 										<div class="form_set">
 											<div class="input_clear sm">
-												<input type="text" id="maskingMobilNo" placeholder="010-****-3823" readonly="">
+												<input type="text" id="orgMphone"  placeholder="${member.mphone}" readonly>
+												<input type="hidden" id="changedMphone" name="mphone" value="${member.mphone}">
 											</div>
-											<button type="button" 
-											onclick="" 
-											class="btn white" 
-											style="margin-left: 10px;">휴대폰 번호 변경</button>
+											<button id="modalOpenButton2" class="secession_btn btn white" type="button" data-bs-toggle="modal" data-bs-target="#changePhoneModal" style="margin-left: 10px;">휴대폰 번호 변경</button>
 										</div>
 									</div>
 								</div>
@@ -166,79 +201,84 @@
 											title="이메일 주소 입력" 
 											name="mbr.mbrEmail" 
 											id="mbrEmail" 
-											value="tjd*******@*****.***" 
+											value="${member.memail}" 
 											placeholder="이메일 주소 입력">
 											<button type="button" class="clear_btn"><span class="blind">삭제</span></button>
 											<p class="err_txt" id="descMbrEmail"></p>
 										</div>
 									</div>
 								</div>
+								<div class="container btncont">
+									<button id="modalOpenButton3" class="secession_btn" type="button" data-bs-toggle="modal" data-bs-target="#removeMemberModal">회원탈퇴</button>
+								</div>
 							</div>
 						</div>
-						<div class="section_block2">
-							<div class="tit_area">
-								<strong>추가 정보</strong>
-							</div>
-							<div class="form_table">
-								<div class="tr">
-									<div class="th">
-										<p class="form_label">프로필 사진</p>
-									</div>
-									<div class="td">
-										<div class="profile_wrap white">
-											<!-- [D] 파일첨부 기능 .profile_attach -->
-											<div class="profile profile_attach">
-												<input type="hidden" id="prflPhotoUrl" name="mbrPrfl.prflPhotoUrl" value="">
-					                            <input type="hidden" id="beforePrflPhotoUrl" name="beforePrflPhotoUrl" value="">
-												<a href="#" class="img_box">
-				                                    <div id="defaultImg" style="">T</div>
-												</a>
-												<div class="profile_edit">
-													<p class="tit">회원님을 알릴 수 있는 사진을 등록해주세요.<span class="sub">(파일형식 JPG, JPEG, PNG / 파일용량 3MB 이하)</span></p>
-													
-													<div class="button_set">
-														<button type="button" onclick="" class="btn_sub_m gray_line">기본 이미지로 변경</button>
-														<!-- [D] 파일첨부 기능 inputFile_1 -->
-				                                        <input class="input_file" type="file" id="inputFileImage1-2" name="file" onchange="checkFileSizeAjax(event,this);" title="첨부파일 추가">
-				                                        <label for="inputFileImage1-2" class="btn_sub_m gray_line">사진 변경</label>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								
-								<div class="tr">
-									<div class="th">
-										<p class="form_label">닉네임</p>
-									</div>
-									<div class="td">
-										<div class="input_clear">
-											<input type="text" placeholder="영문, 숫자, 영문+숫자+특수문자 조합 5자~20자" name="mbrPrfl.nknm" id="nknm" maxlength="20" value="">
-											<button type="button" class="clear_btn"><span class="blind">삭제</span></button>
-											<p class="err_txt" id="descNknm"></p>
-										</div>
-									</div>
-								</div>
-								
-								<div class="tr">
-									<div class="th">
-										<p class="form_label align_top">배송지 관리</p>
-									</div>
-									<div class="td">
-										<div class="has_address">
-											<div class="no_data type6">등록된 배송지가 없습니다.</div>
-	                                        <button type="button" onclick="" class="btn white mt20">배송지 관리</button>
-										</div>
-					                </div>
-				                </div>
-								<a href="#" class="secession_btn">회원탈퇴</a>
-							</div>
+						<div class="btn_big_wrap btn_size_fix mt60">
+							<button type="button" onclick="location.href='mypage'" class="white btn_cancle">취소</button>
+							<button type="submit" class="btn_submit">완료</button>
 						</div>
 					</form>
-					<div class="btn_big_wrap btn_size_fix mt60">
-						<button type="button" onclick="location.href='mypage'" class="white btn_cancle">취소</button>
-						<button type="button" onclick="location.href='#'" class="btn_submit">완료</button>
+					<!-- 회원 탈퇴 모달 -->
+					<div class="modal" id="removeMemberModal">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h4 class="modal-title">탈퇴 주의사항</h4>
+					        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+					      </div>
+					      <div class="modal-body">
+					        <p>회원 탈퇴는 영구적이며, 탈퇴 후에는 계정이 복구되지 않습니다. <br/> 정말 탈퇴하시겠어요?</p>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" id="modalCloseButton" data-bs-dismiss="modal">취소</button>
+							<form action="removeMember" method="post">
+							    <button type="submit" id="modalSubmitButton">확인</button>
+							</form>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+					<!-- 비밀번호 변경 모달 -->
+					<div class="modal" id="changePasswordModal">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h4 class="modal-title">비밀번호 변경</h4>
+					        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+					      </div>
+					      <div class="modal-body">
+					        <p>새로운 비밀번호를 입력해주세요.</p>
+					      </div>
+					      <input id="pwcheck1" value="" type="password" placeholder="알파벳 대소문자, 숫자, 특수문자를 혼용해서 10자 이상 15자 이하"></input>
+					      <span id="mpasswordSpan1"></span>
+					      <input id="pwcheck2" value="" type="password" placeholder="한 번 더 입력해주세요."></input>
+					      <span id="mpasswordSpan2"></span>
+					      <div class="modal-footer">
+					        <button type="button" id="modalCloseButton" data-bs-dismiss="modal">취소</button>
+							<button type="button" id="changePasswordButton" onclick="changeMpassword()">확인</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+					<!-- 전화번호 변경 모달 -->
+					<div class="modal" id="changePhoneModal">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h4 class="modal-title">전화번호 변경</h4>
+					        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+					      </div>
+					      <div class="modal-body">
+					        <p>새로운 전화번호를 입력해주세요.</p>
+					      </div>
+					      <input id="phoneCheck" type="text" value="" placeholder="'-' 없이 입력해주세요."></input>
+					      <span id="mphoneSpan"></span>	
+					      <div class="modal-footer">
+					        <button type="button" id="modalCloseButton" data-bs-dismiss="modal">취소</button>
+							<button type="button" id="changePhoneButton" onclick="changeMphone()">확인</button>
+					      </div>
+					    </div>
+					  </div>
 					</div>
 				</div>
 			</div>
