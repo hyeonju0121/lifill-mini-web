@@ -65,7 +65,7 @@ public class OrderService {
 				.ordtotalamount(singleOrder.getOrdtotalamount())
 				.ordtotalprice(singleOrder.getOrdtotalprice())
 				.ordrequest(singleOrder.getOrdrequest())
-				.ordstatus("상품준비중")
+				.ordstatus("결제완료")
 				.ordcreatedat(singleOrder.getOrdcreatedat())
 				.ordreceivername(singleOrder.getOrdreceivername())
 				.ordreceiveraddress(singleOrder.getOrdreceiveraddress())
