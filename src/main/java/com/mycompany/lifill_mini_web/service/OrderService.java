@@ -12,6 +12,7 @@ import com.mycompany.lifill_mini_web.dao.OrderDao;
 import com.mycompany.lifill_mini_web.dao.OrderDetailDao;
 import com.mycompany.lifill_mini_web.dto.Orders;
 import com.mycompany.lifill_mini_web.dto.OrdersDetail;
+import com.mycompany.lifill_mini_web.dto.Payment;
 import com.mycompany.lifill_mini_web.dto.request.SingleOrderRequest;
 
 import lombok.extern.slf4j.Slf4j;
@@ -79,7 +80,11 @@ public class OrderService {
 		odt.setPrdprice(singleOrder.getOrdtotalprice());
 		odt.setOdtamount(singleOrder.getOrdtotalamount());
 		
+		Payment pmt = new Payment();
+		pmt.setOrdid(ordid);
+		
 		orderDao.createOrders(orders);
 		orderDetailDao.createOrdersDetail(odt);
+		orderDao.createPayment(pmt);
 	}
 }

@@ -72,4 +72,13 @@
 		and   ord.ordid = odt.ordid
 		and   odt.prdcode = prd.prdcode
 	</select>
+	
+	<insert id="createPayment" parameterType="Payment">
+		insert into payment (
+			ordid, pmtdate
+		)
+		values(
+			#{ordid}, sysdate
+		)
+	</insert>
 </mapper>

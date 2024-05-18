@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.mycompany.lifill_mini_web.dto.Orders;
+import com.mycompany.lifill_mini_web.dto.Payment;
 import com.mycompany.lifill_mini_web.dto.response.OrderResponse;
 
 @Mapper
@@ -19,4 +20,5 @@ public interface OrderDao {
 	public int selectShippingStatusByMid(String mid);
 	public int selectDeliveryCompletedStatusByMid(String mid);
 	public OrderResponse selectOrderDetailByOrdid(String ordid);
+	public void createPayment(Payment pmt);
 }
