@@ -25,4 +25,5 @@ public class OrderResponse {
 	private int prdprice;
 	private String prdname;
 	private String prdbrand;
+	private int revcount;
 }

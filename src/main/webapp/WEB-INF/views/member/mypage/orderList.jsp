@@ -136,129 +136,139 @@
 	
 						<!-- 주문상태 카운트 -->
 						<ol class="my_order my_benefit">
-							<li class="step "><a href="#" class="count"
-								style="display: none">0</a> <span class="value disabled count"
+							<li class="step ">
+								<span class="value disabled count"
 								style="display:">${totalWaitDepositStatusCnt}</span> <span
 								class="status">입금대기</span></li>
-							<li class="step "><a href="#" class="count"
-								style="display: none">0</a> <span class="value disabled count"
+							<li class="step ">
+								<span class="value disabled count"
 								style="display:">${totalCompletePaymentStatusCnt}</span> <span
 								class="status">결제완료</span></li>
-							<li class="step "><a href="#" class="count"
-								style="display: none">0</a> <span class="value disabled count"
+							<li class="step ">
+								<span class="value disabled count"
 								style="">${totalPreparingDeliveryStatusCnt}</span>
 								<span class="status">상품준비중</span></li>
-							<li class="step "><a href="#" class="count"
-								style="display: none">0</a> <span class="value disabled count"
+							<li class="step ">
+								<span class="value disabled count"
 								style="display:">${totalShippingStatusCnt}</span> <span
 								class="status">배송중</span></li>
-							<li class="step "><a href="#" class="count"
-								style="display: none">0</a> <span class="value disabled count"
+							<li class="step ">
+								<span class="value disabled count"
 								style="display:">${totalDeliveryCompletedStatusCnt}</span> <span
 								class="status">배송완료</span></li>
 						</ol>
 					</div>
-	
-					<div id="order_list_div" class="section_block">
-						<div class="no_data type4">
-							<table class="order-table table-col n-order-view">
-								<colgroup>
-									<col style="width: *">
-									<col style="width: 14.2%">
-									<col style="width: 14.2%">
-									<col style="width: 14.2%">
-									<col style="width: 10.2%">
-									<col style="width: 11%">
-								</colgroup>
-								<thead>
-									<tr>
-										<th scope="col">상품정보</th>
-										<th scope="col">주문일자</th>
-										<th scope="col">주문번호</th>
-										<th scope="col">주문금액(수량)</th>
-										<th scope="col" colspan="2">주문 상태</th>
-									</tr>
-								</thead>
-								<tbody class="ordtable-tbody">
-									<c:forEach var="order" items="${orderList}">
-										<tr>
-											<td>
-												<div class="n-prd-row">
-												<a href="${pageContext.request.contextPath}/item/item_view?prdcode=${order.prdcode}" class="img-block">
-													<img
-														src="attachDownload?prdcode=${order.prdcode}"
-														alt="${order.prdname}">
-												</a>
-													<ul class="info">
-														<li class="brand">${order.prdbrand}</li>
-														<li class="name"><a href="${pageContext.request.contextPath}/item/item_view?prdcode=${order.prdcode}" id="goItem">${order.prdname}</a></li>
-													</ul>
-												</div>
-											</td>
-											<td><fmt:formatDate value="${order.ordcreatedat}" pattern="yyyy-MM-dd"/></td>
-											<td><a
-												href="orderView?ordid=${order.ordid}" id="goToorderDetail">${order.ordid}</a>
-											</td>
-											<td>
-												${order.ordtotalprice}원<br>
-												<span class="txt-default">${order.ordtotalamount}개</span>
-											</td>
-											<td>
-												<div class="status">
-													<span>${order.ordstatus}</span>
-												</div> <!-- 출고처리중 주문취소상태 -->
-											</td>
-											<c:if test="${order.ordstatus eq '입금대기'}">
-												<td>
-													<div class="btn-set btn-parents">
-														<button type="button" class="n-btn btn-sm btn-accent"
-															onclick="">주문취소</button>
-														<button type="button" class="n-btn btn-sm btn-accent"
-															onclick="location.href='${pageContext.request.contextPath}/member/csInquiry?prdcode=${order.prdcode}'">문의하기</button>
-													</div>
-												</td>
-											</c:if>
-											<c:if test="${order.ordstatus eq '결제완료'}">
-												<td>
-													<div class="btn-set btn-parents">
-														<button type="button" class="n-btn btn-sm btn-accent"
-															onclick="">주문취소</button>
-														<button type="button" class="n-btn btn-sm btn-accent"
-															onclick="location.href='${pageContext.request.contextPath}/member/csInquiry?prdcode=${order.prdcode}'">문의하기</button>
-													</div>
-												</td>
-											</c:if>
-											<c:if test="${order.ordstatus eq '상품준비중'}">
-												<td>
-													<div class="btn-set btn-parents">
-			
-														<button type="button" class="n-btn btn-sm btn-accent"
-															onclick="location.href='${pageContext.request.contextPath}/member/csInquiry?prdcode=${order.prdcode}'">문의하기</button>
-													</div>
-												</td>
-											</c:if>
-											<c:if test="${order.ordstatus eq '배송중'}">
-												<td>
-													<div class="btn-set btn-parents">
-														<button type="button" class="n-btn btn-sm btn-accent"
-															onclick="location.href='${pageContext.request.contextPath}/member/csInquiry?prdcode=${order.prdcode}'">문의하기</button>
-													</div>
-												</td>
-											</c:if>
-											<c:if test="${order.ordstatus eq '배송완료'}">
-												<td>
-													<div class="btn-set btn-parents">
-														<button type="button" class="n-btn btn-sm btn-accent" 
-															onclick="location.href='${pageContext.request.contextPath}/member/csInquiry?prdcode=${order.prdcode}'">문의하기</button>
-													</div>
-												</td>
-											</c:if>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
+					<c:if test="${totalOrderCnt < 1}">
+						<div class="section_block">
+							<div class="no_data type4">주문 내역이 없습니다.</div>
 						</div>
-					</div>
+					</c:if>
+					<c:if test="${totalOrderCnt >= 1}">
+						<div id="order_list_div" class="section_block">
+							<div class="no_data type4">
+								<table class="order-table table-col n-order-view">
+									<colgroup>
+										<col style="width: *">
+										<col style="width: 14.2%">
+										<col style="width: 14.2%">
+										<col style="width: 14.2%">
+										<col style="width: 10.2%">
+										<col style="width: 11%">
+									</colgroup>
+									<thead>
+										<tr>
+											<th scope="col">상품정보</th>
+											<th scope="col">주문일자</th>
+											<th scope="col">주문번호</th>
+											<th scope="col">주문금액(수량)</th>
+											<th scope="col" colspan="2">주문 상태</th>
+										</tr>
+									</thead>
+									<tbody class="ordtable-tbody">
+										<c:forEach var="order" items="${orderList}">
+											<tr>
+												<td>
+													<div class="n-prd-row">
+													<a href="${pageContext.request.contextPath}/item/item_view?prdcode=${order.prdcode}" class="img-block">
+														<img
+															src="attachDownload?prdcode=${order.prdcode}"
+															alt="${order.prdname}">
+													</a>
+														<ul class="info">
+															<li class="brand">${order.prdbrand}</li>
+															<li class="name"><a href="${pageContext.request.contextPath}/item/item_view?prdcode=${order.prdcode}" id="goItem">${order.prdname}</a></li>
+														</ul>
+													</div>
+												</td>
+												<td><fmt:formatDate value="${order.ordcreatedat}" pattern="yyyy-MM-dd"/></td>
+												<td><a
+													href="orderView?ordid=${order.ordid}" id="goToorderDetail">${order.ordid}</a>
+												</td>
+												<td>
+													${order.ordtotalprice}원<br>
+													<span class="txt-default">${order.ordtotalamount}개</span>
+												</td>
+												<td>
+													<div class="status">
+														<span>${order.ordstatus}</span>
+													</div> <!-- 출고처리중 주문취소상태 -->
+												</td>
+												<c:if test="${order.ordstatus eq '입금대기'}">
+													<td>
+														<div class="btn-set btn-parents">
+															<button type="button" class="n-btn btn-sm btn-accent"
+																onclick="">주문취소</button>
+															<button type="button" class="n-btn btn-sm btn-accent"
+																onclick="location.href='${pageContext.request.contextPath}/member/csInquiry?prdcode=${order.prdcode}'">문의하기</button>
+														</div>
+													</td>
+												</c:if>
+												<c:if test="${order.ordstatus eq '결제완료'}">
+													<td>
+														<div class="btn-set btn-parents">
+															<button type="button" class="n-btn btn-sm btn-accent"
+																onclick="">주문취소</button>
+															<button type="button" class="n-btn btn-sm btn-accent"
+																onclick="location.href='${pageContext.request.contextPath}/member/csInquiry?prdcode=${order.prdcode}'">문의하기</button>
+														</div>
+													</td>
+												</c:if>
+												<c:if test="${order.ordstatus eq '상품준비중'}">
+													<td>
+														<div class="btn-set btn-parents">
+				
+															<button type="button" class="n-btn btn-sm btn-accent"
+																onclick="location.href='${pageContext.request.contextPath}/member/csInquiry?prdcode=${order.prdcode}'">문의하기</button>
+														</div>
+													</td>
+												</c:if>
+												<c:if test="${order.ordstatus eq '배송중'}">
+													<td>
+														<div class="btn-set btn-parents">
+															<button type="button" class="n-btn btn-sm btn-accent"
+																onclick="location.href='${pageContext.request.contextPath}/member/csInquiry?prdcode=${order.prdcode}'">문의하기</button>
+														</div>
+													</td>
+												</c:if>
+												<c:if test="${order.ordstatus eq '배송완료'}">
+													<td>
+														<div class="btn-set btn-parents">
+															<button type="button" class="n-btn btn-sm btn-accent" 
+																onclick="location.href='${pageContext.request.contextPath}/member/csInquiry?prdcode=${order.prdcode}'">문의하기</button>
+															<c:if test="${order.revcount eq 0}">
+																<button type="button" class="n-btn btn-sm btn-accent" 
+																	onclick="location.href='${pageContext.request.contextPath}/member/writeReview?prdcode=${order.prdcode}&ordid=${order.ordid}'">리뷰 작성</button>
+															</c:if>
+														</div>
+													</td>
+												</c:if>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</c:if>
 					<!-- 주문/배송 단계 안내 -->
 					<div class="section_block order_ship_info">
 						<div class="grayline_box">

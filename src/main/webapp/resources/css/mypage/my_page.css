@@ -11,6 +11,29 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select {
 	box-sizing: border-box;
 }
 
+.btn_detail {
+	text-decoration: none;
+	color: black;
+	margin-left: 30px;
+}
+
+.btn_detail:hover {
+	text-decoration: underline;
+}
+
+#goToorderDetail {
+	text-decoration: none;
+	color: black;
+}
+
+#goToorderDetail:hover {
+	text-decoration: underline;
+}
+
+#goItem:hover {
+	text-decoration: underline;
+}
+
 .my_menu {
     line-height: normal;
     font-size: 14px;
@@ -349,4 +372,254 @@ ul.menu_depth02 a {
     text-align: center;
     padding: 60px 0;
     font-size: 16px;
-}   
+}
+
+/* 주문 조회 테이블 -------------------- */
+.order-table {
+	color: #000;
+    border: 0;
+    vertical-align: top;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border-spacing: 0;
+    width: 100%;
+    line-height: 1.5;
+    font-size: 14px;
+    border-collapse: collapse;
+    table-layout: fixed;
+    border-top: 1px solid #000000;
+}
+
+.order-table thead tr {
+	color: #000;
+    border-spacing: 0;
+    line-height: 1.5;
+    font-size: 14px;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: top;
+    background: transparent;
+}
+
+.order-table thead tr th {
+	color: #000;
+    line-height: 1.5;
+    border-collapse: collapse;
+    border: 0;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border-spacing: 0;
+    height: 52px;
+    border-bottom: 1px solid #000000;
+    font-size: 16px;
+    vertical-align: middle;
+    font-weight: normal;
+}
+
+.ordtable-tbody {
+	color: #000;
+    border-spacing: 0;
+    line-height: 1.5;
+    font-size: 14px;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: top;
+    background: transparent;
+}
+
+.ordtable-tbody tr {
+    color: #000;
+    border-spacing: 0;
+    line-height: 1.5;
+    font-size: 14px;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: top;
+    background: transparent;
+}
+
+.ordtable-tbody tr td {
+    color: #000;
+    line-height: 1.5;
+    font-size: 14px;
+    border-collapse: collapse;
+    border: 0;
+    background: transparent;
+    margin: 0;
+    outline: none;
+    border-spacing: 0;
+    height: 70px;
+    padding: 10px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #f5f5f5;
+    text-align: center;
+    vertical-align: middle;
+    word-break: break-all;
+}
+
+.n-prd-row {
+	color: #000;
+    border-collapse: collapse;
+    border-spacing: 0;
+    word-break: break-all;
+    border: 0;
+    vertical-align: top;
+    background: transparent;
+    padding: 0;
+    outline: none;
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    min-height: 96px;
+    line-height: 1.5;
+    font-size: 14px;
+    text-align: left;
+    position: relative;
+    margin: 10px 0;
+}
+.img-block {
+	border-collapse: collapse;
+    border-spacing: 0;
+    word-break: break-all;
+    line-height: 1.5;
+    font-size: 14px;
+    text-align: left;
+    border: 0;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    overflow: hidden;
+    display: table-cell;
+    width: 80px;
+    padding-top: 96px;
+    vertical-align: middle;
+}
+
+.n-prd-row img {
+	border-collapse: collapse;
+    border-spacing: 0;
+    word-break: break-all;
+    font-size: 14px;
+    text-align: left;
+    color: inherit;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+    line-height: 0;
+    vertical-align: top;
+    width: 80px;
+    height: 96px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.info {
+	color: #000;
+    border-collapse: collapse;
+    border-spacing: 0;
+    word-break: break-all;
+    line-height: 1.5;
+    font-size: 14px;
+    text-align: left;
+    border: 0;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    list-style: none;
+    display: table-cell;
+    padding-left: 10px;
+    vertical-align: middle;
+    width: 100%;
+}
+
+.info a {
+	text-decoration: none;
+	color: black;
+}
+
+.brand {
+	color: #000;
+    border-collapse: collapse;
+    border-spacing: 0;
+    word-break: break-all;
+    list-style: none;
+    border: 0;
+    vertical-align: top;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 300;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.name {
+	border-collapse: collapse;
+    border-spacing: 0;
+    word-break: break-all;
+    list-style: none;
+    border: 0;
+    vertical-align: top;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    color: #000;
+    font-size: 14px;
+    line-height: 22px;
+    max-height: 44px;
+    font-weight: bold;
+    overflow: hidden;
+}
+
+.n-btn {
+	border-collapse: collapse;
+    border-spacing: 0;
+    word-break: break-all;
+    text-transform: none;
+    outline: none;
+    -webkit-appearance: none;
+    background: none;
+    color: #ffffff;
+    box-sizing: border-box;
+    padding: 2px 8px 0 8px;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+    transition: border 0.2s, background 0.2s ease-in-out;
+    vertical-align: middle;
+    height: 32px;
+    line-height: 30px;
+    padding-top: 0;
+    border: 1px solid #000000;
+    background-color: #000000;
+    display: block;
+    min-width: 90px;
+    margin: 4px auto;
+    white-space: nowrap;
+    width: 65px;
+}

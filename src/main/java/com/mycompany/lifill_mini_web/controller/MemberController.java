@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -117,8 +118,31 @@ public class MemberController {
 	
 	@Secured("ROLE_USER")
 	@RequestMapping("/mypage")
-	public String myPage() {
+	public String myPage(Model model) {
 		log.info("mypage() 실행");
+		
+		// 로그인 사용자 정보 얻기
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		LifillUserDetails userDetails = (LifillUserDetails) authentication.getPrincipal();
+		Member member = userDetails.getMember();
+		
+		// 주문 객체 가져오기
+		List<OrderResponse> orderList = memberService.getOrderListInThisMonth();
+		int totalOrderCnt = memberService.getOrderCountInThisMonth();
+		int totalWaitDepositStatusCnt = memberService.getWaitDepositStatusInThisMonth();
+		int totalCompletePaymentStatusCnt = memberService.getCompletePaymentStatusInThisMonth();
+		int totalPreparingDeliveryStatusCnt = memberService.getPreparingDeliveryStatusInThisMonth();
+		int totalShippingStatusCnt = memberService.getShippingStatusInThisMonth();
+		int totalDeliveryCompletedStatusCnt = memberService.getDeliveryCompletedStatusInThisMonth();
+		
+		model.addAttribute("orderList", orderList);
+		model.addAttribute("mname", member.getMname());
+		model.addAttribute("totalOrderCnt", totalOrderCnt);
+		model.addAttribute("totalWaitDepositStatusCnt", totalWaitDepositStatusCnt);
+		model.addAttribute("totalCompletePaymentStatusCnt", totalCompletePaymentStatusCnt);
+		model.addAttribute("totalPreparingDeliveryStatusCnt", totalPreparingDeliveryStatusCnt);
+		model.addAttribute("totalShippingStatusCnt", totalShippingStatusCnt);
+		model.addAttribute("totalDeliveryCompletedStatusCnt", totalDeliveryCompletedStatusCnt);
 		return "member/mypage/myPage";
 	}
 	
@@ -304,6 +328,19 @@ public class MemberController {
 		memberService.updateMstatus(mid);
 		
 		return "member/mypage/removeMember";
+	}
+	
+	@Secured("ROLE_USER")
+	@RequestMapping("/writeReview")
+	public String writeReview(Model model, String prdcode, String ordid) {
+		log.info("writeReview() 실행");
+		
+		// 해당 상품코드 객체 가져오기
+		ProductResponse product = productService.getProductResponse(prdcode);
+		model.addAttribute("product", product);
+		model.addAttribute("ordid", ordid);
+				
+		return "member/mypage/writeReview";
 	}
 	/*
 	@PostMapping("/writeBoard")

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -82,52 +84,50 @@
 				</div>
 				
 				<div class="content" style="width:80%; padding:0px 30px;">
-					<div class="section_block" style="height: 20%;">
+					<div class="section_block">
 						<div class="profile_wrap">
 							<div class="profile">
-								<a href="#" style="cursor:default; width:100px; height: 100px;" class="img_box">
+								<!-- <a href="#" style="cursor:default; width:100px; height: 100px;" class="img_box">
 									<div id="myPageDefaultImg" style="">T</div>
-								</a>
+								</a> -->
 								<div class="user_info">
-									<span class="name" id="spanNknm">tjd******</span>
+									<span class="name" id="spanNknm">${mname} 님</span>
 									<a href="updateMember" class="btn_edit">
 										<span class="blind">프로필 편집하기</span>
 									</a>
-									<p class="date">가입일 : <sapn>2024.04.18</sapn></p>
+									<p class="date">가입일 : <span>2024-05-14</span></p>
 								</div>
 							</div>
-							
 						</div>
 					</div>
 					
 					<div class="section_block" style="padding-top: 60px;">
 						<div class="tit_area mb-2">
 							<div class="flexbox align_c">
-								<strong class="s_sub">주문 내역</strong>
-								<span class="s_tit">(최근 1개월)</span>
+								<strong class="s_sub">이번 달 주문 내역</strong>
 							</div>
 							<a href="orderList" class="btn_detail">전체보기</a>
 						</div>
 						<div class="grayline_box flexbox">
 							<ol class="my_order">
 								<li class="step">
-									<a href="#" class="count">0</a>
+									<a href="#" class="count">${totalWaitDepositStatusCnt}</a>
 									<span class="status">입금대기</span>
 								</li>
 					            <li class="step">
-									<a href="#" class="count">0</a>
+									<a href="#" class="count">${totalCompletePaymentStatusCnt}</a>
 									<span class="status">결제완료</span>
 								</li>
 					            <li class="step">
-									<a href="#" class="count" style="color: #37cbe9;">1</a>
+									<a href="#" class="count">${totalPreparingDeliveryStatusCnt}</a>
 									<span class="status">상품준비중</span>
 								</li>
 					            <li class="step">
-									<a href="#" class="count" >0</a>
+									<a href="#" class="count" >${totalShippingStatusCnt}</a>
 									<span class="status">배송중</span>
 								</li>
 					            <li class="step">
-									<a href="#" class="count">0</a>
+									<a href="#" class="count">${totalDeliveryCompletedStatusCnt}</a>
 									<span class="status">배송완료</span>
 								</li>
 							</ol>
@@ -146,10 +146,117 @@
 								</li>
 							</ul>
 						</div>
-						
-						<div class="section_block">
-							<div class="no_data type4">최근 1개월 내 주문 내역이 없습니다.</div>
-						</div>
+						<c:if test="${totalOrderCnt < 1}">
+							<div class="section_block">
+								<div class="no_data type4">이번 달 주문 내역이 없습니다.</div>
+							</div>
+						</c:if>
+						<c:if test="${totalOrderCnt >= 1}">
+							<div id="order_list_div" class="section_block">
+								<div class="no_data type4">
+									<table class="order-table table-col n-order-view">
+										<colgroup>
+											<col style="width: *">
+											<col style="width: 14.2%">
+											<col style="width: 14.2%">
+											<col style="width: 14.2%">
+											<col style="width: 10.2%">
+											<col style="width: 11%">
+										</colgroup>
+										<thead>
+											<tr>
+												<th scope="col">상품정보</th>
+												<th scope="col">주문일자</th>
+												<th scope="col">주문번호</th>
+												<th scope="col">주문금액(수량)</th>
+												<th scope="col" colspan="2">주문 상태</th>
+											</tr>
+										</thead>
+										<tbody class="ordtable-tbody">
+											<c:forEach var="order" items="${orderList}">
+												<tr>
+													<td>
+														<div class="n-prd-row">
+														<a href="${pageContext.request.contextPath}/item/item_view?prdcode=${order.prdcode}" class="img-block">
+															<img
+																src="attachDownload?prdcode=${order.prdcode}"
+																alt="${order.prdname}">
+														</a>
+															<ul class="info">
+																<li class="brand">${order.prdbrand}</li>
+																<li class="name"><a href="${pageContext.request.contextPath}/item/item_view?prdcode=${order.prdcode}" id="goItem">${order.prdname}</a></li>
+															</ul>
+														</div>
+													</td>
+													<td><fmt:formatDate value="${order.ordcreatedat}" pattern="yyyy-MM-dd"/></td>
+													<td><a
+														href="orderView?ordid=${order.ordid}" id="goToorderDetail">${order.ordid}</a>
+													</td>
+													<td>
+														${order.ordtotalprice}원<br>
+														<span class="txt-default">${order.ordtotalamount}개</span>
+													</td>
+													<td>
+														<div class="status">
+															<span>${order.ordstatus}</span>
+														</div> <!-- 출고처리중 주문취소상태 -->
+													</td>
+													<c:if test="${order.ordstatus eq '입금대기'}">
+														<td>
+															<div class="btn-set btn-parents">
+																<button type="button" class="n-btn btn-sm btn-accent"
+																	onclick="">주문취소</button>
+																<button type="button" class="n-btn btn-sm btn-accent"
+																	onclick="location.href='${pageContext.request.contextPath}/member/csInquiry?prdcode=${order.prdcode}'">문의하기</button>
+															</div>
+														</td>
+													</c:if>
+													<c:if test="${order.ordstatus eq '결제완료'}">
+														<td>
+															<div class="btn-set btn-parents">
+																<button type="button" class="n-btn btn-sm btn-accent"
+																	onclick="">주문취소</button>
+																<button type="button" class="n-btn btn-sm btn-accent"
+																	onclick="location.href='${pageContext.request.contextPath}/member/csInquiry?prdcode=${order.prdcode}'">문의하기</button>
+															</div>
+														</td>
+													</c:if>
+													<c:if test="${order.ordstatus eq '상품준비중'}">
+														<td>
+															<div class="btn-set btn-parents">
+					
+																<button type="button" class="n-btn btn-sm btn-accent"
+																	onclick="location.href='${pageContext.request.contextPath}/member/csInquiry?prdcode=${order.prdcode}'">문의하기</button>
+															</div>
+														</td>
+													</c:if>
+													<c:if test="${order.ordstatus eq '배송중'}">
+														<td>
+															<div class="btn-set btn-parents">
+																<button type="button" class="n-btn btn-sm btn-accent"
+																	onclick="location.href='${pageContext.request.contextPath}/member/csInquiry?prdcode=${order.prdcode}'">문의하기</button>
+															</div>
+														</td>
+													</c:if>
+													<c:if test="${order.ordstatus eq '배송완료'}">
+														<td>
+															<div class="btn-set btn-parents">
+																<button type="button" class="n-btn btn-sm btn-accent" 
+																	onclick="location.href='${pageContext.request.contextPath}/member/csInquiry?prdcode=${order.prdcode}'">문의하기</button>
+																<c:if test="${order.revcount eq 0}">
+																	<button type="button" class="n-btn btn-sm btn-accent" 
+																		onclick="location.href='${pageContext.request.contextPath}/member/writeReview?prdcode=${order.prdcode}&ordid=${order.ordid}'">리뷰 작성</button>
+																</c:if>
+															</div>
+														</td>
+													</c:if>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</c:if>
 					</div>
 				</div>
 			</div>

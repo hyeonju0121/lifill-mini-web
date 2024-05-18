@@ -24,10 +24,14 @@
 	</insert>
 	
 	<select id="selectOrderList" parameterType='String' resultType="OrderResponse">
-		
 		select rownum as seq, ord.ordid, mid, prd.prdname, prdbrand, ordtotalamount, ordtotalprice, ordrequest, 
 		ordstatus, ordpostnum, ordcreatedat, ordreceivername, ordreceiveraddress,
-		ordreceiverzipcode, ordreceiverphone, odt.prdcode, odtamount, odt.prdprice
+		ordreceiverzipcode, ordreceiverphone, odt.prdcode, odtamount, odt.prdprice, 
+        (SELECT COUNT(*) 
+	     FROM review rev 
+	     WHERE rev.ordid = ord.ordid 
+	     AND rev.prdcode = odt.prdcode 
+	     AND rev.mid = ord.mid) AS revcount
 
 		from orders ord, ordersdetail odt, product prd
         
@@ -81,4 +85,76 @@
 			#{ordid}, sysdate
 		)
 	</insert>
+	
+	<select id="selectOrderListInThisMonth" parameterType='String' resultType="OrderResponse">
+		select rownum as seq, ord.ordid, ord.mid, mem.mcreatedat, prd.prdname, prdbrand, ordtotalamount, ordtotalprice, ordrequest, 
+		ordstatus, ordpostnum, ordcreatedat, ordreceivername, ordreceiveraddress,
+		ordreceiverzipcode, ordreceiverphone, odt.prdcode, odtamount, odt.prdprice, 
+        (SELECT COUNT(*) 
+	     FROM review rev 
+	     WHERE rev.ordid = ord.ordid 
+	     AND rev.prdcode = odt.prdcode 
+	     AND rev.mid = ord.mid) AS revcount
+
+		from orders ord, ordersdetail odt, product prd, member mem
+        
+		where ord.ordid = odt.ordid
+        and ord.mid = mem.mid
+        and odt.prdcode = prd.prdcode
+      	and mem.mid=#{mid}
+      	and TRUNC(ord.ordcreatedat, 'MM') = TRUNC(SYSDATE, 'MM')
+	</select>
+	
+	<select id="selectWaitDepositStatusInThisMonthByMid" resultType="int" parameterType="String">
+		select count(*) 
+		from orders
+		where ordstatus='입금대기' 
+		and mid=#{mid}
+		and TRUNC(ordcreatedat, 'MM') = TRUNC(SYSDATE, 'MM')
+	</select>
+	
+	<select id="selectCompletePaymentStatusInThisMonthByMid" resultType="int" parameterType="String">
+		select count(*) 
+		from orders
+		where ordstatus='결제완료' 
+		and mid=#{mid}
+		and TRUNC(ordcreatedat, 'MM') = TRUNC(SYSDATE, 'MM')
+	</select>
+	
+	<select id="selectPreparingDeliveryStatusInThisMonthByMid" resultType="int" parameterType="String">
+		select count(*) 
+		from orders
+		where ordstatus='상품준비중' 
+		and mid=#{mid}
+		and TRUNC(ordcreatedat, 'MM') = TRUNC(SYSDATE, 'MM')
+	</select>
+	
+	<select id="selectShippingStatusInThisMonthByMid" resultType="int" parameterType="String">
+		select count(*) 
+		from orders
+		where ordstatus='배송중' 
+		and mid=#{mid}
+		and TRUNC(ordcreatedat, 'MM') = TRUNC(SYSDATE, 'MM')
+	</select>
+	
+	<select id="selectDeliveryCompletedStatusInThisMonthByMid" resultType="int" parameterType="String">
+		select count(*) 
+		from orders
+		where ordstatus='배송완료' 
+		and mid=#{mid}
+		and TRUNC(ordcreatedat, 'MM') = TRUNC(SYSDATE, 'MM')
+	</select>
+	
+	<select id="selectOrderCountByMid" resultType="int" parameterType="String">
+		select count(*)
+		from orders
+		where mid=#{mid}
+	</select>
+	
+	<select id="selectOrderCountInThisMonthByMid" resultType="int" parameterType="String">
+		select count(*)
+		from orders
+		where mid=#{mid}
+		and TRUNC(ordcreatedat, 'MM') = TRUNC(SYSDATE, 'MM')
+	</select>
 </mapper>

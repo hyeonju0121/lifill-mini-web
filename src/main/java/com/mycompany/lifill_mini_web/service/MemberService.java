@@ -15,10 +15,13 @@ import com.mycompany.lifill_mini_web.dao.AddressDao;
 import com.mycompany.lifill_mini_web.dao.InquiryDao;
 import com.mycompany.lifill_mini_web.dao.MemberDao;
 import com.mycompany.lifill_mini_web.dao.OrderDao;
+import com.mycompany.lifill_mini_web.dao.ReviewDao;
 import com.mycompany.lifill_mini_web.dto.Address;
 import com.mycompany.lifill_mini_web.dto.Inquiry;
 import com.mycompany.lifill_mini_web.dto.Member;
+import com.mycompany.lifill_mini_web.dto.Review;
 import com.mycompany.lifill_mini_web.dto.request.CreateInquiryRequest;
+import com.mycompany.lifill_mini_web.dto.request.ReviewRequest;
 import com.mycompany.lifill_mini_web.dto.response.InquiryResponse;
 import com.mycompany.lifill_mini_web.dto.response.MemberResponse;
 import com.mycompany.lifill_mini_web.dto.response.OrderResponse;
@@ -38,6 +41,8 @@ public class MemberService {
 	private AddressDao addressDao;
 	@Resource
 	private OrderDao orderDao;
+	@Resource
+	private ReviewDao reviewDao;
 	
 	public void applyInquiry(Inquiry inquiry) {
 		int rowNum = inquiryDao.insert(inquiry);
@@ -341,5 +346,100 @@ public class MemberService {
 		log.info("inquiry={}", inquiry.toString());
 
 		int inqRowNum = inquiryDao.insertMTMInquiry(inquiry);
+	}
+	
+	public void insertReview(ReviewRequest request) {
+		// 사용자 정보 가져오기
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String mid = authentication.getName();
+		
+		Review rev = new Review();
+		rev.setMid(mid);
+		rev.setOrdid(request.getOrdid());
+		rev.setPrdcode(request.getPrdcode());
+		rev.setRevcontent(request.getRevcontent());
+		rev.setRevscore(request.getRevscore());
+		
+		if (request.getRevattach() != null) {
+			rev.setRevattach(request.getRevattach());
+		}
+		if (request.getRevattachoname() != null) {
+			rev.setRevattachoname(request.getRevattachoname());
+		}
+		if (request.getRevattachtype() != null) {
+			rev.setRevattachtype(request.getRevattachtype());
+		}
+		
+		reviewDao.insertReview(rev);
+		
+	}
+
+	// 마이페이지 첫 화면에서 이번 달 주문 내역을 보여주기 위한 메소드
+	public List<OrderResponse> getOrderListInThisMonth() {
+		// 사용자 정보 가져오기
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String mid = authentication.getName();
+
+		List<OrderResponse> orderList = orderDao.selectOrderListInThisMonth(mid);
+
+		return orderList;
+	}
+
+	public int getWaitDepositStatusInThisMonth() {
+		// 사용자 정보 가져오기
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String mid = authentication.getName();
+		
+		int cnt = orderDao.selectWaitDepositStatusInThisMonthByMid(mid);
+		return cnt;
+	}
+
+	public int getCompletePaymentStatusInThisMonth() {
+		// 사용자 정보 가져오기
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String mid = authentication.getName();
+		
+		int cnt = orderDao.selectCompletePaymentStatusInThisMonthByMid(mid);
+		return cnt;
+	}
+
+	public int getPreparingDeliveryStatusInThisMonth() {
+		// 사용자 정보 가져오기
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String mid = authentication.getName();
+		int cnt = orderDao.selectPreparingDeliveryStatusInThisMonthByMid(mid);
+		return cnt;
+	}
+
+	public int getShippingStatusInThisMonth() {
+		// 사용자 정보 가져오기
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String mid = authentication.getName();
+		int cnt = orderDao.selectShippingStatusInThisMonthByMid(mid);
+		return cnt;
+	}
+
+	public int getDeliveryCompletedStatusInThisMonth() {
+		// 사용자 정보 가져오기
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String mid = authentication.getName();
+		int cnt = orderDao.selectDeliveryCompletedStatusInThisMonthByMid(mid);
+		return cnt;
+	}
+
+	public int getOrderCount() {
+		// 사용자 정보 가져오기
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String mid = authentication.getName();
+		int cnt = orderDao.selectOrderCountByMid(mid);
+		return cnt;
+	}
+
+	public int getOrderCountInThisMonth() {
+		// 사용자 정보 가져오기
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String mid = authentication.getName();
+		int cnt = orderDao.selectOrderCountInThisMonthByMid(mid);
+		return cnt;
 	}
 }
