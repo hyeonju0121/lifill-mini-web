@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -88,23 +90,81 @@
 					    <div class="widget_managing_reviews__head">
 							<div class="managing_reviews_header">
 								<ul class="managing_reviews_header__tab_list">
-							    	<li id="can_write_review" class="managing_reviews_header__tab managing_reviews_header__tab--active">
-							    		<a href="#" class="managing_reviews_header__tab_link" data-remote="true">
-									        작성 가능한 리뷰 0
-									    </a>
-							    	</li>
 							    	<li id="written_review" class="managing_reviews_header__tab ">
-								    	<a href="#" class="managing_reviews_header__tab_link" data-remote="true">
-										내가 작성한 리뷰 0
-								    	</a>
+										내가 작성한 리뷰 (${totalReviewCnt}개)
 								    </li>
 							  	</ul>
-							    <div class="managing_reviews_header__message managing_reviews_header__message--pending_reviews">
-							        현재 작성 가능한 리뷰가 없습니다.
-							    </div>
-							    <div class="managing_reviews_header__pending_reviews_description">
-								※ 배송이 완료된 상품만 목록에 노출됩니다.
-							    </div>
+							  	<c:if test="${totalReviewCnt < 1}">
+								    <div class="managing_reviews_header__message managing_reviews_header__message--pending_reviews">
+								        작성한 리뷰가 없습니다.
+								        상품을 구매하고 리뷰를 작성해보세요!
+								    </div>
+							  	</c:if>
+							  	<c:if test="${totalReviewCnt >= 1}">
+									<table>
+										<div class="done_wrap type4">
+												<div class="notice">
+													<div class="tab_cont_box">
+														<div class="tab_cont" data-id="tab-01">
+															<div class="tab_cont_inner faq_accordion">
+																<div class="divi_line qna_inquiry_board">
+																	<div class="accordion accordion-flush" id="qna_List">
+																		<c:forEach var="review" items="${reviewList}">
+																			<div class="acc_header" name="qna">
+																				<button class="accordion-button collapsed" 
+																							type="button" 
+																							data-bs-toggle="collapse" 
+																							data-bs-target="#flush-collapse${review.seq}" 
+																							aria-expanded="false" 
+																							aria-controls="flush-collapse${review.seq}">
+																					<span class="prd_num">${review.seq}</span>
+																					<ul class="badge_auto_list1">
+																						<li>${review.prdbrand}</li>
+																					</ul>
+																					<ul class="badge_auto_list2">
+																						<li>${review.revscore}점</li>
+																					</ul>
+																					<div class="prd_subtit">작성한 리뷰 펼쳐보기</div>              
+																					<span class="prd_date"><fmt:formatDate value="${review.revcreatedat}" pattern="yyyy-MM-dd"/></span>
+																				</button>
+																			</div>
+																		
+																			<div id="flush-collapse${review.seq}" class="accordion-collapse collapse" data-bs-parent="#qna_List">
+																		      <div class="accordion-body">
+																				<div class="acc_cont cart_list order">
+																					<div class="img-td">
+																						<div class="profile_wrap">
+																							<div class="profile profile_attach">
+																								<div id="itemImg">
+																									<img src="attachDownload?prdcode=${review.prdcode}"
+																										class="rounded-3" style="width: 90px; height: 90px;" />
+																								</div>
+																								<div class="profile_edit">
+																									<p class="tit">[${review.prdbrand}]<span class="sub">${review.prdname}</span></p>
+																								</div>
+																								</div>
+																							</div>
+																						</div>
+																						<hr>
+																					  <div class="contents">
+																					  	<div id="review-date">
+																					  		작성일 : <fmt:formatDate value="${review.revcreatedat}" pattern="yyyy-MM-dd"/>
+																					  	</div>
+																					  	${review.revcontent}
+																					  </div>
+																				</div>
+																		      </div>
+																		    </div>
+																	   </c:forEach>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</table>
+							  	</c:if>
 							</div>
 					    </div>
 					    <div class="widget_managing_reviews__list">

@@ -18,4 +18,21 @@
 			#{revattachtype}, #{revattach}, sysdate
 		)
 	</insert>
+	
+	<select id="selectReview" parameterType="String" resultType="ReviewResponse">
+		select rownum as seq, revno, mid, ordid, prd.prdcode,
+		revcontent, revscore, revattachoname, revattachtype, revattach,
+		revcreatedat, prdbrand, prdname
+		
+		from review rev, product prd
+		
+		where mid=#{mid}
+        and rev.prdcode = prd.prdcode
+	</select>
+	
+	<select id="selectReviewCount" parameterType="String" resultType="int">
+		select count(*)
+		from review
+		where mid=#{mid}
+	</select>
 </mapper>

@@ -25,6 +25,7 @@ import com.mycompany.lifill_mini_web.dto.request.ReviewRequest;
 import com.mycompany.lifill_mini_web.dto.response.InquiryResponse;
 import com.mycompany.lifill_mini_web.dto.response.MemberResponse;
 import com.mycompany.lifill_mini_web.dto.response.OrderResponse;
+import com.mycompany.lifill_mini_web.dto.response.ReviewResponse;
 import com.mycompany.lifill_mini_web.security.LifillUserDetails;
 
 import lombok.extern.slf4j.Slf4j;
@@ -442,4 +443,26 @@ public class MemberService {
 		int cnt = orderDao.selectOrderCountInThisMonthByMid(mid);
 		return cnt;
 	}
+	
+	// 리뷰 리스트 조회하기
+		public List<ReviewResponse> getReviewList() {
+			// 사용자 정보 가져오기
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			String mid = authentication.getName();
+
+			List<ReviewResponse> ReviewList = reviewDao.selectReview(mid);
+
+			return ReviewList;
+		}
+
+		// 작성한 리뷰 갯수 조회하기
+		public int getReviewCount() {
+			// 사용자 정보 가져오기
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			String mid = authentication.getName();
+			
+			int cnt = reviewDao.selectReviewCount(mid);
+			
+			return cnt;
+		}
 }

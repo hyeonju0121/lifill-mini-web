@@ -26,6 +26,7 @@ import com.mycompany.lifill_mini_web.dto.response.InquiryResponse;
 import com.mycompany.lifill_mini_web.dto.response.MemberResponse;
 import com.mycompany.lifill_mini_web.dto.response.OrderResponse;
 import com.mycompany.lifill_mini_web.dto.response.ProductResponse;
+import com.mycompany.lifill_mini_web.dto.response.ReviewResponse;
 import com.mycompany.lifill_mini_web.security.LifillUserDetails;
 import com.mycompany.lifill_mini_web.service.MemberService;
 import com.mycompany.lifill_mini_web.service.ProductService;
@@ -153,6 +154,7 @@ public class MemberController {
 
 		// 주문 객체 가져오기
 		List<OrderResponse> orderList = memberService.getOrderList();
+		int totalOrderCnt = memberService.getOrderCount();
 		int totalWaitDepositStatusCnt = memberService.getWaitDepositStatus();
 		int totalCompletePaymentStatusCnt = memberService.getCompletePaymentStatus();
 		int totalPreparingDeliveryStatusCnt = memberService.getPreparingDeliveryStatus();
@@ -160,6 +162,7 @@ public class MemberController {
 		int totalDeliveryCompletedStatusCnt = memberService.getDeliveryCompletedStatus();
 		
 		model.addAttribute("orderList", orderList);
+		model.addAttribute("totalOrderCnt", totalOrderCnt);
 		model.addAttribute("totalWaitDepositStatusCnt", totalWaitDepositStatusCnt);
 		model.addAttribute("totalCompletePaymentStatusCnt", totalCompletePaymentStatusCnt);
 		model.addAttribute("totalPreparingDeliveryStatusCnt", totalPreparingDeliveryStatusCnt);
@@ -263,9 +266,16 @@ public class MemberController {
 		return "redirect:/member/myQnaList";
 	}
 	
+	@Secured("ROLE_USER")
 	@RequestMapping("/myGoodsReviewList")
-	public String myGoodsReviewList() {
-		log.info("myGoodsReviewList() 실행");
+	public String myGoodsReviewList(Model model) {
+		// 리뷰 객체 가져오기
+		List<ReviewResponse> reviewList = memberService.getReviewList();
+		int totalReviewCnt = memberService.getReviewCount();
+		
+		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("totalReviewCnt", totalReviewCnt);
+			
 		return "member/mypage/myGoodsReviewList";
 	}
 	
