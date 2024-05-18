@@ -38,7 +38,7 @@
 							<a class="menu_depth01" href="#">나의 쇼핑 정보</a>
 							<ul class="menu_depth02">
 								<li id="order"><a href="orderList">주문 내역</a></li>
-								<li id="claim"><a href="orderListClaim">교환/반품/취소 내역</a></li>
+								<li id="claim"><a href="orderListClaim">교환/환불 내역</a></li>
 							</ul>
 						</li>
 						<li id="menu2" style="height: 20%; ">

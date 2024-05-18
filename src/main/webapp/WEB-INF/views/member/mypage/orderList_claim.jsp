@@ -38,7 +38,7 @@
 							<a class="menu_depth01" href="#">나의 쇼핑 정보</a>
 							<ul class="menu_depth02">
 								<li id="order"><a href="orderList">주문 내역</a></li>
-								<li id="claim"><a href="orderListClaim">교환/반품/취소 내역</a></li>
+								<li id="claim"><a href="orderListClaim">교환/환불 내역</a></li>
 							</ul>
 						</li>
 						<li id="menu2" style="height: 20%; ">
@@ -82,13 +82,7 @@
 				
 				<div class="content">
 					<div class="tit_area line_thick">
-						<strong class="tit_lv2">교환/반품/취소 내역</strong>
-					</div>
-					
-					<div class="tab_style3">
-						<button type="button" class="tab_btn is_active" onclick="" data-tab="tab-01"><span class="txt_s">교환</span></button>
-						<button type="button" class="tab_btn " onclick="" data-tab="tab-02"><span class="txt_s">반품</span></button>
-						<button type="button" class="tab_btn " onclick="" data-tab="tab-03"><span class="txt_s">취소</span></button>
+						<strong class="tit_lv2">교환/환불 내역</strong>
 					</div>
 					<div class="section_block">
 						<div class="form_period_group">
@@ -144,37 +138,7 @@
 							</div>
 							<button id="checkDate" type="button" class="btn" onclick="">조회</button>
 						</div>
-				
-						<!-- 주문상태 카운트 -->
-						<ol class="my_order my_benefit">
-							<li class="step ">
-								<a href="#" class="count" style="display: none">0</a>
-								<span class="value disabled count" style="display: ">0</span>
-								<span class="status">입금대기</span>
-							</li>
-							<li class="step ">
-								<a href="#" class="count" style="display: none">0</a>
-								<span class="value disabled count" style="display: ">0</span>
-								<span class="status">결제완료</span>
-							</li>
-							<li class="step ">
-								<a href="#" class="count" style="display: none">0</a>
-								<span class="value disabled count" style="display: ">1</span>
-								<span class="status">상품준비중</span>
-							</li>
-							<li class="step ">
-								<a href="#" class="count" style="display: none">0</a>
-								<span class="value disabled count" style="display: ">0</span>
-								<span class="status">배송중</span>
-							</li>
-							<li class="step ">
-								<a href="#" class="count" style="display: none">0</a>
-								<span class="value disabled count" style="display: ">0</span>
-								<span class="status">배송완료</span>
-							</li>
-						</ol>
 					</div>
-				
 					<div id="order_list_div" class="section_block">
 						<div class="no_data type4">
 							기간 내 교환 내역이 없습니다.

@@ -145,16 +145,13 @@ ul.menu_depth02 a {
 
 .tit_area {
     box-sizing: border-box;
-    margin: 0;
-    font-size: 18px;
     font-weight: bold;
     display: flex;
-    justify-content: space-between;
     padding: 0;
     align-items: flex-end;
-    padding-bottom: 30px;
-    border-bottom: 3px solid black;
-    margin-bottom: 0px;
+    font-size: 22px;
+    margin: 0;
+    justify-content: flex-start;
 }
 
 .cs_number {
