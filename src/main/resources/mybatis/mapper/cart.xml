@@ -4,5 +4,59 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 	
 <mapper namespace="com.mycompany.lifill_mini_web.dao.CartDao"> 
-
+	<insert id="addCartItem" parameterType="Cart">
+		insert into cart (
+			prdcode, mid, camount, cprice)
+		values (
+			#{prdcode}, #{mid}, #{camount}, #{cprice}
+		)
+	</insert>
+	
+	<select id="getCartItem" parameterType="String" resultType="GetCartItemResponse">
+		select c.mid, c.prdcode, t5.prdbrand, t5.prdprice, t5.prdname, c.camount, c.cprice,
+		    t5.prdimgrep1oname, t5.prdimgrep1type
+		from cart c, 
+		    (
+		        select   t3.prdcode, t4.prdname, t4.prdbrand, t4.prdprice, 
+				         t4.prdimgrep1oname, t4.prdimgrep1type
+				from (
+				        select t1.prdcode, fnno, fnval, igdno, igdval
+				        from (
+				                select p.prdcode, i.igdno, i.igdval
+				                from product p, ingredient i
+				                where p.igdno=i.igdno
+				             ) t1, (
+				                select p.prdcode, f.fnno, f.fnval
+				                from product p, function f
+				                where p.fnno=f.fnno
+				             ) t2
+				        where t1.prdcode = t2.prdcode
+				    ) t3, (
+				                select t1.prdcode, t1.prdname, t1.prdbrand, t1.prdprice, t1.prdstock,
+		                               t1.prdsubscribable, t1.prdsalesstatus,
+		                               prdcontents.prdimgrep1oname, prdcontents.prdimgrep1type,
+		                               prdcontents.prdimgrep2oname, prdcontents.prdimgrep2type,
+		                               prdcontents.prdimgrep3oname, prdcontents.prdimgrep3type,
+				                       prdcontents.prdimgdetailoname, prdcontents.prdimgdetailtype,
+		                               prdcontents.prdtarget, prdcontents.prdtimes, prdcontents.prdmethod,
+		                               prdcontents.prdeffect, prdcontents.prdtype, prdcontents.prdingredient,
+				                       prdcontents.prdcreatedat, prdcontents.prdupdatedat,
+		                               prdhashtag.tagno, prdhashtag.tagval
+				                from 
+				                    prdcontents, 
+				                    (
+				                        select p.prdcode, p.fnno, p.prdname, p.prdbrand, p.prdprice, p.prdstock,
+		                                       p.prdsubscribable, p.prdsalesstatus
+				                        from product p , prddetail pd
+				                        where p.prdcode=pd.prdcode
+				                    ) t1, prdhashtag
+				                where prdcontents.prdcode=t1.prdcode
+		                             and prdcontents.prdcode=prdhashtag.prdcode 
+				                order by prdcontents.prdcreatedat
+				            ) t4
+				where t3.prdcode=t4.prdcode
+		    ) t5
+		where c.prdcode=t5.prdcode
+		    and c.mid=#{mid}
+	</select>
 </mapper>

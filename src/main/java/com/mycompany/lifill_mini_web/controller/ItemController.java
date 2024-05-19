@@ -22,7 +22,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.mycompany.lifill_mini_web.dto.Member;
 import com.mycompany.lifill_mini_web.dto.Pager;
 import com.mycompany.lifill_mini_web.dto.request.ItemPageRequest;
+import com.mycompany.lifill_mini_web.dto.request.MultipleOrdersRequest;
+import com.mycompany.lifill_mini_web.dto.request.OrderItem;
 import com.mycompany.lifill_mini_web.dto.request.SingleOrderRequest;
+import com.mycompany.lifill_mini_web.dto.response.OrdersResponse;
 import com.mycompany.lifill_mini_web.dto.response.ProductResponse;
 import com.mycompany.lifill_mini_web.security.LifillUserDetails;
 import com.mycompany.lifill_mini_web.service.MemberService;
@@ -285,11 +288,30 @@ public class ItemController {
 	}
 
 	// 장바구니에 담긴 상품을 구매하려 할 때 실행되는 내용
-	@RequestMapping("/buyOnCart")
-	public String buyOnCart(String mid, String prdcode, int ordAmount, int ordPrice, Model model) {
+	@Secured("ROLE_USER")
+	@GetMapping("/buyOnCart")
+	public String buyOnCart(OrderItem item, Model model) {
 		log.info("buyOnCart() 실행");
+		log.info("사용자가 주문 넣은 항목 request.toString={}", item.toString());
 
-		return "item/order";
+		// 로그인한 회원의 객체 얻기
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		LifillUserDetails userDetails = (LifillUserDetails) authentication.getPrincipal();
+		Member member = userDetails.getMember();
+
+		String maddress = memberService.getMemberAddress(member);
+		String mzipcode = memberService.getMemberZipcode(member);
+
+		// 서비스 -> prdcode 기준으로 해당 productResponse 객체 가져오기
+	    List<OrdersResponse> productResponse = productService.getProductsResponse(item);
+		
+		// jsp에서 사용할 수 있도록 model로 넘겨주기
+		model.addAttribute("product", productResponse);
+		model.addAttribute("member", member);
+		model.addAttribute("maddress", maddress);
+		model.addAttribute("mzipcode", mzipcode);
+
+		return "item/orders";
 	}
 
 	@Transactional
@@ -300,6 +322,18 @@ public class ItemController {
 		log.info("singleOrder={}", singleOrder.toString());
 
 		orderService.createOrder(singleOrder);
+
+		return "item/orderComplete";
+	}
+	
+	@Transactional
+	@PostMapping("/buyMultiple")
+	public String buyMultiple(MultipleOrdersRequest orders) {
+		log.info("buyMultiple() 실행");
+
+		log.info("orders={}", orders.toString());
+
+		orderService.createOrders(orders);
 
 		return "item/orderComplete";
 	}

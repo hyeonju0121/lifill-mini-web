@@ -4,13 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.transaction.Transactional;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import com.mycompany.lifill_mini_web.dao.CartDao;
 import com.mycompany.lifill_mini_web.dao.PrdHashtagDao;
 import com.mycompany.lifill_mini_web.dao.ProductDao;
 import com.mycompany.lifill_mini_web.dao.ProductResponseDao;
+import com.mycompany.lifill_mini_web.dto.Cart;
+import com.mycompany.lifill_mini_web.dto.request.CartAddItemRequest;
 import com.mycompany.lifill_mini_web.dto.request.ItemPageRequest;
+import com.mycompany.lifill_mini_web.dto.request.OrderItem;
+import com.mycompany.lifill_mini_web.dto.request.OrderItemRequest;
+import com.mycompany.lifill_mini_web.dto.response.OrdersResponse;
 import com.mycompany.lifill_mini_web.dto.response.ProductResponse;
 
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +36,9 @@ public class ProductService {
 
 	@Resource
 	private ProductDao productDao;
+
+	@Resource
+	private CartDao cartDao;
 
 	// 전체 상품 목록 조회 (서브카테고리, 정렬, 필터)
 	public List<ProductResponse> getProductResponseList(ItemPageRequest request) {
@@ -156,7 +168,7 @@ public class ProductService {
 			// 001 -> 눈건강 변환
 			subCategory = subIgdCategoryValidation(subCategory);
 			request.setSubCategory(subCategory);
-			
+
 			log.info("subCategory.toString={}", subCategory);
 
 			// 정기구독을 체크한 경우
@@ -212,7 +224,7 @@ public class ProductService {
 			}
 		} else {
 			subCategory = subIgdCategoryValidation(subCategory);
-			
+
 			// 서브카테고리가 각 기능별에 해당하는 경우
 			// filter 가 0인 경우 -> 각 기능별에 해당하는 전체 상품 개수 조회
 			if (request.getFilter().equals("0")) {
@@ -233,10 +245,64 @@ public class ProductService {
 		return productResponse;
 	}
 
+	// -----------------------------------------------------------
+	// 상품 복수건 조회 (장바구니 건에서 주문할 때 사용)
+	public List<OrdersResponse> getProductsResponse(OrderItem item) {
+		// 사용자가 주문 요청한 prdcode 가져오기
+		/*
+		 * 
+		 * request.toString=OrderItem( orders= [OrderItemRequest(prdcode=P100-0025,
+		 * ordtotalamount=1, prdtotalprice=15000), OrderItemRequest(prdcode=P100-0030,
+		 * ordtotalamount=1, prdtotalprice=36300), OrderItemRequest(prdcode=P500-0059,
+		 * ordtotalamount=1, prdtotalprice=50000), OrderItemRequest(prdcode=P200-0072,
+		 * ordtotalamount=1, prdtotalprice=34900)])
+		 */
+
+		List<OrderItemRequest> orders = item.getOrders();
+		log.info("orders: {}", orders.toString());
+
+		List<OrdersResponse> ordersResponse = new ArrayList<>();
+
+		for (OrderItemRequest request : orders) {
+			OrdersResponse response = new OrdersResponse();
+			String prdcode = request.getPrdcode();
+
+			response.setPrdcode(request.getPrdcode());
+			response.setOrdamount(request.getOrdtotalamount());
+			response.setOrdprice(request.getPrdtotalprice());
+
+			// prdcode 기준으로 상품 조회해서 prdbrand, prdname을 response 객체에 셋팅 해주기
+			ProductResponse prdByPrdcode = productResponseDao.prdSelectByPrdcode(prdcode);
+			response.setPrdbrand(prdByPrdcode.getPrdbrand());
+			response.setPrdname(prdByPrdcode.getPrdname());
+
+			ordersResponse.add(response);
+		}
+
+		return ordersResponse;
+	}
+
 	// 상품코드 기준으로 AttachData (대표이미지) 조회
 	public byte[] getAttachData(String prdcode) {
 		ProductResponse productResponse = productResponseDao.prdSelectByAttachData(prdcode);
 		return productResponse.getPrdimgrep1();
+	}
+
+	// 사용자 장바구니에 해당 상품 추가
+	@Transactional
+	public void addCartItem(CartAddItemRequest request) {
+		// 사용자 정보 가져오기
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String mid = authentication.getName();
+
+		Cart cart = new Cart();
+		cart.setMid(mid);
+		cart.setPrdcode(request.getPrdcode());
+		cart.setCamount(Integer.parseInt(request.getOrdamount()));
+		cart.setCprice(Integer.parseInt(request.getOrdprice()));
+
+		// cart 테이블에 해당 객체 추가
+		cartDao.addCartItem(cart);
 	}
 
 	// 판매중인 상품 total count
