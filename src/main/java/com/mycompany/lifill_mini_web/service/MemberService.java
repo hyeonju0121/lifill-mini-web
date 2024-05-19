@@ -22,6 +22,7 @@ import com.mycompany.lifill_mini_web.dto.Inquiry;
 import com.mycompany.lifill_mini_web.dto.Member;
 import com.mycompany.lifill_mini_web.dto.Review;
 import com.mycompany.lifill_mini_web.dto.request.CreateInquiryRequest;
+import com.mycompany.lifill_mini_web.dto.request.OrdersViewRequest;
 import com.mycompany.lifill_mini_web.dto.request.ReviewRequest;
 import com.mycompany.lifill_mini_web.dto.response.GetCartItemResponse;
 import com.mycompany.lifill_mini_web.dto.response.InquiryResponse;
@@ -311,11 +312,19 @@ public class MemberService {
 		/* log.info("Updating password for member ID: " + member.getMid()); */
 	}
 
-	public OrderResponse getOrderDetail(String ordid) {
-		log.info("실행");
-		OrderResponse order = orderDao.selectOrderDetailByOrdid(ordid);
+	// 다중 주문건 가져오기
+	public List<OrderResponse> getOrdersDetail(String ordid) {
+		// 사용자 정보 가져오기
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String mid = authentication.getName();
 
-		return order;
+		OrdersViewRequest request = new OrdersViewRequest();
+		request.setMid(mid);
+		request.setOrdid(ordid);
+
+		List<OrderResponse> orders = orderDao.selectOrdersByOrdersViewRequest(request);
+
+		return orders;
 	}
 
 	public List<InquiryResponse> getMToMInquiry() {

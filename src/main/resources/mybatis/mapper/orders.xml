@@ -171,4 +171,23 @@
 		where mid=#{mid}
 		and TRUNC(ordcreatedat, 'MM') = TRUNC(SYSDATE, 'MM')
 	</select>
+	
+	<select id="selectOrdersByOrdersViewRequest" parameterType="OrdersViewRequest" resultType="OrderResponse">
+		select ord1.seq, ord1.ordid, ord1.mid, prd.prdname, prd.prdbrand, ord1.ordtotalamount, 
+		        ord1.ordtotalprice, ord1.ordrequest, ord1.ordstatus, ord1.ordpostnum, ord1.ordcreatedat, 
+		        ord1.ordreceivername, ord1.ordreceiveraddress, ord1.ordreceiverzipcode, ord1.ordreceiverphone,
+		        ord1.prdcode, ord1.odtamount, ord1.prdprice
+		from product prd, (
+		        select rownum as seq, ord.ordid, mid, ordtotalamount, ordtotalprice, ordrequest, 
+		            ordstatus, ordpostnum, ordcreatedat, ordreceivername, ordreceiveraddress,
+		            ordreceiverzipcode, ordreceiverphone, odt.prdcode, odtamount, odt.prdprice
+		        from orders ord, ordersdetail odt
+		        where ord.ordid=odt.ordid
+		            and ord.ordid=#{ordid}
+		            and ord.mid=#{mid}
+		    ) ord1
+		where prd.prdcode=ord1.prdcode
+	
+	</select>
+	
 </mapper>

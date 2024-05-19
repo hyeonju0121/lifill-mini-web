@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.mycompany.lifill_mini_web.dto.Inquiry;
 import com.mycompany.lifill_mini_web.dto.Member;
 import com.mycompany.lifill_mini_web.dto.request.CartAddItemRequest;
 import com.mycompany.lifill_mini_web.dto.request.CreateInquiryRequest;
@@ -215,9 +214,9 @@ public class MemberController {
 		log.info("order={}", ordid);
 
 		// 해당 주문 건 가져오기
-		OrderResponse order = memberService.getOrderDetail(ordid);
+		List<OrderResponse> orders = memberService.getOrdersDetail(ordid);
 
-		model.addAttribute("order", order);
+		model.addAttribute("orders", orders);
 
 		return "member/mypage/orderView";
 	}

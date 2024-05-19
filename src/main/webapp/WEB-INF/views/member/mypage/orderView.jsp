@@ -119,7 +119,7 @@
 									</tr>
 								</thead>
 								<tbody>
-
+								<c:forEach var="order" items="${orders}">
 									<tr>
 										<td>
 											<div class="n-prd-row">
@@ -133,18 +133,12 @@
 												</ul>
 											</div>
 										</td>
-										<td>${order.prdprice}
-										</td>
+										<td>${order.prdprice}</td>
 										<td>
-										<span class="txt-default">${order.ordtotalamount}개
-										</span>
+											<span class="txt-default">${order.ordtotalamount}개</span>
 										</td>
-
-										<td>${order.ordtotalprice}원
-										</td>
-										<td>
-										${order.ordstatus}
-										</td>
+										<td>${order.ordtotalprice}원</td>
+										<td>${order.ordstatus}</td>
 											<c:if test="${order.ordstatus eq '입금대기'}">
 												<td>
 													<div class="btn-set btn-parents">
@@ -190,7 +184,8 @@
 													</div>
 												</td>
 											</c:if>
-									</tr>
+										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 
@@ -210,19 +205,19 @@
 										<tbody>
 											<tr>
 												<th scope="row">이름</th>
-												<td>${order.ordreceivername}</td>
+												<td>${orders[0].ordreceivername}</td>
 											</tr>
 											<tr>
 												<th scope="row">연락처</th>
-												<td>${order.ordreceiverphone}</td>
+												<td>${orders[0].ordreceiverphone}</td>
 											</tr>
 											<tr>
 												<th scope="row">배송지 주소</th>
-												<td>(${order.ordreceiverzipcode}) ${order.ordreceiveraddress}</td>
+												<td>(${orders[0].ordreceiverzipcode}) ${orders[0].ordreceiveraddress}</td>
 											</tr>
 											<tr>
 												<th scope="row">배송 메시지</th>
-												<td>${order.ordrequest}</td>
+												<td>${orders[0].ordrequest}</td>
 											</tr>
 										</tbody>
 									</table>
@@ -238,7 +233,7 @@
 										<dl class="order__item">
 											<dt class="order__item__definition">상품 합계</dt>
 											<dd class="order__item__description">
-												<span id="total_pay_amt">${order.ordtotalprice}</span>원
+												<span id="total_pay_amt">${orders[0].ordtotalprice}</span>원
 											</dd>
 										</dl>
 										<dl class="order__item">
@@ -252,7 +247,7 @@
 											</dt>
 											<dd class="order__item__description">
 												<div class="total-wrap">
-													<span class="total">${order.ordtotalprice}원</span>
+													<span class="total">${orders[0].ordtotalprice}원</span>
 												</div>
 											</dd>
 										</dl>
@@ -261,14 +256,12 @@
 											<dd class="order__item__description">미구현</dd>
 										</dl>
 									</div>
-
 								</section>
 								<!-- //최종 결제 정보 -->
 
 							</div>
 						</section>
 							<button class="btn" id="goToOrderList" onclick="location.href='orderList'">목록으로</button>
-
 					</div>
 				</div>
 			</div>

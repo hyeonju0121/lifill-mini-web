@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.mycompany.lifill_mini_web.dto.Orders;
 import com.mycompany.lifill_mini_web.dto.Payment;
+import com.mycompany.lifill_mini_web.dto.request.OrdersViewRequest;
 import com.mycompany.lifill_mini_web.dto.response.OrderResponse;
 
 @Mapper
@@ -29,4 +30,5 @@ public interface OrderDao {
 	public int selectDeliveryCompletedStatusInThisMonthByMid(String mid);
 	public int selectOrderCountByMid(String mid);
 	public int selectOrderCountInThisMonthByMid(String mid);
+	public List<OrderResponse> selectOrdersByOrdersViewRequest(OrdersViewRequest request);
 }

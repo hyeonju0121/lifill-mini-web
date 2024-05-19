@@ -36,6 +36,7 @@
 		<typeAlias type="com.mycompany.lifill_mini_web.dto.response.ReviewResponse" alias="ReviewResponse"/>
 		<typeAlias type="com.mycompany.lifill_mini_web.dto.response.GetCartItemResponse" alias="GetCartItemResponse"/>
 		<typeAlias type="com.mycompany.lifill_mini_web.dto.request.OrderItemRequest" alias="OrderItemRequest"/>
+		<typeAlias type="com.mycompany.lifill_mini_web.dto.request.OrdersViewRequest" alias="OrdersViewRequest"/>
 	</typeAliases>
 	
 </configuration>
