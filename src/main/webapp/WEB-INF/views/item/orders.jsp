@@ -80,7 +80,7 @@
 		    }
 			
 	        $(document).ready(function() {
-	            $('#orderForm').on('submit', function(event) {
+	            $('#ordersForm').on('submit', function(event) {
 	                var address1 = $('#address1').val();
 	                var address2 = $('#address2').val();
 	                

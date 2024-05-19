@@ -114,12 +114,9 @@ public class OrderService {
 		// ordtotalamount값 저장해서 넣어줘야함 
 		int ordtotalamount = 0;
 		for (OrderItemRequest temp : itemsList) {
-			ordtotalamount++;
+			ordtotalamount += temp.getOrdtotalamount();
 		}	
 		
-		// ordreceiveraddress 이거 지금 폼에서 요청이 안가는데 이유를 모르겠음
-		// 성준 오빠한테 물어보기 
-		String ordreceiveraddress = "대전 도안북로 93번길 10-31, 317호";
 		
 		log.info("ordid={}", ordid);
 		
@@ -129,10 +126,10 @@ public class OrderService {
 				.ordtotalamount(ordtotalamount)
 				.ordtotalprice(orders.getOrdtotalprice())
 				.ordrequest(orders.getOrdrequest())
-				.ordstatus("상품준비중")
+				.ordstatus("결제완료")
 				.ordcreatedat(orders.getOrdcreatedat())
 				.ordreceivername(orders.getOrdreceivername())
-				.ordreceiveraddress(ordreceiveraddress)
+				.ordreceiveraddress(orders.getOrdreceiveraddress())
 				.ordreceiverzipcode(orders.getOrdreceiverzipcode())
 				.ordreceiverphone(orders.getOrdreceiverphone())
 				.build();
