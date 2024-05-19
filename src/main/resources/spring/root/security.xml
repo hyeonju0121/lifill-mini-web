@@ -29,13 +29,6 @@
 		<!-- 사이트간 요청 위조 방지 비활성화 -->
 		<security:csrf disabled="true" />
 
-		<!-- 요청 URL 권한 설정 방법1 -->
-		<security:intercept-url pattern="/ch17/admin/**" access="hasRole('ROLE_ADMIN')"/> 
-		<!-- access="isAuthenticated()" 로그인 인증만 되면 볼 수 있게 설정 -->
-		<security:intercept-url pattern="/ch17/user/**" access="isAuthenticated()"/>
-		<!-- access="permitAll" 로그인 없이도 모두 다 볼 수 있게 설정-->
-		<security:intercept-url pattern="/**" access="permitAll" />
-
 		<!-- 
 		권한 없음일 경우 보여줄 페이지 설정
 		403: 권한없을 때 에러코드 

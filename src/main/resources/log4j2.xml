@@ -7,7 +7,7 @@
 	</Appenders>
 
 	<Loggers>
-		<Logger name="com.mycompany.lifill_mini_web" level="info" additivity="false">
+		<Logger name="com.mycompany.lifill_mini_web" level="error" additivity="false">
 			<AppenderRef ref="Out" />
 		</Logger>
 		<Root level="error">

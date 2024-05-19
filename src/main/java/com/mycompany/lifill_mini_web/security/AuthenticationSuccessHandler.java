@@ -29,7 +29,7 @@ public class AuthenticationSuccessHandler
 		log.info("실행");
 		
 		// 로그인 성공 후에 이동할 Url 지정 
-		setDefaultTargetUrl("/main"); // extends SimpleUrlAuthenticationSuccessHandler 사용시에만 ! 
+		setDefaultTargetUrl("/"); // extends SimpleUrlAuthenticationSuccessHandler 사용시에만 ! 
 		// 기타 기본 설정을 적용하기 위해 부모 메소드 호출
 		super.onAuthenticationSuccess(request, response, authentication);
 	}

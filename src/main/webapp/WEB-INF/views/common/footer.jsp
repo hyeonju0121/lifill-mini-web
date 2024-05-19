@@ -17,12 +17,9 @@
 
 			<div class="col-lg-4 col-xs-12 location" style="flex:1;">
 				<h4 class="mt-lg-0 mt-sm-4">Location</h4>
-				<p>서울특별시 송파구 중대로 135 아이티벤처타워, 12층 한국소프트웨어산업협회</p>
+				<p>서울특별시 송파구 중대로 135 아이티벤처타워, 16층 한국소프트웨어산업협회</p>
 				<p class="mb-0">
 					<i class="fa fa-phone mr-3"></i> 팀 라이필 1차 미니 웹 프로젝트
-				</p>
-				<p class="mt-5">
-					고객센터 버튼? 공지사항 버튼? 보통 SNS 계정으로 이동하는 아이콘이나, 사업자번호 등이 나오는 부분
 				</p>
 			</div>
 		</div>
