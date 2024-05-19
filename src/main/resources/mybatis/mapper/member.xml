@@ -11,8 +11,8 @@
 	</select>
 	
 	<insert id="mInsert" parameterType="MemberResponse">
-		insert into member (mid, mpassword, mname, mphone, memail, mrole, mcreatedat)
-		values(#{mid}, #{mpassword}, #{mname}, #{mphone}, #{memail}, #{mrole}, sysdate)
+		insert into member (mid, mpassword, mname, mphone, memail, mrole, mcreatedat, menabled)
+		values(#{mid}, #{mpassword}, #{mname}, #{mphone}, #{memail}, #{mrole}, sysdate, 1)
 	</insert>
 	
 	<select id="selectAddressByMid" parameterType="String" resultType="String">

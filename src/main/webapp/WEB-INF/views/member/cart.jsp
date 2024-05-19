@@ -46,8 +46,25 @@
 									<th></th>
 								</tr>
 							</thead>
+							
 							<tbody>
-								<c:forEach var="cartItem" items="${cartItemList}">
+							
+								<c:if test="${totalCnt == 0}">
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td>
+											<div style="margin-top:30px; margin-bottom:30px; font-size:20px;">
+												장바구니가 비었습니다.
+											</div>
+										</td>
+										<td></td>
+									</tr>
+								</c:if>
+								
+								<c:if test="${totalCnt != 0}">
+									<c:forEach var="cartItem" items="${cartItemList}">
 										<tr>
 										<!-- item1 ------------------------------------------------- -->
 										<!-- 체크박스 -->
@@ -107,9 +124,10 @@
 													src="${pageContext.request.contextPath}/resources/image/icon/x.png"/>
 											</button>
 										</td>
-									</tr>
-								
-								</c:forEach>
+										</tr>
+									
+									</c:forEach>
+								</c:if>
 								
 							</tbody>
 						</table>				

@@ -116,10 +116,7 @@ public class MemberController {
 	// ----------------- 장바구니 관련 -------------------
 	@Secured("ROLE_USER")
 	@RequestMapping("/addCart")
-	public String addCart(
-			@RequestParam String prdcode,
-			@RequestParam String ordamount, 
-			@RequestParam String ordprice) {
+	public String addCart(@RequestParam String prdcode, @RequestParam String ordamount, @RequestParam String ordprice) {
 		CartAddItemRequest request = new CartAddItemRequest();
 		request.setPrdcode(prdcode);
 		request.setOrdamount(ordamount);
@@ -145,8 +142,12 @@ public class MemberController {
 		// 사용자 장바구니 내역 조회 비즈니스 로직 추가
 		List<GetCartItemResponse> cartItemList = memberService.getCartItem();
 
+		// 사용자 장바구니 건수 조회
+		int totalCnt = memberService.getCartTotalCnt();
+		
 		model.addAttribute("mid", member.getMid());
 		model.addAttribute("cartItemList", cartItemList);
+		model.addAttribute("totalCnt", totalCnt);
 
 		return "member/cart";
 	}

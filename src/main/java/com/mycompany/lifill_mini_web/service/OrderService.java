@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mycompany.lifill_mini_web.dao.CartDao;
 import com.mycompany.lifill_mini_web.dao.OrderDao;
 import com.mycompany.lifill_mini_web.dao.OrderDetailDao;
 import com.mycompany.lifill_mini_web.dto.Orders;
@@ -29,6 +30,8 @@ public class OrderService {
 	private OrderDao orderDao;
 	@Autowired
 	private OrderDetailDao orderDetailDao;
+	@Autowired
+	private CartDao cartDao;
 	
 	public String createOrdid() {
 		
@@ -140,6 +143,7 @@ public class OrderService {
 		
 		for (OrderItemRequest order : itemsList) {
 			log.info("order={}", order.toString());
+			String prdcode = order.getPrdcode();
 			
 			OrdersDetail odt = new OrdersDetail();
 				odt.setOrdid(ordid);
@@ -150,6 +154,12 @@ public class OrderService {
 				
 				orderDetailDao.createOrdersDetail(odt);
 				log.info("삽입 성공!");
+			
+			// 해당 사용자 장바구니 내역에서 주문한 상품은 삭제하기 
+			OrderItemRequest request = new OrderItemRequest();
+			request.setMid(mid);
+			request.setPrdcode(prdcode);
+			cartDao.deleteCartItem(request);
 		}	
 		
 		Payment pmt = new Payment();

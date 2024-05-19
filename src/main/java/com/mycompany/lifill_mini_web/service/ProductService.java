@@ -275,9 +275,10 @@ public class ProductService {
 			ProductResponse prdByPrdcode = productResponseDao.prdSelectByPrdcode(prdcode);
 			response.setPrdbrand(prdByPrdcode.getPrdbrand());
 			response.setPrdname(prdByPrdcode.getPrdname());
-
+			
 			ordersResponse.add(response);
 		}
+		
 
 		return ordersResponse;
 	}

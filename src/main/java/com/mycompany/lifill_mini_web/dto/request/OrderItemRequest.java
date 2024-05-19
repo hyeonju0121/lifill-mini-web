@@ -10,4 +10,6 @@ public class OrderItemRequest {
 	private int ordtotalamount;
 	private int prdtotalprice;
 	
+	private String mid;
+	
 }

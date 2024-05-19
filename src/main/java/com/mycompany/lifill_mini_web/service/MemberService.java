@@ -137,6 +137,15 @@ public class MemberService {
 		return cartDao.getCartItem(mid);
 	}
 
+	// 현재 사용자 장바구니 건수 조회
+	public int getCartTotalCnt() {
+		// 사용자 정보 가져오기
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String mid = authentication.getName();
+
+		return cartDao.getCartTotalCnt(mid);
+	}
+
 	// 회원 아이디에 해당하는 단순상품 전체 문의 건수 조회
 	public int getQnaCount() {
 		// 사용자 정보 가져오기
