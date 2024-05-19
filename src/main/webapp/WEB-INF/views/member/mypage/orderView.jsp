@@ -94,9 +94,9 @@
 								</div>
 								<dl class="order">
 									<dt>주문번호</dt>
-									<dd>${order.ordid}</dd>
+									<dd>${orders[0].ordid}</dd>
 									<dt>주문일자</dt>
-									<dd><fmt:formatDate value="${order.ordcreatedat}" pattern="yyyy-MM-dd"/></dd>
+									<dd><fmt:formatDate value="${orders[0].ordcreatedat}" pattern="yyyy-MM-dd"/></dd>
 								</dl>
 							</header>
 
@@ -135,9 +135,9 @@
 										</td>
 										<td>${order.prdprice}</td>
 										<td>
-											<span class="txt-default">${order.ordtotalamount}개</span>
+											<span class="txt-default">${order.odtamount}개</span>
 										</td>
-										<td>${order.ordtotalprice}원</td>
+										<td>${order.prdprice}원</td>
 										<td>${order.ordstatus}</td>
 											<c:if test="${order.ordstatus eq '입금대기'}">
 												<td>

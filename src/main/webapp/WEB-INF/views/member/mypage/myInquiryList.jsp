@@ -164,7 +164,7 @@
 																			</div>
 																			<hr>
 																		  <div class="contents">${inq.inqcontent}</div>
-																		  <c:if test="${inq.inqstatus} eq '답변완료'">
+																		  <c:if test="${inq.inqstatus eq '답변완료'}">
 																			  <hr>
 																			  <div class="comment">
 																			  	<p class="tit">[라이필 관리자]</p>

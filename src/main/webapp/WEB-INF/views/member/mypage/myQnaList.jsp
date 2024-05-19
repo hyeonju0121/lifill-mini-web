@@ -158,7 +158,7 @@
 																			</div>
 																			<hr>
 																		  <div class="contents">${qna.inqcontent}</div>
-																		  <c:if test="${qna.inqstatus} eq '답변완료'">
+																		  <c:if test="${qna.inqstatus eq '답변완료'}">
 																			  <hr>
 																			  <div class="comment">
 																			  	<p class="tit">[라이필 관리자]</p>
