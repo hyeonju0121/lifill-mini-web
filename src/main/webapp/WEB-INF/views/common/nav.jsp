@@ -56,29 +56,19 @@
 				<%-- <button class="btn btn-success btn-sm" style="font-size: 13px;" onclick="location.href='${pageContext.request.contextPath}/member/sign_in'">
 					로그인
 				</button> --%>
-				<!-- 회원가입 버튼 -->
-				<button class="btn" onclick="location.href='${pageContext.request.contextPath}/member/sign_up'">
-					<img class="icon-img" 
-					src="${pageContext.request.contextPath}/resources/image/icon/sign_up.png"/>
-				</button>
-				
-				<!-- 로그인 안된 경우 -->
-		    	<sec:authorize access="isAnonymous()">
-		    		<a href="${pageContext.request.contextPath}/member/sign_in">
-			    		<button class="btn">
+		    	<!-- 로그인 된 경우 -> 로그아웃 버튼 활성화 -->
+		    	<sec:authorize access="isAuthenticated()">
+		    		<!-- 사이트간 요청 위조 방지 설정이 비활성화되어 있을 경우 GET 방식으로 요청 가능 -->
+		    		<%-- <b class="text-white me-2">
+		    			<sec:authentication property="principal.username"/>
+		    			<span>님, 안녕하세요!</span>
+		    		</b> --%>
+		    		<a href="${pageContext.request.contextPath}/logout">
+		    			<button class="btn">
 							<img class="icon-img" 
 							src="${pageContext.request.contextPath}/resources/image/icon/login.png"/>
 					    </button>
 		    		</a>
-		    	</sec:authorize>
-		    	<!-- 로그인 된 경우 -> 로그아웃 버튼 활성화 -->
-		    	<sec:authorize access="isAuthenticated()">
-		    		<!-- 사이트간 요청 위조 방지 설정이 비활성화되어 있을 경우 GET 방식으로 요청 가능 -->
-		    		<b class="text-white me-2">
-		    			<sec:authentication property="principal.username"/>
-		    			<span>님, 안녕하세요!</span>
-		    		</b>
-		    		<a href="${pageContext.request.contextPath}/logout" class="btn btn-success btn-small">logout</a>
 		    		
 		    		<%-- <!-- 사이트간 요청 위조 방지 설정이 활성화되어 있을 경우 POST 방식으로만 요청 가능 -->
 		    		<form action="post" action="${pageContext.request.contextPath}/logout">
@@ -86,6 +76,21 @@
 		    			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		    			<button type="submit" class="btn btn-success btn-sm">로그아웃</button>
 		    		</form> --%>
+		    	</sec:authorize>
+		    	
+				<%-- <!-- 회원가입 버튼 -->
+				<button class="btn" onclick="location.href='${pageContext.request.contextPath}/member/sign_up'">
+					<img class="icon-img" 
+				</button> --%>
+				
+				<!-- 로그인 안된 경우 -->
+		    	<sec:authorize access="isAnonymous()">
+		    		<a href="${pageContext.request.contextPath}/member/sign_in">
+			    		<button class="btn">
+							<img class="icon-img" 
+								src="${pageContext.request.contextPath}/resources/image/icon/sign_up.png"/>
+					    </button>
+		    		</a>
 		    	</sec:authorize>
 		    	
 				<button class="btn" onclick="location.href='${pageContext.request.contextPath}/member/mypage'">
