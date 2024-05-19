@@ -132,6 +132,18 @@
 
 			    window.location.href = urlString;
 			}
+			
+			function addCart() {
+				var amount = parseInt($("#qtySpinner").val());
+				var totalPrice = parseInt($("#hiddenTotal").val());
+				
+				var prdcode = "${product.prdcode}";
+				
+				var urlString = '${pageContext.request.contextPath}/member/addCart?prdcode=' + prdcode + '&ordamount=' + amount + '&ordprice=' + totalPrice;
+				console.log(amount, totalPrice);
+
+			    window.location.href = urlString;
+			}
 
 		</script>
 		
@@ -296,7 +308,7 @@
 							</div>
 						</div>
 						<div class="button-area1">
-							<button id="cart-button1" type="button" class="btn" onclick="location.href='${pageContext.request.contextPath}/member/cart?prdcode=${product.prdcode}'">장바구니</button>
+							<button id="cart-button1" type="button" class="btn" onclick="addCart()">장바구니</button>
 							<button id="buy-button1" type="button" class="btn" onclick="order()">구매하기</button>
 						</div>
 					</div>

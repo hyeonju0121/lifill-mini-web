@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -13,77 +15,6 @@
 		
 		<!-- jQuery 외부 라이브러리  설정-->
 		<script src="${pageContext.request.contextPath}/resources/jquery/jquery-3.7.1.min.js"></script>
-	
-		<!--사용자 정의 스크립트 -->
-		<script type="text/javascript">
-			// [전체선택/전체해제]-------------------------------
-			// true일 경우, 전체전택 / false일 경우, 전체해제
-			function allselect(bool){
-				// chk 로 지정된 모든 체크박스 갖고옴
-				var chks = document.getElementsByName("chk");
-				
-				for(var i = 0; i < chks.length; i++){
-					chks[i].checked = bool;
-				}
-			}
-			
-			// [수량 버튼] ------------------------------------
-			function count1(type)  {
-				// 수량 결과를 표시할 element
-				const resultElement = document.getElementById('result1');
-
-				// 현재 수량을 화면에 표시
-				let number = resultElement.innerText;
-				  
-				if(type === 'plus') {
-				  number = parseInt(number) + 1;
-				} else if(type === 'minus')  {
-					if(number == 1) {
-						number = 1;
-					} else {
-						number = parseInt(number) - 1;
-					}
-				}
-				resultElement.innerText = number;
-			}
-			
-			function count2(type)  {
-				// 수량 결과를 표시할 element
-				const resultElement = document.getElementById('result2');
-
-				// 현재 수량을 화면에 표시
-				let number = resultElement.innerText;
-				  
-				if(type === 'plus') {
-				  number = parseInt(number) + 1;
-				} else if(type === 'minus')  {
-					if(number == 1) {
-						number = 1;
-					} else {
-						number = parseInt(number) - 1;
-					}
-				}
-				resultElement.innerText = number;
-			}
-
-			
-			// [금액에 쉼표 표시를 위한 함수] ----------------------------
-			function numberWithCommas(n) {
-			    return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-			}
-			
-			// 웹 페이지가 로드되면 자동으로 실행될 수 있도록  window.onload() 함수 사용
-			window.onload = function() {
-				// p-price 상품 가격 클래스를 요소로 가져오기
-			    var priceElements = document.getElementsByClassName("p-price");
-			    for (var i = 0; i < priceElements.length; i++) {
-			    	// 해당 요소의 텍스트를 숫자로 변환하기
-			        var price = parseInt(priceElements[i].innerText);
-			    	// 쉼표로 추가하여 변환된 내용을 html에 추가 
-			        priceElements[i].innerText = numberWithCommas(price); 
-			    }
-			};
-		</script>
 
 		<!-- external css -->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/cart.css">
@@ -103,92 +34,83 @@
 						<table class="table p-2">
 							<thead>
 								<tr>
-									<th><input type="checkbox" name="allCheck" id="allCheck" onclick="allselect(this.checked);"/></th>
-									<th class="product-h">Product</th>
-									<th>Quantity</th>
-									<th>Price</th>
+									<!-- <th><input type="checkbox" name="allCheck" id="allCheck" onclick="allselect(this.checked);"/></th>-->
+									<!-- 체크박스 전체 여부 -->
+									<th class="all_check_input_div">
+										<input type="checkbox" class="all_check_input input_size_20" checked="checked">
+									</th>
+									
+									<th class="product-h">상품</th>
+									<th>수량</th>
+									<th>가격</th>
 									<th></th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<!-- item1 ------------------------------------------------- -->
-									<!-- 체크박스 -->
-									<td><input type="checkbox" name="chk" id="check1" onclick="checked();"/>
-									</td>
-									<!-- 상품 이미지 -->
-									<td class="procuct-col">
-										<div class="d-flex product-img">
-											<img src="${pageContext.request.contextPath}/resources/image/item_rep/eye/eye3_image1.png" class="rounded-3" style="width:130px;height:130px;"/>
-											<div class="p-content mt-4 ms-2">
-												<h6 class="p-name">[effekt]</h6>
-												<h6><a href="${pageContext.request.contextPath}/item/item_view">초임계 루테인아스타잔틴 코어</a></h6>
+								<c:forEach var="cartItem" items="${cartItemList}">
+										<tr>
+										<!-- item1 ------------------------------------------------- -->
+										<!-- 체크박스 -->
+										<td class="cart_info_td">
+											<input type="checkbox" class="individual_cart_checkbox input_size_20" checked="checked"/>
+											<input type="hidden" class="individual_itemPrice_input" value="${cartItem.prdprice}">
+											<input type="hidden" class="individual_itemCount_input" value="${cartItem.camount}">
+											<input type="hidden" class="individual_totalPrice_input" value="${cartItem.prdprice * cartItem.camount}">
+											
+											<input type="hidden" class="individual_itemPrdcode_input" value="${cartItem.prdcode}">
+											<!--<input type="hidden" class="individual_totalPrice_input" value="${cartItem.cprice}">-->
+											
+											<!--<input type="checkbox" name="chk" id="check1" onclick="checked();"/>-->
+										</td>
+										<!-- 상품 이미지 -->
+										<td class="procuct-col">
+											<div class="d-flex product-img">
+												<img src="attachDownload?prdcode=${cartItem.prdcode}" class="rounded-3" style="width:130px;height:130px;"/>
+												<div class="p-content mt-4 ms-2">
+													<h6 class="p-name">[${cartItem.prdbrand}]</h6>
+													<h6><a href="${pageContext.request.contextPath}/item/item_view?prdcode=${cartItem.prdcode}">${cartItem.prdname}</a></h6>
+												</div>
 											</div>
-										</div>
-									</td>
-									<!-- 상품 수량 -->
-									<td width="20%">
-										<div class="d-flex justify-content-center count-button mt-4">
-												<button type="button" class="minus-button btn me-3" onclick='count1("minus")'>-</button>
-												<h6 class="mt-2" id='result1'>1</h6>
-												<button type="button" class="plus-button btn ms-3" onclick='count1("plus")'>+</button>
-										</div>
-									</td>
-									<!-- 상품 가격 -->
-									<td class="product-price">
-										<div class="product-count d-flex justify-content-center">
-											<h4 class="p-price mt-4" id='total-price'>29800</h4>
-											<h4 class="ms-1 mt-4">원</h4>
-										</div>
-									</td>
-									
-									<!-- 상품 삭제 버튼 -->
-									<td class="product-close">
-										<button class="btn ms-3 mt-2" onclick="productRemove()">
-											<img class="remove-img"
-												src="${pageContext.request.contextPath}/resources/image/icon/x.png"/>
-										</button>
-									</td>
-								</tr>
+										</td>
+										<!-- 상품 수량 -->
+										<td width="20%">
+											<div class="count-button mt-4">
+												<div class="count_set">
+													<button type="button" name="button" class="info-minus">
+														<span>-</span>
+													</button>
+														<input id="qtySpinner" name="quantity" type="text" 
+															title="수량 선택" class="count" data-page="productDetail" 
+															data-min="1" data-txt="inv" min="1" value="${cartItem.camount}" readonly>
+													<button type="button" name="button" class="info-plus">
+														<span>+</span>
+													</button>
+												</div>
+											</div>
+												<a class="quantity_modify_btn" data-cartId="${ci.cartId}">수량 변경</a>
+										</td>
+										<!-- 상품 가격 -->
+										<td class="product-price">
+											<div class="product-count d-flex justify-content-center">
+												<!--<p class="total" id="tprice">${cartItem.cprice}</p>-->
+												<input id="qtySpinner-change" type="text" class="total-price" value="${cartItem.cprice}" readonly>
+											
+												<!-- <h4 class="p-price mt-4" id='total-price'>29800</h4>
+												<h4 class="ms-1 mt-4">원</h4>-->
+											</div>
+										</td>
+										
+										<!-- 상품 삭제 버튼 -->
+										<td class="product-close">
+											<button class="btn ms-3 mt-2" onclick="productRemove()">
+												<img class="remove-img"
+													src="${pageContext.request.contextPath}/resources/image/icon/x.png"/>
+											</button>
+										</td>
+									</tr>
 								
-								<!-- item2 ------------------------------------------------- -->
-								<tr>
-									<!-- 체크박스 -->
-									<td><input type="checkbox" name="chk" id="check2" onclick="checked();"/>
-									</td>
-									<!-- 상품 이미지 -->
-									<td class="procuct-col">
-										<div class="d-flex product-img">
-											<img src="${pageContext.request.contextPath}/resources/image/item_rep/intestine/intestine3.png" class="rounded-3" style="width:130px;height:130px;"/>
-											<div class="p-content mt-4 ms-2">
-												<h6 class="p-name">[종근당건강]</h6>
-												<h6><a href="${pageContext.request.contextPath}/item/item_view">락토핏 골드 2g*50포</a></h6>
-											</div>
-										</div>
-									</td>
-									<!-- 상품 수량 -->
-									<td width="20%">
-										<div class="d-flex justify-content-center count-button mt-4">
-												<button type="button" class="minus-button btn me-3" onclick='count2("minus")'>-</button>
-												<h6 class="mt-2" id='result2'>1</h6>
-												<button type="button" class="plus-button btn ms-3" onclick='count2("plus")'>+</button>
-										</div>
-									</td>
-									<!-- 상품 가격 -->
-									<td class="product-price">
-										<div class="product-count d-flex justify-content-center">
-											<h4 class="p-price mt-4" id='total-price'>15900</h4>
-											<h4 class="ms-1 mt-4">원</h4>
-										</div>
-									</td>
-									<!-- 상품 삭제 버튼 -->
-									<td class="product-close">
-										<button class="btn ms-3 mt-2" onclick="productRemove()">
-											<img class="remove-img"
-												src="${pageContext.request.contextPath}/resources/image/icon/x.png"/>
-										</button>
-									</td>
-								</tr>
+								</c:forEach>
+								
 							</tbody>
 						</table>				
 					</div>
@@ -197,12 +119,12 @@
 				<div class="col-sm-4 mt-5">
 					<div class="card bg-light w-100 ms-2 mb-3" style="max-width: 18rem;">
 					  <div class="card-body">
-					  	<div class="row mt-2">
+					  		<div class="row mt-2">
 						    <div class="col card-text">
 						      	<h5>상품 금액</h5>
 						    </div>
 						    <div class="col card-text">
-						      	<h5>45,700원</h5>
+						      	<h5 class="totalPrice_span">45,700</h5>
 						    </div>
 						 </div>
 						 <div class="row mt-3 mb-5">
@@ -210,8 +132,13 @@
 						      	<h5>배송비</h5>
 						    </div>
 						    <div class="col card-text">
-						      	<h5>+3,000원</h5>
+						      	<h5>+0원</h5>
 						    </div>
+						     <div class="row mt-3 mb-3">
+							    <div class="col card-text">
+							      	<h6 style="font-size:15px">(라이필은 현재 <strong id="text-strong">무료배송</strong>입니다.)</h6>
+							    </div>
+							 </div>
 						 </div>
 						 <hr>
 						 <div class="row mt-3 mb-3">
@@ -219,28 +146,182 @@
 						      	<h5>결제예정금액</h5>
 						    </div>
 						    <div class="col card-text">
-						      	<h4> 48,700원</h4>
-						    </div>
-						 </div>
-						 <div class="row mt-3 mb-3">
-						    <div class="col card-text">
-						      	<h6 style="font-size:15px">OO,OOO원 추가주문 시, <strong id="text-strong">무료배송</strong></h6>
+						      	<h5 class="totalPrice_span">45,700</h5>
 						    </div>
 						 </div>
 					  </div>
-					</div>
-					
-					<div class="d-grid gap-2 col-8 ms-2">
-					  <button class="pay-btn btn btn-outline-primary btn-lg" type="button" onclick="location.href='#'">결제하기</button>
-					</div>
-					
-					<div class="row mt-3">
-					  <h6 style="font-size:14px">[주문완료] 상태일 경우에만 주문 취소가 가능합니다.</h6>
-					  <h6 style="font-size:14px">[마이필 > 주문내역 상세페이지]에서 직접 취소하실 수 있습니다.</h6>
+					  
+					  </div>
+					  
+					  <div class="d-grid gap-2 col-8 ms-2">
+						  <button class="order_btn btn btn-outline-primary btn-lg" type="button">결제하기</button>
+					  </div>
+						
+					  <div class="row mt-3">
+						  <h6 style="font-size:14px">[주문완료] 상태일 경우에만 주문 취소가 가능합니다.</h6>
+						  <h6 style="font-size:14px">[마이필 > 주문내역 상세페이지]에서 직접 취소하실 수 있습니다.</h6>
+					  </div>
 					</div>
 				</div>
 			</div>
-		</div>
+			
+			<!-- 주문 form -->
+			<form action="${pageContext.request.contextPath}/item/buyOnCart" method="get" class="order_form">
+			</form>
+			
+			<script>
+			
+			/*
+				$(".order_btn").on("click", function() {
+					let form_contents='';
+					let orderNumber = 0;
+					
+					
+					// 상품 데이터가 저장된 <input> 값들을 감싸고 있는 <td> 태그를 반복해서 접근하는 메소드 
+					$(".cart_info_td").each(function(index, element) {
+						if($(element).find(".individual_cart_checkbox").is(":checked") === true){
+							// 상품 코드 
+							let prdcode = $(element).find(".individual_itemPrdcode_input").val();
+							// 상품 총 수량 
+							let ordtotalamount = $(element).find(".individual_itemCount_input").val();
+							// 상품 총 가격  
+							let prdtotalprice = $(element).find(".individual_totalPrice_input").val();
+							
+							// 서버로 전송할 <input> 태그를 문자열 값으로 만들고 form_contents 에 추가 
+							let prdcode_input = "<input name='orders[" + orderNumber + "].prdcode' type='hidden' value='" + prdcode + "'>";
+							form_contents += prdcode_input;
+							
+							let ordtotalamount_input = "<input name='orders[" + orderNumber + "].ordtotalamount' type='hidden' value='" + ordtotalamount + "'>";
+							form_contents += ordtotalamount_input;
+							
+							let prdtotalprice_input = "<input name='orders[" + orderNumber + "].prdtotalprice' type='hidden' value='" + prdtotalprice + "'>";
+							form_contents += prdtotalprice_input;
+							
+							orderNumber += 1;
+						}
+					});
+					
+					$(".order_form").html(form_contents);
+					$(".order_form").submit();
+					
+				})
+			*/
+			
+				$(document).ready(function() {
+					// 장바구니 정보 섹션 정보 삽입 
+				    setTotalInfo();
+	
+				    // 체크여부에 따른 장바구니 정보 변화
+				    $(".individual_cart_checkbox").on("change", function() {
+				        
+				    	// 총 주문 정보 셋팅 
+				    	setTotalInfo();
+				    });
+	
+				    // 체크박스 전체 선택
+				    $(".all_check_input").on("click", function() {
+				        $(".individual_cart_checkbox").prop("checked", $(this).prop("checked"));
+				        
+				     	// 총 주문 정보 셋팅 
+				        setTotalInfo();
+				    });
+	
+				    // 수량 조절 버튼
+				    $(".info-plus").on("click", function() {
+				    	// 현재 버튼이 속한 행과 수량을 찾음 
+				        let row = $(this).closest("tr");
+				        let quantityInput = row.find(".count");
+				        
+				        let quantity = parseInt(quantityInput.val());
+				        quantityInput.val(++quantity);
+	
+				        let prc = parseInt(row.find(".individual_itemPrice_input").val());
+				        let total = quantity * prc;
+				        // 해당 행에 디스플레이 표시 (화면에 변동된 금액 표시)
+				        row.find(".total-price").val(total.toLocaleString());
+	
+				     	// 총 주문 정보 셋팅 
+				        setTotalInfo();
+				    });
+	
+				    $(".info-minus").on("click", function() {
+				    	// 현재 버튼이 속한 행과 수량을 찾음 
+				        let row = $(this).closest("tr");
+				        let quantityInput = row.find(".count");
+				        
+				        let quantity = parseInt(quantityInput.val());
+	
+				        if (quantity > 1) {
+				            quantityInput.val(--quantity);
+				            
+				            let prc = parseInt(row.find(".individual_itemPrice_input").val());
+				            let total = quantity * prc;
+				            
+				         	// 해당 행에 디스플레이 표시 (화면에 변동된 금액 표시)
+				            row.find(".total-price").val(total.toLocaleString());
+				        }
+	
+				        // 총 주문 정보 셋팅 
+				        setTotalInfo();
+				    });
+				    
+				    // 주문하기 버튼
+				    $(".order_btn").on("click", function() {
+			            let form_contents = '';
+			            let orderNumber = 0;
+
+			            $(".cart_info_td").each(function(index, element) {
+			                if ($(element).find(".individual_cart_checkbox").is(":checked") === true) {
+			                    let prdcode = $(element).find(".individual_itemPrdcode_input").val();
+			                    let ordtotalamount = $(element).closest("tr").find(".count").val();
+			                    let prdtotalprice = $(element).closest("tr").find(".total-price").val().replace(/,/g, '');
+
+			                    let prdcode_input = "<input name='orders[" + orderNumber + "].prdcode' type='hidden' value='" + prdcode + "'>";
+			                    form_contents += prdcode_input;
+
+			                    let ordtotalamount_input = "<input name='orders[" + orderNumber + "].ordtotalamount' type='hidden' value='" + ordtotalamount + "'>";
+			                    form_contents += ordtotalamount_input;
+
+			                    let prdtotalprice_input = "<input name='orders[" + orderNumber + "].prdtotalprice' type='hidden' value='" + prdtotalprice + "'>";
+			                    form_contents += prdtotalprice_input;
+
+			                    orderNumber += 1;
+			                }
+			            });
+
+			            $(".order_form").html(form_contents);
+			            $(".order_form").submit();
+			        });
+				    
+				});
+			
+				function setTotalInfo() {
+				    let totalPrice = 0; // 총 가격 
+				    let totalCount = 0; // 총 갯수 
+				    let totalKind = 0; // 총 종류 
+				    let finalTotalPrice = 0; // 최종 가격
+
+				    $(".individual_cart_checkbox:checked").each(function(index, element) {
+				        let row = $(this).closest("tr");
+				        let quantity = parseInt(row.find(".count").val());
+				        let prc = parseInt(row.find(".individual_itemPrice_input").val()); // 상품 원가 갖고옴 
+				        let total = quantity * prc; // 상품 수량 * 상품 원가 
+				        
+				        totalPrice += total;
+				        totalCount += quantity;
+				        totalKind++;
+				    });
+
+				    finalTotalPrice = totalPrice;
+
+				    $(".totalPrice_span").text(totalPrice.toLocaleString());
+				    $(".totalCount_span").text(totalCount);
+				    $(".totalKind_span").text(totalKind);
+				    $(".finalTotalPrice_span").text(finalTotalPrice.toLocaleString());
+				}
+			
+			</script>
 		
 	</body>
+	
 </html>
