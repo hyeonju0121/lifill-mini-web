@@ -35,4 +35,11 @@
 		from review
 		where mid=#{mid}
 	</select>
+	
+	<select id="revSelectByPrdcode" resultType="Review">
+		select prdcode, mid, revcontent, revcreatedat, revattach, revno, revscore
+		from review
+		where prdcode=#{prdcode}
+		
+	</select>
 </mapper>

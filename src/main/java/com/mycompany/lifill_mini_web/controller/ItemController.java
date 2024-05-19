@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycompany.lifill_mini_web.dto.Member;
 import com.mycompany.lifill_mini_web.dto.Pager;
+import com.mycompany.lifill_mini_web.dto.Review;
 import com.mycompany.lifill_mini_web.dto.request.ItemPageRequest;
 import com.mycompany.lifill_mini_web.dto.request.MultipleOrdersRequest;
 import com.mycompany.lifill_mini_web.dto.request.OrderItem;
@@ -31,6 +32,7 @@ import com.mycompany.lifill_mini_web.security.LifillUserDetails;
 import com.mycompany.lifill_mini_web.service.MemberService;
 import com.mycompany.lifill_mini_web.service.OrderService;
 import com.mycompany.lifill_mini_web.service.ProductService;
+import com.mycompany.lifill_mini_web.service.ReviewService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -45,6 +47,9 @@ public class ItemController {
 	private OrderService orderService;
 	@Resource
 	private MemberService memberService;
+	@Resource
+	private ReviewService reviewService;
+	
 
 	@RequestMapping("")
 	public String index() {
@@ -237,8 +242,11 @@ public class ItemController {
 
 		ProductResponse product = productService.getProductResponse(prdcode);
 
+		List<Review> review = reviewService.getReviewList(prdcode);
 		model.addAttribute("product", product);
-
+		model.addAttribute("review", review);
+		model.addAttribute("reviewCount", review.size());
+		
 		return "item/item_view";
 	}
 

@@ -768,7 +768,7 @@ a#btnMore {
     color: #14161a;
     overflow: hidden;
     box-sizing: content-box;
-    max-height: 60px;
+    max-height: 100px;
     margin-bottom: 30px;
 }
 
@@ -783,15 +783,17 @@ a#btnMore {
 
 .crema_product_reviews_score_star_wrapper{
     display: inline-block;
-    width: 20px;
-    height: 20px;
+    width: 17px;
+    height: 17px;
+    font-size: 16px;
+    margin-bottom: 5px;
 }
 
 
 .review_list_v2__user_name_message{
 	font-family: 'Noto Sans KR', sans-serif;
     list-style-type: none;
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 5px;
     color: #14161a;
     overflow: hidden;
@@ -808,7 +810,7 @@ a#btnMore {
 
 .rev_img{
 	display: inline-block;
-    width: 150px;
-    height: 150px;
+    width: 140px;
+    height: 140px;
 	
 }

@@ -15,4 +15,6 @@ public interface ReviewDao {
 	List<ReviewResponse> selectReview(String mid);
 
 	int selectReviewCount(String mid);
+
+	List<Review> revSelectByPrdcode(String prdcode);
 }

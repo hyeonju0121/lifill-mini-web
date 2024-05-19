@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -194,7 +195,7 @@
 						</div>
 						
 						<div class="item-price mt-3 mb-3">
-							<h1>${product.prdprice}원</h1>
+							<h1><fmt:formatNumber value="${product.prdprice}" pattern="#,###"/>원</h1>
 						</div>
 						
 						
@@ -449,24 +450,21 @@
 					</div> -->
 					
 					<!-- 고객 리뷰 영역 -->
-					<!-- 리뷰 목차 -->
-					<div class="widget_header_basic">
+					
+					<!-- 리뷰 영역 -->
+					<div class="widget_header_basic" id="review-sec">
 						  <div class="widget_header_basic__title_container">
-						    
-						      <span class="widget_header_basic__title js-translate-text">
-						        리뷰
+						      <span class="widget_header_basic__title js-translate-text" style="font-family: 'Noto Sans KR', sans-serif;">
+						        	리뷰
 						      </span>
-						      <span class="widget_header_basic__reviews_count js-widget-header-basic-reviews-count">
-						        (8)
+						      <span class="widget_header_basic__reviews_count js-widget-header-basic-reviews-count" style="font-family: 'Noto Sans KR', sans-serif;">
+						        (${reviewCount})
 						      </span>
-						    
-						    <div class="widget_header_basic__description">
-						      <span></span>
-						    </div>
 						  </div>
 					</div>
+					
 					<!-- 리뷰 목차 -->
-
+				<c:forEach var="review" items="${review}">
 				<li
 					class="review_list_v2 review_list_v2--collapsed
 					    renewed_review
@@ -474,7 +472,7 @@
 					<div class="review_list_v2__review_rcontent">
 
 						<div class="review_list_v2__user_name_message">
-							<b>김*정</b>
+							<b>${review.mid}</b>
 						</div>
 					</div>
 					<div class="review_list_v2__review_lcontent">
@@ -484,99 +482,36 @@
 
 								<div class="review_list_v2__score_container">
 									<div class="review_list_v2__score_star">
-										<div
-											class="crema_product__reviews_scorestar_wrapper crema_product_reviews_score_star_wrapper--full review_liquid_star_svg_icon">
-											<svg xmlns="http://www.w3.org/2000/svg"
-												xmlns:xlink="http://www.w3.org/1999/xlink" width="20"
-												height="20" viewBox="0 0 20 20"
-												class="crema_product_reviews_score_star_wrapper__star "
-												style="fill: #000000">
-										    <defs>
-										        <path id="star-full"
-																		d="M7.157 6.698l2.165-4.59a.743.743 0 0 1 1.358 0l2.165 4.59 4.84.74c.622.096.87.895.42 1.353l-3.503 3.57.827 5.044c.106.647-.544 1.141-1.1.835l-4.328-2.382-4.329 2.382c-.556.306-1.205-.188-1.099-.835l.826-5.044-3.502-3.57c-.45-.458-.202-1.257.42-1.352l4.84-.74z"></path>
-										    </defs>
-										    <use xlink:href="#star-full"></use>
-										</svg>
-										</div>
-										<div
-											class="crema_product_reviews_score_star_wrapper crema_product_reviews_score_star_wrapper--full review_liquid_star_svg_icon">
-											<svg xmlns="http://www.w3.org/2000/svg"
-												xmlns:xlink="http://www.w3.org/1999/xlink" width="20"
-												height="20" viewBox="0 0 20 20"
-												class="crema_product_reviews_score_star_wrapper__star "
-												style="fill: #000000">
-										    <defs>
-										        <path id="star-full"
-																		d="M7.157 6.698l2.165-4.59a.743.743 0 0 1 1.358 0l2.165 4.59 4.84.74c.622.096.87.895.42 1.353l-3.503 3.57.827 5.044c.106.647-.544 1.141-1.1.835l-4.328-2.382-4.329 2.382c-.556.306-1.205-.188-1.099-.835l.826-5.044-3.502-3.57c-.45-.458-.202-1.257.42-1.352l4.84-.74z"></path>
-										    </defs>
-										    <use xlink:href="#star-full"></use>
-										</svg>
-										</div>
-										<div
-											class="crema_product_reviews_score_star_wrapper crema_product_reviews_score_star_wrapper--full review_liquid_star_svg_icon">
-											<svg xmlns="http://www.w3.org/2000/svg"
-												xmlns:xlink="http://www.w3.org/1999/xlink" width="20"
-												height="20" viewBox="0 0 20 20"
-												class="crema_product_reviews_score_star_wrapper__star "
-												style="fill: #000000">
-										    <defs>
-										        <path id="star-full"
-																		d="M7.157 6.698l2.165-4.59a.743.743 0 0 1 1.358 0l2.165 4.59 4.84.74c.622.096.87.895.42 1.353l-3.503 3.57.827 5.044c.106.647-.544 1.141-1.1.835l-4.328-2.382-4.329 2.382c-.556.306-1.205-.188-1.099-.835l.826-5.044-3.502-3.57c-.45-.458-.202-1.257.42-1.352l4.84-.74z"></path>
-										    </defs>
-										    <use xlink:href="#star-full"></use>
-										</svg>
-										</div>
-										<div
-											class="crema_product_reviews_score_star_wrapper crema_product_reviews_score_star_wrapper--full review_liquid_star_svg_icon">
-											<svg xmlns="http://www.w3.org/2000/svg"
-												xmlns:xlink="http://www.w3.org/1999/xlink" width="20"
-												height="20" viewBox="0 0 20 20"
-												class="crema_product_reviews_score_star_wrapper__star "
-												style="fill: #000000">
-										    <defs>
-										        <path id="star-full"
-																		d="M7.157 6.698l2.165-4.59a.743.743 0 0 1 1.358 0l2.165 4.59 4.84.74c.622.096.87.895.42 1.353l-3.503 3.57.827 5.044c.106.647-.544 1.141-1.1.835l-4.328-2.382-4.329 2.382c-.556.306-1.205-.188-1.099-.835l.826-5.044-3.502-3.57c-.45-.458-.202-1.257.42-1.352l4.84-.74z"></path>
-										    </defs>
-										    <use xlink:href="#star-full"></use>
-										</svg>
-										</div>
-										<div
-											class="crema_product_reviews_score_star_wrapper crema_product_reviews_score_star_wrapper--full review_liquid_star_svg_icon">
-											<svg xmlns="http://www.w3.org/2000/svg"
-												xmlns:xlink="http://www.w3.org/1999/xlink" width="20"
-												height="20" viewBox="0 0 20 20"
-												class="crema_product_reviews_score_star_wrapper__star "
-												style="fill: #000000">
-										    <defs>
-										        <path id="star-full"
-																		d="M7.157 6.698l2.165-4.59a.743.743 0 0 1 1.358 0l2.165 4.59 4.84.74c.622.096.87.895.42 1.353l-3.503 3.57.827 5.044c.106.647-.544 1.141-1.1.835l-4.328-2.382-4.329 2.382c-.556.306-1.205-.188-1.099-.835l.826-5.044-3.502-3.57c-.45-.458-.202-1.257.42-1.352l4.84-.74z"></path>
-										    </defs>
-										    <use xlink:href="#star-full"></use>
-										</svg>
-										</div>
+											<div class="crema_product_reviews_score_star_wrapper">
+												<c:if test="${review.revscore == 1}">★</c:if>
+												<c:if test="${review.revscore == 2}">★★</c:if>
+												<c:if test="${review.revscore == 3}">★★★</c:if>
+												<c:if test="${review.revscore == 4}">★★★★</c:if>
+												<c:if test="${review.revscore == 5}">★★★★★</c:if>
+											</div>
 									</div>
 								</div>
 
 
-								<div class="review_list_v2__edit_container">
-									<div class="review_list_v2__date">2024.5.15</div>
+								<div class="review_list_v2__edit_container" style="margin-bottom: 3px;">
+									<div class="review_list_v2__date">
+									<fmt:formatDate value="${review.revcreatedat}" pattern="yyyy-MM-dd" /></div>
 								</div>
 							</div>
 
 							<div class="review_list_v2__content_section">
 								<div
 									class="review_list_v2__content_container review_content  js-review-content-container"
-									style="">
+									>
 									<div class="review_list_v2__content review_content__collapsed"
-										style="">
+										>
 										<div class="review_list_v2__message_container">
 											<div
 												class="review_list_v2__expand_link js-renewal-review-message-link js-renewal-link-expand js-see-more-force-show">
 												<div
 													class="review_list_v2__message js-collapsed-review-content js-translate-text"
-													style="max-height: 54px">
-													여름에도 잘 입을수있을거같아요!!<br>이뻐요!! 키티포인트 진짜 귀여워요오!! <br>지금부터
-													잘 입어볼게요
+													style="max-height: px">
+														${review.revcontent}
 												</div>
 											</div>
 										</div>
@@ -584,15 +519,19 @@
 								</div>
 							</div>
 							<ul class="review_image">
-								<li><img class="rev_img"
-									src="${pageContext.request.contextPath}/resources/image/item_rep/intestine/intestine2.png" />
+								<li><%-- <img class="rev_img"
+									src="${pageContext.request.contextPath}/resources/image/item_rep/intestine/intestine2.png" /> --%>
+									<c:if test="${review.revattach != null }">
+									<img class="rev_img"
+									src="${review.revattach}" />
+									</c:if>
 
 								</li>
 							</ul>
 						</div>
 					</div> 
 				</li>
-
+			</c:forEach>
 				<!-- -------------------------- -->
 					
 					
