@@ -8,7 +8,7 @@
 			<i class="lni lni-grid-alt"></i>
 		</button>
 		<div class="sidebar-logo">
-			<a href="#">LIFILL</a>
+			<a href="${pageContext.request.contextPath}/admin">LIFILL</a>
 		</div>
 	</div>
 	

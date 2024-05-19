@@ -51,7 +51,7 @@
 						</li>
 						<li>
 							<sec:authorize access="hasRole('ROLE_ADMIN')">
-								<a href="admin">관리자</a>
+								<a href="${pageContext.request.contextPath}/admin">관리자</a>
 							</sec:authorize>
 						</li>
 					</ul>
