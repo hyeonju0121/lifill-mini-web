@@ -17,19 +17,27 @@
 								<!-- <li><a href="${pageContext.request.contextPath}/item/category1">전체상품</a>-->
 								<li><a href="${pageContext.request.contextPath}/item/categories/function">기능별</a>
 									<ul class="submenu2">
-										<li><a href="#">간 건강</a></li>
-										<li><a href="#">눈 건강</a></li>
-										<li><a href="#">장 건강</a></li>
-										<li><a href="#">만성 피로</a></li>
-										<li><a href="#">수면, 스트레스</a></li>
+										<li><a href="${pageContext.request.contextPath}/item/categories/function?subCategory=001&filter=0&sort=0&pageNo=1">눈 건강</a></li>
+										<li><a href="${pageContext.request.contextPath}/item/categories/function?subCategory=002&filter=0&sort=0&pageNo=1">장 건강</a></li>
+										<li><a href="${pageContext.request.contextPath}/item/categories/function?subCategory=003&filter=0&sort=0&pageNo=1">간 건강</a></li>
+										<li><a href="${pageContext.request.contextPath}/item/categories/function?subCategory=004&filter=0&sort=0&pageNo=1">뼈/관절 건강</a></li>
+										<li><a href="${pageContext.request.contextPath}/item/categories/function?subCategory=005&filter=0&sort=0&pageNo=1">면역력</a></li>
+										<li><a href="${pageContext.request.contextPath}/item/categories/function?subCategory=006&filter=0&sort=0&pageNo=1">만성피로</a></li>
+										<li><a href="${pageContext.request.contextPath}/item/categories/function?subCategory=007&filter=0&sort=0&pageNo=1">혈액순환</a></li>
 									</ul>
 								</li>
 								<li><a href="${pageContext.request.contextPath}/item/categories/ingredient">성분별</a>
 									<ul class="submenu2">
-										<li><a href="#">비타민/미네랄</a></li>
-										<li><a href="#">유산균</a></li>
-										<li><a href="#">오메가3</a></li>
-										<li><a href="#">영양제</a></li>
+										<li><a href="${pageContext.request.contextPath}/item/categories/ingredient?subCategory=001&filter=0&sort=0&pageNo=1">루테인</a></li>
+										<li><a href="${pageContext.request.contextPath}/item/categories/ingredient?subCategory=002&filter=0&sort=0&pageNo=1">밀크씨슬</a></li>
+										<li><a href="${pageContext.request.contextPath}/item/categories/ingredient?subCategory=003&filter=0&sort=0&pageNo=1">마그네슘</a></li>
+										<li><a href="${pageContext.request.contextPath}/item/categories/ingredient?subCategory=004&filter=0&sort=0&pageNo=1">글루코사민</a></li>
+										<li><a href="${pageContext.request.contextPath}/item/categories/ingredient?subCategory=005&filter=0&sort=0&pageNo=1">칼슘</a></li>
+										<li><a href="${pageContext.request.contextPath}/item/categories/ingredient?subCategory=006&filter=0&sort=0&pageNo=1">프로폴리스</a></li>
+										<li><a href="${pageContext.request.contextPath}/item/categories/ingredient?subCategory=007&filter=0&sort=0&pageNo=1">아연</a></li>
+										<li><a href="${pageContext.request.contextPath}/item/categories/ingredient?subCategory=008&filter=0&sort=0&pageNo=1">비타민</a></li>
+										<li><a href="${pageContext.request.contextPath}/item/categories/ingredient?subCategory=009&filter=0&sort=0&pageNo=1">테아닌</a></li>
+										<li><a href="${pageContext.request.contextPath}/item/categories/ingredient?subCategory=010&filter=0&sort=0&pageNo=1">오메가3</a></li>
 									</ul>
 								</li>
 							</ul>
