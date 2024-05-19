@@ -8,6 +8,7 @@ import lombok.Data;
 public class OrderResponse {
 
 	private int seq;
+	private int rn;
 	private String ordid;
 	private String mid;
 	private int ordtotalamount;

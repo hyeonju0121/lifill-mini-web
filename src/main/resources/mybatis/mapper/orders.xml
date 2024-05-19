@@ -24,20 +24,27 @@
 	</insert>
 	
 	<select id="selectOrderList" parameterType='String' resultType="OrderResponse">
-		select rownum as seq, ord.ordid, mid, prd.prdname, prdbrand, ordtotalamount, ordtotalprice, ordrequest, 
-		ordstatus, ordpostnum, ordcreatedat, ordreceivername, ordreceiveraddress,
-		ordreceiverzipcode, ordreceiverphone, odt.prdcode, odtamount, odt.prdprice, 
-        (SELECT COUNT(*) 
-	     FROM review rev 
-	     WHERE rev.ordid = ord.ordid 
-	     AND rev.prdcode = odt.prdcode 
-	     AND rev.mid = ord.mid) AS revcount
-
-		from orders ord, ordersdetail odt, product prd
-        
-		where ord.ordid = odt.ordid
-        and odt.prdcode = prd.prdcode
-      	and mid=#{mid}
+		SELECT seq, ordid, mid, prdname, prdbrand, ordtotalamount, ordtotalprice, ordrequest, 
+		       ordstatus, ordpostnum, ordcreatedat, ordreceivername, ordreceiveraddress,
+		       ordreceiverzipcode, ordreceiverphone, prdcode, odtamount, prdprice, revcount
+		FROM (
+		    SELECT ROWNUM as seq, ord.ordid, ord.mid, prd.prdname, prd.prdbrand, ord.ordtotalamount, 
+		           ord.ordtotalprice, ord.ordrequest, ord.ordstatus, ord.ordpostnum, 
+		           ord.ordcreatedat, ord.ordreceivername, ord.ordreceiveraddress,
+		           ord.ordreceiverzipcode, ord.ordreceiverphone, odt.prdcode, odt.odtamount, 
+		           odt.prdprice, 
+		           (SELECT COUNT(*) 
+		            FROM review rev 
+		            WHERE rev.ordid = ord.ordid 
+		              AND rev.prdcode = odt.prdcode 
+		              AND rev.mid = ord.mid) AS revcount,
+		           ROW_NUMBER() OVER (PARTITION BY ord.ordid ORDER BY ord.ordid) as rn
+		    FROM orders ord
+		    JOIN ordersdetail odt ON ord.ordid = odt.ordid
+		    JOIN product prd ON odt.prdcode = prd.prdcode
+		    WHERE ord.mid = #{mid}
+		) 
+		WHERE rn = 1
 	</select>
 	
 	<select id="selectWaitDepositStatusByMid" resultType="int" parameterType="String">
@@ -87,22 +94,29 @@
 	</insert>
 	
 	<select id="selectOrderListInThisMonth" parameterType='String' resultType="OrderResponse">
-		select rownum as seq, ord.ordid, ord.mid, mem.mcreatedat, prd.prdname, prdbrand, ordtotalamount, ordtotalprice, ordrequest, 
-		ordstatus, ordpostnum, ordcreatedat, ordreceivername, ordreceiveraddress,
-		ordreceiverzipcode, ordreceiverphone, odt.prdcode, odtamount, odt.prdprice, 
-        (SELECT COUNT(*) 
-	     FROM review rev 
-	     WHERE rev.ordid = ord.ordid 
-	     AND rev.prdcode = odt.prdcode 
-	     AND rev.mid = ord.mid) AS revcount
-
-		from orders ord, ordersdetail odt, product prd, member mem
-        
-		where ord.ordid = odt.ordid
-        and ord.mid = mem.mid
-        and odt.prdcode = prd.prdcode
-      	and mem.mid=#{mid}
-      	and TRUNC(ord.ordcreatedat, 'MM') = TRUNC(SYSDATE, 'MM')
+		SELECT seq, ordid, mid, mcreatedat, prdname, prdbrand, ordtotalamount, ordtotalprice, ordrequest, 
+		       ordstatus, ordpostnum, ordcreatedat, ordreceivername, ordreceiveraddress,
+		       ordreceiverzipcode, ordreceiverphone, prdcode, odtamount, prdprice, revcount
+		FROM (
+		    SELECT ROWNUM as seq, ord.ordid, ord.mid, mem.mcreatedat, prd.prdname, prd.prdbrand, ord.ordtotalamount, 
+		           ord.ordtotalprice, ord.ordrequest, ord.ordstatus, ord.ordpostnum, 
+		           ord.ordcreatedat, ord.ordreceivername, ord.ordreceiveraddress,
+		           ord.ordreceiverzipcode, ord.ordreceiverphone, odt.prdcode, odt.odtamount, 
+		           odt.prdprice, 
+		           (SELECT COUNT(*) 
+		            FROM review rev 
+		            WHERE rev.ordid = ord.ordid 
+		              AND rev.prdcode = odt.prdcode 
+		              AND rev.mid = ord.mid) AS revcount,
+		           ROW_NUMBER() OVER (PARTITION BY ord.ordid ORDER BY ord.ordid) as rn
+		    FROM orders ord
+		    JOIN ordersdetail odt ON ord.ordid = odt.ordid
+		    JOIN product prd ON odt.prdcode = prd.prdcode
+		    JOIN member mem ON ord.mid = mem.mid
+		    WHERE mem.mid = #{mid}
+		      AND TRUNC(ord.ordcreatedat, 'MM') = TRUNC(SYSDATE, 'MM')
+		) 
+		WHERE rn = 1
 	</select>
 	
 	<select id="selectWaitDepositStatusInThisMonthByMid" resultType="int" parameterType="String">

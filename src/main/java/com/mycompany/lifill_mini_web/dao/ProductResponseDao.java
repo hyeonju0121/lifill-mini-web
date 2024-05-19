@@ -14,6 +14,7 @@ public interface ProductResponseDao {
 	public List<ProductResponse> prdSelectByPage(Pager pager);
 	public ProductResponse prdSelectByPrdcode(String prdcode);
 	public ProductResponse prdSelectByAttachData(String prdcode);
+	public ProductResponse prdSelectByAttachDetailData(String prdcode);
 	
 	public int prdFunctionOnCount(String subCategory);
 	

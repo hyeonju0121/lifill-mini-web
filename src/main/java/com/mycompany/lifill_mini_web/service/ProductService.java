@@ -288,6 +288,12 @@ public class ProductService {
 		ProductResponse productResponse = productResponseDao.prdSelectByAttachData(prdcode);
 		return productResponse.getPrdimgrep1();
 	}
+	
+	// 상품코드 기준으로 AttachDetailData (상품 상세 이미지) 조회
+		public byte[] getAttachDetailData(String prdcode) {
+			ProductResponse productResponse = productResponseDao.prdSelectByAttachDetailData(prdcode);
+			return productResponse.getPrdimgdetail();
+		}
 
 	// 사용자 장바구니에 해당 상품 추가
 	@Transactional

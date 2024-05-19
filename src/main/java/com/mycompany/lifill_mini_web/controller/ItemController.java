@@ -268,6 +268,25 @@ public class ItemController {
 		os.flush();
 		os.close();
 	}
+	
+	@GetMapping("/attachDetailDownload")
+	public void attachDetailDownload(String prdcode, HttpServletResponse response) throws Exception {
+		// 다운로드할 데이터를 준비
+		ProductResponse product = productService.getProductResponse(prdcode);
+		byte[] data = productService.getAttachDetailData(prdcode);
+
+		// 응답 헤더 구성
+		response.setContentType(product.getPrdimgdetailtype());
+		// 한글 파일의 이름 -> 인코딩 변경
+		String fileName = new String(product.getPrdimgdetailoname().getBytes("UTF-8"), "ISO-8859-1");
+		response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
+		// 응답 본문에 파일 데이터 출력
+		OutputStream os = response.getOutputStream();
+		os.write(data);
+		os.write(data);
+		os.flush();
+		os.close();
+	}
 
 	@Secured("ROLE_USER")
 	@RequestMapping("/buyNow")

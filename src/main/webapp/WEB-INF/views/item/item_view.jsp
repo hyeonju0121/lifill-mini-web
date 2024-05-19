@@ -167,19 +167,6 @@
 						class="rep_img"
 						src="attachDownload?prdcode=${product.prdcode}"/>
 					</div>
-					
-					<div class="sub-rep-img mt-5">
-						<div class="d-flex">
-							<div>
-								<img 
-								src="${product.prdimgrep2}" 
-								style="width:100px; height:100px"/>
-								<img 
-								src="${product.prdimgrep3}" 
-								style="width:100px; height:100px"/>
-							</div>
-						</div>
-					</div>
 				</div>
 				
 				<!-- 2. 가격, 영양 성분 안내, 구매하기/장바구니 버튼 위치 영역 -->
@@ -226,14 +213,12 @@
 																<span class="form_label">대표 구성 성분</span>
 															</div>
 															<div class="th2">
-																<span class="form_label">성인 남녀</span><br/>
-																<span class="form_label">눈 건강 개선</span><br/>
-																<span class="form_label">알약, 캡슐</span><br/>
-																<span class="form_label">1일 1회</span><br/>
-																<span class="form_label">물과 함께</span><br/>
-																<span class="form_label">마리골드 꽃 추출물, 헤마토코쿠스 추출물 <br/> 
-																						  루테인 20mg, 아스타잔틴 12mg
-																</span>
+																<span class="form_label">${product.prdtarget}</span><br/>
+																<span class="form_label">${product.prdeffect}</span><br/>
+																<span class="form_label">${product.prdtype}</span><br/>
+																<span class="form_label">${product.prdtimes}</span><br/>
+																<span class="form_label">${product.prdmethod}</span><br/>
+																<span class="form_label">${product.prdingredient}</span>
 															</div>
 														</div>
 													</div>
@@ -265,7 +250,12 @@
 															</div>
 															<div class="th2 delivery-value">
 																<span class="form_label">무료</span><br/>
-																<span class="form_label">신청 가능</span><br/>
+																<c:if test="${product.prdsubscribable eq false}">
+																	<span class="form_label">불가능</span><br/>
+																</c:if>
+																<c:if test="${product.prdsubscribable eq true}">
+																	<span class="form_label">가능</span><br/>
+																</c:if>
 															</div>
 														</div>
 													</div>
@@ -427,11 +417,10 @@
 					
 					<!-- 2. 상품 설명 영역 -->
 					<div id="item_detail_img_sec" style="margin-bottom: 3px;">
-						<h2><b>상품 설명</b></h2>
 					</div>
 					<div style="width:100%;">
 						<img 
-						src="${pageContext.request.contextPath}/resources/image/item_detail/eye/eye3_detail.png"
+						src="attachDetailDownload?prdcode=${product.prdcode}"
 						style="width:100%"/>
 					</div>
 					
@@ -454,7 +443,7 @@
 					<!-- 리뷰 영역 -->
 					<div class="widget_header_basic" id="review-sec">
 						  <div class="widget_header_basic__title_container">
-						      <span class="widget_header_basic__title js-translate-text" style="font-family: 'Noto Sans KR', sans-serif;">
+						      <span class="widget_header_basic__title js-translate-text" style="font-family: 'Noto Sans KR', sans-serif; font-weight: 700;">
 						        	리뷰
 						      </span>
 						      <span class="widget_header_basic__reviews_count js-widget-header-basic-reviews-count" style="font-family: 'Noto Sans KR', sans-serif;">
@@ -462,6 +451,10 @@
 						      </span>
 						  </div>
 					</div>
+					
+					<c:if test="${reviewCount < 1}">
+						등록된 리뷰가 없습니다.
+					</c:if>
 					
 					<!-- 리뷰 목차 -->
 				<c:forEach var="review" items="${review}">
@@ -561,13 +554,10 @@
 															<li>고객 문의 : 010-2232-3823</li>
 															<li>이메일 문의 : tjdwns3823@naver.com</li>
 														</ul>
-														<p>상품 관련 문의</p>
-														<ul>
-															<li>홈페이지 1대1 문의를 이용해주세요.</li>
-														</ul>
+														<p style="margin-top: 5px;">상품 관련 문의는 상품 Q&A를 이용해주세요.</p>
 														
 														<button onclick="location.href='${pageContext.request.contextPath}/member/qnaInquiry?prdcode=${product.prdcode}'" 
-															class="btn btn-sm btn-dark">문의하기</button>
+															class="btn btn-sm btn-dark" style="margin-top: 5px; border-radius: 0;">문의하기</button>
 													</div>
 												</div>
 											</div>
@@ -581,7 +571,7 @@
 										data-bs-toggle="collapse" data-bs-target="#flush-collapseSix"
 										aria-expanded="false" aria-controls="flush-collapseSix">
 											<div class="tit_area">
-												<strong>배송/반품/취소 안내</strong>
+												<strong>배송/반품/교환 안내</strong>
 											</div>
 										</div>
 									</div>
@@ -590,7 +580,7 @@
 										<div class="accordion-body">
 											<div class="contents">
 													<div class="delivery-notice">
-														<p style="margin-left: 5px;"><b>배송 안내</b></p>
+														<p style="margin-left: 5px; margin-top: 5px;"><b>배송 안내</b></p>
 														<p style="margin-left: 5px;">배송은 평일 결제 시 오후 12시에 출고가 마감됩니다. 오후 12시 이후 결제 건은 익일 출고가 진행됩니다. <br/>
 														(주말 결제 시 다음 영업일 출고)</p>
 														<ul>
@@ -602,7 +592,7 @@
 														</ul>
 													</div>
 													<div class="item-exchange-notice">
-														<p style="margin-left: 5px;"><b>반품 및 교환 안내</b></p>
+														<p style="margin-left: 5px; margin-top: 5px;"><b>반품 및 교환 안내</b></p>
 														<p style="margin-left: 5px;">교환 및 반품은 상품을 수령한 날부터 7일 이내에 고객센터로 문의해 주시기 바랍니다.</p>
 														<ul>
 															<li>제품 이상, 오배송 등과 같은 회사에 귀책사유가 있는 경우 맞교환이 진행됩니다.<br/>
@@ -616,11 +606,11 @@
 														</ul>
 													</div>
 													<div class="order-cancle-notice">
-														<p style="margin-left: 5px;"><b>주문취소 안내</b></p>
-														<p style="margin-left: 5px;">주문취소는 [발송대기] 상태일 경우에만 취소가 가능합니다. 홈페이지에서 직접 취소하실 수 있습니다.</p>
+														<p style="margin-left: 5px; margin-top: 5px;"><b>주문취소 안내</b></p>
+														<p style="margin-left: 5px;">주문취소는 [결제완료] 상태일 경우에만 취소가 가능합니다. 마이 페이지에서 직접 취소하실 수 있습니다.</p>
 														<ul>
-															<li>마이페이지 > 결제관리 > 해당 결제건 선택</li>
-															<li>[배송중]부터는 취소가 불가능하니, 고객센터에 문의하여 반품으로 진행해 주시기 바랍니다.</li>
+															<li>마이페이지 > 주문 내역 > 해당 결제건 선택</li>
+															<li>[상품준비중]부터는 취소가 불가능하니, 고객센터에 문의하여 반품으로 진행해 주시기 바랍니다.</li>
 															<li>주문 상품의 부분 취소가 필요하신 경우 전체 주문취소 후 다시 구매해 주시기 바랍니다.</li>
 														</ul>
 													</div>
