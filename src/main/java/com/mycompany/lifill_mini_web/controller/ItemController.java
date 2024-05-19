@@ -4,7 +4,6 @@ import java.io.OutputStream;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -50,77 +49,7 @@ public class ItemController {
 	@Resource
 	private ReviewService reviewService;
 	
-
-	@RequestMapping("")
-	public String index() {
-		log.info("index() 실행");
-		return "item/index";
-	}
-
-	@RequestMapping("/category1")
-	public String category1() {
-		log.info("category1() 실행");
-		return "item/category1";
-	}
-
-	/*
-	 * @RequestMapping("/category2") public String category2() {
-	 * log.info("category2() 실행"); return "item/category2"; }
-	 */
-
-	/*@GetMapping("/category2")
-	public String productResponseList(Model model) {
-		// Service에서 게시물 목록 요청
-		List<ProductResponse> productResponseList = productService.getProductResponseList();
-		log.info("service 실행");
-
-		
-		 * for (ProductResponse temp : productResponseList) { log.info("temp={}",
-		 * temp.toString()); }
-		 
-		// 판매중인 상품 total count 가져오기
-		int totalCnt = productService.getSalesOnCnt();
-
-		// JSP 에서 사용할 수 있도록 설정
-		model.addAttribute("productResponseList", productResponseList);
-		model.addAttribute("totalCnt", totalCnt);
-		return "item/category2";
-	}*/
-
-	//public String categoriesFunction(String pageNo, Model model, HttpSession session) {
-	/*@GetMapping("/categories/function")
-	public String categoriesFunction( Model model) {
-		if (pageNo == null) {
-			pageNo = (String) session.getAttribute("pageNo");
-			if (pageNo == null) {
-				// 세션에 저장되어 있지 않을 경우 "1"로 강제 세팅
-				pageNo = "1";
-			}
-		}
-
-		// 세션에 pageNo 저장
-		session.setAttribute("pageNo", pageNo);
-		// 문자열을 정수로 변환
-		int intPageNo = Integer.parseInt(pageNo);
-
-		// Pager 객체 생성
-		int rowsPagingTarget = productService.getSalesOnCnt();
-		Pager pager = new Pager(8, 8, rowsPagingTarget, intPageNo);
-		
-		// Service에서 게시물 목록 요청
-		List<ProductResponse> productResponseList = productService.getProductResponseList();
-
-		// 판매중인 상품 total count 가져오기
-		int totalCnt = productService.getSalesOnCnt();
-
-		// JSP 에서 사용할 수 있도록 설정
-		//model.addAttribute("pager", pager);
-		model.addAttribute("productResponseList", productResponseList);
-		model.addAttribute("totalCnt", totalCnt);
-		return "item/function";
-	}*/
-	
-	
+	// 기능별 스토어 ------------------------------------------------------
 	@GetMapping("/categories/function")
 	public String categoriesFunctionSubCategory(Model model, 
 				@RequestParam(required = false, value="subCategory",
@@ -169,6 +98,7 @@ public class ItemController {
 	}
 	
 
+	// 성분별 스토어 ------------------------------------------------------
 	@GetMapping("/categories/ingredient")
 	public String categoriesIngredient(Model model,
 			@RequestParam(required = false, value = "subCategory", defaultValue = "all") String subCategory,
@@ -212,30 +142,8 @@ public class ItemController {
 		return "item/ingredient";
 	}
 
-	@RequestMapping("/category3")
-	public String category3() {
-		log.info("category3() 실행");
-		return "item/category3";
-	}
 
-	@RequestMapping("/category4")
-	public String category4() {
-		log.info("category4() 실행");
-		return "item/category4";
-	}
-
-	@RequestMapping("/category5")
-	public String category5() {
-		log.info("category5() 실행");
-		return "item/category5";
-	}
-
-	@RequestMapping("/category6")
-	public String category6() {
-		log.info("category6() 실행");
-		return "item/category6";
-	}
-
+	// 상품 상세페이지 ------------------------------------------------
 	@RequestMapping("/item_view")
 	public String itemView(Model model, String prdcode) {
 		log.info("itemView() 실행");
@@ -250,6 +158,88 @@ public class ItemController {
 		return "item/item_view";
 	}
 
+
+	// 상품 구매하기 ------------------------------------------------
+	@Secured("ROLE_USER")
+	@RequestMapping("/buyNow")
+	public String buyNow(String prdcode, int ordamount, int ordprice, Model model) {
+		log.info("buyNow() 실행");
+
+		// 로그인한 회원의 객체 얻기
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		LifillUserDetails userDetails = (LifillUserDetails) authentication.getPrincipal();
+		Member member = userDetails.getMember();
+
+		String maddress = memberService.getMemberAddress(member);
+		String mzipcode = memberService.getMemberZipcode(member);
+
+		// 서비스 -> prdcode 기준으로 해당 productResponse 객체 가져오기
+		ProductResponse productResponse = productService.getProductResponse(prdcode);
+		// jsp에서 사용할 수 있도록 model로 넘겨주기
+		model.addAttribute("product", productResponse);
+		model.addAttribute("amount", ordamount);
+		model.addAttribute("price", ordprice);
+		model.addAttribute("member", member);
+		model.addAttribute("maddress", maddress);
+		model.addAttribute("mzipcode", mzipcode);
+
+		return "item/order";
+	}
+
+	// 장바구니에 담긴 상품을 구매하려 할 때 실행되는 컨트롤러 ----------------------
+	@Secured("ROLE_USER")
+	@GetMapping("/buyOnCart")
+	public String buyOnCart(OrderItem item, Model model) {
+		log.info("buyOnCart() 실행");
+		log.info("사용자가 주문 넣은 항목 request.toString={}", item.toString());
+
+		// 로그인한 회원의 객체 얻기
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		LifillUserDetails userDetails = (LifillUserDetails) authentication.getPrincipal();
+		Member member = userDetails.getMember();
+
+		String maddress = memberService.getMemberAddress(member);
+		String mzipcode = memberService.getMemberZipcode(member);
+
+		// 서비스 -> prdcode 기준으로 해당 productResponse 객체 가져오기
+	    List<OrdersResponse> productResponse = productService.getProductsResponse(item);
+		
+		// jsp에서 사용할 수 있도록 model로 넘겨주기
+		model.addAttribute("product", productResponse);
+		model.addAttribute("member", member);
+		model.addAttribute("maddress", maddress);
+		model.addAttribute("mzipcode", mzipcode);
+
+		return "item/orders";
+	}
+
+	// 단일 상품 구매 --------------------------------------------
+	@Transactional
+	@PostMapping("/buy")
+	public String buy(SingleOrderRequest singleOrder) {
+		log.info("buy() 실행");
+
+		log.info("singleOrder={}", singleOrder.toString());
+
+		orderService.createOrder(singleOrder);
+
+		return "item/orderComplete";
+	}
+	
+	// 다중 상품 구매 ---------------------------------------------
+	@Transactional
+	@PostMapping("/buyMultiple")
+	public String buyMultiple(MultipleOrdersRequest orders) {
+		log.info("buyMultiple() 실행");
+
+		log.info("orders={}", orders.toString());
+
+		orderService.createOrders(orders);
+
+		return "item/orderComplete";
+	}
+
+	// 첨부파일 다운로드 -----------------------------------------------
 	@GetMapping("/attachDownload")
 	public void attachDownload(String prdcode, HttpServletResponse response) throws Exception {
 		// 다운로드할 데이터를 준비
@@ -287,94 +277,4 @@ public class ItemController {
 		os.flush();
 		os.close();
 	}
-
-	@Secured("ROLE_USER")
-	@RequestMapping("/buyNow")
-	public String buyNow(String prdcode, int ordamount, int ordprice, Model model) {
-		log.info("buyNow() 실행");
-
-		// 로그인한 회원의 객체 얻기
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		LifillUserDetails userDetails = (LifillUserDetails) authentication.getPrincipal();
-		Member member = userDetails.getMember();
-
-		String maddress = memberService.getMemberAddress(member);
-		String mzipcode = memberService.getMemberZipcode(member);
-
-		// 서비스 -> prdcode 기준으로 해당 productResponse 객체 가져오기
-		ProductResponse productResponse = productService.getProductResponse(prdcode);
-		// jsp에서 사용할 수 있도록 model로 넘겨주기
-		model.addAttribute("product", productResponse);
-		model.addAttribute("amount", ordamount);
-		model.addAttribute("price", ordprice);
-		model.addAttribute("member", member);
-		model.addAttribute("maddress", maddress);
-		model.addAttribute("mzipcode", mzipcode);
-
-		return "item/order";
-	}
-
-	// 장바구니에 담긴 상품을 구매하려 할 때 실행되는 내용
-	@Secured("ROLE_USER")
-	@GetMapping("/buyOnCart")
-	public String buyOnCart(OrderItem item, Model model) {
-		log.info("buyOnCart() 실행");
-		log.info("사용자가 주문 넣은 항목 request.toString={}", item.toString());
-
-		// 로그인한 회원의 객체 얻기
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		LifillUserDetails userDetails = (LifillUserDetails) authentication.getPrincipal();
-		Member member = userDetails.getMember();
-
-		String maddress = memberService.getMemberAddress(member);
-		String mzipcode = memberService.getMemberZipcode(member);
-
-		// 서비스 -> prdcode 기준으로 해당 productResponse 객체 가져오기
-	    List<OrdersResponse> productResponse = productService.getProductsResponse(item);
-		
-		// jsp에서 사용할 수 있도록 model로 넘겨주기
-		model.addAttribute("product", productResponse);
-		model.addAttribute("member", member);
-		model.addAttribute("maddress", maddress);
-		model.addAttribute("mzipcode", mzipcode);
-
-		return "item/orders";
-	}
-
-	@Transactional
-	@PostMapping("/buy")
-	public String buy(SingleOrderRequest singleOrder) {
-		log.info("buy() 실행");
-
-		log.info("singleOrder={}", singleOrder.toString());
-
-		orderService.createOrder(singleOrder);
-
-		return "item/orderComplete";
-	}
-	
-	@Transactional
-	@PostMapping("/buyMultiple")
-	public String buyMultiple(MultipleOrdersRequest orders) {
-		log.info("buyMultiple() 실행");
-
-		log.info("orders={}", orders.toString());
-
-		orderService.createOrders(orders);
-
-		return "item/orderComplete";
-	}
-
-	/*
-	 * // 구매 완료시 보여지는 JSP
-	 * 
-	 * @PostMapping("/orderComplete") public String orderComplete(SingleOrderRequest
-	 * singleOrder) { log.info("orderComplete() 실행");
-	 * 
-	 * log.info("singleOrder={}", singleOrder.toString());
-	 * 
-	 * orderService.createOrder(singleOrder);
-	 * 
-	 * return "item/orderComplete"; }
-	 */
 }

@@ -250,7 +250,7 @@
 						href="function?subCategory=${param.subCategory}&sort=${param.sort}&filter=${param.filter}&pageNo=${pager.endPageNo+1}">다음</a>
 				</c:if>
 				<a class="btn btn-sm last-page"
-					href="function?subCategory=${param.subCategory}&sort=${param.sort}&filter=${param.filter}&pageNo=${pager.totalPageNo}{pager.totalPageNo}">맨끝</a>
+					href="function?subCategory=${param.subCategory}&sort=${param.sort}&filter=${param.filter}&pageNo=${pager.totalPageNo}">맨끝</a>
 			</div>
 		</section>
 	

@@ -159,7 +159,7 @@
 			
 		<!-- review ------------------------------------------------------------------->
 		<div class="bg-image d-flex justify-content-center align-items-center embed-responsive embed-responsive-4by3"
-	    		style="background-image: url('${pageContext.request.contextPath}/resources/image/background/review_background_img1.png'); height: 70vh;">
+	    	>
 			<div class="container mt-2">
 				<p class="h4">고객 평점</p>
 				<p class="h6">고객님들의 후기로 입증된 라이필 지금 체험하세요. </p>

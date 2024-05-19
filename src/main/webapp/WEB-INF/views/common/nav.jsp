@@ -8,7 +8,7 @@
 
 	<nav class="navbar navbar-expand-sm">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="${pageContext.request.contextPath}/main">LIFILL</a>
+			<a class="navbar-brand" href="${pageContext.request.contextPath}">LIFILL</a>
 				<div class="navbar-collapse collapse show" id="mynavbar">
 					<ul class="menu">
 						<li><a href="#">LIFILL 스토리</a></li>

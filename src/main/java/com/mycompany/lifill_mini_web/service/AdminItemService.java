@@ -1,6 +1,5 @@
 package com.mycompany.lifill_mini_web.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -16,7 +15,6 @@ import com.mycompany.lifill_mini_web.dao.PrdDetailDao;
 import com.mycompany.lifill_mini_web.dao.PrdHashtagDao;
 import com.mycompany.lifill_mini_web.dao.ProductDao;
 import com.mycompany.lifill_mini_web.dao.ProductResponseDao;
-import com.mycompany.lifill_mini_web.dto.Board;
 import com.mycompany.lifill_mini_web.dto.Ingredient;
 import com.mycompany.lifill_mini_web.dto.Pager;
 import com.mycompany.lifill_mini_web.dto.PrdContents;

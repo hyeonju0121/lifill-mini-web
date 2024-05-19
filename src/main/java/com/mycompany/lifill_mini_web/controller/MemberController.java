@@ -387,30 +387,7 @@ public class MemberController {
 
 		return "member/mypage/writeReview";
 	}
-	/*
-	 * @PostMapping("/writeBoard") public String writeBoard(Inquiry inquiry) {
-	 * 
-	 * // 요청 데이터의 유효성 검사 log.info("original filename : " +
-	 * inquiry.getInqAttach().getOriginalFilename()); log.info("file type : " +
-	 * inquiry.getInqAttach().getContentType());
-	 * 
-	 * // 첨부 파일이 있는지 조사 if (inquiry.getInqAttach() != null &&
-	 * !inquiry.getInqAttach().isEmpty()) { // DTO에 추가 설정
-	 * inquiry.setInqAttachOName(inquiry.getInqAttach().getOriginalFilename());
-	 * inquiry.setInqAttachType(inquiry.getInqAttach().getContentType()); try {
-	 * inquiry.setInqAttachData(inquiry.getInqAttach().getBytes()); } catch
-	 * (Exception e) {} }
-	 * 
-	 * inquiry.setPrdcode("EYE001"); inquiry.setInqtype("PRODUCT");
-	 * inquiry.setInqstatus("답변대기중");
-	 * 
-	 * // 로그인된 사용자 아이디 설정 inquiry.setMid("tjdwns3823");
-	 * 
-	 * // 비즈니스 로직 처리를 서비스로 위임 memberService.applyInquiry(inquiry);
-	 * 
-	 * return "redirect:/member/myInquiryList"; }
-	 */
-
+	
 	@Transactional
 	@PostMapping("/applyMTMInquiry")
 	public String applyMTMInquiry(CreateInquiryRequest request) {

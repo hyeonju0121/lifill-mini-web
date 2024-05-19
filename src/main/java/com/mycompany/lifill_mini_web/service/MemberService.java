@@ -63,13 +63,6 @@ public class MemberService {
 		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 		memberResponse.setMpassword(passwordEncoder.encode(memberResponse.getMpassword()));
 
-		/*
-		 * // address1과 2를 합친 값을 Address DTO의 maddress 필드에 저장 String fullAddress =
-		 * member.getMaddress1() + ", " + member.getMaddress2();
-		 * member.getAddress().setMaddress(fullAddress);
-		 */
-		// log.info("member.getAddress={}", member.getAddress().toString());
-
 		// sign_up 폼에서 입력받는 내용이 아니므로 직접 설정
 		memberResponse.setMrole("ROLE_USER");
 		memberResponse.setMenable(true);
