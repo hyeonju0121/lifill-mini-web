@@ -77,7 +77,7 @@
 				<form method="post" action="${pageContext.request.contextPath}/member/find_pw" id="login-form" novalidate>
 		    			<%-- <div style="height:100px"> 비밀번호 값만 넘겨주고 싶으면 사용가능= 비밀번호 : ${mpassword} --%>
 		    			<%-- <div><h5 class="mb-5" style="text-align: center;">비밀번호 : ${mpassword} </h5></div> --%>
-		    				 <button  style="height:100px" type="button" onclick="pwModify()"class="btn btn-outline-dark btn-lg">
+		    				 <button  style="height:70px; width:100px;" type="button" onclick="pwModify()"class="btn btn-outline-dark btn-lg">
 							 			 변경하기</button>			
 		    			 
 		            		<input type="submit" value="돌아가기"  style="background-color: #37cbe9; color:white;">
